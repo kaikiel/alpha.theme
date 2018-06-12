@@ -1,0 +1,214 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:v-on="http://vuejs.org"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="gct.content">
+<body>
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core"
+                    tal:define="toc context/table_of_contents|nothing;">
+
+    <div class="product-details-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <div class="flexslider">
+              <ul class="slides">
+		<tal:repeat repeat="item view/getImg">
+		<tal:define define="number repeat/item/number">
+                  <li data-thumb="${python: item.getObject().absolute_url()}/@@images/image/preview">
+                    <img src="${python: item.getObject().absolute_url()}/@@images/image/preview" />
+                  </li>
+		</tal:define>
+		</tal:repeat>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <div class="product-info-main">
+	      <span>${view/context/productNo}</span>
+              <div class="page-title">
+                <h1>${view/context/title}</h1>
+              </div>
+              <div class="product-info-price">
+                <div class="price-final product-price">
+                  <span tal:condition="not: view/context/salePrice">$${view/context/price}</span>
+		  <ul tal:condition="view/context/salePrice">
+		    <li class="new-price sale" style="font-size:30px">$${view/context/salePrice}</li>
+                    <li class="old-price">$${view/context/price}</li>
+	          </ul>
+                </div>
+              </div>
+              <div class="short_description_block">
+                <p>${context/description}</p>
+              </div>
+              <div class="product-add-form">
+                <form action="#">
+                  <div class="quality-button">
+                    <label>Qty</label>
+                    <input class="qty" type="number" value="1">
+                  </div>
+                </form>
+              </div>
+	  
+              <div class="box-cart-bottom">
+                <div class="add_to_cart">
+                  <a href="#">Add to cart</a>
+                </div>
+                <div class="add-to-links-2">
+                  <ul>
+                    <li><a href="#"><i class="fa fa-refresh"></i></a></li>
+                    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+	      <div class="product_detail">
+	        <p>Brand: <span>${view/context/brand}</span></p>
+		<p>Product Code: <span>${view/context/productCode}</span></p>
+	        <p>Availability: 
+		   <tal:switch switch="view/context/availability">
+			<span tal:case="True">In Stock</span>
+			<span tal:case="False">Out Of Stock</span>
+		   </tal:switch>
+		</p>
+	      </div>
+	      <div style="border-top: 1px solid #f2f2f2">
+	        <h3 style="font-weight: 700">DOWNLOAD</h3>
+		<a href="${python: view.context.absolute_url()}/@@download/downloadFile">
+		 ${python: view.context.downloadFile.filename}
+		</a>
+              </div>
+
+              <div class="socialsharing_product">
+                <span>share</span>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-google-plus"></i></a>
+                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+
+    <div class="more-info-area pt-50">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <!-- tab-menu-start -->
+            <div class="tab-menu mb-40 text-center ">
+              <ul>
+                <li class="active"><a href="#More" data-toggle="tab">FEATURE </a></li>
+                <li><a href="#Data"  data-toggle="tab">SPECIFICATION</a></li>
+                <li><a href="#Reviews" data-toggle="tab">REVIEW</a></li>
+              </ul>
+            </div>
+            <!-- tab-menu-end -->
+          </div>
+        </div>
+        <!-- tab-area-start -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="More">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="rate">
+                  <p tal:content="structure python:view.context.feature.output"> </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="Data">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="page-product-box">
+                  <table class="table-data-sheet">
+                    <tbody>
+                      <tr class="odd" tal:repeat="item python: view.context.specification">
+                        <td>${python: item.split(':')[0]}</td>
+                        <td>${python: item.split(':')[1]}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="Reviews">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="review-title">
+		  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.0';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-comments" data-href="${context/absolute_url}" data-width="950px"  data-numposts="5" 
+	data-order-by="reverse_time"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- tab-area-end -->
+      </div>
+    </div>
+
+
+        <div class="pos_new_product ptb-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title mb-30">
+                            <h2><span>0</span>ther products in the same category: </h2>
+                        </div>
+                    </div>
+                </div> 
+                <div class="product-active-3">
+                    <!-- single-product-start -->
+                    <div class="single-product" tal:repeat="item view/context/relatedProduct">
+		      <tal:define define="obj python: item.to_object">
+                        <div class="product-img">
+                            <a href="${python: obj.absolute_url()}">
+                                <img src="${python: obj.absolute_url()}/@@images/cover" alt="product" class="first" />
+                            </a>
+                        </div>
+                        <div class="product-content">
+                            <h3><a href="${python: obj.absolute_url()}">${python: obj.title}</a></h3>
+                            <div class="product-price">
+                              <ul>
+				<li class="new-price" 
+					tal:condition="not: python:obj.salePrice">$${python: obj.price}</li>
+
+				<tal:condition condition="python: obj.salePrice">
+                                  <li class="new-price sale">$${python: obj.salePrice}</li>
+                                  <li class="old-price">$${python: obj.price}</li>
+				</tal:condition>
+                              </ul>
+                            </div>
+                            <div class="add-to-links mt-15">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-refresh"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+	            </tal:define>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</metal:content-core>
+</metal:content-core>
+
+</body>
+</html>
+
