@@ -1,31 +1,39 @@
-<nav id="portal-breadcrumbs" class="plone-breadcrumb"
-         i18n:domain="plone"
-         tal:define="breadcrumbs view/breadcrumbs">
-  <div class="container">
-    <span id="breadcrumbs-you-are-here" class="hiddenStructure"
-            i18n:translate="you_are_here">You are here:</span>
-    <ol aria-labelledby="breadcrumbs-you-are-here">
-      <li id="breadcrumbs-home">
-        <a i18n:translate="tabs_home"
-            tal:attributes="href view/navigation_root_url">Home</a>
-      </li>
-      <li tal:repeat="crumb breadcrumbs"
-          tal:attributes="id string:breadcrumbs-${repeat/crumb/number};">
-        <tal:item tal:define="is_last repeat/crumb/end;
+    <div class="breadcrumb-area mb-70" tal:define="breadcrumbs view/breadcrumbs"
+	 style="background-color:black">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="breadcrumb-content text-center">
+              <div class="breadcrumb-title">
+                <h3><a href="#"></a></h3>
+
+                <ul aria-labelledby="breadcrumbs-you-are-here">
+                  <li id="breadcrumbs-home">
+                    <a i18n:translate="tabs_home"
+                       tal:attributes="href view/navigation_root_url">Home</a>
+                  </li>
+                <li tal:repeat="crumb breadcrumbs"
+                    tal:attributes="id string:breadcrumbs-${repeat/crumb/number};">
+                 <tal:item tal:define="is_last repeat/crumb/end;
                                 url crumb/absolute_url;
                                 title crumb/Title">
-          <a href="#"
-              tal:omit-tag="not: url"
-              tal:condition="python:not is_last"
-              tal:attributes="href url"
-              tal:content="title">
-                  crumb
-          </a>
-          <span id="breadcrumbs-current"
-                tal:condition="is_last"
-                tal:content="title">crumb</span>
-        </tal:item>
-      </li>
-    </ol>
-  </div>
-</nav>
+                  <a href="#"
+                     tal:omit-tag="not: url"
+                     tal:condition="python:not is_last"
+                     tal:attributes="href url"
+                     >
+                        <i class="fa fa-angle-right" style="padding: 0 8px"></i>${title}
+                  </a>
+                  <tal:is_last condition="is_last">
+		    <i class="fa fa-angle-right" style="padding: 0 8px;color: white"></i>
+		    <span style="color:#f08a5d;font-size:16px">${title}</span>
+		  </tal:is_last>
+                 </tal:item>
+                </li>
+              </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

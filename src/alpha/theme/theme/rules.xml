@@ -104,6 +104,8 @@
   <replace css:content=".most-popular-product.pt-80.pb-50" css:theme=".most-popular-product.pt-80.pb-50" />
   <replace css:content=".blog-area.pb-80" css:theme=".blog-area.pb-80" />
   <replace css:content=".plone-collapse.plone-navbar-collapse" css:theme-children=".main-menu.hidden-sm.hidden-xs" />  
+  <!--path bar-->
+  <after css:content=".breadcrumb-area.mb-70" css:theme="header" css:if-not-content=".portaltype-cover" />
 </rules>
 </rules>
 
