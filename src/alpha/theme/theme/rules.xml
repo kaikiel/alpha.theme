@@ -27,7 +27,8 @@
   </rules>
 
   <!-- Copy over the id/class attributes on the body tag. This is important for per-section styling -->
-  <merge attributes="class" css:theme="body" css:content="body" />
+
+  <merge attributes="class" css:content="body" css:theme="body" />
 
   <!-- move global nav -->
   <replace css:theme-children="#mainnavigation" css:content-children="#portal-mainnavigation" method="raw" />
@@ -51,14 +52,9 @@
       </p> -->
       <div class="row">
         <div class="col-xs-12 col-sm-12">
-          <xsl:apply-templates css:select="#content" />
+          <xsl:apply-templates css:select="#content-core" />
         </div>
       </div>
-      <footer class="row">
-        <div class="col-xs-12 col-sm-12">
-          <xsl:copy-of css:select="#viewlet-below-content" />
-        </div>
-      </footer>
     </div>
   </replace>
 
@@ -99,6 +95,7 @@
 
   <!--edit zone-->
   <drop css:content="#edit-zone" />
+  <replace css:content=".pos_new_product.pt-50" css:theme=".pos_new_product.pt-50" />
 </rules>
 </rules>
 

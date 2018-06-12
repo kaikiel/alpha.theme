@@ -5803,3 +5803,13 @@ p.checkout-coupon input[type="submit"] {
 }
 
 
+/* custom */
+.product_detail p{
+  font-size: 21px;
+  font-weight: bold;
+}
+.product_detail span{
+  font-size: 18px;
+  font-weight: bold;
+  color: #f2c200;;
+}
