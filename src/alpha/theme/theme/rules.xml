@@ -23,6 +23,8 @@
     <!-- Don't use Plone icons, use the theme's -->
     <drop css:content="head link[rel='apple-touch-icon']" />
     <drop css:content="head link[rel='shortcut icon']" />
+    <!--js slot-->
+    <after css:theme-children="body" css:content-children="#js-bottom-slot" />
 
   </rules>
 
