@@ -75,12 +75,14 @@
 		   </tal:switch>
 		</p>
 	      </div>
+             <tal:condition condition="python: view.context.downloadFile">
 	      <div style="border-top: 1px solid #f2f2f2">
 	        <h3 style="font-weight: 700">DOWNLOAD</h3>
-		<a href="${python: view.context.absolute_url()}/@@download/downloadFile">
-		 ${python: view.context.downloadFile.filename}
-		</a>
+		  <a href="${python: view.context.absolute_url()}/@@download/downloadFile">
+		   ${python: view.context.downloadFile.filename}
+		  </a>
               </div>
+             </tal:condition>
 
               <div class="socialsharing_product">
                 <span>share</span>
@@ -116,7 +118,8 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="rate">
-                  <p tal:content="structure python:view.context.feature.output"> </p>
+                  <p tal:condition="python: view.context.feature" 
+		     tal:content="structure python:view.context.feature.output"> </p>
                 </div>
               </div>
             </div>
@@ -126,7 +129,7 @@
               <div class="col-lg-12">
                 <div class="page-product-box">
                   <table class="table-data-sheet">
-                    <tbody>
+                    <tbody tal:condition="view/context/specification">
                       <tr class="odd" tal:repeat="item python: view.context.specification">
                         <td>${python: item.split(':')[0]}</td>
                         <td>${python: item.split(':')[1]}</td>
