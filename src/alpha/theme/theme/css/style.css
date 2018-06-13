@@ -2381,6 +2381,7 @@ a#scrollUp {
 }
 .home-5 .header-top-total{
 	padding:20px 25px;
+	border-bottom: 2px solid yellow;
 }
 .home-5 .cart-area ul li > span {
   left: 18px;

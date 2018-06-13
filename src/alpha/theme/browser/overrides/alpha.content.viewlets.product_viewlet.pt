@@ -7,9 +7,9 @@
         <!-- tab-menu-start -->
         <div class="tab-menu mb-40 text-center ">
           <ul>
-            <li class="active"><a href="#products" data-toggle="tab">New products </a></li>
-            <li><a href="#OnSale"  data-toggle="tab">OnSale</a></li>
-            <li><a href="#Bestseller" data-toggle="tab">Bestseller</a></li>
+            <li class="active"><a href="#products" data-toggle="tab">Most View</a></li>
+            <li><a href="#OnSale"  data-toggle="tab">Special</a></li>
+            <li><a href="#Bestseller" data-toggle="tab">Latest</a></li>
           </ul>
         </div>
         <!-- tab-menu-end -->
