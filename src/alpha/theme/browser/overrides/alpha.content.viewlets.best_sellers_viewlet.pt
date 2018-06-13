@@ -1,2 +1,191 @@
 <div class="pos_new_product ptb-50">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-title mb-40 text-center">
+          <h2>best sellers</h2>
+        </div>
+      </div>
+    </div>  
+    <div class="product-active">
+      <!-- single-product-start -->
+      <tal:repeat repeat="item view/getBestSellers">
+        <tal:define define="obj item/getObject;
+                            item_title item/Title;
+                            item_id item/getId;
+                            item_url item/getURL;
+                            item_price obj/price;
+                            item_sale  obj/salePrice;
+                            is_has_item_sale python: item_sale!=None;">
+          <tal:content tal:content="structure string: <div class='product-total-2'>" tal:condition="repeat/item/even" />
+            <!-- single-product-start -->
+            <div tal:condition="repeat/item/even" class="single-product mb-30">
+              <div class="single-img">
+                <a href="${item_url}">
+                  <img src="${item_url}/@@images/cover/preview" alt="product" class="first" />
+                </a>
+              </div>
+              <div class="product-content">
+                <h3><a href="${item_url}">${item_title}</a></h3>
+                <div class="product-price">
+                  <ul>
+                    <li class="new-price">${item_price}</li>
+                  </ul>
+                </div>
+                <div class="add-to-links mt-15">
+                  <ul>
+                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                    <li><a href="#"><i class="fa fa-refresh"></i></a></li>
+                    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#${item_id}"><i class="fa fa-eye"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- single-product-end -->
+            <!-- single-product-start -->
+            <div tal:condition="repeat/item/odd" class="single-product">
+              <div class="product-img">
+                <a href="${item_url}">
+                  <img src="${item_url}/@@images/cover/preview" alt="product" class="first" />
+                </a>
+              </div>
+              <div class="product-content">
+                <h3><a href="${item_url}">${item_title}</a></h3>
+                <div class="product-price">
+                  <ul>
+                    <li class="new-price">${item_price}</li>
+                  </ul>
+                </div>
+                <div class="add-to-links mt-15">
+                  <ul>
+                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                    <li><a href="#"><i class="fa fa-refresh"></i></a></li>
+                    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#${item_id}"><i class="fa fa-eye"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- single-product-end -->
+          <tal:content tal:content="structure string: </div>" tal:condition="repeat/item/odd" />
+        </tal:define>
+      </tal:repeat>
+      <!-- single-product-end -->
+    </div>
+  </div>
+  <div class="modal-area">
+    <tal:repeat repeat="item view/getBestSellers">
+      <tal:define define="obj item/getObject;
+                          item_title item/Title;
+                          item_description item/Description;
+                          item_id item/getId;
+                          item_url item/getURL;
+                          item_price obj/price;
+                          item_sale  obj/salePrice;
+                          is_has_item_sale python: item_sale!=None;">
+        
+        <!-- single-modal-start -->
+        <div class="modal fade" id="${item_id}" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="modal-img">
+<div class="flexslider">
+  <div class="flex-viewport" style="overflow: hidden; position: relative;">
+    <ul class="slides" style="width: 1200%; transition-duration: 0s; transform: translate3d(-366px, 0px, 0px);">
+      <li data-thumb="${item_url}/@@images/cover/preview" class="clone" aria-hidden="true" style="width: 366px; margin-right: 0px; float: left; display: block;">
+        <img src="${item_url}/@@images/cover/preview" alt="woman" draggable="false">
+      </li>
+      <li data-thumb="${item_url}/@@images/cover/preview" style="width: 366px; margin-right: 0px; float: left; display: block;" class="flex-active-slide" data-thumb-alt="">
+        <img src="${item_url}/@@images/cover/preview" alt="woman" draggable="false">
+      </li>
+      <li data-thumb="${item_url}/@@images/cover/preview" data-thumb-alt="" class="" style="width: 366px; margin-right: 0px; float: left; display: block;">
+        <img src="${item_url}/@@images/cover/preview" alt="woman" draggable="false">
+      </li>
+      <li data-thumb="${item_url}/@@images/cover/preview" data-thumb-alt="" class="" style="width: 366px; margin-right: 0px; float: left; display: block;">
+        <img src="${item_url}/@@images/cover/preview" alt="woman" draggable="false">
+      </li>
+      <li data-thumb="${item_url}/@@images/cover/preview" data-thumb-alt="" class="" style="width: 366px; margin-right: 0px; float: left; display: block;">
+        <img src="${item_url}/@@images/cover/preview" alt="woman" draggable="false">
+      </li>
+      <li data-thumb="${item_url}/@@images/cover/preview" style="width: 366px; margin-right: 0px; float: left; display: block;" class="clone" aria-hidden="true">
+        <img src="${item_url}/@@images/cover/preview" alt="woman" draggable="false">
+      </li>
+    </ul>
+  </div>
+  <ol class="flex-control-nav flex-control-thumbs">
+    <li>
+      <img src="${item_url}/@@images/cover/preview" class="flex-active" draggable="false">
+    </li>
+    <li>
+      <img src="${item_url}/@@images/cover/preview" draggable="false" class="">
+    </li>
+    <li>
+      <img src="${item_url}/@@images/cover/preview" draggable="false" class="">
+    </li>
+    <li>
+      <img src="${item_url}/@@images/cover/preview" draggable="false" class="">
+    </li>
+  </ol>
+  <ul class="flex-direction-nav">
+    <li class="flex-nav-prev">
+      <a class="flex-prev" href="#">Previous</a>
+    </li>
+    <li class="flex-nav-next">
+      <a class="flex-next" href="#">Next</a>
+    </li>
+  </ul>
+</div>
+                </div>
+                <div class="model-text">
+                  <h2><a href="${item_url}">${item_title}</a> </h2>
+                  <div class="price-rate">
+                    <span class="old-price"><del>${item_price}</del></span>
+                    <span class="new-price">${item_sale}</span>
+                  </div>
+                  <div class="short-description mt-20">
+                    <p>${item_description}</p>
+                  </div>
+                  <form action="#">
+                    <input type="number" value="1"/>
+                    <button type="submit">Add to cart</button>
+                  </form>
+                  <div class="product-meta">
+                    <span>
+                      Categories: 
+                      <a href="#">albums</a>,<a href="#">Music</a>
+                    </span>
+                    <span>
+                      Tags: 
+                      <a href="#">albums</a>,<a href="#">Music</a>
+                    </span>
+                  </div>
+                  <!-- social-icon-start -->
+                  <div class="social-icon mt-20">
+                    <ul>
+                      <li><a href="#" data-toggle="tooltip" title="Share on Facebook"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="#" data-toggle="tooltip" title="Share on Twitter"><i  class="fa fa-twitter"></i></a></li>
+                      <li><a href="#" data-toggle="tooltip" title="Email to a Friend"><i class="fa fa-envelope-o"></i></a></li>
+                      <li><a href="#" data-toggle="tooltip" title="Pin on Pinterest"><i class="fa fa-pinterest"></i></a></li>
+                      <li><a href="#" data-toggle="tooltip" title="Share on Google+"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                  </div>
+                  <!-- social-icon-end -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- single-modal-end -->
+
+        
+      </tal:define>
+    </tal:repeat>
+  </div>
 </div>
