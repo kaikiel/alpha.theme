@@ -1,0 +1,174 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:v-on="http://vuejs.org"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="gct.content">
+<body>
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core"
+                    tal:define="toc context/table_of_contents|nothing;">
+
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+  <!-- shop-left-area-start -->
+  <div class="shop-left-area">
+  <!-- single-shop-left-start -->
+  <div class="single-shop-left mb-30">
+    <div class="shop-left-title">
+      <h3> Price</h3>
+      <div id="slider-range"></div>
+      <input type="text" name="text" id="amount" />
+    </div>
+  </div>
+  <!-- single-shop-left-end -->
+
+  <!-- single-shop-left-start -->
+  <div class="single-shop-left mb-30">
+    <div class="shop-left-title">
+      <h3> Brand </h3>
+    </div>
+    <div class="shop-left-menu-2">
+      <ul>
+        <li tal:repeat="brand view/brandList">
+    <a href="#">${brand}(${python: view.brandList[brand]})</a>
+  </li>
+      </ul>
+    </div>
+  </div>
+  <!-- single-shop-left-end -->
+
+  <!-- single-shop-left-start -->
+  <div class="single-shop-left mb-30" tal:repeat="sort view/sortList">
+    <div class="shop-left-title">
+      <h3> ${sort} </h3>
+    </div>
+    <div class="shop-left-menu-2">
+      <ul>
+        <li tal:repeat="item python: view.sortList[sort][1]">
+          <a href="#">${item}(${python: view.sortList[sort][1][item]})</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- single-shop-left-end -->
+</div>
+</div>
+
+<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 pull-right shop">
+  <!-- shop-right-area -->
+  <div class="shop-right-area">
+    <div class="page-heading mb-10">
+      <div class="cart-name">
+        <span>headphones </span>
+      </div>
+      <div class="heading-counter">
+        <span>There are 13 products.</span>
+      </div>
+    </div>
+    <div class="page-bar mb-30">
+      <div class="shop-tab">
+        <!-- tab-menu-start -->
+        <div class="tab-menu">
+          <ul>
+            <li class="active"><a href="#th" data-toggle="tab"><i class="fa fa-th"></i></a></li>
+            <li><a href="#list"  data-toggle="tab"><i class="fa fa-list"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="field-limiter">
+        <div class="label-title">
+          <span>Show</span>
+        </div>
+        <div class="control">
+         <!-- chosen-start -->
+         <select data-placeholder="Default Sorting" style="width:50px;" class="chosen-select" tabindex="1">
+           <option value="Sorting">1</option>
+           <option value="popularity">2</option>
+           <option value="rating">3</option>
+           <option value="date">4</option>
+         </select>
+         <!-- chosen-end -->
+         <span>per page</span>
+       </div>
+      </div>
+      <div class="compare-form">
+        <div class="toolbar-sorter">
+          <span>Sort By</span>
+          <select id="toolber-sorter" class="sorter-options" data-role="sorter">
+            <option selected="selected" value="Lowest">Price: Lowest first</option>
+            <option value="Highest">Price: Highest first</option>
+            <option value="Product">Product Name: A to Z</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- shop-right-area -->
+  <!-- tab-area-start -->
+  <div class="tab-content">
+    <div class="tab-pane active" id="th">
+      <div class="row">
+        <!-- single-product-start -->
+        <div class="single-product mb-30" tal:repeat="product view/productData">
+
+	<tal:define define="item python:view.productData[product]">
+
+          <div class="single-img">
+            <a href="${python: item[5]}">
+              <img src="${python: item[5]}/@@images/cover"  class="first" style="width:262px;height:262px"/>
+            </a>
+          </div>
+          <div class="product-content">
+	    <span>${python: item[6]}</span>
+            <h3><a href="#">${product}</a></h3>
+            <div class="product-price">
+              <ul>
+                <li class="new-price" tal:condition="not: python: item[4]">$${python: item[3]}</li>
+		<tal:condition condition="python: item[4]">
+                  <li class="new-price sale">$${python:item[4]}</li>
+		  <li class="old-price">$${python: item[3]}</li>
+		</tal:condition>
+              </ul>
+            </div>
+            <div class="add-to-links mt-15">
+              <ul>
+                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a href="#"><i class="fa fa-refresh"></i></a></li>
+                <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#mymodal"><i class="fa fa-eye"></i></a></li>
+              </ul>
+            </div>
+          </div>
+
+	</tal:define>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <!-- tab-area-end -->
+  <!-- pagination-area-start -->
+  <div class="pagination-area">
+    <div class="product-count">
+      <p>Showing 1 - 12 of 13 items</p>
+    </div>
+    <div class="pagination-number">
+      <ul>
+        <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- pagination-area-end -->
+</div>
+</metal:content-core>
+</metal:content-core>
+
+</body>
+</html>
