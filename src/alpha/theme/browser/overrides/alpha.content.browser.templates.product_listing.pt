@@ -20,8 +20,8 @@
   <div class="single-shop-left mb-30">
     <div class="shop-left-title">
       <h3> Price</h3>
-      <div id="slider-range"></div>
-      <input type="text" name="text" id="amount" />
+      <div id="slider-range1"></div>
+      <input type="text" name="text" id="amount1" readonly style=" color:#f6931f; font-weight:bold;" />
     </div>
   </div>
   <!-- single-shop-left-end -->
@@ -174,6 +174,19 @@
 	    brand = $(this).data('brand')
 	    product_listing.change_brand(brand)
 	})
+
+$( "#slider-range1" ).slider({
+      range: true,
+      min: 0,
+      max: 20000,
+      values: [ 0, 20000 ],
+      slide: function( event, ui ) {
+        $( "#amount1" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+	product_listing.change_price_range(ui.values[0], ui.values[1])
+      }
+    });
+    $( "#amount1" ).val(  $( "#slider-range1" ).slider( "values", 0 ) +
+      " - " + $( "#slider-range1" ).slider( "values", 1 ) );
     })
     </script>
 </metal:js>
