@@ -34,7 +34,7 @@
     <div class="shop-left-menu-2">
       <ul>
         <li tal:repeat="brand view/brandList">
-          <a class="change_brand" data-category="${brand}"  style="cursor:pointer">
+          <a class="change_brand" data-brand="${brand}"  data-mode="brand" style="cursor:pointer">
 		${brand}(${python: view.brandList[brand]})</a>
         </li>
       </ul>
@@ -50,7 +50,7 @@
     <div class="shop-left-menu-2">
       <ul>
         <li tal:repeat="item python: view.sortList[sort][1]">
-          <a data-subject="${item}" data-category="${sort}" class="change_category" 
+          <a data-subject="${item}" data-category="${sort}" data-sort="category" class="change_category" 
 		style="cursor:pointer"> ${item}(${python: view.sortList[sort][1][item]})</a>
         </li>
       </ul>
@@ -90,7 +90,7 @@
          <select data-placeholder="Default Sorting" style="width:50px;" class="chosen-select" tabindex="1"
 		v-model="numbers" v-on:change="change_numbers">
            <option value="6">6</option>
-           <option value="12">12</option>
+           <option value="12" selected>12</option>
            <option value="24">24</option>
          </select>
          <!-- chosen-end -->
@@ -164,7 +164,15 @@
 	$('.change_category').click(function(){
 	    category = $(this).data('category')
 	    subject = $(this).data('subject')
+	    $('.activity').removeClass('activity')
+	    $(this).addClass('activity')
 	    product_listing.change_category(category, subject)
+	})
+	$('.change_brand').click(function(){
+            $('.activity').removeClass('activity')
+            $(this).addClass('activity')
+	    brand = $(this).data('brand')
+	    product_listing.change_brand(brand)
 	})
     })
     </script>
