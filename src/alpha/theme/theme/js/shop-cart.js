@@ -17,21 +17,63 @@ var shop_cart = new Vue({
     data: {
 	total_number: 0,
 	total_price: 0,
-	shop_data: {'test':[11,22,'http://172.104.32.90:9301/Plone/products/54c15ba26d0b828b7247','http://172.104.32.90:9301/Plone/products/54c15ba26d0b828b7247/@@images/cover',1]},
+	shop_data: {},
     },
     components:{
         'shop_product': shop_product,
     },
+    created: function(){
+	cookie_shop_cart = $.cookie('shop_cart')
+	if(cookie_shop_cart){
+	    this.shop_data = JSON.parse(cookie_shop_cart)
+	}
+
+	total_price = 0
+	total_number = 0
+	Object.values(this.shop_data).forEach(function(value){
+	    if(value[1]){
+		price = value[1]
+	    }else{
+		price = value[0]
+	    }
+	    total_price += price
+	    total_number ++
+	})
+	this.total_number = total_number
+	this.total_price = total_price
+    },
     methods: {
         add_shop: function(title, price, sale_price, url, image, amount){
+try{
 	    ans = Object.keys(this.shop_data).every(function(value){
 		return value != title
 	    })
 	    if(ans){
 	        this.shop_data[title] = [price, sale_price, url, image, amount]
+	        if(sale_price){
+                    tmp_price = sale_price
+                }else{
+                    tmp_price = price
+                }
+		this.total_price += tmp_price
+	   	this.total_number ++
+	        json_shop_data = JSON.stringify(this.shop_data)
+		$.cookie('shop_cart', json_shop_data)
 	    }else{
 		alert('物品以再購物車內')
 	    }
+}
+catch(err){
+debugger
+}
+	},
+	judge_price: function(value){
+	    if(value[1]){
+                price = value[1]
+            }else{
+                price = value[0]
+            }
+	    return price
 	}
     },
 

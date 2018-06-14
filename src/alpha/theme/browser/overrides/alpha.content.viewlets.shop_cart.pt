@@ -5,9 +5,6 @@
  <span>{{total_number}}</span>
  <div class="mini-cart-sub">
   <div class="cart-product">
-    <div class="cart-totals">
-      <h5>Total <span>{{total_price}}</span></h5>
-    </div>
     <div is="shop_product"
 	 v-model="shop_data"
 	 v-for="(val, key) in shop_data"
@@ -19,6 +16,10 @@
 	 v-bind:amount="val[4]"
 	>
     </div>
+    <div class="cart-totals">
+      <h5>Total <span style="color: rgb(246, 147, 31)">{{total_price}}</span></h5>
+    </div>
+
     <div class="cart-bottom">
       <a href="checkout.html">Check out</a>
     </div>
