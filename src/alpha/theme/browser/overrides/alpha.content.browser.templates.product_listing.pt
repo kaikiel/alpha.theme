@@ -174,8 +174,17 @@
 	    brand = $(this).data('brand')
 	    product_listing.change_brand(brand)
 	})
+	$('.add_shop').click(function(){
+	    title = $(this).data('title')
+            price = $(this).data('price')
+            sale_price = $(this).data('sale_price')
+            url = $(this).data('url')
+            image = $(this).data('image')
+	    shop_cart.add_shop(title, price, sale_price, url, image, 1)
+	})
 
-$( "#slider-range1" ).slider({
+
+   $( "#slider-range1" ).slider({
       range: true,
       min: 0,
       max: 20000,
