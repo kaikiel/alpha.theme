@@ -102,9 +102,9 @@
           <span>Sort By</span>
           <select id="toolber-sorter" class="sorter-options" data-role="sorter"
 		 v-model="sort" v-on:change="change_sort">
-            <option selected="selected" value="lowest">Price: Lowest first</option>
+            <option value="lowest">Price: Lowest first</option>
             <option value="highest">Price: Highest first</option>
-            <option value="a-z">Product Name: A to Z</option>
+            <option value="a-z" selected>Product Name: A to Z</option>
 	    <option value="z-a">Product Name: Z to A</option>
           </select>
         </div>
