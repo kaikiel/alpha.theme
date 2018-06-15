@@ -127,6 +127,7 @@
              v-bind:product_number="item[1][6]"
              v-bind:url="item[1][5]"
              v-bind:image="item[1][7]"
+	     v-bind:uid="item[1][8]"
              v-on:add="add(product.item_id)">
         </div>
       </div>
@@ -179,8 +180,9 @@
             price = $(this).data('price')
             sale_price = $(this).data('sale_price')
             url = $(this).data('url')
+	    uid = $(this).data('uid')
             image = $(this).data('image')
-	    shop_cart.add_shop(title, price, sale_price, url, image, 1)
+	    shop_cart.add_shop(title, price, sale_price, url, image, 1, uid)
 	})
 
 

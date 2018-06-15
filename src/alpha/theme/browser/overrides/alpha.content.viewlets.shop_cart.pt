@@ -8,7 +8,7 @@
     <div is="shop_product"
 	 v-model="shop_data"
 	 v-for="(val, key) in shop_data"
-	 v-bind:title="key"
+	 v-bind:title="val[5]"
          v-bind:price="val[0]"
          v-bind:sale_price="val[1]"
          v-bind:url="val[2]"

@@ -135,6 +135,9 @@
     <drop css:theme="#portal-top" />
     <drop css:theme="#portal-footer-wrapper" />
 
+    <!--shop_cart-->
+    <drop css:content="#shop-cart" />
+
   </rules>
 
 </rules>
