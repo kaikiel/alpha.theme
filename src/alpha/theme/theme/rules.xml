@@ -23,6 +23,8 @@
     <!-- Don't use Plone icons, use the theme's -->
     <drop css:content="head link[rel='apple-touch-icon']" />
     <drop css:content="head link[rel='shortcut icon']" />
+    <!--js slot-->
+    <after css:theme-children="body" css:content-children="#js-bottom-slot" />
 
   </rules>
 
@@ -106,6 +108,8 @@
   <replace css:content=".plone-collapse.plone-navbar-collapse" css:theme-children=".main-menu.hidden-sm.hidden-xs" />  
   <!--path bar-->
   <after css:content=".breadcrumb-area.mb-70" css:theme="header" css:if-not-content=".portaltype-cover" />
+  <!--shop-cart-->
+  <replace css:content=".shop-cart" css:theme=".shop-cart"/>
 </rules>
 </rules>
 
