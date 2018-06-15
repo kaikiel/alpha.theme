@@ -1,0 +1,30 @@
+<html xmlns:v-on="http://www.vue.org/v-on"
+    xmlns:v-bind="http://www.vue.org/v-bind"
+    xmlns:v-model="http://www.vue.org/v-model">
+<li class="shop-cart" id="shop-cart"><a href="#"><i class="fa fa-shopping-cart"></i></a>
+ <span>{{total_number}}</span>
+ <div class="mini-cart-sub">
+  <div class="cart-product">
+    <div is="shop_product"
+	 v-model="shop_data"
+	 v-for="(val, key) in shop_data"
+	 v-bind:title="key"
+         v-bind:price="val[0]"
+         v-bind:sale_price="val[1]"
+         v-bind:url="val[2]"
+         v-bind:image="val[3]" 
+	 v-bind:amount="val[4]"
+	>
+    </div>
+    <div class="cart-totals">
+      <h5>Total <span style="color: rgb(246, 147, 31)">{{total_price}}</span></h5>
+    </div>
+
+    <div class="cart-bottom">
+      <a href="checkout.html">Check out</a>
+    </div>
+   </div>
+  </div>
+</li>
+
+</html>
