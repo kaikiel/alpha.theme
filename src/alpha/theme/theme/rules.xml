@@ -101,7 +101,7 @@
   <replace css:content=".special_products-area" css:theme=".special_products-area" />
   <replace css:content=".pos_new_product.ptb-50" css:theme=".pos_new_product.ptb-50" />
   <drop css:theme=".static-center-area" />
-  <replace css:content=".most-popular-product.pt-80.pb-50" css:theme=".most-popular-product.pt-80.pb-50" />
+  <replace css:content-children=".shop-product-viewlets" css:theme=".most-popular-product.pt-80.pb-50" />
   <replace css:content=".blog-area.pb-80" css:theme=".blog-area.pb-80" />
   <replace css:content=".plone-collapse.plone-navbar-collapse" css:theme-children=".main-menu.hidden-sm.hidden-xs" />  
   <!--path bar-->

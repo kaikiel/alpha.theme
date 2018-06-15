@@ -1,2 +1,50 @@
 <div class="banner-area pt-50 pb-20">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="single-banner text-center">
+          <div class="banner-img phone mb-20">
+            <a href="#"><img src="/alpha/++theme++alpha.theme/img/brand-viewlets-1.jpg" alt="banner" style="max-width:80px" /></a>
+          </div>
+          <div class="banner-text">
+            <h4>Five - star support</h4>
+            <p>Hit up our FAQ’s or contact us with any questions or comments</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="single-banner text-center">
+          <div class="banner-img card mb-20">
+            <a href="#"><img src="/alpha/++theme++alpha.theme/img/brand-viewlets-2.jpg" alt="banner" style="max-width:80px" /></a>
+          </div>
+          <div class="banner-text">
+            <h4>Quality and Warranty</h4>
+            <p>Our reconditioned smartphones are guaranteed at least 6 months</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="single-banner text-center">
+          <div class="banner-img mb-20 plane">
+            <a href="#"><img src="/alpha/++theme++alpha.theme/img/brand-viewlets-3.jpg" alt="banner" style="max-width:80px" /></a>
+          </div>
+          <div class="banner-text">
+            <h4>no - hassle returns</h4>
+            <p>We'll take it back within the first 30 days - no questions asked</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="single-banner text-center">
+          <div class="banner-img mb-20 light">
+            <a href="#"><img src="/alpha/++theme++alpha.theme/img/brand-viewlets-4.jpg" alt="banner" style="max-width:80px" /></a>
+          </div>
+          <div class="banner-text">
+            <h4>Socially conscious</h4>
+            <p>So far, we've helped change 20,000 lives through our partnership</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,2 +1,62 @@
 <div class="special_products-area">
+  <div class="container">
+    <div class="row">
+      <div class="product-active-7">
+        <tal:repeat tal:repeat="item view/getTimeLimit">
+        <tal:define define="obj item/getObject;
+                            item_title item/Title;
+                            item_description item/Description;
+                            item_id python: obj.absolute_url_path().replace('/', '');
+                            item_url item/getURL;
+                            item_price obj/price;
+                            item_sale  obj/salePrice;
+                            item_rating python: int(obj.rating or 0);
+                            is_has_item_sale python: item_sale!=None">
+
+        <div class="col-lg-12">
+          <div class="single-special-product">
+            <div class="special-product-img">
+              <a href="${item_url}"><img src="${item_url}/@@images/cover/preview" alt="product" /></a>
+            </div>
+            <div class="special-product-content">
+              <div class="timer-3 timer-2">
+                <div data-countdown="${obj/timeLimit}"></div>
+              </div>
+              <div class="special-product-text">
+                <h3><a href="${item_url}">${item_title}</a></h3>
+                <div class="product-rating mb-10">
+                  <tal:repeat tal:repeat="star python: range(5)">
+                    <tal:switch tal:switch="python: (item_rating-1) >= star">
+                      <span tal:case="True"><i class="fa fa-star checked"></i></span>
+                      <span tal:case="False"><i class="fa fa-star"></i></span>
+                    </tal:switch>
+                  </tal:repeat>
+                </div>
+                <div tal:switch="is_has_item_sale" class="product-price">
+                  <ul tal:case="True">
+                    <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
+                    <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                  </ul>
+                  <ul tal:case="False">
+                    <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                  </ul>
+                </div>
+                <p>${item_description}</p>
+                <div class="add-to-links mt-15">
+                  <ul>
+                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                    <li><a href="#"><i class="fa fa-refresh"></i></a></li>
+                    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#${item_id}"><i class="fa fa-eye"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </tal:define>
+        </tal:repeat>
+      </div>
+    </div>
+  </div>
 </div>

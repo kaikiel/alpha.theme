@@ -25,9 +25,11 @@
             <tal:repeat repeat="item view/getMostView">
               <tal:define define="obj item/getObject;
                                   item_title item/Title;
+                                  item_id python: obj.absolute_url_path().replace('/', '');
                                   item_url item/getURL;
                                   item_price obj/price;
                                   item_sale  obj/salePrice;
+                                  item_rating python: int(obj.rating or 0);
                                   is_has_item_sale python: item_sale!=None">
                 <div class="single-product">
                   <div class="product-img">
@@ -37,10 +39,21 @@
                   </div>
                   <div class="product-content">
                     <h3><a href="${item_url}">${item_title}</a></h3>
-                    <div class="product-price">
-                      <ul>
-                        <li tal:condition="is_has_item_sale" class="new-price sale">${item_sale}</li>
-                        <li class="old-price">${item_price}</li>
+                    <div class="product-rating mb-10">
+                      <tal:repeat tal:repeat="item python: range(5)">
+                        <tal:switch tal:switch="python: (item_rating-1) >= item">
+                          <span tal:case="True"><i class="fa fa-star checked"></i></span>
+                          <span tal:case="False"><i class="fa fa-star"></i></span>
+                        </tal:switch>
+                      </tal:repeat>
+                    </div>
+                    <div tal:switch="is_has_item_sale" class="product-price">
+                      <ul tal:case="True">
+                        <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
+                        <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                      </ul>
+                      <ul tal:case="False">
+                        <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
                       </ul>
                     </div>
                     <div class="add-to-links mt-15">
@@ -48,7 +61,7 @@
                         <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                         <li><a href="#"><i class="fa fa-refresh"></i></a></li>
                         <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye"></i></a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#${item_id}"><i class="fa fa-eye"></i></a></li>
                       </ul>
                     </div>
                   </div>
@@ -66,9 +79,11 @@
             <tal:repeat repeat="item view/getSpecial">
               <tal:define define="obj item/getObject;
                                   item_title item/Title;
+                                  item_id python: obj.absolute_url_path().replace('/', '');
                                   item_url item/getURL;
                                   item_price obj/price;
                                   item_sale  obj/salePrice;
+                                  item_rating python: int(obj.rating or 0);
                                   is_has_item_sale python: item_sale!=None">
                 <div class="single-product">
                   <div class="product-img">
@@ -78,10 +93,21 @@
                   </div>
                   <div class="product-content">
                     <h3><a href="${item_url}">${item_title}</a></h3>
-                    <div class="product-price">
-                      <ul>
-                        <li tal:condition="is_has_item_sale" class="new-price sale">${item_sale}</li>
-                        <li class="old-price">${item_price}</li>
+                    <div class="product-rating mb-10">
+                      <tal:repeat tal:repeat="item python: range(5)">
+                        <tal:switch tal:switch="python: (item_rating-1) >= item">
+                          <span tal:case="True"><i class="fa fa-star checked"></i></span>
+                          <span tal:case="False"><i class="fa fa-star"></i></span>
+                        </tal:switch>
+                      </tal:repeat>
+                    </div>
+                    <div tal:switch="is_has_item_sale" class="product-price">
+                      <ul tal:case="True">
+                        <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
+                        <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                      </ul>
+                      <ul tal:case="False">
+                        <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
                       </ul>
                     </div>
                     <div class="add-to-links mt-15">
@@ -89,7 +115,7 @@
                         <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                         <li><a href="#"><i class="fa fa-refresh"></i></a></li>
                         <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#mymodal"><i class="fa fa-eye"></i></a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#${item_id}"><i class="fa fa-eye"></i></a></li>
                       </ul>
                     </div>
                   </div>
@@ -107,9 +133,11 @@
             <tal:repeat repeat="item view/getLatest">
               <tal:define define="obj item/getObject;
                                   item_title item/Title;
+                                  item_id python: obj.absolute_url_path().replace('/', '');
                                   item_url item/getURL;
                                   item_price obj/price;
                                   item_sale  obj/salePrice;
+                                  item_rating python: int(obj.rating or 0);
                                   is_has_item_sale python: item_sale!=None">
                 <div class="single-product">
                   <div class="product-img">
@@ -119,10 +147,21 @@
                   </div>
                   <div class="product-content">
                     <h3><a href="${item_url}">${item_title}</a></h3>
-                    <div class="product-price">
-                      <ul>
-                        <li tal:condition="is_has_item_sale" class="new-price sale">${item_sale}</li>
-                        <li class="old-price">${item_price}</li>
+                    <div class="product-rating mb-10">
+                      <tal:repeat tal:repeat="item python: range(5)">
+                        <tal:switch tal:switch="python: (item_rating-1) >= item">
+                          <span tal:case="True"><i class="fa fa-star checked"></i></span>
+                          <span tal:case="False"><i class="fa fa-star"></i></span>
+                        </tal:switch>
+                      </tal:repeat>
+                    </div>
+                    <div tal:switch="is_has_item_sale" class="product-price">
+                      <ul tal:case="True">
+                        <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
+                        <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                      </ul>
+                      <ul tal:case="False">
+                        <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
                       </ul>
                     </div>
                     <div class="add-to-links mt-15">
@@ -130,7 +169,7 @@
                         <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                         <li><a href="#"><i class="fa fa-refresh"></i></a></li>
                         <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#mymodal"><i class="fa fa-eye"></i></a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#${item_id}"><i class="fa fa-eye"></i></a></li>
                       </ul>
                     </div>
                   </div>

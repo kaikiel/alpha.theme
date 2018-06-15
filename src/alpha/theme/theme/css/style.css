@@ -433,6 +433,16 @@ body {
 	width: 100%;
 	position:relative;
 }
+.add_to_cart input.qty {
+    border: 1px solid #ddd;
+    color: #999999;
+    font-size: 13px;
+    height: 50px;
+    line-height: 50px;
+    padding: 10px 3px;
+    width: 55px;
+    position: relative;
+}
 .search-area form select.header-option {
   background: #fff none repeat scroll 0 0;
   border: 0 none;
@@ -1053,12 +1063,12 @@ body {
 .product-content h3 a:hover{
 	color:#f0ce16;
 }
-.product-rating a{
-	color:#f0ce16;
+.product-rating span{
+	color:#CCCCCC;
 	font-size: 13px;
 }
-.product-rating.color a{
-	color:#CCCCCC;
+.fa.fa-star.checked{
+	color:#f0ce16;
 }
 .product-price ul li{
 	display:inline-block;
@@ -2496,7 +2506,7 @@ a#scrollUp {
 	color:#222;
 }
 .home-5 .pos_new_product .tab-menu ul li a:before{
-	background: #76b900 none repeat scroll 0 0;
+	background: #FFC107 none repeat scroll 0 0;
 	bottom: 0;
 	content: "";
 	height: 2px;
@@ -2508,7 +2518,7 @@ a#scrollUp {
 	opacity:0;
 }
 .home-5 .pos_new_product .tab-menu ul li a:after{
-	background: #76b900  none repeat scroll 0 0;
+	background: #FFC107  none repeat scroll 0 0;
 	bottom: -5px;
 	content: "";
 	height: 2px;
@@ -2551,7 +2561,7 @@ a#scrollUp {
 	display:inline-block;
 }
 .home-5 .section-title h2:before{
-	background: #76b900 none repeat scroll 0 0;
+	background: #FFC107 none repeat scroll 0 0;
 	bottom: 0;
 	content: "";
 	height: 2px;
@@ -2562,7 +2572,7 @@ a#scrollUp {
 	transition:.3s;
 }
 .home-5 .section-title h2:after{
-	background: #76b900  none repeat scroll 0 0;
+	background: #FFC107  none repeat scroll 0 0;
 	bottom: -5px;
 	content: "";
 	height: 2px;
@@ -3551,7 +3561,7 @@ a#scrollUp {
   position: relative;
   border-radius: 0;
 }
-#mymodal .modal-dialog {
+.modal .modal-dialog {
   width: 870px;
 }
 .modal-header {
@@ -3559,10 +3569,12 @@ a#scrollUp {
   padding: 0;
 }
 .modal-header button.close {
-  border: 1px solid #aaa;
+  border: 1px solid #f70000;
+  background: #d20000;
+  color: white;
   font-size: 25px;
   height: 30px;
-  line-height: 20px;
+  line-height: 10px;
   opacity: 1;
   position: absolute;
   right: 10px;
@@ -3572,8 +3584,8 @@ a#scrollUp {
   z-index: 22;
 }
 .modal-header button.close:hover{
-	border-color:#f0ce16;
-	color:#f0ce16;
+  border-color:#d20000;
+  background: #f70000;
 }
 .modal-img{
 	float:left;

@@ -1,3 +1,128 @@
 <div class="slider-area">
+  <div id="slider">
+    <img src="/++theme++alpha.theme/img/BANNER-1.jpg" alt="slider-img" title="#caption1" />
+  </div>
+  <div class="nivo-html-caption" id="caption1" >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="slider-text" >
+            <h1 class="wow bounceInDown" data-wow-delay=".5s">logitech <span>g29</span></h1>
+            <h2 class="wow bounceInDown" data-wow-delay=".8s">driving force</h2>
+            <p class="wow bounceInDown" data-wow-delay="1.1s">Racing wheel for Playstation3,<br /> Playstation 4 & PC</p>
+            <a href="#" class="wow bounceInDown" data-wow-delay="1.4s"><i class="fa fa-shopping-cart"></i>buy now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nivo-html-caption" id="caption2" >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="slider-text slider-text-2">
+            <h1 class="wow bounceInDown" data-wow-delay=".5s">assetto corsa</h1>
+            <h2 class="wow bounceInDown" data-wow-delay=".8s">driving force</h2>
+            <p class="wow bounceInDown" data-wow-delay="1.1s">gamermuscle simulation</p>
+            <a href="#" class="wow bounceInDown" data-wow-delay="1.4s"><i class="fa fa-shopping-cart"></i>buy now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-area">
+    <tal:repeat repeat="item view/getAllIndexProduct">
+      <tal:define define="item_title item/title;
+                          item_description item/description;
+                          item_id python: item.absolute_url_path().replace('/', '');
+                          item_url item/absolute_url;
+                          item_price item/price;
+                          item_sale  item/salePrice;
+                          item_rating python: int(item.rating or 0);
+                          is_has_item_sale python: item_sale!=None;">
+        
+        <!-- single-modal-start -->
+        <div class="modal fade" id="${item_id}" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="modal-img">
+                  <div tal:condition="python: len(view.getObjectImg(item)) == 0" class="single-img">
+                    <img src="${item_url}/@@images/cover/preview" alt="mobile" class="primary" />
+                  </div>
+                  <div tal:condition="python: len(view.getObjectImg(item)) != 0" class="flexslider">
+                      <ul class="slides">
+                        <tal:repeat tal:repeat="img python: view.getObjectImg(item)">
+                          <li data-thumb="${img/getURL}/@@images/image/preview" >
+                            <img src="${img/getURL}/@@images/image/preview" alt="woman">
+                          </li>
+                        </tal:repeat>
+                      </ul>
+                  </div>
+                </div>
+                <div class="model-text">
+                  <h2><a href="${item_url}">${item_title}</a> </h2>
+                  <div class="product-rating mb-10">
+                    <tal:repeat tal:repeat="star python: range(5)">
+                      <tal:switch tal:switch="python: (item_rating-1) >= star">
+                        <span tal:case="True"><i class="fa fa-star checked"></i></span>
+                        <span tal:case="False"><i class="fa fa-star"></i></span>
+                      </tal:switch>
+                    </tal:repeat>
+                  </div>
+                  <div tal:switch="is_has_item_sale" class="product-price">
+                    <ul tal:case="True">
+                      <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
+                      <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                    </ul>
+                    <ul tal:case="False">
+                      <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                    </ul>
+                  </div>
+                  <div class="box-cart-bottom">
+                    <div class="add_to_cart">
+                      <input min="1" class="qty" type="number" value="1">
+                      <a href="#">Add to cart</a>
+                    </div>
+                    <div class="add-to-links-2" style="margin-top: 0;">
+                      <ul>
+                        <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>                  
+                  <div class="product-meta">
+                    <div class="product_reference">
+                      <p class="fa fa-angle-double-right">Brand:<span>demo_13</span></p>
+                    </div>
+                    <div class="product_reference">
+                      <p class="fa fa-angle-double-right">Product Code:<span>demo_13</span></p>
+                    </div>
+                    <div class="product_reference">
+                      <p class="fa fa-angle-double-right">Availability:<span>demo_13</span></p>
+                    </div>
+                  </div>
+                  <!-- social-icon-start -->
+                  <div class="social-icon mt-20">
+                  </div>
+                  <!-- social-icon-end -->
+                  <div class="short-description mt-20">
+                    <p>${item_description}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- single-modal-end -->
 
+        
+      </tal:define>
+    </tal:repeat>
+  </div>
 </div>
