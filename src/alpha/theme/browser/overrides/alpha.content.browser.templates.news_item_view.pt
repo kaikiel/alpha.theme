@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:v-on="http://vuejs.org"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="gct.content">
+<body>
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core"
+                    tal:define="toc context/table_of_contents|nothing;">
+  <div class="blog-main-area">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-right">
+    <!-- blog-main-area-start -->
+      <div class="blog-main-area mb-70">
+      <!-- single-blog-main-start -->
+        <div class="single-blog-main mb-40">
+          <div class="postinfo-wrapper">
+            <div style="background:none; width:150px; padding:0;" class="post-date">
+              <img tal:condition="python: view.context.image!=None" src="${view/context/absolute_url}/@@images/image" />
+            </div>
+            <div class="post-info">
+              <h1 style="font-size:30px;">${view/context/title}</h1>
+              <div class="entry-meta">
+                <span>Posted by ${view/context/Creator}</span>
+                <span class="day">${python: view.getNewsDay(view.context)}</span>
+                <span class="month">${python: view.getNewsMonth(view.context)}</span>
+                <span class="year">${python: view.getNewsYear(view.context)}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div tal:content="structure view/context/text/raw"></div>
+      </div>
+    </div>
+  </div>
+
+  <style tal:condition="python: view.context.image==None" >
+    .single-blog-main .postinfo-wrapper {
+      padding-left: 0px;
+    }
+  </style>
+</metal:content-core>
+</metal:content-core>
+
+</body>
+</html>
+

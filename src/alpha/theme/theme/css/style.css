@@ -4053,7 +4053,8 @@ a#scrollUp {
   height: 30px;
   line-height: 28px;
   text-align: center;
-  width: 30px;
+  min-width: 30px;
+  padding: 0 5px 0 5px;
   transition:.3s;
 }
 .pagination-area .pagination-number ul li.active a,.pagination-area .pagination-number ul li a:hover{
@@ -4478,13 +4479,16 @@ a#scrollUp {
 	width:100%;
 }
 .single-blog-main .postinfo-wrapper{
-	padding-left: 100px;
+	padding-left: 200px;
 	position: relative;
 	width: 100%;
 }
+.single-blog-main .postinfo-wrapper.news-folder-item{
+	padding-left: 300px;
+}
 .single-blog-main .postinfo-wrapper .post-date{
 	background: #666666 none repeat scroll 0 0;
-	color: #ffffff;
+        color: #ffffff;
 	float: left;
 	font-weight: 700;
 	left: 0;

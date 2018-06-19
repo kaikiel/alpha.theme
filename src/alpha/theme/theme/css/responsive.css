@@ -601,6 +601,13 @@
 .single-blog-main .postinfo-wrapper {
   padding-left: 0;
 } 
+.single-blog-main .postinfo-wrapper.news-folder-item {
+  padding-left: 0;
+} 
+.single-blog-main .postinfo-wrapper.news-folder-item .post-date{
+  float: none;
+  position: unset;
+} 
 .single-blog-main .postinfo-wrapper .post-info h1 a {
   font-size: 16px;
 } 
@@ -831,7 +838,7 @@
   margin-top: 30px;
 }
 .single-blog-main .postinfo-wrapper .post-date {
-  top: -95px;
+  top: -110px;
 }
 .single-blog-main .postinfo-wrapper {
   margin-top: 120px;
