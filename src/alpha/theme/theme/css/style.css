@@ -1109,6 +1109,12 @@ body {
 	width: 40px;
 	transition:.3s;
 }
+.add-to-links ul li a.out_of_stock{
+	background-color: red;
+}
+.add-to-links ul li a.out_of_stock:hover{ 
+        background-color: red;
+}
 .add-to-links ul li a:hover{
 	background-color: #f0ce16;
 }
@@ -3985,6 +3991,15 @@ a#scrollUp {
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 30px;
+  cursor: pointer;
+}
+.product-button-3 a.out_of_stock {
+  background: red none repeat scroll 0 0;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
 }
 .product-button-3 a i{
 	padding-right:6px;
@@ -3992,6 +4007,10 @@ a#scrollUp {
 .product-button-3 a:hover{
   background: #f0ce16 none repeat scroll 0 0;
 }
+.product-button-3 a.out_of_stock:hover{
+  background: red none repeat scroll 0 0;
+}
+
 .action-inner{
 	clear:both;
 }

@@ -1,0 +1,258 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="i7fruit.content">
+<body>
+
+
+<metal:content-core fill-slot="content-core">
+
+<metal:content-core define-macro="content-core"
+                    tal:define="toc context/table_of_contents|nothing;">
+
+<div class="entry-header-area">
+ <div class="col-lg-12">
+  <div class="entry-header-title">
+   <h2>Cart</h2>
+  </div>
+ </div>
+</div>
+<div class="col-lg-12">
+ <form action="#">
+  <div class="table-content table-responsive">
+   <table>
+    <thead>
+      <tr>
+        <th class="product-thumbnail">IMAGE</th>
+        <th class="product-name">PRODUCT NAME</th>
+        <th class="product-quantity">QUANTITY</th>
+        <th class="product-price">UNIT PRICE</th>
+        <th class="product-subtotal">TOTAL</th>
+        <th class="product-remove">Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr tal:repeat="product view/productData">
+          <td class="product-thumbnail"><a href="${python: product[3]}"><img src="${python: product[3]}/@@images/cover"  /></a></td>
+          <td class="product-name"><a href="${python: product[3]}">${python: product[0]}</a></td>
+          <td class="product-quantity">
+		<input class="amount" data-uid="${python: product[5]}" type="number" value="${python: product[4]}"></td>
+          <td class="product-price" tal:condition="not: python: product[2]"><span class="amount">${python: product[1]}</span></td>
+	  <td class="product-price" tal:condition="python: product[2]"><span class="amount">${python: product[2]}</span></td>
+          <td class="product-subtotal sub_total" tal:condition="not: python: product[2]">${python: product[4] * product[1]}</td>
+          <td class="product-subtotal sub_total" tal:condition="python: product[2]">${python: product[4] * product[2]}</td>
+          <td class="product-remove"><i class="fa fa-times" data-uid="${python: product[5]}" style="cursor:pointer"></i></td>
+      </tr>
+    </tbody>
+   </table>
+  </div>
+ </form>
+</div>
+
+<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+ <div class="buttons-cart mb-30">
+  <ul>
+   <li><a href="#">Update Cart</a></li>
+   <li><a href="#">Continue Shopping</a></li>
+  </ul>
+ </div>
+ <div class="coupon">
+  <h3>Coupon</h3>
+  <p>Enter your coupon code if you have one.</p>
+  <form action="#">
+   <input type="text" placeholder="Coupon code">
+   <a href="#">Apply Coupon</a>
+  </form>
+ </div>
+
+ <label>Recipient Name:<input id="recipient_name" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label><br>
+ <select id="country" data-trigger="manual" data-toggle="popover" data-content="Please fill in">
+   <option>Please Choice</option>
+   <option value="C2">CHINA</option>
+   <option value="TW">TAIWAN</option>
+ </select>
+ <label>City:<input id="city" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
+ <label>Postal Code:<input id="postal_code" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
+ <label>Address:<input id="address" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
+</div>
+
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px">
+ <div class="cart_totals">
+  <h2>Cart Totals</h2>
+  <table>
+   <tbody>
+    <tr class="cart-subtotal">
+     <th>Subtotal</th>
+     <td>
+      <span class="amount">£215.00</span>
+     </td>
+    </tr>
+    <tr class="shipping">
+     <th>Shipping</th>
+     <td>
+      <ul id="shipping_method">
+       <li>
+         <input type="radio">
+         <label>
+           Flat Rate:
+           <span class="amount">£7.00</span>
+         </label>
+       </li>
+       <li>
+         <input type="radio">
+         <label> Free Shipping </label>
+       </li>
+      </ul>
+      <a href="#">Calculate Shipping</a>
+     </td>
+    </tr>
+    <tr class="order-total">
+     <th>Total</th>
+     <td>
+      <strong>
+       <span class="amount total_number">${view/totalNumber}</span>
+      </strong>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <div class="wc-proceed-to-checkout">
+   <a href="#">Proceed to Checkout</a>
+  </div>
+<div id="paypal-button-container"></div>
+ </div>
+</div>
+</metal:content-core>
+</metal:content-core>
+
+<metal:js fill-slot="js-bottom-slot">
+  <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+  <script>
+    $(function(){
+	$('.amount').change(function(){
+	    val = parseInt($(this).val())
+	    uid = $(this).data('uid')
+
+	    unit_price = $(this).parent().parent().find('.product-price').text()
+	    total = $(this).parent().parent().find('.product-subtotal').text(val * unit_price)
+	    total_price = 0
+	    $('.sub_total').each(function(){
+	        price = parseInt($(this).text())
+		total_price += price
+	    })
+	    $('.total_number').text(total_price)
+
+	    cookie_shop_cart = JSON.parse($.cookie('shop_cart'))
+	    cookie_shop_cart[uid][4] = val
+	    $.cookie('shop_cart', JSON.stringify(cookie_shop_cart))
+	})
+
+	$('.fa-times').click(function(){
+	    uid = $(this).data('uid')
+	    cookie_shop_cart = JSON.parse($.cookie('shop_cart'))
+	    delete cookie_shop_cart[uid]
+            $.cookie('shop_cart', JSON.stringify(cookie_shop_cart))
+	    $(this).parent().parent().remove()
+
+	    total_price = 0
+	    $('.sub_total').each(function(){
+                price = parseInt($(this).text())
+                total_price += price
+            })
+            $('.total_number').text(total_price)
+
+	})
+    })
+  </script>
+
+  <script>
+    paypal.Button.render({
+        env: 'sandbox', // sandbox | production
+        style: {
+            label: 'paypal',
+            size:  'medium',    // small | medium | large | responsive
+            shape: 'rect',     // pill | rect
+            color: 'blue',     // gold | blue | silver | black
+            tagline: false    
+        },
+        client: {
+            sandbox:    'AfvZGxN2mgb0_0Jnm1l9UpLfKXqllAM2rg_6qSNslsgIuDc0ofR_8dE7z5Mdj2lU8yzb5mdAyV6GkXsn',
+            production: ''
+        },
+        payment: function(data, actions) {
+	    total_number = $('.amount.total_number').text()
+	    shop_cart = JSON.parse($.cookie('shop_cart'))
+	    detail = ''
+	    Object.values(shop_cart).forEach(function(value){
+		if(value[1]){
+		    price = value[1]
+		}else{
+		    price = value[0]
+		}
+		detail +=  value[5] + '*' + price + '*' + value[4] + ';'
+	    })
+	    recipient_name = $('#recipient_name').val()
+            city = $('#city').val()
+            address = $('#address').val()
+            country = $('#country').val()
+            postal_code = $('#postal_code').val()
+            if(!recipient_name){
+                $('#recipient_name').popover('show')
+		setTimeout(function(){$('#recipient_name').popover('hide')}, 3000)	 
+            }
+            if(!country || country == 'Please Choice'){
+                $('#country').popover('show')
+		setTimeout(function(){$('#country').popover('hide')}, 3000)
+            }
+	    if(!city){
+		$('#city').popover('show')
+		setTimeout(function(){$('#city').popover('hide')}, 3000)
+	    }
+            if(!postal_code){
+                $('#postal_code').popover('show')
+		setTimeout(function(){$('#postal_code').popover('hide')}, 3000)
+            }
+            if(!address){
+                $('#address').popover('show')
+		setTimeout(function(){$('#address').popover('hide')}, 3000)
+            }
+
+	    transactions = [
+                    {
+                        amount: { total: total_number, currency: 'USD' },
+			"description": detail,
+                        "item_list": {
+                            "shipping_address": {
+                                recipient_name: recipient_name,
+                                line1: address,
+                                city: city,
+                                postal_code: postal_code,
+                                country_code: country,
+				state: 'CA'
+                            }
+                        }
+                    },
+                ]
+            return actions.payment.create({
+	       transactions: transactions
+            });
+        },
+
+	commit: true,
+        
+	onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function(rep) {
+                console.log(rep)
+debugger
+            });
+        }
+    }, '#paypal-button-container');
+  </script>
+
+</metal:js>
+
+</body>
+</html>
