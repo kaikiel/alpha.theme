@@ -6,7 +6,13 @@ var shop_product = {
            </div>
            <div class="cart-info">
              <h5><a v-bind:href="url">{{title}}</a></h5>
+
+             <template v-if="sale_price == null">
              <p>{{amount}} x {{price}}</p>
+             </template>
+             <template v-else>
+             <p>{{amount}} x {{sale_price}}</p>
+             </template>
            </div>
         </div>`,
     props: ['title', 'url', 'image', 'price', 'sale_price', 'amount']
@@ -43,13 +49,12 @@ var shop_cart = new Vue({
 	this.total_price = total_price
     },
     methods: {
-        add_shop: function(title, price, sale_price, url, image, amount){
-try{
+        add_shop: function(title, price, sale_price, url, image, amount, uid){
 	    ans = Object.keys(this.shop_data).every(function(value){
-		return value != title
+		return value != uid
 	    })
 	    if(ans){
-	        this.shop_data[title] = [price, sale_price, url, image, amount]
+	        this.shop_data[uid] = [price, sale_price, url, image, amount, title]
 	        if(sale_price){
                     tmp_price = sale_price
                 }else{
@@ -62,10 +67,6 @@ try{
 	    }else{
 		alert('物品以再購物車內')
 	    }
-}
-catch(err){
-debugger
-}
 	},
 	judge_price: function(value){
 	    if(value[1]){
