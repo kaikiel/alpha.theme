@@ -50,7 +50,7 @@
     <div class="shop-left-menu-2">
       <ul>
         <li tal:repeat="item python: view.sortList[sort][1]">
-          <a data-subject="${item}" data-category="${sort}" data-sort="category" class="change_category" 
+          <a data-subject="${item}" data-category="${sort}" data-mode="category" class="change_category" 
 		style="cursor:pointer"> ${item}(${python: view.sortList[sort][1][item]})</a>
         </li>
       </ul>
@@ -76,8 +76,12 @@
         <!-- tab-menu-start -->
         <div class="tab-menu">
           <ul>
-            <li class="active"><a href="#th" data-toggle="tab"><i class="fa fa-th"></i></a></li>
-            <li><a href="#list"  data-toggle="tab"><i class="fa fa-list"></i></a></li>
+            <li class="active">
+	      <a href="javascript:void(0)" v-bind:key="'product_gernal'" v-on:click="now_template = 'product_gernal'" 
+		data-toggle="tab"><i class="fa fa-th"></i></a></li>
+            <li>
+	      <a href="javascript:void(0)"  v-bind:key="'product_detail'" v-on:click="now_template = 'product_detail'"
+		data-toggle="tab"><i class="fa fa-list"></i></a></li>
           </ul>
         </div>
       </div>
@@ -118,7 +122,8 @@
   <div class="tab-content">
     <div class="tab-pane active" id="th">
       <div class="row">
-        <div is="product"
+        <component 
+	     v-bind:is="now_template"
              v-model="product_data"
              v-for="item in product_data"
              v-bind:title="item[0]"
@@ -128,8 +133,12 @@
              v-bind:url="item[1][5]"
              v-bind:image="item[1][7]"
 	     v-bind:uid="item[1][8]"
-             v-on:add="add(product.item_id)">
-        </div>
+             v-bind:key="item[1][8]"
+	     v-bind:stock="item[1][9]"
+	     v-bind:description="item[1][10]"
+	     v-on:add_to_cart="add_to_cart(item[0], item[1][3], item[1][4], item[1][5], item[1][7],
+				item[1][8], item[1][9])">
+        </component>
       </div>
     </div>
   </div>
@@ -174,15 +183,6 @@
             $(this).addClass('activity')
 	    brand = $(this).data('brand')
 	    product_listing.change_brand(brand)
-	})
-	$('.add_shop').click(function(){
-	    title = $(this).data('title')
-            price = $(this).data('price')
-            sale_price = $(this).data('sale_price')
-            url = $(this).data('url')
-	    uid = $(this).data('uid')
-            image = $(this).data('image')
-	    shop_cart.add_shop(title, price, sale_price, url, image, 1, uid)
 	})
 
 

@@ -13,7 +13,6 @@ var shop_product = {
              <template v-else>
              <p>{{amount}} x {{sale_price}}</p>
              </template>
-
            </div>
         </div>`,
     props: ['title', 'url', 'image', 'price', 'sale_price', 'amount']

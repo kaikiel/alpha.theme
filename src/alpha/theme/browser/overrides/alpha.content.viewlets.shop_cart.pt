@@ -1,6 +1,10 @@
 <html xmlns:v-on="http://www.vue.org/v-on"
     xmlns:v-bind="http://www.vue.org/v-bind"
     xmlns:v-model="http://www.vue.org/v-model">
+<?python
+from plone import api
+abs_url = api.portal.get().absolute_url()
+?>
 <li class="shop-cart" id="shop-cart"><a href="#"><i class="fa fa-shopping-cart"></i></a>
  <span>{{total_number}}</span>
  <div class="mini-cart-sub">
@@ -21,7 +25,7 @@
     </div>
 
     <div class="cart-bottom">
-      <a href="checkout.html">Check out</a>
+      <a href="${abs_url}/confirm_cart">Check out</a>
     </div>
    </div>
   </div>
