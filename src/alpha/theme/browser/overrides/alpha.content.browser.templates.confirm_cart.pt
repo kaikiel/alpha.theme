@@ -67,7 +67,18 @@
    <a href="#">Apply Coupon</a>
   </form>
  </div>
-      </div>
+
+ <label>Recipient Name:<input id="recipient_name" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label><br>
+ <select id="country" data-trigger="manual" data-toggle="popover" data-content="Please fill in">
+   <option>Please Choice</option>
+   <option value="C2">CHINA</option>
+   <option value="TW">TAIWAN</option>
+ </select>
+ <label>City:<input id="city" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
+ <label>Postal Code:<input id="postal_code" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
+ <label>Address:<input id="address" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
+</div>
+
 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px">
  <div class="cart_totals">
   <h2>Cart Totals</h2>
@@ -111,12 +122,14 @@
   <div class="wc-proceed-to-checkout">
    <a href="#">Proceed to Checkout</a>
   </div>
+<div id="paypal-button-container"></div>
  </div>
 </div>
 </metal:content-core>
 </metal:content-core>
 
 <metal:js fill-slot="js-bottom-slot">
+  <script src="https://www.paypalobjects.com/api/checkout.js"></script>
   <script>
     $(function(){
 	$('.amount').change(function(){
@@ -154,6 +167,91 @@
 	})
     })
   </script>
+
+  <script>
+    paypal.Button.render({
+        env: 'sandbox', // sandbox | production
+        style: {
+            label: 'paypal',
+            size:  'medium',    // small | medium | large | responsive
+            shape: 'rect',     // pill | rect
+            color: 'blue',     // gold | blue | silver | black
+            tagline: false    
+        },
+        client: {
+            sandbox:    'AfvZGxN2mgb0_0Jnm1l9UpLfKXqllAM2rg_6qSNslsgIuDc0ofR_8dE7z5Mdj2lU8yzb5mdAyV6GkXsn',
+            production: ''
+        },
+        payment: function(data, actions) {
+	    total_number = $('.amount.total_number').text()
+	    shop_cart = JSON.parse($.cookie('shop_cart'))
+	    detail = ''
+	    Object.values(shop_cart).forEach(function(value){
+		if(value[1]){
+		    price = value[1]
+		}else{
+		    price = value[0]
+		}
+		detail +=  value[5] + '*' + price + '*' + value[4] + ';'
+	    })
+	    recipient_name = $('#recipient_name').val()
+            city = $('#city').val()
+            address = $('#address').val()
+            country = $('#country').val()
+            postal_code = $('#postal_code').val()
+            if(!recipient_name){
+                $('#recipient_name').popover('show')
+		setTimeout(function(){$('#recipient_name').popover('hide')}, 3000)	 
+            }
+            if(!country || country == 'Please Choice'){
+                $('#country').popover('show')
+		setTimeout(function(){$('#country').popover('hide')}, 3000)
+            }
+	    if(!city){
+		$('#city').popover('show')
+		setTimeout(function(){$('#city').popover('hide')}, 3000)
+	    }
+            if(!postal_code){
+                $('#postal_code').popover('show')
+		setTimeout(function(){$('#postal_code').popover('hide')}, 3000)
+            }
+            if(!address){
+                $('#address').popover('show')
+		setTimeout(function(){$('#address').popover('hide')}, 3000)
+            }
+
+	    transactions = [
+                    {
+                        amount: { total: total_number, currency: 'USD' },
+			"description": detail,
+                        "item_list": {
+                            "shipping_address": {
+                                recipient_name: recipient_name,
+                                line1: address,
+                                city: city,
+                                postal_code: postal_code,
+                                country_code: country,
+				state: 'CA'
+                            }
+                        }
+                    },
+                ]
+            return actions.payment.create({
+	       transactions: transactions
+            });
+        },
+
+	commit: true,
+        
+	onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function(rep) {
+                console.log(rep)
+debugger
+            });
+        }
+    }, '#paypal-button-container');
+  </script>
+
 </metal:js>
 
 </body>
