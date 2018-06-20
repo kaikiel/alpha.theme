@@ -38,6 +38,9 @@
                           item_url item/absolute_url;
                           item_price item/price;
                           item_sale  item/salePrice;
+                          item_brand item/brand;
+                          item_productCode item/productCode;
+                          item_availability item/availability;
                           item_rating python: int(item.rating or 0);
                           is_has_item_sale python: item_sale!=None;">
         
@@ -59,7 +62,8 @@
                       <ul class="slides">
                         <tal:repeat tal:repeat="img python: view.getObjectImg(item)">
                           <li data-thumb="${img/getURL}/@@images/image/preview" >
-                            <img src="${img/getURL}/@@images/image/preview" alt="woman">
+                            <img src="${img/getURL}/@@images/image/preview" alt="woman"
+                                 class="${python:'flex-active' if repeat['img'].start else ''}">
                           </li>
                         </tal:repeat>
                       </ul>
@@ -87,7 +91,7 @@
                   <div class="box-cart-bottom">
                     <div class="add_to_cart">
                       <input min="1" class="qty" type="number" value="1">
-                      <a href="#">Add to cart</a>
+                      <a href="#" i18n:translate="">Add to cart</a>
                     </div>
                     <div class="add-to-links-2" style="margin-top: 0;">
                       <ul>
@@ -98,17 +102,24 @@
                   </div>                  
                   <div class="product-meta">
                     <div class="product_reference">
-                      <p class="fa fa-angle-double-right">Brand:<span>demo_13</span></p>
+                      <p class="fa fa-angle-double-right">Brand:<span>${item_brand}</span></p>
                     </div>
                     <div class="product_reference">
-                      <p class="fa fa-angle-double-right">Product Code:<span>demo_13</span></p>
+                      <p class="fa fa-angle-double-right">Product Code:<span>${item_productCode}</span></p>
                     </div>
                     <div class="product_reference">
-                      <p class="fa fa-angle-double-right">Availability:<span>demo_13</span></p>
+                      <p class="fa fa-angle-double-right">Availability:
+                        <span tal:switch="item_availability">
+                          <tal:case tal:case="True" tal:content="string: In stock"/>
+                          <tal:case tal:case="False" tal:content="string: Out of stock"/>
+                        </span>
+                      </p>
                     </div>
                   </div>
                   <!-- social-icon-start -->
-                  <div class="social-icon mt-20">
+                  <div class="social-icon mt-20" id="social-button" data-title="alpha - ${item_title}" data-url="${item_url}">
+                    <metal:block  metal:use-macro="context/social_button_macro/macros/social_btn_fb" />
+                    <metal:block  metal:use-macro="context/social_button_macro/macros/social_btn_tweet_formodal" />
                   </div>
                   <!-- social-icon-end -->
                   <div class="short-description mt-20">

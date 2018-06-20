@@ -2416,10 +2416,10 @@ a#scrollUp {
   margin-right: 6px;
 }
 .home-5 .main-menu ul li:hover a,.home-5 .main-menu ul li.active a {
-  color: #76b900;
+  color: #FFC107;
 }
 .home-5 .cart-area ul li:hover a, .home-5 .main-menu ul li .mega-menu-area .mega-menu span a:hover, .home-5 .main-menu ul li .sub-menu ul li a:hover,.home-5 .cart-area ul li.user .submenu-top ul li a:hover {
-  color: #76b900;
+  color: #FFC107;
 }
 .home-5 .cart-area ul > li .cart-bottom a {
   color: #fff;
@@ -2428,24 +2428,24 @@ a#scrollUp {
   color: #f0ce16;
 }
 .home-5 .cart-area ul li.search-area-2 .search-form form a:hover{
-	background:#76b900;
+	background:#FFC107;
 }
 .home-5 .header-left-menu ul li:hover a,.home-5 .header-left-menu ul li .submenu-top ul li a:hover,.home-5 .slider-text h1 span,.home-5 .product-content h3 a:hover {
-  color: #76b900;
+  color: #FFC107;
 }
 .home-5 .header-left-menu ul li .submenu-top ul li a{
 	color:#393939;
 }
 .home-5 .slider-area .nivo-directionNav a:hover {
-  background: #76b900 none repeat scroll 0 0;
+  background: #FFC107 none repeat scroll 0 0;
   transition: all 0.3s ease 0s;
 }
 .home-5 a#scrollUp:hover {
-  background: #76b900 none repeat scroll 0 0;
+  background: #FFC107 none repeat scroll 0 0;
   color: #fff;
 }
 .home-5 .slider-text a:hover {
-  background: #76b900 none repeat scroll 0 0;
+  background: #FFC107 none repeat scroll 0 0;
   color: #fff;
 }
 .home-5 .slider-text h1{
@@ -2477,7 +2477,7 @@ a#scrollUp {
 	text-transform: uppercase;
 }
 .home-5 .slider-text-2 h2{
-	color: #76b900;
+	color: #FFC107;
 	font-size: 40px;
 	font-weight: 900;
 	line-height: 1.2;
@@ -2542,7 +2542,7 @@ a#scrollUp {
 	opacity:1;
 }
 .home-5 .product-active.owl-carousel.owl-theme .owl-controls .owl-nav div:hover,.home-5 .blog-active.owl-carousel.owl-theme .owl-controls .owl-nav div:hover,.home-5 .brand-active.owl-carousel.owl-theme .owl-controls .owl-nav div:hover {
-  background: #76b900 none repeat scroll 0 0;
+  background: #FFC107 none repeat scroll 0 0;
   color: #fff;
   transition: all 0.3s ease 0s;
 }
@@ -2620,8 +2620,8 @@ a#scrollUp {
   color: #fff;
 }
 .home-5 .static-text a:hover {
-  border: 2px solid #76b900;
-  background:#76b900;
+  border: 2px solid #FFC107;
+  background:#FFC107;
 }
 .home-5 .most-popular-product .section-title h2:before{
 	left:0;
@@ -2638,21 +2638,21 @@ a#scrollUp {
   background: #f2f2f2 none repeat scroll 0 0;
 }
 .home-5 .single-blog .content-inner .date-smart {
-  color: #76b900;
+  color: #FFC107;
 }
 .home-5 .single-blog .blog-text h4 a:hover {
-  color: #76b900;
+  color: #FFC107;
 }
 .home-5 .footer-address ul li i ,.home-5 .copy-right p a,.home-5 .footer-menu ul li a:hover,.home-5 .newslatter-form form a  {
-  color: #76b900;
+  color: #FFC107;
 }
 .home-5  .social-link ul li a:hover {
-  background: #76b900 none repeat scroll 0 0;
-  border-color: #76b900;
+  background: #FFC107 none repeat scroll 0 0;
+  border-color: #FFC107;
   transition: all 0.3s ease 0s;
 }
 .home-5 .footer-title h4::before {
-  background: #76b900 none repeat scroll 0 0;
+  background: #FFC107 none repeat scroll 0 0;
 }
 .home-5 .newslatter-form form a:hover{
 	color:#fff;
@@ -2738,7 +2738,7 @@ a#scrollUp {
 	transition:.3s;
 }
 .home-5 .special-product-content .special-product-text h3 a:hover{
-	color:#76b900
+	color:#FFC107
 }
 .home-5 .special-product-content .special-product-text p{
 	color: #555555;
@@ -2754,10 +2754,10 @@ a#scrollUp {
   opacity: 1;
 }
 .home-5 .special-product-content .special-product-text .add-to-links ul li a:hover {
-  background-color: #76b900;
+  background-color: #FFC107;
 }
 .product-active-7.owl-carousel.owl-theme .owl-controls .owl-nav div:hover{
-	background-color: #76b900;
+	background-color: #FFC107;
 	color:#fff;
 }
 .home-5 .main-menu ul li .sub-menu ul li a {
@@ -5852,3 +5852,21 @@ p.checkout-coupon input[type="submit"] {
 .single-shop-left .activity{
   color: #ff7517;
 }
+.tweet-btn{
+  background-color: #1f95e0;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: 500;
+  position: relative;
+  padding: 1px 7px 2px 5px;
+  top: -2px;
+}
+.tweet-btn:hover{
+  background-color: #0084b4;
+  color: #fff;
+} 
+.tweet-btn:focus{
+  background-color: #1f95e0;
+  color: #fff;
+  text-decoration: none;
+} 
