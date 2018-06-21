@@ -64,8 +64,11 @@ var shop_cart = new Vue({
 	   	this.total_number ++
 	        json_shop_data = JSON.stringify(this.shop_data)
 		$.cookie('shop_cart', json_shop_data)
+		$.notify('Add Product Success', 'success')
+		return 'success'
 	    }else{
-		alert('物品以再購物車內')
+		$.notify('Product Already In Cart', 'error')
+		return 'error'
 	    }
 	},
 	judge_price: function(value){
@@ -77,5 +80,4 @@ var shop_cart = new Vue({
 	    return price
 	}
     },
-
 })

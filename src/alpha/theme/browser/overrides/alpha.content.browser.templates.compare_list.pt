@@ -1,0 +1,145 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:v-on="http://vuejs.org"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="gct.content">
+<body>
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core"
+                    tal:define="toc context/table_of_contents|nothing;">
+
+<style>
+table{
+    margin-bottom: 20px
+}
+th,td{
+    border: 1px solid #ccc;
+    padding: 20px 15px;
+    text-align:center;
+}
+th{
+    background: #eee;
+}
+.btn{
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: white;
+}
+.add_to_cart{
+    background: #fce38a;
+    border-radius: 5px
+}
+.remove{
+    background: black;
+    border-radius: 20px;
+}
+.remove:hover{
+    color: #ccc;
+}
+</style>
+<table tal:condition="view/data">
+  <tr>
+    <th colspan="${python: len(view.data) + 1}">PRODUCT DETAILS</th>
+  </tr>
+  <tr>
+    <td>Product</td>
+    <td tal:repeat="item view/data">
+	<a href="${python: item.absolute_url()}">${python: item.title}</a>
+    </td>
+  </tr>
+  <tr>
+    <td>Image</td>
+    <td tal:repeat="item view/data"><img src="${python: item.absolute_url()}/@@images/cover"></td>
+  </tr>
+  <tr>
+    <td>Price</td>
+    <td tal:repeat="item view/data" class="product-price">
+      <ul>
+	<tal:condition condition="python: item.salePrice">
+          <li class="new-price sale" style="font-size:30px">${python: item.salePrice}</li>
+          <li class="old-price">${python: item.price}</li>
+	</tal:condition>
+        <tal:condition condition="not: python: item.salePrice">
+          <li>${python: item.price}</li>
+        </tal:condition>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>Availability</td>
+    <td tal:repeat="item view/data">
+        <tal:condition condition="python: item.availability">
+	    In Stock
+        </tal:condition>
+        <tal:condition condition="not: python: item.availability">
+	    Out Of Stock
+        </tal:condition>
+    </td>
+  </tr>
+  <tr>
+    <td>Brand</td>
+    <td tal:repeat="item view/data">${python: item.brand}</td>
+  </tr>
+  <tr>
+    <td>Rating</td>
+    <td tal:repeat="item view/data">${python: item.rating}</td>
+  </tr>
+  <tr>
+    <td>Summary</td>
+    <td tal:repeat="item view/data">${python: item.description}</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td tal:repeat="item view/data">
+	<button data-title="${python: item.title}" data-price="${python: item.price}"
+		data-salePrice="${python: item.salePrice}" data-url="${python: item.absolute_url()}"
+		data-uid="${python: item.UID()}"
+		class="add_to_cart btn">Add To Cart</button>
+	<button class="remove btn" data-uid="${python: item.UID()}">Remove</button>
+    </td>
+  </tr>
+
+</table>
+</metal:content-core>
+</metal:content-core>
+
+<metal:js fill-slot="js-bottom-slot">
+<script>
+    $(function(){
+	$('.add_to_cart').click(function(){
+	    title = $(this).data('title')
+            price = $(this).data('price')
+            sale_price = $(this).data('salePrice')
+            url = $(this).data('url')
+            uid = $(this).data('uid')
+	    image = url + '/@@images/cover'
+
+	    rep = shop_cart.add_shop(title, price, sale_price, url, image, 1, uid)
+	    if(rep == 'success'){
+                compare_list = JSON.parse($.cookie('compare_list'))
+		compare_list.splice(compare_list.indexOf(uid), 1)
+		$.cookie('compare_list', JSON.stringify(compare_list))
+		window.location.reload()
+	    }
+	})
+	$('.remove').click(function(){
+	    uid = $(this).data('uid')
+            compare_list = JSON.parse($.cookie('compare_list'))
+            compare_list.splice(compare_list.indexOf(uid), 1)
+            $.cookie('compare_list', JSON.stringify(compare_list))
+            window.location.reload()
+	})
+    })
+</script>
+</metal:js>
+
+</body>
+</html>
+
