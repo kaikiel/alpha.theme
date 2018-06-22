@@ -2463,5 +2463,29 @@
 	<script src="js/vue.js"></script>
 	<script src="js/notify.min.js"></script>
 	<script src="js/shop-cart.js"></script>
+	<script>
+	$(function(){
+	$('.fa-book').click(function(){
+	    uid = $(this).data('uid')
+            json_compare_list = $.cookie('compare_list')
+            if(json_compare_list){
+                compare_list = JSON.parse(json_compare_list)
+            }else{
+                compare_list = []
+            }
+            if(compare_list.indexOf(uid) == -1){
+                if(compare_list.length < 4){
+                    compare_list.push(uid)
+                    $.cookie('compare_list', JSON.stringify(compare_list))
+                    $.notify('Add Compare Success!!', 'success')
+                }else{
+                    $.notify('Compare List is Full', 'error')
+		}
+            }else{
+                $.notify('Product Already In Compare List')
+            }
+	})
+	})
+	</script>
     </body>
 </html>
