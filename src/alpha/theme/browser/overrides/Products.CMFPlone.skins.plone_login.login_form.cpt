@@ -270,6 +270,7 @@
           margin: 5px 0 10px 0;
         }
         </style>
+
         </metal:login>
 </metal:content-core>
 </metal:content-core>

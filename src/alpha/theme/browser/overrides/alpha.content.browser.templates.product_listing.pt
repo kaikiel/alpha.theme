@@ -137,7 +137,8 @@
 	     v-bind:stock="item[1][9]"
 	     v-bind:description="item[1][10]"
 	     v-on:add_to_cart="add_to_cart(item[0], item[1][3], item[1][4], item[1][5], item[1][7],
-				item[1][8], item[1][9])">
+				item[1][8], item[1][9])"
+	     v-on:add_to_compare="add_to_compare(item[1][8])">
         </component>
       </div>
     </div>
