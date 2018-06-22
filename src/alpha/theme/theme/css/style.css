@@ -5869,4 +5869,17 @@ p.checkout-coupon input[type="submit"] {
   background-color: #1f95e0;
   color: #fff;
   text-decoration: none;
-} 
+}
+.oval-btn, .formControls input[type="submit"]{
+  background: #101010;
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 900;
+  padding: 14px 25px;
+}
+.oval-btn:hover, .formControls input[type="submit"]:hover{
+  background-color: #f0ce16;
+  color: #fff;
+}

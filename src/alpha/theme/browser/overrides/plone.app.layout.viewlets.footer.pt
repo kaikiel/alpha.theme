@@ -1,5 +1,86 @@
-<div class="row">
-	<div class="col-xs-12">
-		<div tal:on-error="nothing" tal:replace="structure view/render_footer_portlets" />
-	</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <!-- single-footer-start -->
+      <div class="single-footer">
+        <div class="footer-logo mb-30">
+          <h1 style="font-size:25px; color:#fff">Alpha Hobbies Group</h1>
+        </div>
+        <p>It is a long established fact that reader will distract by the readable content of a page...</p>
+        <div class="footer-address">
+          <ul>
+            <li><i class="fa fa-map-marker"></i>address :No 40 Baria Sreet 133/2, NewYork, USA.</li>
+            <li><i class="fa fa-envelope"></i>Email :demo@posthemes.com</li>
+            <li><i class="fa fa-mobile"></i>Phone :+(1234) 567 890</li>
+          </ul>
+        </div>
+        <div class="social-link">
+          <ul>
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-weibo"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+            <li><a href="#"><i class="icon-youku"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- single-footer-end -->
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <!-- single-footer-start -->
+      <div class="single-footer">
+        <div class="footer-title">
+          <h4>Information</h4>
+        </div>
+        <div class="footer-menu">
+          <ul>
+            <li><a href="#">Specials</a></li>
+            <li><a href="#">New products</a></li>
+            <li><a href="#">Top sellers</a></li>
+            <li><a href="#">Our stores</a></li>
+            <li><a href="#">Contact us</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">My credit slips</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- single-footer-end -->
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <!-- single-footer-start -->
+      <div class="single-footer">
+        <div class="footer-title">
+          <h4>Information</h4>
+        </div>
+        <div class="footer-menu">
+          <ul>
+            <li><a href="#">checkout</a></li>
+            <li><a href="#">My account</a></li>
+            <li><a href="#">My orders</a></li>
+            <li><a href="#">My credit slips</a></li>
+            <li><a href="#">My addresses</a></li>
+            <li><a href="#">My personal info</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- single-footer-end -->
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <!-- single-footer-start -->
+      <div class="single-footer">
+        <div class="footer-title">
+          <h4>Information</h4>
+        </div>
+        <div class="footer-menu">
+          <ul>
+            <li><a href="#">headphones</a></li>
+            <li><a href="#">Mobiles & Tablets</a></li>
+            <li><a href="#">Photo & Camera</a></li>
+            <li><a href="#">Computers</a></li>
+            <li><a href="#">TV & Audio</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- single-footer-end -->
+    </div>
+  </div>
 </div>

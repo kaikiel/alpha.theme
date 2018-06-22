@@ -1,0 +1,123 @@
+.documentFirstHeading {
+  font-size: 32px;
+  padding-bottom: 9px;
+  margin: 0 0 10px;
+  border-bottom: 1px solid #cccccc;
+}
+.alert.status.alert-error > strong::before, .portalMessage.alert-error > strong::before, .alert.status.error > strong::before, .portalMessage.error > strong::before, .alert.status.alert-error > dt::before, .portalMessage.alert-error > dt::before, .alert.status.error > dt::before, .portalMessage.error > dt::before {
+    background-color: #ac493f;
+    content: "×";
+}
+.alert.status > strong::before, .portalMessage > strong::before, .alert.status > dt::before, .portalMessage > dt::before {
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: -30px;
+    margin-right: 10px;
+    display: inline-block;
+    border-radius: 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+    top: -1px;
+    position: relative;
+}
+.alert.status.alert-error, .portalMessage.alert-error, .alert.status.error, .portalMessage.error{
+  background-color: #EC9C8D;
+  border: 1px solid #eb9484;
+  color: rgba(0, 0, 0, 0.5);
+} 
+.alert.status, .portalMessage{
+  padding: 15px;
+  padding-left: 45px;
+  margin-bottom: 20px;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.17);
+  font-size: 14px;
+  font-weight: 400;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.1);
+}
+.alert.status > dt, .portalMessage > dt, .alert.status > dd, .portalMessage > dd{
+  display: inline;
+}
+input[type="password"], input[type="text"]{
+width: 100%;
+    display: block;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #696969;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.formControls {
+    border-top: 1px solid #cccccc;
+    background: #fcfcfd;
+    padding: 12px;
+    box-shadow: inset 0 10px 10px -10px rgba(0, 0, 0, 0.05);
+}
+.field {
+    margin-bottom: 15px;
+}
+.formHelp {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #666666;
+    font-weight: 400;
+    font-style: italic;
+}
+label {
+    display: inline-block;
+    max-width: 95%;
+    vertical-align: top;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+label .required::after {
+    color: #c4183c;
+    content: "•";
+    line-height: 0;
+    position: relative;
+    margin-left: -4px;
+}
+.field.error div.error {
+    padding-left: 30px;
+    font-weight: 400;
+}
+.field.error > label, .field.error div.error {
+    color: #c4183c;
+}
+.field.error div.error::before {
+    background-color: #ac493f;
+    content: "×";
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: -30px;
+    margin-right: 5px;
+    display: inline-block;
+    border-radius: 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+    top: -1px;
+    position: relative;
+}
+.field.error {
+    background: #fbe8e4;
+    -webkit-box-shadow: 0 0 0 5px #fbe8e4;
+    box-shadow: 0 0 0 5px #fbe8e4;
+}

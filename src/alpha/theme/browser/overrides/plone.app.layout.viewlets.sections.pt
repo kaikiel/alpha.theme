@@ -20,24 +20,52 @@
 
       <div class="plone-collapse plone-navbar-collapse" id="portal-globalnav-collapse">
         <nav>
-        <ul class="plone-nav plone-navbar-nav"
-            id="portal-globalnav"
-            tal:define="selected_tab python:view.selected_portal_tab">
-            <tal:tabs tal:repeat="tab portal_tabs">
-              <li tal:define="tid tab/id"
-                  tal:attributes="id string:portaltab-${tid};
-                                  class python:selected_tab==tid and 'selected' or nothing">
-                  <a href=""
-                     tal:content="tab/name"
-                     tal:attributes="href tab/url;
-                                     title tab/description|nothing;
-                                     target tab/link_target|nothing;">
-                    Tab Name
-                  </a>
-              </li>
-            </tal:tabs>
-        </ul>
+          <ul class="plone-nav plone-navbar-nav"
+              id="portal-globalnav"
+              tal:define="selected_tab python:view.selected_portal_tab">
+              <tal:tabs tal:repeat="tab portal_tabs">
+                <li tal:define="tid tab/id"
+                    tal:attributes="id string:portaltab-${tid};
+                                    class python:selected_tab==tid and 'selected' or nothing">
+                    <a href=""
+                       tal:content="tab/name"
+                       tal:attributes="href tab/url;
+                                       title tab/description|nothing;
+                                       target tab/link_target|nothing;">
+                      Tab Name
+                    </a>
+                </li>
+              </tal:tabs>
+          </ul>
         </nav>
+      </div>
+      <div class="plone-collapse plone-mobile-navbar-collapse" id="portal-mobile-globalnav-collapse">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="mobile-menu">
+                <nav id="mobile-menu-active">
+                  <ul id="nav"
+                      tal:define="selected_tab python:view.selected_portal_tab">
+                      <tal:tabs tal:repeat="tab portal_tabs">
+                        <li tal:define="tid tab/id"
+                            tal:attributes="id string:portaltab-${tid};
+                                            class python:selected_tab==tid and 'selected' or nothing">
+                            <a href=""
+                               tal:content="tab/name"
+                               tal:attributes="href tab/url;
+                                               title tab/description|nothing;
+                                               target tab/link_target|nothing;">
+                              Tab Name
+                            </a>
+                        </li>
+                      </tal:tabs>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
