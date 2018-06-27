@@ -7,7 +7,7 @@ var shop_product = {
            <div class="cart-info">
              <h5><a v-bind:href="url">{{title}}</a></h5>
 
-             <template v-if="sale_price == null">
+             <template v-if="sale_price">
              <p>{{amount}} x {{price}}</p>
              </template>
              <template v-else>
@@ -42,7 +42,7 @@ var shop_cart = new Vue({
 	    }else{
 		price = value[0]
 	    }
-	    total_price += price
+	    total_price += parseInt(price)
 	    total_number ++
 	})
 	this.total_number = total_number
@@ -60,14 +60,14 @@ var shop_cart = new Vue({
                 }else{
                     tmp_price = price
                 }
-		this.total_price += tmp_price
+		this.total_price += parseInt(tmp_price)
 	   	this.total_number ++
 	        json_shop_data = JSON.stringify(this.shop_data)
 		$.cookie('shop_cart', json_shop_data, {expires:3})
-		$.notify('Add Product Success', 'success')
+		$.notify('Add Product Success', {globalPosition: 'bottom right',className:'success'})
 		return 'success'
 	    }else{
-		$.notify('Product Already In Cart', 'error')
+		$.notify('Product Already In Cart', {globalPosition: 'bottom right',className:'error'})
 		return 'error'
 	    }
 	},
@@ -83,7 +83,7 @@ var shop_cart = new Vue({
 	    if($.cookie('shop_cart')){
 		return true
 	    }else{
-		$.notify('Shop Cart Is Empty', 'error')
+		$.notify('Shop Cart Is Empty',  {globalPosition: 'bottom right',className:'error'})
 		return false
 	    }
 	}
