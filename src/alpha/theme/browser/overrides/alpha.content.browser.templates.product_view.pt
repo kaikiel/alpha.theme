@@ -33,6 +33,14 @@
               <div class="page-title">
                 <h1>${view/context/title}</h1>
               </div>
+                <div class="product-rating mb-10">
+                  <tal:repeat tal:repeat="star python: range(5)">
+                    <tal:switch tal:switch="python: (view.context.rating-1) >= star">
+                      <span tal:case="True"><i class="fa fa-star checked"></i></span>
+                      <span tal:case="False"><i class="fa fa-star"></i></span>
+                    </tal:switch>
+                  </tal:repeat>
+                </div>
               <div class="product-info-price">
                 <div class="price-final product-price">
                   <span tal:condition="not: view/context/salePrice">$${view/context/price}</span>

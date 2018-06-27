@@ -5903,3 +5903,7 @@ span.must{
   left: 4px;
   top: 3px;
 }
+.cart-area .mini-cart-sub {
+  max-height: 400px;
+  overflow-y: scroll;
+}

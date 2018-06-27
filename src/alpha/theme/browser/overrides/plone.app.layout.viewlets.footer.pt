@@ -37,7 +37,7 @@
             <li><a href="/@@contact_us">Contact Us</a></li>
             <li><a href="#">Returns</a></li>
             <li><a href="#">Brands</a></li>
-            <li><a href="#">Return policies</a></li>
+            <li><a href="/return-policies">Return policies</a></li>
           </ul>
         </div>
       </div>
@@ -63,7 +63,7 @@
       <!-- single-footer-start -->
       <div class="single-footer">
         <div class="footer-title">
-          <h4>Information</h4>
+          <h4>My Account</h4>
         </div>
         <div class="footer-menu">
           <ul>

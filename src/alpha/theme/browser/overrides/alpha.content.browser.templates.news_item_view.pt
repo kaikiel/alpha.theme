@@ -21,6 +21,10 @@
               <img tal:condition="python: view.context.image!=None" src="${view/context/absolute_url}/@@images/image" />
             </div>
             <div class="post-info">
+              <div style="text-align: right;" data-url="${view/context/absolute_url}">
+                <metal:block  metal:use-macro="context/social_button_macro/macros/social_btn_fb" />
+                <metal:block  metal:use-macro="context/social_button_macro/macros/social_btn_tweet" />
+              </div>
               <h1 style="font-size:30px;">${view/context/title}</h1>
               <div class="entry-meta">
                 <span>Posted by ${view/context/Creator}</span>
