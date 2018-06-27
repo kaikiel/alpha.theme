@@ -63,7 +63,7 @@ var shop_cart = new Vue({
 		this.total_price += tmp_price
 	   	this.total_number ++
 	        json_shop_data = JSON.stringify(this.shop_data)
-		$.cookie('shop_cart', json_shop_data)
+		$.cookie('shop_cart', json_shop_data, {expires:3})
 		$.notify('Add Product Success', 'success')
 		return 'success'
 	    }else{
@@ -78,6 +78,14 @@ var shop_cart = new Vue({
                 price = value[0]
             }
 	    return price
+	},
+	go_confirm_cart: function(){
+	    if($.cookie('shop_cart')){
+		return true
+	    }else{
+		$.notify('Shop Cart Is Empty', 'error')
+		return false
+	    }
 	}
     },
 })
