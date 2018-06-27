@@ -1109,11 +1109,15 @@ body {
 	width: 40px;
 	transition:.3s;
 }
-.add-to-links ul li a.out_of_stock{
-	background-color: red;
+.add-to-links ul li a.out_of_stock:before{
+    position: absolute;
+    content: "\\";
+    font-size: 3.5em;
+    font-weight: 300;
+    transform: rotate(-15deg);
 }
 .add-to-links ul li a.out_of_stock:hover{ 
-        background-color: red;
+        background-color: #0f0f0f;
 }
 .add-to-links ul li a:hover{
 	background-color: #f0ce16;
@@ -5884,13 +5888,13 @@ p.checkout-coupon input[type="submit"] {
   background-color: #f0ce16;
   color: #fff;
 }
-.pos_new_product .product-img img, .pos_new_product .single-img img, .most-popular-product .product-img img {
+.pos_new_product .product-img img, .pos_new_product .single-img img, .most-popular-product .product-img img , .tab-pane .single-img img{
     max-height: 230px;
     width:auto;
     display: block;
     margin: auto;
 }
-.pos_new_product .product-img, .pos_new_product .single-img {
+.pos_new_product .product-img, .pos_new_product .single-img, .tab-pane .single-img {
     height: 240px;
 }
 span.must{

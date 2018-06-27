@@ -90,7 +90,7 @@
                     </ul>
                   </div>
                   <div class="box-cart-bottom">
-                    <div class="add_to_cart">
+                    <div class="add_to_cart" tal:condition="python: item_availability == True">
                       <input min="1" class="qty" type="number" value="1" id="qty${item_uid}">
                       <a onclick="shop_cart.add_shop('${item_title}', ${item_price}, '${item_sale}', '${item_url}', '${item_url}/@@images/cover', document.getElementById('qty${item_uid}').value, '${item_uid}')" i18n:translate="">Add to cart</a>
                     </div>
@@ -110,10 +110,10 @@
                     </div>
                     <div class="product_reference">
                       <p class="fa fa-angle-double-right">Availability:
-                        <span tal:switch="item_availability">
-                          <tal:case tal:case="True" tal:content="string: In stock"/>
-                          <tal:case tal:case="False" tal:content="string: Out of stock"/>
-                        </span>
+                        <tal:block tal:switch="item_availability">
+                          <span tal:case="True"  tal:content="string: In stock"/>
+                          <span tal:case="False" tal:content="string: Out of stock" style="color:red;"/>
+                        </tal:block>
                       </p>
                     </div>
                   </div>

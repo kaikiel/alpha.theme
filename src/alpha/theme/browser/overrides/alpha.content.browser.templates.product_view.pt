@@ -45,7 +45,7 @@
               <div class="short_description_block">
                 <p>${context/description}</p>
               </div>
-              <div class="product-add-form">
+              <div class="product-add-form" tal:condition="view/context/availability">
                 <form action="#">
                   <div class="quality-button">
                     <label>Qty</label>
@@ -55,7 +55,7 @@
               </div>
 	  
               <div class="box-cart-bottom">
-                <div class="add_to_cart">
+                <div class="add_to_cart" tal:condition="view/context/availability">
                   <a onclick="shop_cart.add_shop('${view/context/title}', ${view/context/price}, '${view/context/salePrice}', '${view/context/absolute_url}', '${view/context/absolute_url}/@@images/cover', document.getElementById('qty').value, '${view/context/UID}')" href="#">Add to cart</a>
                 </div>
                 <div class="add-to-links-2">
@@ -69,10 +69,10 @@
 	        <p>Brand: <span>${view/context/brand}</span></p>
 		<p>Product Code: <span>${view/context/productCode}</span></p>
 	        <p>Availability: 
-		   <tal:switch switch="view/context/availability">
-			<span tal:case="True">In Stock</span>
-			<span tal:case="False">Out Of Stock</span>
-		   </tal:switch>
+                  <tal:block tal:switch="view/context/availability">
+                    <span tal:case="True"  tal:content="string: In stock"/>
+                    <span tal:case="False" tal:content="string: Out of stock" style="color:red;"/>
+                  </tal:block>
 		</p>
 	      </div>
              <tal:condition condition="python: view.context.downloadFile">
