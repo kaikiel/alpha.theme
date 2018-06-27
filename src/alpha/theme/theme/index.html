@@ -2472,12 +2472,12 @@
                 if(compare_list.length < 4){
                     compare_list.push(uid)
                     $.cookie('compare_list', JSON.stringify(compare_list), {expires: 3})
-                    $.notify('Add Compare Success!!', 'success')
+                    $.notify('Add Compare Success!!',  {globalPosition: 'bottom right',className:'success'})
                 }else{
-                    $.notify('Compare List is Full', 'error')
+                    $.notify('Compare List is Full',  {globalPosition: 'bottom right',className:'error'})
 		}
             }else{
-                $.notify('Product Already In Compare List')
+                $.notify('Product Already In Compare List', {globalPosition: 'bottom right',className:'error'})
             }
 	})
 	})
