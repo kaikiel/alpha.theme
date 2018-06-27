@@ -2,19 +2,19 @@
   <div id="slider">
   <tal:repeat repeat="item view/getBannerPage">
   <tal:define define="obj item/getObject;
-                      item_id item/UID;
+                      item_uid item/UID;
                       item_url item/getURL;">
-    <img src="${item_url}/@@images/image" alt="slider-img" title="#${item_id}" />
+    <img src="${item_url}/@@images/image" alt="slider-img" title="#${item_uid}" />
   </tal:define>
   </tal:repeat>
   </div>
   <tal:repeat repeat="item view/getBannerPage">
   <tal:define define="obj item/getObject;
-                      item_id item/UID;
+                      item_uid item/UID;
                       item_url item/getURL;
                       item_text obj/text/raw;
                       item_link obj/image_caption">
-  <div class="nivo-html-caption" id="${item_id}" >
+  <div class="nivo-html-caption" id="${item_uid}" >
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -35,7 +35,7 @@
     <tal:repeat repeat="item view/getAllIndexProduct">
       <tal:define define="item_title item/title;
                           item_description item/description;
-                          item_id python: item.absolute_url_path().replace('/', '');
+                          item_uid item/UID;
                           item_url item/absolute_url;
                           item_price item/price;
                           item_sale  item/salePrice;
@@ -46,7 +46,7 @@
                           is_has_item_sale python: item_sale!=None;">
         
         <!-- single-modal-start -->
-        <div class="modal fade" id="${item_id}" tabindex="-1" role="dialog">
+        <div class="modal fade" id="${item_uid}" tabindex="-1" role="dialog">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -91,8 +91,8 @@
                   </div>
                   <div class="box-cart-bottom">
                     <div class="add_to_cart">
-                      <input min="1" class="qty" type="number" value="1">
-                      <a href="#" i18n:translate="">Add to cart</a>
+                      <input min="1" class="qty" type="number" value="1" id="qty${item_uid}">
+                      <a onclick="shop_cart.add_shop('${item_title}', ${item_price}, '${item_sale}', '${item_url}', '${item_url}/@@images/cover', document.getElementById('qty${item_uid}').value, '${item_uid}')" i18n:translate="">Add to cart</a>
                     </div>
                     <div class="add-to-links-2" style="margin-top: 0;">
                       <ul>

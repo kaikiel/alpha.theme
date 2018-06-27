@@ -1,6 +1,6 @@
 <div class="submenu-top">
   <ul tal:switch="view/isAnonymous">
-    <li><a href="register.html">My account</a></li>
+    <li><a href="/personal_details">My account</a></li>
     <li><a href="wishlist.html">My wishlist</a></li>
     <li><a href="../confirm_cart">checkout</a></li>
     <li tal:case=True><a href="../login">Login</a></li>
