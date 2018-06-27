@@ -112,6 +112,9 @@
   <after css:content=".breadcrumb-area.mb-70" css:theme="header" css:if-not-content=".portaltype-cover" />
   <!--shop-cart-->
   <replace css:content=".shop-cart" css:theme=".shop-cart"/>
+  <!--logo -->
+  <replace css:content="#portal-logo" css:theme=".logo-area"/>
+  <replace css:content="#portal-logo" css:theme=".footer-logo"/>
 </rules>
 </rules>
 

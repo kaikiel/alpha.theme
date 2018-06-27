@@ -552,9 +552,10 @@ $('.counter').counterUp({
 /*----------------------------
  flexslider-slider active
 ------------------------------ */
+
 	  $('.flexslider').flexslider({
 		animation: "slide",
-		controlNav: "thumbnails"
+		controlNav: "thumbnails",
 	  });
 	  
 	
