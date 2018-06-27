@@ -7,7 +7,7 @@ var shop_product = {
            <div class="cart-info">
              <h5><a v-bind:href="url">{{title}}</a></h5>
 
-             <template v-if="sale_price">
+             <template v-if="sale_price == null || sale_price == ''">
              <p>{{amount}} x {{price}}</p>
              </template>
              <template v-else>
