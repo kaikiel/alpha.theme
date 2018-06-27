@@ -2476,7 +2476,7 @@
             if(compare_list.indexOf(uid) == -1){
                 if(compare_list.length < 4){
                     compare_list.push(uid)
-                    $.cookie('compare_list', JSON.stringify(compare_list))
+                    $.cookie('compare_list', JSON.stringify(compare_list), {expires: 3})
                     $.notify('Add Compare Success!!', 'success')
                 }else{
                     $.notify('Compare List is Full', 'error')
