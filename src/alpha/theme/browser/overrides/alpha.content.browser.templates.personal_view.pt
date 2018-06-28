@@ -36,7 +36,7 @@
                 <div class="col-xs-12">
                   <div class="single-register">
                     <label for="email">Email Address<span class="must">*</span></label>
-                    <input type="text" name="email" id="email" value="${python: view.getCurrentUser().getProperty('email')}" required />
+                    <input type="email" name="email" id="email" value="${python: view.getCurrentUser().getProperty('email')}" required />
                   </div>
                 </div>
                 <div class="col-sm-6 col-xs-12">

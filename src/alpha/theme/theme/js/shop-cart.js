@@ -63,7 +63,9 @@ var shop_cart = new Vue({
 		this.total_price += parseInt(tmp_price)
 	   	this.total_number ++
 	        json_shop_data = JSON.stringify(this.shop_data)
-		$.cookie('shop_cart', json_shop_data, {expires:3})
+                var date = new Date()
+                date.setTime(date.getTime() + (60 * 60 * 1000))
+		$.cookie('shop_cart', json_shop_data, {expires:date, path:'/'})
 		$.notify('Add Product Success', {globalPosition: 'bottom right',className:'success'})
 		return 'success'
 	    }else{

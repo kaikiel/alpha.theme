@@ -43,7 +43,7 @@
 .alert.status > dt, .portalMessage > dt, .alert.status > dd, .portalMessage > dd{
   display: inline;
 }
-input[type="password"], input[type="text"]{
+input[type="password"], input[type="text"], input[type="email"]{
 width: 100%;
     display: block;
     height: 34px;
