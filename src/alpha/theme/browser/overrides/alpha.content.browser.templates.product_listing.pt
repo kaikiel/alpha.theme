@@ -122,7 +122,6 @@ abs_url = api.portal.get().absolute_url()
   <!-- shop-right-area -->
   <!-- tab-area-start -->
   <p id="productData" style="display:none">${view/productData}</p>
-
   <div class="tab-content">
     <div class="tab-pane active" id="th">
       <div class="row">
@@ -131,18 +130,18 @@ abs_url = api.portal.get().absolute_url()
              v-model="product_data"
              v-for="item in product_data"
              v-bind:title="item[0]"
-             v-bind:price="item[1][3]"
-	     v-bind:sale_price="item[1][4]"
-             v-bind:product_number="item[1][6]"
-             v-bind:url="item[1][5]"
-             v-bind:image="item[1][7]"
-	     v-bind:uid="item[1][8]"
-             v-bind:key="item[1][8]"
-	     v-bind:stock="item[1][9]"
-	     v-bind:description="item[1][10]"
-	     v-on:add_to_cart="add_to_cart(item[0], item[1][3], item[1][4], item[1][5], item[1][7],
-				item[1][8], item[1][9])"
-	     v-on:add_to_compare="add_to_compare(item[1][8])"
+             v-bind:price="item[4]"
+	     v-bind:sale_price="item[5]"
+             v-bind:product_number="item[7]"
+             v-bind:url="item[6]"
+             v-bind:image="item[8]"
+	     v-bind:uid="item[9]"
+             v-bind:key="item[9]"
+	     v-bind:stock="item[10]"
+	     v-bind:description="item[11]"
+	     v-bind:rating="item[13]"
+	     v-on:add_to_cart="add_to_cart(item[12], 1)"
+	     v-on:add_to_compare="add_to_compare(item[12])"
 	     >
         </component>
       </div>

@@ -12,12 +12,12 @@ abs_url = api.portal.get().absolute_url()
     <div is="shop_product"
 	 v-model="shop_data"
 	 v-for="(val, key) in shop_data"
-	 v-bind:title="val[5]"
-         v-bind:price="val[0]"
-         v-bind:sale_price="val[1]"
-         v-bind:url="val[2]"
-         v-bind:image="val[3]" 
-	 v-bind:amount="val[4]"
+	 v-bind:title="val[0]"
+         v-bind:price="val[2]"
+         v-bind:sale_price="val[3]"
+         v-bind:url="val[1]"
+         v-bind:image="val[4]" 
+	 v-bind:amount="val[5]"
 	>
     </div>
     <div class="cart-totals">
