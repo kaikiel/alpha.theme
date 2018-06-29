@@ -17,6 +17,11 @@ from plone import api
 abs_url = api.portal.get().absolute_url()
 ?>
 <div  id="product-listing">
+<p style='display:none' id="pre_category">${view/pre_category}</p>
+<p style='display:none' id="pre_subject">${view/pre_subject}</p>
+<p style='display:none' id="pre_brand">${view/pre_brand}</p>
+
+
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
   <!-- shop-left-area-start -->
   <div class="shop-left-area">
@@ -172,6 +177,22 @@ abs_url = api.portal.get().absolute_url()
 </metal:content-core>
 
 <metal:js fill-slot="js-bottom-slot">
+    <script>
+    $(function(){
+       $( "#slider-range1" ).slider({
+          range: true,
+          min: 0,
+          max: 20000,
+          values: [ 0, 20000 ],
+          slide: function( event, ui ) {
+            $( "#amount1" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+            product_listing.change_price_range(ui.values[0], ui.values[1])
+          }
+        });
+        $( "#amount1" ).val(  $( "#slider-range1" ).slider( "values", 0 ) +
+          " - " + $( "#slider-range1" ).slider( "values", 1 ) );
+    })
+    </script>
     <script src="++theme++alpha.theme/js/vue-paginate.js"></script>
     <script src="${portal_url}/++plone++alpha.content/product_listing.js"></script>
     <script>
@@ -191,18 +212,6 @@ abs_url = api.portal.get().absolute_url()
 	})
 
 
-   $( "#slider-range1" ).slider({
-      range: true,
-      min: 0,
-      max: 20000,
-      values: [ 0, 20000 ],
-      slide: function( event, ui ) {
-        $( "#amount1" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
-	product_listing.change_price_range(ui.values[0], ui.values[1])
-      }
-    });
-    $( "#amount1" ).val(  $( "#slider-range1" ).slider( "values", 0 ) +
-      " - " + $( "#slider-range1" ).slider( "values", 1 ) );
     })
     </script>
 </metal:js>
