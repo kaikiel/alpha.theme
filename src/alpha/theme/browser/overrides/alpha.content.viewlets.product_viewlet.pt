@@ -25,10 +25,11 @@
             <tal:repeat repeat="item view/getMostView">
               <tal:define define="obj item/getObject;
                                   item_title item/Title;
-                                  item_id python: obj.absolute_url_path().replace('/', '');
+                                  item_uid item/UID;
                                   item_url item/getURL;
                                   item_price obj/price;
                                   item_sale  obj/salePrice;
+                                  item_availability obj/availability;
                                   item_rating python: int(obj.rating or 0);
                                   is_has_item_sale python: item_sale!=None">
                 <div class="single-product">
@@ -58,10 +59,11 @@
                     </div>
                     <div class="add-to-links mt-15">
                       <ul>
-                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
+                        <li tal:condition="python: item_availability==True"><a onclick="shop_cart.add_shop('${item_title}', ${item_price}, '${item_sale}', '${item_url}', '${item_url}/@@images/cover', 1, '${item_uid}')"><i class="fa fa-shopping-cart"></i></a></li>
+                        <li tal:condition="python: item_availability==False"><a class="out_of_stock"><i class="fa fa-shopping-cart"></i></a></li>
+                        <li><a href="#"><i class="fa fa-book"></i></a></li>
                         <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#${item_id}"><i class="fa fa-eye"></i></a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#${item_uid}"><i class="fa fa-eye"></i></a></li>
                       </ul>
                     </div>
                   </div>
@@ -79,10 +81,11 @@
             <tal:repeat repeat="item view/getSpecial">
               <tal:define define="obj item/getObject;
                                   item_title item/Title;
-                                  item_id python: obj.absolute_url_path().replace('/', '');
+                                  item_uid item/UID;
                                   item_url item/getURL;
                                   item_price obj/price;
                                   item_sale  obj/salePrice;
+                                  item_availability obj/availability;
                                   item_rating python: int(obj.rating or 0);
                                   is_has_item_sale python: item_sale!=None">
                 <div class="single-product">
@@ -112,10 +115,11 @@
                     </div>
                     <div class="add-to-links mt-15">
                       <ul>
-                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
+                        <li tal:condition="python: item_availability==True"><a onclick="shop_cart.add_shop('${item_title}', ${item_price}, '${item_sale}', '${item_url}', '${item_url}/@@images/cover', 1, '${item_uid}')"><i class="fa fa-shopping-cart"></i></a></li>
+                        <li tal:condition="python: item_availability==False"><a class="out_of_stock"><i class="fa fa-shopping-cart"></i></a></li>
+                        <li><a href="#"><i class="fa fa-book"></i></a></li>
                         <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-                        <li><a href="#" class="product-modal" data-toggle="modal" data-target="#${item_id}"><i class="fa fa-eye"></i></a></li>
+                        <li><a href="#" class="product-modal" data-toggle="modal" data-target="#${item_uid}"><i class="fa fa-eye"></i></a></li>
                       </ul>
                     </div>
                   </div>
@@ -133,10 +137,11 @@
             <tal:repeat repeat="item view/getLatest">
               <tal:define define="obj item/getObject;
                                   item_title item/Title;
-                                  item_id python: obj.absolute_url_path().replace('/', '');
+                                  item_uid item/UID;
                                   item_url item/getURL;
                                   item_price obj/price;
                                   item_sale  obj/salePrice;
+                                  item_availability obj/availability;
                                   item_rating python: int(obj.rating or 0);
                                   is_has_item_sale python: item_sale!=None">
                 <div class="single-product">
@@ -166,10 +171,11 @@
                     </div>
                     <div class="add-to-links mt-15">
                       <ul>
-                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
+                        <li tal:condition="python: item_availability==True"><a onclick="shop_cart.add_shop('${item_title}', ${item_price}, '${item_sale}', '${item_url}', '${item_url}/@@images/cover', 1, '${item_uid}')"><i class="fa fa-shopping-cart"></i></a></li>
+                        <li tal:condition="python: item_availability==False"><a class="out_of_stock"><i class="fa fa-shopping-cart"></i></a></li>
+                        <li><a href="#"><i class="fa fa-book"></i></a></li>
                         <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#${item_id}"><i class="fa fa-eye"></i></a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#${item_uid}"><i class="fa fa-eye"></i></a></li>
                       </ul>
                     </div>
                   </div>

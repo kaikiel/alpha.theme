@@ -1,40 +1,41 @@
 <div class="slider-area">
   <div id="slider">
-    <img src="/++theme++alpha.theme/img/BANNER-1.jpg" alt="slider-img" title="#caption1" />
+  <tal:repeat repeat="item view/getBannerPage">
+  <tal:define define="obj item/getObject;
+                      item_uid item/UID;
+                      item_url item/getURL;">
+    <img src="${item_url}/@@images/image" alt="slider-img" title="#${item_uid}" />
+  </tal:define>
+  </tal:repeat>
   </div>
-  <div class="nivo-html-caption" id="caption1" >
+  <tal:repeat repeat="item view/getBannerPage">
+  <tal:define define="obj item/getObject;
+                      item_uid item/UID;
+                      item_url item/getURL;
+                      item_text obj/text/raw;
+                      item_link obj/image_caption">
+  <div class="nivo-html-caption" id="${item_uid}" >
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="slider-text" >
-            <h1 class="wow bounceInDown" data-wow-delay=".5s">logitech <span>g29</span></h1>
-            <h2 class="wow bounceInDown" data-wow-delay=".8s">driving force</h2>
-            <p class="wow bounceInDown" data-wow-delay="1.1s">Racing wheel for Playstation3,<br /> Playstation 4 & PC</p>
-            <a href="#" class="wow bounceInDown" data-wow-delay="1.4s"><i class="fa fa-shopping-cart"></i>buy now</a>
+            <div class="wow bounceInDown" data-wow-delay=".5s">
+              <tal:block tal:content="structure item_text" />
+              <a href="${item_link}"><i class="fa fa-shopping-cart"></i>buy now</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="nivo-html-caption" id="caption2" >
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="slider-text slider-text-2">
-            <h1 class="wow bounceInDown" data-wow-delay=".5s">assetto corsa</h1>
-            <h2 class="wow bounceInDown" data-wow-delay=".8s">driving force</h2>
-            <p class="wow bounceInDown" data-wow-delay="1.1s">gamermuscle simulation</p>
-            <a href="#" class="wow bounceInDown" data-wow-delay="1.4s"><i class="fa fa-shopping-cart"></i>buy now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  </tal:define>
+  </tal:repeat>
+
   <div class="modal-area">
     <tal:repeat repeat="item view/getAllIndexProduct">
       <tal:define define="item_title item/title;
                           item_description item/description;
-                          item_id python: item.absolute_url_path().replace('/', '');
+                          item_uid item/UID;
                           item_url item/absolute_url;
                           item_price item/price;
                           item_sale  item/salePrice;
@@ -45,7 +46,7 @@
                           is_has_item_sale python: item_sale!=None;">
         
         <!-- single-modal-start -->
-        <div class="modal fade" id="${item_id}" tabindex="-1" role="dialog">
+        <div class="modal fade" id="${item_uid}" tabindex="-1" role="dialog">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -89,9 +90,9 @@
                     </ul>
                   </div>
                   <div class="box-cart-bottom">
-                    <div class="add_to_cart">
-                      <input min="1" class="qty" type="number" value="1">
-                      <a href="#" i18n:translate="">Add to cart</a>
+                    <div class="add_to_cart" tal:condition="python: item_availability == True">
+                      <input min="1" class="qty" type="number" value="1" id="qty${item_uid}">
+                      <a onclick="shop_cart.add_shop('${item_title}', ${item_price}, '${item_sale}', '${item_url}', '${item_url}/@@images/cover', document.getElementById('qty${item_uid}').value, '${item_uid}')" i18n:translate="">Add to cart</a>
                     </div>
                     <div class="add-to-links-2" style="margin-top: 0;">
                       <ul>
@@ -109,10 +110,10 @@
                     </div>
                     <div class="product_reference">
                       <p class="fa fa-angle-double-right">Availability:
-                        <span tal:switch="item_availability">
-                          <tal:case tal:case="True" tal:content="string: In stock"/>
-                          <tal:case tal:case="False" tal:content="string: Out of stock"/>
-                        </span>
+                        <tal:block tal:switch="item_availability">
+                          <span tal:case="True"  tal:content="string: In stock"/>
+                          <span tal:case="False" tal:content="string: Out of stock" style="color:red;"/>
+                        </tal:block>
                       </p>
                     </div>
                   </div>

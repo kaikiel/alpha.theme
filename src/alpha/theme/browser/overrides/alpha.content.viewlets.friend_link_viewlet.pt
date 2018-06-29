@@ -1,0 +1,19 @@
+<div class="brand-area">
+  <div class="container">
+    <div class="row">
+      <div class="brand-active bt-2 ptb-50">
+        <tal:repeat repeat="item view/getFriendLink">
+        <tal:define define="obj item/getObject;
+                            item_url item/getURL;
+                            item_remoteUrl obj/remoteUrl">
+        <div class="col-lg-12">
+          <div class="single-brand">
+            <a target="_blank" href="${item_remoteUrl}"><img src="${item_url}/@@images/image/preview" alt="brand" /></a>
+          </div>
+        </div>
+        </tal:define>
+        </tal:repeat>
+      </div>
+    </div>
+  </div>
+</div>

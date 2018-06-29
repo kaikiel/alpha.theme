@@ -137,7 +137,12 @@
 
     <!--shop_cart-->
     <drop css:content="#shop-cart" />
-
+    
+    <drop css:content=".breadcrumb-area.mb-70" />
+    <drop css:content=".brand-active.bt-2.ptb-50" />
+    <drop css:content=".newslatter-area.ptb-30" />
+    <!-- acount-->
+    <drop css:content=".submenu-top" />
   </rules>
 
 </rules>

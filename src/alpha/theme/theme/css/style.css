@@ -1012,7 +1012,7 @@ body {
   right: 0;
   top: 0;
   width: 1px;
-  z-index: 999;
+  z-index: 998;
 }
 .single-product:hover{
 	box-shadow: 0 0 9.6px 0.4px rgba(0, 0, 0, 0.1);
@@ -1109,11 +1109,15 @@ body {
 	width: 40px;
 	transition:.3s;
 }
-.add-to-links ul li a.out_of_stock{
-	background-color: red;
+.add-to-links ul li a.out_of_stock:before{
+    position: absolute;
+    content: "\\";
+    font-size: 3.5em;
+    font-weight: 300;
+    transform: rotate(-15deg);
 }
 .add-to-links ul li a.out_of_stock:hover{ 
-        background-color: red;
+        background-color: #0f0f0f;
 }
 .add-to-links ul li a:hover{
 	background-color: #f0ce16;
@@ -1596,7 +1600,7 @@ body {
 	border-radius:30px;
 	outline:none;
 }
-.newslatter-form form a {
+.newslatter-form form button {
   color: #f0ce16;
   position: absolute;
   right: 32%;
@@ -1605,7 +1609,7 @@ body {
   transform: translateY(-50%);
   transition:.3s;
 }
- .newslatter-form form a:hover{
+ .newslatter-form form button:hover{
 	color:#fff;
  }
 /*----------------------------------------*/
@@ -3630,7 +3634,7 @@ a#scrollUp {
   padding: 15px 0;
 }
 .model-text form input {
-  background: #eceff8 none repeat scroll 0 0;
+  background: #e2e2e2 none repeat scroll 0 0;
   border: 1px solid #aaa;
   color: #626262;
   font-size: 16px;
@@ -4802,7 +4806,7 @@ blockquote {
 }
 .contact-form .single-form-3 form input,.contact-form .single-form-3 form textarea {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: 1px solid #eceff8;
+  border: 1px solid #e2e2e2;
   font-size: 14px;
   margin-bottom: 16px;
   padding: 12px 10px;
@@ -4863,13 +4867,13 @@ blockquote {
 }
 .login-form .single-login input {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: 1px solid #eceff8;
+  border: 1px solid #e2e2e2;
   padding: 12px 10px;
   width: 100%;
 }
 .login-form .single-login a {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: 1px solid #eceff8;
+  border: 1px solid #e2e2e2;
   display: inline-block;
   padding: 10px 43px;
   color: #626262;
@@ -4918,7 +4922,7 @@ blockquote {
 }
 .single-register form input{
 	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-	border: 1px solid #eceff8;
+	border: 1px solid #e2e2e2;
 	box-shadow: none;
     color: #626262;
     font-size: 14px;
@@ -4929,7 +4933,7 @@ blockquote {
 .single-register .chosen-select{
 	height: 45px;
 	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-	border: 1px solid #eceff8;
+	border: 1px solid #e2e2e2;
 	color: #626262;
     font-size: 14px;
     height: 45px;
@@ -4948,8 +4952,9 @@ blockquote {
   display: inline-block;
   float: left;
   margin-top: 0;
-  padding-left: 10px;
-  font-size: 13px;
+  padding: 0 10px 0 10px;
+  font-size: 16px;
+  font-weight: 400;
 }
 .single-register-3 label a {
   color: #f0ce16;
@@ -4958,7 +4963,7 @@ blockquote {
 }
 .single-register > a {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: 1px solid #eceff8;
+  border: 1px solid #e2e2e2;
   box-shadow: none;
   color: #626262;
   display: inline-block;
@@ -5869,4 +5874,36 @@ p.checkout-coupon input[type="submit"] {
   background-color: #1f95e0;
   color: #fff;
   text-decoration: none;
-} 
+}
+.oval-btn, .formControls input[type="submit"]{
+  background: #101010;
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 900;
+  padding: 14px 25px;
+}
+.oval-btn:hover, .formControls input[type="submit"]:hover{
+  background-color: #f0ce16;
+  color: #fff;
+}
+.pos_new_product .product-img img, .pos_new_product .single-img img, .most-popular-product .product-img img , .tab-pane .single-img img{
+    max-height: 230px;
+    width:auto;
+    display: block;
+    margin: auto;
+}
+.pos_new_product .product-img, .pos_new_product .single-img, .tab-pane .single-img {
+    height: 240px;
+}
+span.must{
+  color:red;
+  position: relative;
+  left: 4px;
+  top: 3px;
+}
+.cart-area .mini-cart-sub {
+  max-height: 400px;
+  overflow-y: scroll;
+}

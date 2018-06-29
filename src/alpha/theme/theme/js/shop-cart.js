@@ -102,7 +102,11 @@ var shop_cart = new Vue({
 		    }
 		})
 		shop_cart_data[translationGroup] = amount
-		$.cookie('shop_cart', JSON.stringify(shop_cart_data), {expires: 3, path:'/'})
+
+                var date = new Date()
+                date.setTime(date.getTime() + (60 * 60 * 1000))
+		$.cookie('shop_cart', JSON.stringify(shop_cart_data), {expires: date, path:'/'})
+
 		$.notify('Add Product Success', {globalPosition: 'bottom right',className:'success'})
 		return 'success'
 	    }else{
