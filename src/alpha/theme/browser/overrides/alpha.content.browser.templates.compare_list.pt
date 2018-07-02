@@ -43,30 +43,30 @@ th{
     color: #ccc;
 }
 </style>
-<table tal:condition="view/data">
+<table tal:condition="view/data" >
   <tr>
     <th colspan="${python: len(view.data) + 1}" i18n:translate="">PRODUCT COMPARE</th>
   </tr>
   <tr>
     <td i18n:translate="">Product</td>
-    <td tal:repeat="item view/data">
-	<a href="${python: item.absolute_url()}">${python: item.title}</a>
+    <td tal:repeat="item view/data" >
+	<a tal:define="obj python:item.getObject()" href="${python: obj.absolute_url()}">${python: obj.title}</a>
     </td>
   </tr>
   <tr>
     <td i18n:translate="">Image</td>
-    <td tal:repeat="item view/data"><img src="${python: item.absolute_url()}/@@images/cover"></td>
+    <td tal:repeat="item view/data"><img tal:define="obj python:item.getObject()" src="${python: obj.absolute_url()}/@@images/cover"></td>
   </tr>
   <tr>
     <td i18n:translate="">Price</td>
-    <td tal:repeat="item view/data" class="product-price">
-      <ul>
-	<tal:condition condition="python: item.salePrice">
-          <li class="new-price sale" style="font-size:30px">${python: item.salePrice}</li>
-          <li class="old-price">${python: item.price}</li>
+    <td tal:repeat="item view/data" class="product-price" >
+      <ul tal:define="obj python:item.getObject()">
+	<tal:condition condition="python: obj.salePrice">
+          <li class="new-price sale" style="font-size:30px">${python: obj.salePrice}</li>
+          <li class="old-price">${python: obj.price}</li>
 	</tal:condition>
-        <tal:condition condition="not: python: item.salePrice">
-          <li>${python: item.price}</li>
+        <tal:condition condition="not: python: obj.salePrice">
+          <li>${python: obj.price}</li>
         </tal:condition>
       </ul>
     </td>
@@ -74,34 +74,34 @@ th{
   <tr>
     <td i18n:translate="">Availability</td>
     <td tal:repeat="item view/data">
-        <tal:condition condition="python: item.availability">
+      <tal:define define="obj python:item.getObject()">
+        <tal:condition condition="python: obj.availability">
 	    In Stock
         </tal:condition>
-        <tal:condition condition="not: python: item.availability">
+        <tal:condition condition="not: python: obj.availability">
 	    Out Of Stock
         </tal:condition>
+      </tal:define>
     </td>
   </tr>
   <tr>
     <td i18n:translate="">Brand</td>
-    <td tal:repeat="item view/data">${python: item.brand}</td>
+    <td tal:repeat="item view/data" >${python: item.getObject().brand}</td>
   </tr>
   <tr>
     <td i18n:translate="">Rating</td>
-    <td tal:repeat="item view/data">${python: item.rating}</td>
+    <td tal:repeat="item view/data" >${python: item.getObject().rating}</td>
   </tr>
   <tr>
     <td i18n:translate="">Summary</td>
-    <td tal:repeat="item view/data">${python: item.description}</td>
+    <td tal:repeat="item view/data" >${python: item.getObject().description}</td>
   </tr>
   <tr>
     <td></td>
-    <td tal:repeat="item view/data">
-	<button data-title="${python: item.title}" data-price="${python: item.price}"
-		data-salePrice="${python: item.salePrice}" data-url="${python: item.absolute_url()}"
-		data-uid="${python: item.UID()}"
+    <td tal:repeat="item view/data" >
+	<button data-translationgroup="${python: item.TranslationGroup}"
 		class="add_to_cart btn" i18n:translate="">Add To Cart</button>
-	<button class="remove btn" data-uid="${python: item.UID()}" i18n:translate="">Remove</button>
+	<button class="remove btn" data-TranslationGroup="${python: item.TranslationGroup}" i18n:translate="">Remove</button>
     </td>
   </tr>
 
@@ -113,17 +113,11 @@ th{
 <script>
     $(function(){
 	$('.add_to_cart').click(function(){
-	    title = $(this).data('title')
-            price = $(this).data('price')
-            sale_price = $(this).data('salePrice')
-            url = $(this).data('url')
-            uid = $(this).data('uid')
-	    image = url + '/@@images/cover'
-
-	    rep = shop_cart.add_shop(title, price, sale_price, url, image, 1, uid)
+	    TranslationGroup = $(this).data('translationgroup')
+	    rep = shop_cart.add_shop(TranslationGroup, 1)
 	    if(rep == 'success'){
                 compare_list = JSON.parse($.cookie('compare_list'))
-		compare_list.splice(compare_list.indexOf(uid), 1)
+		compare_list.splice(compare_list.indexOf(TranslationGroup), 1)
 		$.cookie('compare_list', JSON.stringify(compare_list))
 		window.location.reload()
 	    }
