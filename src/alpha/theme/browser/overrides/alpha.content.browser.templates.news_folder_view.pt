@@ -3,9 +3,8 @@
     xmlns:metal="http://xml.zope.org/namespaces/metal"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     xmlns:v-on="http://vuejs.org"
-    lang="en"
     metal:use-macro="context/main_template/macros/master"
-    i18n:domain="gct.content">
+    i18n:domain="alpha.theme">
 <body>
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core"
@@ -63,11 +62,11 @@
                        <h1><a href="${item_link}">${item_title}</a></h1>
                        <div class="entry-meta">
                          <span class="fa fa-clock-o">
-                           ${item_created_month} ${item_created_day}, ${item_created_year}/ Posted by ${item_creator}
+                           ${item_created_month} ${item_created_day}, ${item_created_year}/ <span i18n:translate="">Posted by</span> ${item_creator}
                          </span>
                        </div>
                        <p>${item_description}</p>
-                       <a href="${item_link}">read more</a>
+                       <a href="${item_link}" i18n:translate="">read more</a>
                      </div> 
                   </div>
                 </div>

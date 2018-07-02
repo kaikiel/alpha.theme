@@ -2,9 +2,8 @@
     xmlns:tal="http://xml.zope.org/namespaces/tal"
     xmlns:metal="http://xml.zope.org/namespaces/metal"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    lang="en"
     metal:use-macro="context/main_template/macros/master"
-    i18n:domain="i7fruit.content">
+    i18n:domain="alpha.theme">
 <body>
 
 
@@ -16,7 +15,7 @@
 <div class="entry-header-area">
  <div class="col-lg-12">
   <div class="entry-header-title">
-   <h2>Cart</h2>
+   <h2 i18n:translate="">Cart</h2>
   </div>
  </div>
 </div>
@@ -26,12 +25,12 @@
    <table>
     <thead>
       <tr>
-        <th class="product-thumbnail">IMAGE</th>
-        <th class="product-name">PRODUCT NAME</th>
-        <th class="product-quantity">QUANTITY</th>
-        <th class="product-price">UNIT PRICE</th>
-        <th class="product-subtotal">TOTAL</th>
-        <th class="product-remove">Remove</th>
+        <th class="product-thumbnail" i18n:translate="">IMAGE</th>
+        <th class="product-name" i18n:translate="">PRODUCT NAME</th>
+        <th class="product-quantity" i18n:translate="">QUANTITY</th>
+        <th class="product-price" i18n:translate="">UNIT PRICE</th>
+        <th class="product-subtotal" i18n:translate="">TOTAL</th>
+        <th class="product-remove" i18n:translate="">Remove</th>
       </tr>
     </thead>
     <tbody>
@@ -55,33 +54,33 @@
 <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
  <div class="buttons-cart mb-30">
   <ul>
-   <li><a href="#">Update Cart</a></li>
-   <li><a href="#">Continue Shopping</a></li>
+   <li><a href="#" i18n:translate="">Update Cart</a></li>
+   <li><a href="#" i18n:translate="">Continue Shopping</a></li>
   </ul>
  </div>
  <div class="coupon">
-  <h3>Coupon</h3>
-  <p>Enter your coupon code if you have one.</p>
+  <h3 i18n:translate="">Coupon</h3>
+  <p i18n:translate="">Enter your coupon code if you have one.</p>
   <form action="#">
    <input type="text" placeholder="Coupon code">
-   <a href="#">Apply Coupon</a>
+   <a href="#" i18n:translate="">Apply Coupon</a>
   </form>
  </div>
 
- <label>Recipient Name:<input id="recipient_name" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label><br>
+ <label >Recipient Name:<input id="recipient_name" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label><br>
  <select id="country" data-trigger="manual" data-toggle="popover" data-content="Please fill in">
-   <option>Please Choice</option>
-   <option value="C2">CHINA</option>
-   <option value="TW">TAIWAN</option>
+   <option i18n:translate="">Please Choice</option>
+   <option value="C2" i18n:translate="">CHINA</option>
+   <option value="TW" i18n:translate="">TAIWAN</option>
  </select>
- <label>City:<input id="city" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
- <label>Postal Code:<input id="postal_code" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
- <label>Address:<input id="address" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
+ <label >City:<input id="city" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
+ <label >Postal Code:<input id="postal_code" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
+ <label >Address:<input id="address" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
 </div>
 
 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px">
  <div class="cart_totals">
-  <h2>Cart Totals</h2>
+  <h2 i18n:translate="">Cart Totals</h2>
   <table>
    <tbody>
     <tr class="cart-subtotal">

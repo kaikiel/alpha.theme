@@ -1,10 +1,7 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-02 01:11+0000\n"
+"POT-Creation-Date: 2018-06-29 10:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,7 +12,7 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: alpha.theme\n"
+"Domain: DOMAIN\n"
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:16
 msgid "Account Details"
@@ -145,6 +142,10 @@ msgstr ""
 msgid "Last Name"
 msgstr ""
 
+#: ./browser/overrides/alpha.content.viewlets.product_viewlet.pt:14
+msgid "Latest"
+msgstr ""
+
 #: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:9
 msgid "Log out"
 msgstr ""
@@ -153,6 +154,7 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
+#: ./browser/overrides/alpha.content.viewlets.product_viewlet.pt:12
 #: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:30
 msgid "Most View"
 msgstr ""
@@ -263,6 +265,10 @@ msgstr ""
 msgid "Site Map"
 msgstr ""
 
+#: ./browser/overrides/alpha.content.viewlets.product_viewlet.pt:13
+msgid "Special"
+msgstr ""
+
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:58
 msgid "Specials"
 msgstr ""
@@ -345,9 +351,9 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.viewlets.best_sellers_viewlet.pt:45
 #: ./browser/overrides/alpha.content.viewlets.main_banner.pt:87
-#: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:68
+#: ./browser/overrides/alpha.content.viewlets.product_viewlet.pt:55
 msgid "dollar"
-msgstr ""
+msgstr "$"
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:52
 msgid "extras"

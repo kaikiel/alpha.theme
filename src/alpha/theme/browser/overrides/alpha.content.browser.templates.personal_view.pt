@@ -3,7 +3,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="alpha.content">
+      i18n:domain="alpha.theme">
 <body>
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core"
@@ -13,97 +13,98 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="login-title text-center mb-30">
-            <h2>Account Details</h2>
+            <h2 i18n:translate="">Account Details</h2>
           </div>
         </div>
         <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
           <form method="post" >
             <div class="billing-fields">
               <div class="row">
-                <h1 class="documentFirstHeading" i18n-translate="">Your Personal Details</h1>
+                <h1 class="documentFirstHeading" i18n:translate="">Your Personal Details</h1>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="single-register">
-                    <label for="fName">First Name<span class="must">*</span></label>
+                    <label for="fName"><span i18n:translate="">First Name</span><span class="must">*</span></label>
                     <input type="text" name="fName" id="fName" value="${python: view.getCurrentUser().getProperty('fName')}"/>
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="single-register">
-                    <label for="lName">Last Name<span class="must">*</span></label>
+                    <label for="lName"><span i18n:translate="">Last Name</span><span class="must">*</span></label>
                     <input type="text" name="lName" id="lName" value="${python: view.getCurrentUser().getProperty('lName')}"/>
                   </div>
                 </div>
                 <div class="col-xs-12">
                   <div class="single-register">
-                    <label for="email">Email Address<span class="must">*</span></label>
+                    <label for="email"><span i18n:translate="">Email Address</span><span class="must">*</span></label>
                     <input type="email" name="email" id="email" value="${python: view.getCurrentUser().getProperty('email')}" required />
                   </div>
                 </div>
                 <div class="col-sm-6 col-xs-12">
                   <div class="single-register">
-                    <label for="telephone">Telephone<span class="must">*</span></label>
+                    <label for="telephone"><span i18n:translate="">Telephone</span><span class="must">*</span></label>
                     <input type="text" name="telephone" id="telephone" value="${python: view.getCurrentUser().getProperty('telephone')}"/>
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="single-register">
-                    <label for="fax">Fax</label>
+                    <label for="fax" i18n:translate="">Fax</label>
                     <input type="text" name="fax" id="fax" value="${python: view.getCurrentUser().getProperty('fax')}"/>
                   </div>
                 </div>
               </div>
-              <h1 class="documentFirstHeading" i18n-translate="">Your Personal Details</h1>
+              <h1 class="documentFirstHeading" i18n:translate="">Your Address</h1>
               <div class="single-register">
-                <label for="company">Company</label>
+                <label for="company" i18n:translate="">Company</label>
                 <input type="text" name="company" id="company" value="${python: view.getCurrentUser().getProperty('company')}"/>
               </div>
               <div class="single-register">
-                <label for="address1">Address1<span class="must">*</span></label>
+                <label for="address1"><span i18n:translate="">Address1</span><span class="must">*</span></label>
                 <input type="text" name="address1" id="address1" value="${python: view.getCurrentUser().getProperty('address1')}" />
               </div>
               <div class="single-register">
-                <label for="address2">Address2</label>
+                <label for="address2" i18n:translate="">Address2</label>
                 <input type="text" name="address2" id="address2" value="${python: view.getCurrentUser().getProperty('address2')}" />
               </div>
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="single-register">
-                    <label for="city">Town/City<span class="must">*</span></label>
+                    <label for="city"><span i18n:translate="">Town/City</span><span class="must">*</span></label>
                     <input type="text" name="city" id="city" value="${python: view.getCurrentUser().getProperty('city')}" />
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="single-register">
-                    <label for="zip">Postcode/zip<span class="must">*</span></label>
+                    <label for="zip"><span i18n:translate="">Postcode/zip</span><span class="must">*</span></label>
                     <input type="text" name="zip" id="zip" value="${python: view.getCurrentUser().getProperty('zip')}" />
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="single-register">
-                    <label for="country">Country<span class="must">*</span></label>
+                    <label for="country"><span i18n:translate="">Country</span><span class="must">*</span></label>
                     <input type="text" name="country" id="country" value="${python: view.getCurrentUser().getProperty('country')}"/>
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="single-register">
-                    <label for="state">State<span class="must">*</span></label>
+                    <label for="state"><span i18n:translate="">State</span><span class="must">*</span></label>
                     <input type="text" name="state" id="state" value="${python: view.getCurrentUser().getProperty('state')}"/>
                   </div>
                 </div>
               </div>
-              <h1 class="documentFirstHeading" i18n-translate="">Newsletter</h1>
+              <h1 class="documentFirstHeading" i18n:translate="">Newsletter</h1>
               <div class="single-register single-register-3">
                 <label class="inline" id="newsletterCheck" 
-                       data-newsletter="${python: view.getCurrentUser().getProperty('newsletter')}">Subsribe</label>
+                       data-newsletter="${python: view.getCurrentUser().getProperty('newsletter')}" 
+                       i18n:translate="">Subsribe</label>
                 <label for="newsletter_yes">
-                <input type="radio" id="newsletter_yes" name="newsletter" value="true"> Yes
+                <input type="radio" id="newsletter_yes" name="newsletter" value="true"> <span i18n:translate="">Yes</span>
                 </label>
                 <label for="newsletter_no">
-                <input type="radio" id="newsletter_no" name="newsletter" value="false"> No
+                <input type="radio" id="newsletter_no" name="newsletter" value="false"> <span i18n:translate="">No</span>
                 </label>
               </div>
               <div style="text-align: right;">
-                <input type="submit" class="oval-btn"></input>
+                <input type="submit" class="oval-btn" i18n:attributes="value" value="submit"/>
               </div>
             </div>
           </form>

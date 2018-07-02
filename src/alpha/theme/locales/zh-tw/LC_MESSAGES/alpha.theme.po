@@ -1,10 +1,7 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-02 01:11+0000\n"
+"POT-Creation-Date: 2018-06-29 10:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,27 +12,27 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: alpha.theme\n"
+"Domain: DOMAIN\n"
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:16
 msgid "Account Details"
-msgstr ""
+msgstr "帳戶資訊"
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:100
 msgid "Add To Cart"
-msgstr ""
+msgstr "加入購物車"
 
 #: ./browser/overrides/alpha.content.viewlets.main_banner.pt:97
 msgid "Add to cart"
-msgstr ""
+msgstr "加入購物車"
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:61
 msgid "Address1"
-msgstr ""
+msgstr "地址1"
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:65
 msgid "Address2"
-msgstr ""
+msgstr "地址2"
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:57
 msgid "Affiliates"
@@ -51,23 +48,23 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:75
 msgid "Availability"
-msgstr ""
+msgstr "庫存"
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:86
 msgid "Brand"
-msgstr ""
+msgstr "品牌"
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:41
 msgid "Brands"
-msgstr ""
+msgstr "品牌"
 
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:73
 msgid "CHINA"
-msgstr ""
+msgstr "中國"
 
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:18
 msgid "Cart"
-msgstr ""
+msgstr "購物車"
 
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:83
 msgid "Cart Totals"
@@ -75,19 +72,19 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:57
 msgid "Company"
-msgstr ""
+msgstr "公司"
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:39
 msgid "Contact Us"
-msgstr ""
+msgstr "聯絡我們"
 
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:58
 msgid "Continue Shopping"
-msgstr ""
+msgstr "繼續購物"
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:83
 msgid "Country"
-msgstr ""
+msgstr "國家"
 
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:62
 msgid "Coupon"
@@ -99,7 +96,7 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:38
 msgid "Email Address"
-msgstr ""
+msgstr "電子信箱"
 
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:63
 msgid "Enter your coupon code if you have one."
@@ -111,15 +108,15 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:50
 msgid "Fax"
-msgstr ""
+msgstr "傳真"
 
 #: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:97
 msgid "Featured Products"
-msgstr ""
+msgstr "特色商品"
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:26
 msgid "First Name"
-msgstr ""
+msgstr "名"
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:75
 msgid "Gift Certificates"
@@ -127,11 +124,11 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:28
 msgid "IMAGE"
-msgstr ""
+msgstr "圖片"
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:57
 msgid "Image"
-msgstr ""
+msgstr "圖片"
 
 #: ./configure.zcml:27
 msgid "Installs the Plone theme package alpha.theme."
@@ -143,51 +140,56 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:32
 msgid "Last Name"
-msgstr ""
+msgstr "姓"
+
+#: ./browser/overrides/alpha.content.viewlets.product_viewlet.pt:14
+msgid "Latest"
+msgstr "最新商品"
 
 #: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:9
 msgid "Log out"
-msgstr ""
+msgstr "登出"
 
 #: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:8
 msgid "Login"
-msgstr ""
+msgstr "登入"
 
+#: ./browser/overrides/alpha.content.viewlets.product_viewlet.pt:12
 #: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:30
 msgid "Most View"
-msgstr ""
+msgstr "最多觀看"
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:68
 msgid "My Account"
-msgstr ""
+msgstr "我的帳戶"
 
 #: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:5
 msgid "My account"
-msgstr ""
+msgstr "我的帳戶"
 
 #: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:6
 msgid "My wishlist"
-msgstr ""
+msgstr "願望清單"
 
 #: ./browser/overrides/alpha.content.viewlets.news_viewlet.pt:8
 msgid "News & Events"
-msgstr ""
+msgstr "新聞"
 
 #: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:164
 msgid "News Products"
-msgstr ""
+msgstr "最新商品"
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:94
 msgid "Newsletter"
-msgstr ""
+msgstr "電子報"
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:103
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:73
 msgid "Order History"
-msgstr ""
+msgstr "訂單紀錄"
 
 #: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:14
 msgid "Our engine are designed and manufactured according to the highest precision and quality requirements to meet and exceed our customers expectations."
@@ -195,11 +197,11 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:48
 msgid "PRODUCT COMPARE"
-msgstr ""
+msgstr "商品比較"
 
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:29
 msgid "PRODUCT NAME"
-msgstr ""
+msgstr "商品名稱"
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:17
 msgid "Phone :+(1234) 567 890"
@@ -207,7 +209,7 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:72
 msgid "Please Choice"
-msgstr ""
+msgstr "請選擇"
 
 #: ./configure.zcml:27
 msgid "Plone Theme: alpha.theme"
@@ -215,7 +217,7 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:77
 msgid "Postcode/zip"
-msgstr ""
+msgstr "郵遞區號"
 
 #: ./browser/overrides/alpha.content.browser.templates.news_folder_view.pt:65
 #: ./browser/overrides/alpha.content.browser.templates.news_item_view.pt:29
@@ -224,11 +226,11 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:61
 msgid "Price"
-msgstr ""
+msgstr "價格"
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:51
 msgid "Product"
-msgstr ""
+msgstr "商品"
 
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:30
 msgid "QUANTITY"
@@ -236,12 +238,12 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:90
 msgid "Rating"
-msgstr ""
+msgstr "評分"
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:104
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:33
 msgid "Remove"
-msgstr ""
+msgstr "移除"
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:42
 msgid "Return policies"
@@ -261,7 +263,11 @@ msgstr ""
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:56
 msgid "Site Map"
-msgstr ""
+msgstr "網站地圖"
+
+#: ./browser/overrides/alpha.content.viewlets.product_viewlet.pt:13
+msgid "Special"
+msgstr "特色商品"
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:58
 msgid "Specials"
@@ -269,11 +275,11 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:89
 msgid "State"
-msgstr ""
+msgstr "州/省"
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:96
 msgid "Subsribe"
-msgstr ""
+msgstr "訂閱"
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:94
 msgid "Summary"
@@ -281,7 +287,7 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:74
 msgid "TAIWAN"
-msgstr ""
+msgstr "臺灣"
 
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:32
 msgid "TOTAL"
@@ -289,11 +295,11 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:44
 msgid "Telephone"
-msgstr ""
+msgstr "電話"
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:71
 msgid "Town/City"
-msgstr ""
+msgstr "縣市"
 
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:31
 msgid "UNIT PRICE"
@@ -313,19 +319,19 @@ msgstr ""
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:74
 msgid "Wish List"
-msgstr ""
+msgstr "願望清單"
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:100
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:55
 msgid "Your Address"
-msgstr ""
+msgstr "您的地址"
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:23
 msgid "Your Personal Details"
-msgstr ""
+msgstr "個人詳細資料"
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:15
 msgid "address :No 40 Baria Sreet 133/2, NewYork, USA."
@@ -333,21 +339,21 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.viewlets.best_sellers_viewlet.pt:8
 msgid "best sellers"
-msgstr ""
+msgstr "熱門商品"
 
 #: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:7
 msgid "checkout"
-msgstr ""
+msgstr "結帳"
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:35
 msgid "customer service"
-msgstr ""
+msgstr "顧客服務"
 
 #: ./browser/overrides/alpha.content.viewlets.best_sellers_viewlet.pt:45
 #: ./browser/overrides/alpha.content.viewlets.main_banner.pt:87
-#: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:68
+#: ./browser/overrides/alpha.content.viewlets.product_viewlet.pt:55
 msgid "dollar"
-msgstr ""
+msgstr "¥"
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:52
 msgid "extras"
@@ -355,11 +361,11 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.news_folder_view.pt:69
 msgid "read more"
-msgstr ""
+msgstr "詳細閱讀"
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:107
 msgid "submit"
-msgstr ""
+msgstr "送出"
 
 #: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:11
 msgid "we don't make engine."

@@ -1,3 +1,5 @@
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="alpha.theme">
 <div class="slider-area">
   <div id="slider">
   <tal:repeat repeat="item view/getBannerPage">
@@ -138,3 +140,4 @@
     </tal:repeat>
   </div>
 </div>
+</html>

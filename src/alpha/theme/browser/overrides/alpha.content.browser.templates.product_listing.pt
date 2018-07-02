@@ -5,9 +5,8 @@
     xmlns:v-on="http://www.vue.org/v-on"
     xmlns:v-bind="http://www.vue.org/v-bind"
     xmlns:v-model="http://www.vue.org/v-model"
-    lang="en"
     metal:use-macro="context/main_template/macros/master"
-    i18n:domain="gct.content">
+    i18n:domain="alpha.theme">
 <body>
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core"

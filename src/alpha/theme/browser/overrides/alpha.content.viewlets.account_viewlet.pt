@@ -1,9 +1,12 @@
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="alpha.theme">
 <div class="submenu-top">
   <ul tal:switch="view/isAnonymous">
-    <li><a href="/personal_details">My account</a></li>
-    <li><a href="wishlist.html">My wishlist</a></li>
-    <li><a href="../confirm_cart">checkout</a></li>
-    <li tal:case=True><a href="../login">Login</a></li>
-    <li tal:case=False><a href="../log_out">Log out</a></li>
+    <li><a href="/${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/personal_details" i18n:translate="">My account</a></li>
+    <li><a href="/${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/wishlist" i18n:translate="">My wishlist</a></li>
+    <li><a href="/${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/confirm_cart" i18n:translate="">checkout</a></li>
+    <li tal:case=True><a href="/${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/login" i18n:translate="">Login</a></li>
+    <li tal:case=False><a href="/${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/log_out" i18n:translate="">Log out</a></li>
   </ul>
 </div>
+</html>

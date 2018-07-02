@@ -1,3 +1,5 @@
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="alpha.theme">
 <div class="footer-top-area pt-80 pb-50">
 <div class="container">
   <div class="row">
@@ -5,14 +7,14 @@
       <!-- single-footer-start -->
       <div class="single-footer">
         <div class="footer-logo mb-30">
-          <h1 style="font-size:25px; color:#fff">Alpha Hobbies Group</h1>
+          <h1 style="font-size:25px; color:#fff" i18n:translate="">Alpha Hobbies Group</h1>
         </div>
-        <p>It is a long established fact that reader will distract by the readable content of a page...</p>
+        <p i18n:translate="">It is a long established fact that reader will distract by the readable content of a page...</p>
         <div class="footer-address">
           <ul>
-            <li><i class="fa fa-map-marker"></i>address :No 40 Baria Sreet 133/2, NewYork, USA.</li>
-            <li><i class="fa fa-envelope"></i>Email :demo@posthemes.com</li>
-            <li><i class="fa fa-mobile"></i>Phone :+(1234) 567 890</li>
+            <li><i class="fa fa-map-marker"></i><span i18n:translate="">address :No 40 Baria Sreet 133/2, NewYork, USA.</span></li>
+            <li><i class="fa fa-envelope"></i><span i18n:translate="">Email :demo@posthemes.com</span></li>
+            <li><i class="fa fa-mobile"></i><span i18n:translate="">Phone :+(1234) 567 890</span></li>
           </ul>
         </div>
         <div class="social-link">
@@ -30,14 +32,14 @@
       <!-- single-footer-start -->
       <div class="single-footer">
         <div class="footer-title">
-          <h4>customer service</h4>
+          <h4 i18n:translate="">customer service</h4>
         </div>
         <div class="footer-menu">
           <ul>
-            <li><a href="/@@contact_us">Contact Us</a></li>
-            <li><a href="#">Returns</a></li>
-            <li><a href="#">Brands</a></li>
-            <li><a href="/return-policies">Return policies</a></li>
+            <li><a href="/${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/@@contact_us" i18n:translate="">Contact Us</a></li>
+            <li><a href="#" i18n:translate="">Returns</a></li>
+            <li><a href="#" i18n:translate="">Brands</a></li>
+            <li><a href="/${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/return-policies" i18n:translate="">Return policies</a></li>
           </ul>
         </div>
       </div>
@@ -47,13 +49,13 @@
       <!-- single-footer-start -->
       <div class="single-footer">
         <div class="footer-title">
-          <h4>extras</h4>
+          <h4 i18n:translate="">extras</h4>
         </div>
         <div class="footer-menu">
           <ul>
-            <li><a href="#">Site Map</a></li>
-            <li><a href="#">Affiliates</a></li>
-            <li><a href="#">Specials</a></li>
+            <li><a href="#" i18n:translate="">Site Map</a></li>
+            <li><a href="#" i18n:translate="">Affiliates</a></li>
+            <li><a href="#" i18n:translate="">Specials</a></li>
           </ul>
         </div>
       </div>
@@ -63,14 +65,14 @@
       <!-- single-footer-start -->
       <div class="single-footer">
         <div class="footer-title">
-          <h4>My Account</h4>
+          <h4 i18n:translate="">My Account</h4>
         </div>
         <div class="footer-menu">
           <ul>
-            <li><a href="/personal_details">My Account</a></li>
-            <li><a href="#">Order History</a></li>
-            <li><a href="#">Wish List</a></li>
-            <li><a href="#">Gift Certificates</a></li>
+            <li><a href="/${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/personal_details" i18n:translate="">My Account</a></li>
+            <li><a href="#" i18n:translate="">Order History</a></li>
+            <li><a href="#" i18n:translate="">Wish List</a></li>
+            <li><a href="#" i18n:translate="">Gift Certificates</a></li>
           </ul>
         </div>
       </div>
@@ -86,7 +88,7 @@
               <div class="copy-right">
                 <?python import datetime ?>
                 <p>Copyright © ${python: datetime.datetime.now().year}
-                             <a href="/">ALPHA PLUS MODEL CO., LTD</a>. All Rights Reserved</p>
+                             <a href="/${python: view.context.restrictedTraverse('@@plone_portal_state').language()}">ALPHA PLUS MODEL CO., LTD</a>. All Rights Reserved</p>
               </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -97,3 +99,4 @@
           </div>
         </div>
       </div>
+</html>

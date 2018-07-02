@@ -3,9 +3,8 @@
     xmlns:metal="http://xml.zope.org/namespaces/metal"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     xmlns:v-on="http://vuejs.org"
-    lang="en"
     metal:use-macro="context/main_template/macros/master"
-    i18n:domain="gct.content">
+    i18n:domain="alpha.theme">
 <body>
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core"
@@ -46,20 +45,20 @@ th{
 </style>
 <table tal:condition="view/data">
   <tr>
-    <th colspan="${python: len(view.data) + 1}">PRODUCT DETAILS</th>
+    <th colspan="${python: len(view.data) + 1}" i18n:translate="">PRODUCT COMPARE</th>
   </tr>
   <tr>
-    <td>Product</td>
+    <td i18n:translate="">Product</td>
     <td tal:repeat="item view/data">
 	<a href="${python: item.absolute_url()}">${python: item.title}</a>
     </td>
   </tr>
   <tr>
-    <td>Image</td>
+    <td i18n:translate="">Image</td>
     <td tal:repeat="item view/data"><img src="${python: item.absolute_url()}/@@images/cover"></td>
   </tr>
   <tr>
-    <td>Price</td>
+    <td i18n:translate="">Price</td>
     <td tal:repeat="item view/data" class="product-price">
       <ul>
 	<tal:condition condition="python: item.salePrice">
@@ -73,7 +72,7 @@ th{
     </td>
   </tr>
   <tr>
-    <td>Availability</td>
+    <td i18n:translate="">Availability</td>
     <td tal:repeat="item view/data">
         <tal:condition condition="python: item.availability">
 	    In Stock
@@ -84,15 +83,15 @@ th{
     </td>
   </tr>
   <tr>
-    <td>Brand</td>
+    <td i18n:translate="">Brand</td>
     <td tal:repeat="item view/data">${python: item.brand}</td>
   </tr>
   <tr>
-    <td>Rating</td>
+    <td i18n:translate="">Rating</td>
     <td tal:repeat="item view/data">${python: item.rating}</td>
   </tr>
   <tr>
-    <td>Summary</td>
+    <td i18n:translate="">Summary</td>
     <td tal:repeat="item view/data">${python: item.description}</td>
   </tr>
   <tr>
@@ -101,8 +100,8 @@ th{
 	<button data-title="${python: item.title}" data-price="${python: item.price}"
 		data-salePrice="${python: item.salePrice}" data-url="${python: item.absolute_url()}"
 		data-uid="${python: item.UID()}"
-		class="add_to_cart btn">Add To Cart</button>
-	<button class="remove btn" data-uid="${python: item.UID()}">Remove</button>
+		class="add_to_cart btn" i18n:translate="">Add To Cart</button>
+	<button class="remove btn" data-uid="${python: item.UID()}" i18n:translate="">Remove</button>
     </td>
   </tr>
 

@@ -1,3 +1,5 @@
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="alpha.theme">
 <div class="shop-product-viewlets">
   <div class="static-center-area">
     <img src="/++theme++alpha.theme/img/BANNER-2.jpg" alt="banner" />
@@ -6,10 +8,14 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="static-text text-center">
-              <h3>we don't make engine.</h3>
-              <h4>we make engine better!</h4>
-              <p>Our engine are designed and manufactured according to the highest precision and quality requirements to meet and exceed our customers expectations.<br /> Every stage of productions is strictly controlled to guarantee excellence in performance. <br /> Seeing is believing. Experience the our engine now!</p>
-              <a href="/products">Shop now</a>
+              <h3 i18n:translate="">we don't make engine.</h3>
+              <h4 i18n:translate="">we make engine better!</h4>
+              <p>
+                <span i18n:translate="">Our engine are designed and manufactured according to the highest precision and quality requirements to meet and exceed our customers expectations.</span> <br /> 
+                <span i18n:translate="">Every stage of productions is strictly controlled to guarantee excellence in performance.</span> <br /> 
+                <span i18n:translate="">Seeing is believing. Experience the our engine now!</span>
+              </p>
+              <a href="/products" i18n:translate="">Shop now</a>
             </div>
           </div>
         </div>
@@ -21,7 +27,7 @@
       <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
           <div class="section-title mb-30">
-            <h2>Most View</h2>
+            <h2 i18n:translate="">Most View</h2>
           </div>
           <tal:block tal:switch="python: len(view.getMostView()) <= 3">
             <tal:content tal:content="structure string: <div class='product-active-2'>" tal:case="True" />
@@ -88,7 +94,7 @@
         </div>
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
           <div class="section-title mb-30">
-            <h2>Featured Products</h2>
+            <h2 i18n:translate="">Featured Products</h2>
           </div>
           <tal:block tal:switch="python: len(view.getSpecial()) <= 3">
             <tal:content tal:content="structure string: <div class='product-active-2'>" tal:case="True" />
@@ -155,7 +161,7 @@
         </div>
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
           <div class="section-title mb-30">
-            <h2>News Products</h2>
+            <h2 i18n:translate="">News Products</h2>
           </div>
           <tal:block tal:switch="python: len(view.getLatest()) <= 3">
             <tal:content tal:content="structure string: <div class='product-active-2'>" tal:case="True" />
@@ -224,3 +230,4 @@
     </div>
   </div>
 </div>
+</html>

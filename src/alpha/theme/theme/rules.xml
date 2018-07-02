@@ -121,6 +121,8 @@
   <replace css:content="#portal-logo" css:theme=".logo-area"/>
   <!-- account -->
   <replace css:content=".submenu-top" css:theme=".user .submenu-top"/>
+
+  <replace css:content="#portal-languageselector" css:theme-children="#portal-languageselector"/>
 </rules>
 </rules>
 
