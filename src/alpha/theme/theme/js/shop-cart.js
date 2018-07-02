@@ -29,43 +29,84 @@ var shop_cart = new Vue({
         'shop_product': shop_product,
     },
     created: function(){
-	cookie_shop_cart = $.cookie('shop_cart')
-	if(cookie_shop_cart){
-	    this.shop_data = JSON.parse(cookie_shop_cart)
-	}
 
-	total_price = 0
-	total_number = 0
-	Object.values(this.shop_data).forEach(function(value){
-	    if(value[1]){
-		price = value[1]
-	    }else{
-		price = value[0]
-	    }
-	    total_price += parseInt(price)
-	    total_number ++
-	})
-	this.total_number = total_number
-	this.total_price = total_price
+        cookie_shop_cart = $.cookie('shop_cart')
+
+	if(cookie_shop_cart){
+	    json_shop_cart = JSON.parse(cookie_shop_cart)
+	    Object.keys(json_shop_cart).forEach(function(key){
+		lang = $.cookie('I18N_LANGUAGE')
+                url = location.protocol + '//' + location.hostname + ':' + location.port + '/Plone/' + lang + '/products/@search?Type=Product&metadata_fields=_all&TranslationGroup=' + key
+		$.ajax({
+		    type: "get",
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    url: url,
+                    success: function(rep){
+                        items = rep['items'][0]
+                        title = items['Title']
+                        abs_url = items['getURL']
+                        price = items['price']
+                        salePrice = items['salePrice']
+                        img = abs_url + '/@@images/cover'
+			if(salePrice){
+			    shop_cart.total_price += salePrice
+			}else{
+			    shop_cart.total_price += price
+			}
+			shop_cart.total_number += 1
+                        shop_cart.shop_data[key] = [title, abs_url, price, salePrice, img, json_shop_cart[key]]
+                    }
+		})
+	    })
+	}
     },
     methods: {
-        add_shop: function(title, price, sale_price, url, image, amount, uid){
-	    ans = Object.keys(this.shop_data).every(function(value){
-		return value != uid
-	    })
+        add_shop: function(translationGroup, amount){
+	    shop_data = this.shop_data
+
+	    cookie_shop_cart = $.cookie('shop_cart')
+	    if(cookie_shop_cart){
+		shop_cart_data = JSON.parse(cookie_shop_cart)
+		ans = Object.keys(shop_cart_data).every(function(value){
+		    return value != translationGroup
+		})
+	    }else{
+		shop_cart_data = {}
+		ans = true
+	    }
 	    if(ans){
-	        this.shop_data[uid] = [price, sale_price, url, image, amount, title]
-	        if(sale_price){
-                    tmp_price = sale_price
-                }else{
-                    tmp_price = price
-                }
-		this.total_price += parseInt(tmp_price)
-	   	this.total_number ++
-	        json_shop_data = JSON.stringify(this.shop_data)
+	        lang = $.cookie('I18N_LANGUAGE')
+		url = location.protocol + '//' + location.hostname + ':' + location.port + '/Plone/' + lang + '/products/@search?Type=Product&metadata_fields=_all&TranslationGroup=' + translationGroup
+		$.ajax({
+		    type: "get",
+		    headers: {
+		        'Accept': 'application/json'
+		    },
+		    url: url,
+		    success: function(rep){
+			items = rep['items'][0]
+			title = items['Title']
+			abs_url = items['getURL']
+			price = items['price']
+			salePrice = items['salePrice']
+			img = abs_url + '/@@images/cover'
+			if(salePrice){
+                            shop_cart.total_price += salePrice
+                        }else{
+                            shop_cart.total_price += price
+                        }
+			shop_cart.total_number += 1
+			shop_data[translationGroup] = [title, abs_url, price, salePrice, img, amount]
+		    }
+		})
+		shop_cart_data[translationGroup] = amount
+
                 var date = new Date()
                 date.setTime(date.getTime() + (60 * 60 * 1000))
-		$.cookie('shop_cart', json_shop_data, {expires:date, path:'/'})
+		$.cookie('shop_cart', JSON.stringify(shop_cart_data), {expires: date, path:'/'})
+
 		$.notify('Add Product Success', {globalPosition: 'bottom right',className:'success'})
 		return 'success'
 	    }else{
