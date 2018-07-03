@@ -29,15 +29,16 @@ var shop_cart = new Vue({
         'shop_product': shop_product,
     },
     created: function(){
-
         cookie_shop_cart = $.cookie('shop_cart')
-
 	if(cookie_shop_cart){
 	    json_shop_cart = JSON.parse(cookie_shop_cart)
+	    lang = $('#lang').text()
 	    Object.keys(json_shop_cart).forEach(function(key){
-		lang = $.cookie('I18N_LANGUAGE')
-		rmbRate = parseFloat(document.getElementById('rmbRate').innerText)
-                url = location.protocol + '//' + location.hostname + ':' + location.port + '/Plone/' + lang + '/products/@search?Type=Product&metadata_fields=_all&TranslationGroup=' + key
+	        if(lang == 'en'){
+	            url = location.origin + '/alpha_en/products/@search?Type=Product&metadata_fields=_all&UID=' + key
+		}else if(lang == 'zh-cn'){
+		    url = location.origin + '/alpha_cn/products/@search?Type=Product&metadata_fields=_all&UID=' + key
+		}
 		$.ajax({
 		    type: "get",
                     headers: {
@@ -45,46 +46,47 @@ var shop_cart = new Vue({
                     },
                     url: url,
                     success: function(rep){
-                        items = rep['items'][0]
-                        title = items['Title']
-                        abs_url = items['getURL']
-                        price = items['price']
-                        salePrice = items['salePrice']
-                        img = abs_url + '/@@images/cover'
-			if(lang == 'zh-tw'){
-			    price = Math.ceil(price * rmbRate)
-			    salePrice = Math.ceil(salePrice * rmbRate)
-			}
-			if(salePrice){
-			    shop_cart.total_price += salePrice
-			}else{
-			    shop_cart.total_price += price
-			}
-			shop_cart.total_number += 1
-                        shop_cart.shop_data[key] = [title, abs_url, price, salePrice, img, json_shop_cart[key]]
+			if(rep['items'].length != 0){
+                            items = rep['items'][0]
+                            title = items['Title']
+                            abs_url = items['getURL']
+                            price = items['price']
+                            salePrice = items['salePrice']
+                            img = abs_url + '/@@images/cover'
+
+			    if(salePrice){
+			        shop_cart.total_price += salePrice
+			    }else{
+			        shop_cart.total_price += price
+			    }
+			    shop_cart.total_number += 1
+                            shop_cart.shop_data[key] = [title, abs_url, price, salePrice, img, json_shop_cart[key]]
+		        }
                     }
 		})
 	    })
 	}
     },
     methods: {
-        add_shop: function(translationGroup, amount){
+        add_shop: function(uid, amount){
 	    shop_data = this.shop_data
-	    lang = $.cookie('I18N_LANGUAGE')
-	    rmbRate = parseFloat(document.getElementById('rmbRate').innerText)
 	    cookie_shop_cart = $.cookie('shop_cart')
 	    if(cookie_shop_cart){
 		shop_cart_data = JSON.parse(cookie_shop_cart)
 		ans = Object.keys(shop_cart_data).every(function(value){
-		    return value != translationGroup
+		    return value != uid
 		})
 	    }else{
 		shop_cart_data = {}
 		ans = true
 	    }
 	    if(ans){
-	        lang = $.cookie('I18N_LANGUAGE')
-		url = location.protocol + '//' + location.hostname + ':' + location.port + '/Plone/' + lang + '/products/@search?Type=Product&metadata_fields=_all&TranslationGroup=' + translationGroup
+		lang = $('#lang').text()
+		if(lang == 'en'){
+                    url = location.origin + '/alpha_en/products/@search?Type=Product&metadata_fields=_all&UID=' + uid
+                }else if(lang == 'zh-cn'){
+                    url = location.origin + '/alpha_cn/products/@search?Type=Product&metadata_fields=_all&UID=' + uid
+                }
 		$.ajax({
 		    type: "get",
 		    headers: {
@@ -98,10 +100,6 @@ var shop_cart = new Vue({
 			price = items['price']
 			salePrice = items['salePrice']
 			img = abs_url + '/@@images/cover'
-			if(lang == 'zh-tw'){
-                            price = Math.ceil(price * rmbRate)
-                            salePrice = Math.ceil(salePrice * rmbRate)
-                        }
 
 			if(salePrice){
                             shop_cart.total_price += salePrice
@@ -109,10 +107,10 @@ var shop_cart = new Vue({
                             shop_cart.total_price += price
                         }
 			shop_cart.total_number += 1
-			shop_data[translationGroup] = [title, abs_url, price, salePrice, img, amount]
+			shop_data[uid] = [title, abs_url, price, salePrice, img, amount]
 		    }
 		})
-		shop_cart_data[translationGroup] = amount
+		shop_cart_data[uid] = amount
 
                 var date = new Date()
                 date.setTime(date.getTime() + (60 * 60 * 1000))

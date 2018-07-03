@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:v-on="http://vuejs.org"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="gct.content">
+<body>
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core"
+                    tal:define="toc context/table_of_contents|nothing;">
+<ul>
+  <tal:repeat repeat="item view/site_map">
+    <li  style='list-style-type:disc;font-size:20px' tal:condition="python:item.getObject().title">
+      <a href="${python: item.getObject().absolute_url()}" > ${python: item.getObject().title} </a>
+    </li>
+  </tal:repeat>
+<ul>
+</metal:content-core>
+</metal:content-core>
+
+</body>
+</html>
+
