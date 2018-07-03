@@ -109,8 +109,9 @@ abs_url = api.portal.get().absolute_url()
       </div>
       <div class="compare-form">
         <div class="toolbar-sorter">
-	  <a href="${abs_url}/compare_list" style="padding:4px 15px;background:#2f89fc;color:white;font-size:13px;font-weight:300"
-			>Go Compare List</a>
+	  <a href="${abs_url}/${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/compare_list" 
+		style="padding:4px 15px;background:#2f89fc;color:white;font-size:13px;font-weight:300"
+		id="go_compare_list">Go Compare List</a>
           <span>Sort By</span>
           <select id="toolber-sorter" class="sorter-options" data-role="sorter"
 		 v-model="sort" v-on:change="change_sort">
@@ -126,6 +127,7 @@ abs_url = api.portal.get().absolute_url()
   <!-- shop-right-area -->
   <!-- tab-area-start -->
   <p id="productData" style="display:none">${view/productData}</p>
+  <p id="rmbRate" style="display:none">${view/rmbRate}</p>
   <div class="tab-content">
     <div class="tab-pane active" id="th">
       <div class="row">
@@ -144,8 +146,8 @@ abs_url = api.portal.get().absolute_url()
 	     v-bind:stock="item[10]"
 	     v-bind:description="item[11]"
 	     v-bind:rating="item[13]"
+	     v-bind:translationgroup="item[12]"
 	     v-on:add_to_cart="add_to_cart(item[12], 1)"
-	     v-on:add_to_compare="add_to_compare(item[12])"
 	     >
         </component>
       </div>
@@ -209,8 +211,9 @@ abs_url = api.portal.get().absolute_url()
 	    brand = $(this).data('brand')
 	    product_listing.change_brand(brand)
 	})
-
-
+	$('#go_compare_list').click(function(){
+	    
+	})
     })
     </script>
 </metal:js>

@@ -36,6 +36,7 @@ var shop_cart = new Vue({
 	    json_shop_cart = JSON.parse(cookie_shop_cart)
 	    Object.keys(json_shop_cart).forEach(function(key){
 		lang = $.cookie('I18N_LANGUAGE')
+		rmbRate = parseFloat(document.getElementById('rmbRate').innerText)
                 url = location.protocol + '//' + location.hostname + ':' + location.port + '/Plone/' + lang + '/products/@search?Type=Product&metadata_fields=_all&TranslationGroup=' + key
 		$.ajax({
 		    type: "get",
@@ -50,6 +51,10 @@ var shop_cart = new Vue({
                         price = items['price']
                         salePrice = items['salePrice']
                         img = abs_url + '/@@images/cover'
+			if(lang == 'zh-tw'){
+			    price = Math.ceil(price * rmbRate)
+			    salePrice = Math.ceil(salePrice * rmbRate)
+			}
 			if(salePrice){
 			    shop_cart.total_price += salePrice
 			}else{
@@ -65,7 +70,8 @@ var shop_cart = new Vue({
     methods: {
         add_shop: function(translationGroup, amount){
 	    shop_data = this.shop_data
-
+	    lang = $.cookie('I18N_LANGUAGE')
+	    rmbRate = parseFloat(document.getElementById('rmbRate').innerText)
 	    cookie_shop_cart = $.cookie('shop_cart')
 	    if(cookie_shop_cart){
 		shop_cart_data = JSON.parse(cookie_shop_cart)
@@ -92,6 +98,11 @@ var shop_cart = new Vue({
 			price = items['price']
 			salePrice = items['salePrice']
 			img = abs_url + '/@@images/cover'
+			if(lang == 'zh-tw'){
+                            price = Math.ceil(price * rmbRate)
+                            salePrice = Math.ceil(salePrice * rmbRate)
+                        }
+
 			if(salePrice){
                             shop_cart.total_price += salePrice
                         }else{
