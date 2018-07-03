@@ -4138,6 +4138,13 @@ a#scrollUp {
 	font-weight: 700;
 	line-height: 30px;
 }
+.product-info-price .price-final .old-price span{
+	font-size: 20px;
+        text-decoration: line-through;
+}
+.product-info-price .price-final .new-price.sale span{
+	color: #e91113;
+}
 .product-info-price .price-final span.tax{
 	font-size: 14px;
 	color: #393939;

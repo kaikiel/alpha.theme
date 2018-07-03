@@ -272,14 +272,6 @@
                         </ul>
                       </div>
                     </li>
-                    <li><a href="#">Currency : EUR<i class="fa fa-angle-down"></i></a>
-                      <div class="submenu-top">
-                        <ul>
-                          <li><a href="#"> Dollar (USD)</a></li>
-                          <li><a href="#"> Euro (EUR)</a></li>
-                        </ul>
-                      </div>
-                    </li>
                   </ul>
                 </div>
               </div>  
@@ -2461,17 +2453,19 @@
 	<script>
 	$(function(){
 	$('.fa-book').click(function(){
-	    uid = $(this).data('uid')
+	    translationgroup = $(this).data('translationgroup')
             json_compare_list = $.cookie('compare_list')
             if(json_compare_list){
                 compare_list = JSON.parse(json_compare_list)
             }else{
                 compare_list = []
             }
-            if(compare_list.indexOf(uid) == -1){
+            if(compare_list.indexOf(translationgroup) == -1){
                 if(compare_list.length < 4){
-                    compare_list.push(uid)
-                    $.cookie('compare_list', JSON.stringify(compare_list), {expires: 3})
+                    compare_list.push(translationgroup)
+		    var date = new Date()
+                    date.setTime(date.getTime() + (60 * 60 * 1000))
+                    $.cookie('compare_list', JSON.stringify(compare_list), {expires: date, path:'/'})
                     $.notify('Add Compare Success!!',  {globalPosition: 'bottom right',className:'success'})
                 }else{
                     $.notify('Compare List is Full',  {globalPosition: 'bottom right',className:'error'})
