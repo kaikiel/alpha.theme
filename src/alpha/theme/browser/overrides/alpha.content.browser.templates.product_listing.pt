@@ -14,12 +14,13 @@
 <?python
 from plone import api
 abs_url = api.portal.get().absolute_url()
+lang = api.portal.get_default_language()
 ?>
 <div  id="product-listing">
 <p style='display:none' id="pre_category">${view/pre_category}</p>
 <p style='display:none' id="pre_subject">${view/pre_subject}</p>
 <p style='display:none' id="pre_brand">${view/pre_brand}</p>
-
+<p style='display:none' id='lang'>${lang}</p>
 
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
   <!-- shop-left-area-start -->
@@ -109,7 +110,7 @@ abs_url = api.portal.get().absolute_url()
       </div>
       <div class="compare-form">
         <div class="toolbar-sorter">
-	  <a href="${abs_url}/${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/compare_list" 
+	  <a href="${abs_url}/compare_list" 
 		style="padding:4px 15px;background:#2f89fc;color:white;font-size:13px;font-weight:300"
 		id="go_compare_list">Go Compare List</a>
           <span>Sort By</span>
@@ -145,9 +146,9 @@ abs_url = api.portal.get().absolute_url()
              v-bind:key="item[9]"
 	     v-bind:stock="item[10]"
 	     v-bind:description="item[11]"
-	     v-bind:rating="item[13]"
-	     v-bind:translationgroup="item[12]"
-	     v-on:add_to_cart="add_to_cart(item[12], 1)"
+	     v-bind:rating="item[12]"
+	     v-on:add_to_cart="add_to_cart(item[9], 1)"
+	     v-on:add_to_compare="add_to_compare(item[9])"
 	     >
         </component>
       </div>
