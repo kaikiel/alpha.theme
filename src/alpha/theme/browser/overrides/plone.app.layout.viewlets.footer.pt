@@ -36,10 +36,10 @@
         </div>
         <div class="footer-menu">
           <ul>
-            <li><a href="/${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/@@contact_us" i18n:translate="">Contact Us</a></li>
+            <li><a href="${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/@@contact_us" i18n:translate="">Contact Us</a></li>
             <li><a href="#" i18n:translate="">Returns</a></li>
             <li><a href="#" i18n:translate="">Brands</a></li>
-            <li><a href="/${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/return-policies" i18n:translate="">Return policies</a></li>
+            <li><a href="${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/return-policies" i18n:translate="">Return policies</a></li>
           </ul>
         </div>
       </div>
@@ -69,7 +69,7 @@
         </div>
         <div class="footer-menu">
           <ul>
-            <li><a href="/${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/personal_details" i18n:translate="">My Account</a></li>
+            <li><a href="${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/personal_details" i18n:translate="">My Account</a></li>
             <li><a href="#" i18n:translate="">Order History</a></li>
             <li><a href="#" i18n:translate="">Wish List</a></li>
             <li><a href="#" i18n:translate="">Gift Certificates</a></li>
@@ -88,12 +88,12 @@
               <div class="copy-right">
                 <?python import datetime ?>
                 <p>Copyright © ${python: datetime.datetime.now().year}
-                             <a href="/${python: view.context.restrictedTraverse('@@plone_portal_state').language()}">ALPHA PLUS MODEL CO., LTD</a>. All Rights Reserved</p>
+                             <a href="${python: view.context.restrictedTraverse('@@plone_portal_state').language()}">ALPHA PLUS MODEL CO., LTD</a>. All Rights Reserved</p>
               </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
               <div class="payment-area">
-                <a href="#"><img src="/alpha/++theme++alpha.theme/img/1.png" alt="payment" /></a>
+                <a href="#"><img src="alpha/++theme++alpha.theme/img/1.png" alt="payment" /></a>
               </div>
             </div>
           </div>
