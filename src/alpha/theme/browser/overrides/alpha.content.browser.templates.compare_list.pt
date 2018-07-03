@@ -99,9 +99,9 @@ th{
   <tr>
     <td></td>
     <td tal:repeat="item view/data" >
-	<button data-translationgroup="${python: item.TranslationGroup}"
+	<button data-uid="${python: item.UID}"
 		class="add_to_cart btn" i18n:translate="">Add To Cart</button>
-	<button class="remove btn" data-TranslationGroup="${python: item.TranslationGroup}" i18n:translate="">Remove</button>
+	<button class="remove btn" data-uid="${python: item.UID}" i18n:translate="">Remove</button>
     </td>
   </tr>
 
@@ -113,11 +113,11 @@ th{
 <script>
     $(function(){
 	$('.add_to_cart').click(function(){
-	    TranslationGroup = $(this).data('translationgroup')
-	    rep = shop_cart.add_shop(TranslationGroup, 1)
+	    uid = $(this).data('uid')
+	    rep = shop_cart.add_shop(uid, 1)
 	    if(rep == 'success'){
                 compare_list = JSON.parse($.cookie('compare_list'))
-		compare_list.splice(compare_list.indexOf(TranslationGroup), 1)
+		compare_list.splice(compare_list.indexOf(uid), 1)
 		$.cookie('compare_list', JSON.stringify(compare_list))
 		window.location.reload()
 	    }

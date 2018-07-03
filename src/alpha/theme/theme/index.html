@@ -2453,16 +2453,16 @@
 	<script>
 	$(function(){
 	$('.fa-book').click(function(){
-	    translationgroup = $(this).data('translationgroup')
+	    uid = $(this).data('uid')
             json_compare_list = $.cookie('compare_list')
             if(json_compare_list){
                 compare_list = JSON.parse(json_compare_list)
             }else{
                 compare_list = []
             }
-            if(compare_list.indexOf(translationgroup) == -1){
+            if(compare_list.indexOf(uid) == -1){
                 if(compare_list.length < 4){
-                    compare_list.push(translationgroup)
+                    compare_list.push(uid)
 		    var date = new Date()
                     date.setTime(date.getTime() + (60 * 60 * 1000))
                     $.cookie('compare_list', JSON.stringify(compare_list), {expires: date, path:'/'})
