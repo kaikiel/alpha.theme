@@ -6,6 +6,7 @@ from plone import api
 abs_url = api.portal.get().absolute_url()
 ?>
 <li class="shop-cart" id="shop-cart"><a href="#"><i class="fa fa-shopping-cart"></i></a>
+ <p id="rmbRate" style='display:none'>${view/getRmbRate}</p>
  <span>{{total_number}}</span>
  <div class="mini-cart-sub">
   <div class="cart-product">
