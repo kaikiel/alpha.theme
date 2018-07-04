@@ -52,12 +52,6 @@
 </div>
 
 <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
- <div class="buttons-cart mb-30">
-  <ul>
-   <li><a href="#" i18n:translate="">Update Cart</a></li>
-   <li><a href="#" i18n:translate="">Continue Shopping</a></li>
-  </ul>
- </div>
  <div class="coupon">
   <h3 i18n:translate="">Coupon</h3>
   <p i18n:translate="">Enter your coupon code if you have one.</p>
@@ -67,7 +61,8 @@
   </form>
  </div>
 
- <label >Recipient Name:<input id="recipient_name" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label><br>
+ <label >Recipient Name:
+ <input id="recipient_name" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label><br>
  <select id="country" data-trigger="manual" data-toggle="popover" data-content="Please fill in">
    <option i18n:translate="">Please Choice</option>
    <option value="C2" i18n:translate="">CHINA</option>
