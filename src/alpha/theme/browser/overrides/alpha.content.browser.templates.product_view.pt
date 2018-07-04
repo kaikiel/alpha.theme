@@ -49,8 +49,8 @@
                 <div class="price-final product-price">
                   <tal:block tal:switch="python: view.context.restrictedTraverse('@@plone_portal_state').language()">
                     <tal:case tal:case="string:zh-tw">
-                      <tal:define tal:define="global item_price python: view.context.price * view.getRMBRate();
-                                              global item_sale  python: view.context.salePrice * view.getRMBRate();"/>
+                      <tal:define tal:define="global item_price python: view.context.price;
+                                              global item_sale  python: view.context.salePrice "/>
                     </tal:case>
                     <tal:case tal:case="string:en-us">
                       <tal:define tal:define="global item_price python: view.context.price; 
