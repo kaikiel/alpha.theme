@@ -51,6 +51,12 @@
                     <input type="text" name="fax" id="fax" value="${python: view.getCurrentUser().getProperty('fax')}"/>
                   </div>
                 </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <div class="single-register">
+                    <label i18n:translate="">promoCode</label>
+                    <input type="text" value="${python: view.getCurrentUser().getProperty('promoCode')}" readonly/>
+                  </div>
+                </div>
               </div>
               <h1 class="documentFirstHeading" i18n:translate="">Your Address</h1>
               <div class="single-register">

@@ -36,10 +36,10 @@
         </div>
         <div class="footer-menu">
           <ul>
-            <li><a href="${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/@@contact_us" i18n:translate="">Contact Us</a></li>
+            <li><a href="${view/context/portal_url}/@@contact_us" i18n:translate="">Contact Us</a></li>
             <li><a href="#" i18n:translate="">Returns</a></li>
-            <li><a href="#" i18n:translate="">Brands</a></li>
-            <li><a href="${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/return-policies" i18n:translate="">Return policies</a></li>
+            <li><a href="${view/context/portal_url}/brands" i18n:translate="">Brands</a></li>
+            <li><a href="${view/context/portal_url}/return-policies" i18n:translate="">Return policies</a></li>
           </ul>
         </div>
       </div>
@@ -53,7 +53,7 @@
         </div>
         <div class="footer-menu">
           <ul>
-            <li><a href="#" i18n:translate="">Site Map</a></li>
+            <li><a href="${view/context/portal_url}/site_map" i18n:translate="">Site Map</a></li>
             <li><a href="#" i18n:translate="">Affiliates</a></li>
             <li><a href="#" i18n:translate="">Specials</a></li>
           </ul>
@@ -88,7 +88,7 @@
               <div class="copy-right">
                 <?python import datetime ?>
                 <p>Copyright © ${python: datetime.datetime.now().year}
-                             <a href="${python: view.context.restrictedTraverse('@@plone_portal_state').language()}">ALPHA PLUS MODEL CO., LTD</a>. All Rights Reserved</p>
+                             <a href="${view/context/portal_url}">ALPHA PLUS MODEL CO., LTD</a>. All Rights Reserved</p>
               </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
