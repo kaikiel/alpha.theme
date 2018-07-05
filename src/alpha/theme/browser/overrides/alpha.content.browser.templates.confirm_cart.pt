@@ -55,54 +55,31 @@
  <div class="coupon">
   <h3 i18n:translate="">Coupon</h3>
   <p i18n:translate="">Enter your coupon code if you have one.</p>
-  <form action="#">
-   <input type="text" placeholder="Coupon code">
-   <a href="#" i18n:translate="">Apply Coupon</a>
-  </form>
+  <input type="text" placeholder="Coupon code" id='coupon_code' style='width:30%'>
  </div>
-
- <label >Recipient Name:
- <input id="recipient_name" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label><br>
- <select id="country" data-trigger="manual" data-toggle="popover" data-content="Please fill in">
+ <label style='width:30%'>Recipient Name:
+ <input type='text' id="recipient_name" data-trigger="manual" data-toggle="popover" data-content="Please fill in" 
+	></label>
+ <select id="country" data-trigger="manual" data-toggle="popover" data-content="Please fill in" 
+	style='padding:5px 10px;margin-top:22px;border:none'>
    <option i18n:translate="">Please Choice</option>
    <option value="C2" i18n:translate="">CHINA</option>
    <option value="TW" i18n:translate="">TAIWAN</option>
  </select>
- <label >City:<input id="city" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
- <label >Postal Code:<input id="postal_code" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
- <label >Address:<input id="address" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
+ <br>
+ <label style='width:30%;margin-right:10px'>City:
+	<input type='text' id="city" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
+ <label >Postal Code:<input type='text' id="postal_code" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
+ <br>
+ <label style='width:50%'>Address:<input type='text' id="address" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
 </div>
 
 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px">
  <div class="cart_totals">
   <h2 i18n:translate="">Cart Totals</h2>
+  <br>
   <table>
    <tbody>
-    <tr class="cart-subtotal">
-     <th>Subtotal</th>
-     <td>
-      <span class="amount">£215.00</span>
-     </td>
-    </tr>
-    <tr class="shipping">
-     <th>Shipping</th>
-     <td>
-      <ul id="shipping_method">
-       <li>
-         <input type="radio">
-         <label>
-           Flat Rate:
-           <span class="amount">£7.00</span>
-         </label>
-       </li>
-       <li>
-         <input type="radio">
-         <label> Free Shipping </label>
-       </li>
-      </ul>
-      <a href="#">Calculate Shipping</a>
-     </td>
-    </tr>
     <tr class="order-total">
      <th>Total</th>
      <td>
@@ -113,9 +90,6 @@
     </tr>
    </tbody>
   </table>
-  <div class="wc-proceed-to-checkout">
-   <a href="#">Proceed to Checkout</a>
-  </div>
 <div id="paypal-button-container"></div>
  </div>
 </div>
@@ -193,27 +167,32 @@
             address = $('#address').val()
             country = $('#country').val()
             postal_code = $('#postal_code').val()
+	    flag = 1
             if(!recipient_name){
                 $('#recipient_name').popover('show')
 		setTimeout(function(){$('#recipient_name').popover('hide')}, 3000)	 
+		flag = 0
             }
             if(!country || country == 'Please Choice'){
                 $('#country').popover('show')
 		setTimeout(function(){$('#country').popover('hide')}, 3000)
+		flag = 0
             }
 	    if(!city){
 		$('#city').popover('show')
 		setTimeout(function(){$('#city').popover('hide')}, 3000)
+		flag = 0
 	    }
             if(!postal_code){
                 $('#postal_code').popover('show')
 		setTimeout(function(){$('#postal_code').popover('hide')}, 3000)
+		flag = 0
             }
             if(!address){
                 $('#address').popover('show')
 		setTimeout(function(){$('#address').popover('hide')}, 3000)
+		flag = 0
             }
-
 	    transactions = [
                     {
                         amount: { total: total_number, currency: 'USD' },
@@ -225,7 +204,7 @@
                                 city: city,
                                 postal_code: postal_code,
                                 country_code: country,
-				state: 'CA'
+				state: 'CA',
                             }
                         }
                     },
@@ -239,8 +218,25 @@
         
 	onAuthorize: function(data, actions) {
             return actions.payment.execute().then(function(rep) {
-                console.log(rep)
-debugger
+		total = rep["transactions"][0]["amount"]["total"]
+		currency = rep['transactions'][0]['amount']['currency']
+		coupon_code = $('#coupon_code').val()
+		if(coupon_code){
+                    data = {
+                        'coupon_code': coupon_code,
+			'total': total,
+			'currency': currency
+                    }
+                    url = location.href.replace('confirm_cart', 'use_coupon')
+                    $.ajax({
+                        type: "post",
+                        url: url,
+                        data: data,
+                        success: function(){
+
+                        }
+                    })
+		}
             });
         }
     }, '#paypal-button-container');
