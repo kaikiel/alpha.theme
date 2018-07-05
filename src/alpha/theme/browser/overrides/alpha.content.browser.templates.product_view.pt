@@ -78,7 +78,7 @@
 	  
               <div class="box-cart-bottom">
                 <div class="add_to_cart" tal:condition="view/context/availability">
-                  <a onclick="shop_cart.add_shop('${view/context/title}', ${view/context/price}, '${view/context/salePrice}', '${view/context/absolute_url}', '${view/context/absolute_url}/@@images/cover', document.getElementById('qty').value, '${view/context/UID}')" href="#">Add to cart</a>
+                  <a onclick="shop_cart.add_shop('${view/context/UID}', 1)" href="#">Add to cart</a>
                 </div>
                 <div class="add-to-links-2">
                   <ul>
@@ -208,7 +208,7 @@
                             </div>
                             <div class="add-to-links mt-15">
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="#" onclick="shop_cart.add_shop('${python: obj.UID()}', 1)"><i class="fa fa-shopping-cart"></i></a></li>
                                     <li><a href="#"><i class="fa fa-refresh"></i></a></li>
                                     <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
                                 </ul>
