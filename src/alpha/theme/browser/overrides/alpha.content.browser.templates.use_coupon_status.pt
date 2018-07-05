@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:v-on="http://vuejs.org"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="gct.item">
+<body>
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core"
+                    tal:define="toc context/table_of_items|nothing;">
+<style>
+table{
+    margin-bottom: 10px;
+}
+th, td{
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 5px 10px;
+}
+th{
+    font-size: 20px;
+}
+td{
+    font-size: 18px;
+}
+</style>
+
+<table>
+  <tr>
+    <th>推薦人</th>
+    <th>使用人</th>
+    <th>貨幣</th>
+    <th>金額</th>
+    <th>日期</th>
+  </tr>
+  
+  <tr tal:repeat="data view/data">
+    <td>${python: data[4]}</td>
+    <td>${python: data[0]}</td>
+    <td>${python: data[1]}</td>
+    <td>${python: data[2]}</td>
+    <td>${python: data[3]}</td>
+  </tr>
+</table>
+
+
+</metal:content-core>
+</metal:content-core>
+
+</body>
+</html>
+
