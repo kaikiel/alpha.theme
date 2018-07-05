@@ -1,0 +1,154 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:v-on="http://vuejs.org"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="gct.content">
+<body>
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core"
+                    tal:define="toc context/table_of_contents|nothing;">
+<?python
+from plone import api
+abs_url = api.portal.get().absolute_url()
+?>
+<style>
+input[type="date"]{
+    width: 20% !important;
+}
+input[type="text"], input[type="email"]{
+    display: inline !important;
+    width: 70% !important;
+}
+.title{
+    font-size: 18px;
+    margin-right: 15px;
+}
+.red_start{
+    color: red;
+    font-size:13px;
+}
+.container{
+    padding: 10px 10px;
+}
+h2{
+    font-size: 22px;
+    margin: 10px 0 0 0;
+}
+hr{
+    margin-top: 5px;
+}
+.container ul{
+    margin-left: 188px;
+}
+.container li{
+    padding: 5px 0;
+}
+</style>
+
+<h2 i18n:translate="">PRODUCT RETURNS</h2>
+<p i18n:translate="">Please complete the form below to request an RMA number.<p>
+<h2 i18n:translate="">Order information</h2>
+<hr>
+<form method="post" action="return_product">
+
+<div class='container'>
+  <span class='red_start'>*</span>
+  <span class='title'>First Name</span>
+  <input type='text' name="first_name" placeholder="First Name" i18n:attributes="placeholder" required>
+</div>
+
+<div class='container'>
+  <span  class='red_start'>*</span>
+  <span class='title'>Last Name</span>
+  <input type='text' name="last_name" placeholder="Last Name" i18n:attributes="placeholder" required>
+</div>
+
+<div class='container'>
+  <span class='red_start'>*</span>
+  <span class='title'>E-Mail</span>
+  <input type="email" name="email" placeholder="email" i18n:attributes="placeholder" required>
+</div>
+
+<div class='container'>
+  <span class='red_start'>*</span>
+  <span  class='title'>Telephone</span>
+  <input type='text' name="phone" placeholder="Telephone" i18n:attributes="placeholder" required>
+</div>
+
+<div class='container'>
+  <span class='red_start'>*</span>
+  <span class='title'>Order ID</span>
+  <input type='text' name="order_id" placeholder="Rrder ID" i18n:attributes="placeholder" required>
+</div>
+
+<div class='container'>
+  <span class='title'>Order Date</span>
+  <input type="date" name="date" style='width: 20%' >
+</div>
+
+<h2>Product Information</h2>
+<hr>
+<div class='container'>
+  <span class='red_start'>*</span>
+  <span class='title'>Product Name</span>
+  <input type='text' name="product_name" placeholder="Product Name" i18n:attributes="placeholder" required>
+</div>
+<div class='container'>
+  <span class='red_start'>*</span>
+  <span class='title'>Product Code</span>
+  <input type='text' name="product_code" placeholder="Prodcut Code" i18n:attributes="placeholder" required>
+</div>
+<div class='container'>
+  <span class='red_start'>*</span>
+  <span class='title'>Reason for Return</span>
+  <ul>
+    <li>
+      <input type="radio" value='Dead on Arrive' name='reason' required>Dead on Arrive</input>
+    </li>
+    <li>
+      <input type="radio" value='Faulty,please supply details' name='reason' required>Faulty,please supply details</input> 
+    </li>
+    <li>
+      <input type="radio" value='Order Error' name='reason' required>Order Error</input> 
+    </li>
+    <li>
+      <input type="radio" value='Other,please supply details' name='reason' required>Other,please supply details</input> 
+    </li>
+    <li>
+      <input type="radio" value='Received Wrong Item' name='reason' required>Received Wrong Item</input> 
+    </li>
+  </ul>
+</div>
+<div class='container'>
+  <span class='red_start'>*</span>
+  <span class='title'>Amount</span>
+  <input type='number' name="amount" min=1 required>
+</div>
+
+<div class='container'>
+  <span class='red_start'>*</span>
+  <span class='title'>Product is opened</span>
+  <input type='radio' value='yes' name='opened' required>Yes</input>
+  <input type='radio' value='No' name='opened' required>No</input>
+</div>
+
+<div class='container'>
+  <span class='title'>Faulty or other details</span>
+  <textarea rows="4" cols="50" name='detail'>
+  </textarea>
+</div>
+<br>
+<a href="${abs_url}" style="padding: 13px 13px;background: black;color: white;border-radius: 37%;float:left">BACK</a>
+<input type='submit' value='SUBMIT' style="padding: 13px 13px;background: black;color: white;border-radius: 37%;float:right"></input>
+
+</form>
+
+</metal:content-core>
+</metal:content-core>
+
+</body>
+</html>
+
