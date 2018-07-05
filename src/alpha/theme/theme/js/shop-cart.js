@@ -32,7 +32,7 @@ var shop_cart = new Vue({
         cookie_shop_cart = $.cookie('shop_cart')
 	if(cookie_shop_cart){
 	    json_shop_cart = JSON.parse(cookie_shop_cart)
-	    lang = $('#lang').text()
+	    lang = $('html')[0].lang
 	    Object.keys(json_shop_cart).forEach(function(key){
 	        if(lang == 'en'){
 	            url = location.origin + '/alpha_en/products/@search?Type=Product&metadata_fields=_all&UID=' + key

@@ -4454,6 +4454,10 @@ a#scrollUp {
 .single-blog-sidebar ul li .post-info{
   display: inline-block;
 }
+.single-blog-sidebar ul li .post-info .product-rating span{
+  display: inline-block;
+  color: #CCCCCC;
+}
 .single-blog-sidebar ul li .post-info a{
 	color: #444;
 	display: inline-block;

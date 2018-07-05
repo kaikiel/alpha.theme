@@ -1,5 +1,26 @@
 <html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="alpha.theme">
+<div class="header-left-menu" id="languageselector">
+  <ul>
+    <li>
+      <tal:block tal:switch="python: view.context.restrictedTraverse('@@plone_portal_state').language()">
+      <tal:case tal:case="string:zh-cn">
+        <a><img src="++theme++alpha.theme/img/flag/china.jpg" alt="flag" />簡體中文<i class="fa fa-angle-down"></i></a>
+      </tal:case>
+      <tal:case tal:case="string:en-us">
+        <a><img src="++theme++alpha.theme/img/flag/america.jpg" alt="flag" />English<i class="fa fa-angle-down"></i></a>
+      </tal:case>
+      </tal:block>
+      <div class="submenu-top">
+	<ul>
+	  <li><a href="/alpha_en"><img src="++theme++alpha.theme/img/flag/america.jpg" alt="flag" />English</a></li>
+	  <li><a href="/alpha_cn"><img src="++theme++alpha.theme/img/flag/china.jpg" alt="flag" />簡體中文</a></li>
+	</ul>
+      </div>
+    </li>
+  </ul>
+</div>
+
 <div class="submenu-top">
   <ul tal:switch="view/isAnonymous">
     <li><a href="${view/context/portal_url}/personal_details" i18n:translate="">My account</a></li>
@@ -9,4 +30,12 @@
     <li tal:case=False><a href="${view/context/portal_url}/log_out" i18n:translate="">Log out</a></li>
   </ul>
 </div>
+
+<div class="search-form">
+  <form action="${view/context/portal_url}/search_view">
+    <input name="searchableText" type="text" placeholder="Search" />
+    <a onclick="this.form.submit()">Search</a>
+  </form>
+</div>
+
 </html>

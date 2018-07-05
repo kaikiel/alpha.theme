@@ -120,9 +120,10 @@
   <!--logo -->
   <replace css:content="#portal-logo" css:theme=".logo-area"/>
   <!-- account -->
+  <replace css:content="#languageselector" css:theme="#languageselector"/>
+  <replace css:content=".search-form" css:theme=".search-form"/>
   <replace css:content=".submenu-top" css:theme=".user .submenu-top"/>
 
-  <replace css:content="#portal-languageselector" css:theme-children="#portal-languageselector"/>
 </rules>
 </rules>
 

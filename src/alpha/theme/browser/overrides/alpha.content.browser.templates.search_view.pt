@@ -1,0 +1,303 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="alpha.theme">
+<body>
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core"
+                    tal:define="toc context/table_of_contents|nothing;">
+<div class="shop-main-area mb-70">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 pull-right shop">
+        <!-- shop-right-area -->
+        <div class="shop-right-area">
+          <form method="get">
+            <div class="page-heading mb-10">
+              <div class="cart-name">
+                <span>Search</span>
+              </div>
+            </div>
+            <div >
+              <input style="width:30%; display:unset" type="text" name="searchableText"  placeholder="Search Criteria" value="${view/searchableText}"/>
+              <input type="submit" class="oval-btn" i18n:attributes="value" value="submit" />
+            </div>
+            <div class="page-bar mb-30">
+              <div class="shop-tab">
+                <!-- tab-menu-start -->
+                <div class="tab-menu">
+                  <ul>
+                    <li class="active"><a href="#th" data-toggle="tab"><i class="fa fa-th"></i></a></li>
+                    <li><a href="#list"  data-toggle="tab"><i class="fa fa-list"></i></a></li>
+                  </ul>
+                </div>
+                <!-- tab-menu-end -->
+                <div class="toolbar-sorter">
+                  <span>Sort By</span>
+                  <select id="sort_by" name="sort_by" id="toolber-sorter" class="sorter-options" data-sort_by="${view/sort_by}"  >
+                    <option value="sort_on:sortable_title,sort_order:ascending"  i18n:translate="">Name (A to Z)</option>
+                    <option value="sort_on:sortable_title,sort_order:descending" i18n:translate="">Name (Z - A)</option>
+                    <option value="sort_on:created,sort_order:reverse" i18n:translate="">Creation Date(new &gt;old)</option>
+                    <option value="sort_on:created,sort_order:ascending" i18n:translate="">Creation Date(old &gt; new)</option>
+                  </select>
+                </div>
+                <div class="field-limiter">
+                  <div class="label-title">
+                    <span>Show</span>
+                  </div>
+                  <div class="control">
+                    <!-- chosen-start -->
+                    <select id="b_size" name="b_size" data-bSize="${view/b_size}" style="width:50px;" class="chosen-select" tabindex="1">
+                       <option value="24">24</option>
+                       <option selected value="12">12</option>
+                       <option value="6">6</option>
+                    </select>
+                    <!-- chosen-end -->
+                    <span>per page</span>
+                  </div>
+                </div>
+              </div>
+              <div class="compare-form">
+                <a href="${view/context/portal_url}/compare_list"><span>Compare<i class="fa fa-chevron-right"></i></span></a>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- shop-right-area -->
+        <metal:listingmacro define-macro="listing">
+          <tal:results define="batch view/batch;">
+            <tal:listing condition="batch">
+            <!-- tab-area-start -->
+            <div class="tab-content" >
+              <div class="tab-pane active" id="th">
+                <div class="row">
+                  <tal:repeat repeat="item batch" >
+                    <tal:block tal:define="obj item/getObject;
+                                           item_title item/Title;
+                                           item_productNo obj/productNo;
+                                           item_uid item/UID;
+                                           item_url item/getURL;
+                                           item_price obj/price;
+                                           item_sale  obj/salePrice;
+                                           item_availability obj/availability;
+                                           item_rating python: int(obj.rating or 0);
+                                           is_has_item_sale python: item_sale!=None;">
+                          <!-- single-product-start -->
+                          <div class="single-product mb-30">
+                            <div class="single-img">
+                              <a href="${item_url}">
+                                <img src="${item_url}/@@images/cover/preview" class="first" />
+                              </a>
+                            </div>
+                            <div class="product-content">
+                              <h3><a href="${item_url}">${item_title}</a></h3>
+                              <div class="product-rating mb-10">
+                                <tal:repeat tal:repeat="star python: range(5)">
+                                  <tal:switch tal:switch="python: (item_rating-1) >= star">
+                                    <span tal:case="True"><i class="fa fa-star checked"></i></span>
+                                    <span tal:case="False"><i class="fa fa-star"></i></span>
+                                  </tal:switch>
+                                </tal:repeat>
+                              </div>
+                              <div tal:switch="is_has_item_sale" class="product-price">
+                                <ul tal:case="True">
+                                  <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
+                                  <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                                </ul>
+                                <ul tal:case="False">
+                                  <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                                </ul>
+                              </div>
+                              <div class="add-to-links mt-15">
+                                <ul>
+                                  <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                  <li><a href="#"><i class="fa fa-book"></i></a></li>
+                                  <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                    </tal:block>
+                  </tal:repeat>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="list">
+                <div class="row">
+                  <tal:repeat repeat="item batch" >
+                    <tal:block tal:define="obj item/getObject;
+                                           item_title item/Title;
+                                           item_productNo obj/productNo;
+                                           item_uid item/UID;
+                                           item_url item/getURL;
+                                           item_description obj/description;
+                                           item_price obj/price;
+                                           item_sale  obj/salePrice;
+                                           item_availability obj/availability;
+                                           item_rating python: int(obj.rating or 0);
+                                           is_has_item_sale python: item_sale!=None;">
+                  <!-- shop-product-start -->
+                  <div class="shop-product bb-5">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                      <!-- single-product-start -->
+                      <div class="product-wrapper-2">
+                        <div class="single-img">
+                          <a href="${item_url}">
+                            <img src="${item_url}/@@images/cover/preview" alt="product" class="first" />
+                          </a>
+                        </div>
+                      </div>
+                      <!-- single-product-end -->
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                      <!-- single-details-start -->
+                      <div class="product-details-2">
+                        <h3><a href="${item_url}">${item_title}</a></h3>
+                              <div class="product-rating mb-10">
+                                <tal:repeat tal:repeat="star python: range(5)">
+                                  <tal:switch tal:switch="python: (item_rating-1) >= star">
+                                    <span tal:case="True"><i class="fa fa-star checked"></i></span>
+                                    <span tal:case="False"><i class="fa fa-star"></i></span>
+                                  </tal:switch>
+                                </tal:repeat>
+                              </div>
+                              <div tal:switch="is_has_item_sale" class="product-price">
+                                <ul tal:case="True">
+                                  <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
+                                  <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                                </ul>
+                                <ul tal:case="False">
+                                  <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                                </ul>
+                              </div>
+                        <p>${item_description}</p>
+                        <div class="action-inner mt-20">
+                          <div class="product-button-3" tal:condition="item_availability">
+                            <a href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                          </div>
+                          <div class="availability" tal:condition="python: not item_availability">
+                            <span>Not In stock</span>
+                          </div>
+                          <div class="add-to-links">
+                            <ul>
+                              <li><a href="#"><i class="fa fa-book"></i></a></li>
+                              <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>                    
+                      <!-- single-details-end -->
+                    </div>
+                  </div>
+                  <!-- shop-product-end -->
+                    </tal:block>
+                  </tal:repeat>
+                </div>  
+              </div>
+            </div>
+            <!-- tab-area-end -->
+
+            <!-- pagination-area-start -->
+            <div class="pagination-area">
+              <div class="pagination-number">
+                <div metal:use-macro="context/batch_macros/macros/navigation" />
+              </div>
+            </div>
+            <!-- pagination-area-end -->
+
+            </tal:listing>
+
+            <metal:empty metal:define-slot="no_items_in_listing">
+              <p class="discreet"
+                  tal:condition="not: view/batch"
+                  i18n:translate="">
+                No results were found.
+              </p>
+            </metal:empty>
+
+          </tal:results>
+        </metal:listingmacro>
+
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="most-popular-product mb-30">
+          <div class="section-title mb-30">
+            <h2>Random Product</h2>
+          </div>
+          <div class="product-total">
+          <ul>
+            <tal:block tal:repeat="item view/getRandProduct">
+            <tal:define tal:define="obj item/getObject;
+                                   item_title item/Title;
+                                   item_productNo obj/productNo;
+                                   item_uid item/UID;
+                                   item_url item/getURL;
+                                   item_price obj/price;
+                                   item_sale  obj/salePrice;
+                                   item_availability obj/availability;
+                                   item_rating python: int(obj.rating or 0);
+                                   is_has_item_sale python: item_sale!=None;">
+            <li>
+                  <!-- single-product-start -->
+                  <div class="single-product row">
+                    <div class="product-img">
+                      <a href="${item_url}">
+                        <img src="${item_url}/@@images/cover" alt="product" class="first" />
+                      </a>
+                    </div>
+                    <div class="product-content">
+                      <h3><a href="${item_url}">${item_title}</a></h3>
+                      <div class="product-rating mb-10">
+                        <tal:repeat tal:repeat="star python: range(5)">
+                          <tal:switch tal:switch="python: (item_rating-1) >= star">
+                            <span tal:case="True"><i class="fa fa-star checked"></i></span>
+                            <span tal:case="False"><i class="fa fa-star"></i></span>
+                          </tal:switch>
+                        </tal:repeat>
+                      </div>
+                      <div tal:switch="is_has_item_sale" class="product-price">
+                        <ul tal:case="True">
+                          <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
+                          <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                        </ul>
+                        <ul tal:case="False">
+                          <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                        </ul>
+                      </div>
+                      <div class="add-to-links mt-15">
+                        <ul>
+                          <li tal:condition="python: item_availability==True"><a onclick="shop_cart.add_shop('${item_uid}')"><i class="fa fa-shopping-cart"></i></a></li>
+                          <li tal:condition="python: item_availability==False"><a class="out_of_stock"><i class="fa fa-shopping-cart"></i></a></li>
+                          <li><a href="#"><i class="fa fa-book"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- single-product-end -->
+            </li>
+            </tal:define>
+            </tal:block>
+          </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+      window.onload = function selectChangeIndex() {
+          var b_size =  document.getElementById("b_size");
+          b_size.value = b_size.getAttribute("data-bSize");
+          var sort_by =  document.getElementById("sort_by");
+          sort_by.value = sort_by.getAttribute("data-sort_by");
+      }
+
+</script>
+
+</metal:content-core>
+</metal:content-core>
+
+</body>
+</html>
