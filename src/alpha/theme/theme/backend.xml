@@ -143,6 +143,8 @@
     <drop css:content=".newslatter-area.ptb-30" />
     <!-- acount-->
     <drop css:content=".submenu-top" />
+    <drop css:content="#languageselector" />
+    <drop css:content=".search-form" />
   </rules>
 
 </rules>
