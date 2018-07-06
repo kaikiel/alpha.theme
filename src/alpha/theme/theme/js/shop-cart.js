@@ -53,11 +53,12 @@ var shop_cart = new Vue({
                             price = items['price']
                             salePrice = items['salePrice']
                             img = abs_url + '/@@images/cover'
+			    amount = json_shop_cart[key]
 
 			    if(salePrice){
-			        shop_cart.total_price += salePrice
+			        shop_cart.total_price += salePrice * amount
 			    }else{
-			        shop_cart.total_price += price
+			        shop_cart.total_price += price * amount
 			    }
 			    shop_cart.total_number += 1
                             shop_cart.shop_data[key] = [title, abs_url, price, salePrice, img, json_shop_cart[key]]
@@ -102,9 +103,9 @@ var shop_cart = new Vue({
 			img = abs_url + '/@@images/cover'
 
 			if(salePrice){
-                            shop_cart.total_price += salePrice
+                            shop_cart.total_price += salePrice * amount
                         }else{
-                            shop_cart.total_price += price
+                            shop_cart.total_price += price * amount
                         }
 			shop_cart.total_number += 1
 			shop_data[uid] = [title, abs_url, price, salePrice, img, amount]

@@ -68,7 +68,7 @@
 	  
               <div class="box-cart-bottom">
                 <div class="add_to_cart" tal:condition="view/context/availability">
-                  <a onclick="shop_cart.add_shop('${view/context/UID}', 1)" href="#">Add to cart</a>
+                  <a onclick="add_shop(event)" data-uid='${view/context/UID}' >Add to cart</a>
                 </div>
                 <div class="add-to-links-2">
                   <ul>
@@ -209,7 +209,13 @@
                 </div>
             </div>
         </div>
-
+<script>
+    function add_shop(e){
+	uid = e.currentTarget.dataset['uid']
+	amount = parseInt(document.getElementById('qty').value)
+	shop_cart.add_shop(uid, amount)
+    }
+</script>
 </metal:content-core>
 </metal:content-core>
 
