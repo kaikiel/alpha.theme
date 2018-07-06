@@ -47,20 +47,10 @@
                 </div>
               <div class="product-info-price">
                 <div class="price-final product-price">
-                  <tal:block tal:switch="python: view.context.restrictedTraverse('@@plone_portal_state').language()">
-                    <tal:case tal:case="string:zh-cn">
-                      <tal:define tal:define="global item_price python: view.context.price * view.getRMBRate();
-                                              global item_sale  python: view.context.salePrice * view.getRMBRate();"/>
-                    </tal:case>
-                    <tal:case tal:case="default">
-                      <tal:define tal:define="global item_price python: view.context.price; 
-                                              global item_sale  python: view.context.salePrice;"/>
-                    </tal:case>
-                  </tal:block>
-                  <span tal:condition="not: view/context/salePrice"><span i18n:translate="">dollar</span>${item_price}</span>
+                  <span tal:condition="not: view/context/salePrice"><span i18n:translate="">dollar</span>${python: view.context.price}</span>
 		  <ul tal:condition="view/context/salePrice">
-		    <li class="new-price sale"><span i18n:translate="">dollar</span><span>${item_sale}</span></li>
-                    <li class="old-price"><span i18n:translate="">dollar</span><span>${item_price}</span></li>
+		    <li class="new-price sale"><span i18n:translate="">dollar</span><span>${python: view.context.salePrice}</span></li>
+                    <li class="old-price"><span i18n:translate="">dollar</span><span>${python: view.context.price}</span></li>
 	          </ul>
                 </div>
               </div>

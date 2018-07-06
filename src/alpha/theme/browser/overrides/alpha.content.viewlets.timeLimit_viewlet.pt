@@ -57,7 +57,7 @@
                   <div class="add-to-links mt-15">
                     <ul>
                       <li><a onclick="shop_cart.add_shop('${item_uid}', 1)"><i class="fa fa-shopping-cart"></i></a></li>
-                      <li><a href="#"><i class="fa fa-book"></i></a></li>
+                      <li><a><i class="fa fa-book" data-uid='${item_uid}'></i></a></li>
                       <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
                       <li><a href="#" data-toggle="modal" data-target="#${item_uid}"><i class="fa fa-eye"></i></a></li>
                     </ul>

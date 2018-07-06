@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-06-29 10:23+0000\n"
+"POT-Creation-Date: 2018-07-06 01:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,24 +14,36 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:84
+msgid "<h2>x</h2> <br> <table> <tbody> <tr class=\"order-total\"> <th>x</th> <td> <strong> <span class=\"amount total_number\">${view/totalNumber}</span> </strong> </td> </tr> </tbody> </table> <div id=\"paypal-button-container\"></div>"
+msgstr ""
+
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:16
 msgid "Account Details"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:100
+#: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:102
 msgid "Add To Cart"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.viewlets.main_banner.pt:97
+#: ./browser/overrides/alpha.content.viewlets.main_banner.pt:107
 msgid "Add to cart"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:61
+#: ./browser/overrides/alpha.content.browser.templates.contact_us.pt:16
+msgid "Address"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:67
 msgid "Address1"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:65
+#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:71
 msgid "Address2"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:74
+msgid "Address:<input type=\"text\" id=\"address\" data-trigger=\"manual\" data-toggle=\"popover\" data-content=\"Please fill in\">"
 msgstr ""
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:57
@@ -42,15 +54,20 @@ msgstr ""
 msgid "Alpha Hobbies Group"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:66
-msgid "Apply Coupon"
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:127
+msgid "Amount"
 msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:75
 msgid "Availability"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:86
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:144
+msgid "BACK"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:88
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:41
 msgid "Brand"
 msgstr ""
 
@@ -58,7 +75,7 @@ msgstr ""
 msgid "Brands"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:73
+#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:66
 msgid "CHINA"
 msgstr ""
 
@@ -66,11 +83,15 @@ msgstr ""
 msgid "Cart"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:83
+#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:79
 msgid "Cart Totals"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:57
+#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:70
+msgid "City: <input type=\"text\" id=\"city\" data-trigger=\"manual\" data-toggle=\"popover\" data-content=\"Please fill in\">"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:63
 msgid "Company"
 msgstr ""
 
@@ -78,27 +99,40 @@ msgstr ""
 msgid "Contact Us"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:58
-msgid "Continue Shopping"
-msgstr ""
-
-#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:83
+#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:89
 msgid "Country"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:62
+#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:56
 msgid "Coupon"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:42
+msgid "Creation Date(new &gt;old)"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:43
+msgid "Creation Date(old &gt; new)"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:71
+msgid "E-Mail"
 msgstr ""
 
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:16
 msgid "Email :demo@posthemes.com"
 msgstr ""
 
+#: ./browser/overrides/alpha.content.browser.templates.contact_us.pt:45
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:38
 msgid "Email Address"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:63
+#: ./browser/overrides/alpha.content.browser.templates.contact_us.pt:52
+msgid "Enquiry"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:57
 msgid "Enter your coupon code if you have one."
 msgstr ""
 
@@ -106,20 +140,33 @@ msgstr ""
 msgid "Every stage of productions is strictly controlled to guarantee excellence in performance."
 msgstr ""
 
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:139
+msgid "Faulty or other details"
+msgstr ""
+
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:50
 msgid "Fax"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:97
+#: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:107
 msgid "Featured Products"
 msgstr ""
 
+#: ./browser/overrides/alpha.content.browser.templates.brands.pt:17
+msgid "Find Your Favorite Brand"
+msgstr ""
+
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:26
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:59
 msgid "First Name"
 msgstr ""
 
-#: ./browser/overrides/plone.app.layout.viewlets.footer.pt:75
+#: ./browser/overrides/plone.app.layout.viewlets.footer.pt:74
 msgid "Gift Certificates"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:113
+msgid "Go Compare List"
 msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:28
@@ -139,6 +186,7 @@ msgid "It is a long established fact that reader will distract by the readable c
 msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:32
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:65
 msgid "Last Name"
 msgstr ""
 
@@ -146,11 +194,11 @@ msgstr ""
 msgid "Latest"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:9
+#: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:30
 msgid "Log out"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:8
+#: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:29
 msgid "Login"
 msgstr ""
 
@@ -163,32 +211,56 @@ msgstr ""
 msgid "My Account"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:5
+#: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:26
 msgid "My account"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:6
+#: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:27
 msgid "My wishlist"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:40
+msgid "Name (A to Z)"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:41
+msgid "Name (Z - A)"
 msgstr ""
 
 #: ./browser/overrides/alpha.content.viewlets.news_viewlet.pt:8
 msgid "News & Events"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:164
+#: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:184
 msgid "News Products"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:94
+#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:100
 msgid "Newsletter"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:103
+#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:109
 msgid "No"
 msgstr ""
 
-#: ./browser/overrides/plone.app.layout.viewlets.footer.pt:73
-msgid "Order History"
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:212
+msgid "No results were found."
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.contact_us.pt:17
+msgid "No.110-5,Minsheng Rd,Shengang Township,"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:88
+msgid "Order Date"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:83
+msgid "Order ID"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:53
+msgid "Order information"
 msgstr ""
 
 #: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:14
@@ -203,19 +275,35 @@ msgstr ""
 msgid "PRODUCT NAME"
 msgstr ""
 
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:51
+msgid "PRODUCT RETURNS"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.contact_us.pt:21
+msgid "Phone"
+msgstr ""
+
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:17
 msgid "Phone :+(1234) 567 890"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:72
+#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:65
 msgid "Please Choice"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:52
+msgid "Please complete the form below to request an RMA number."
 msgstr ""
 
 #: ./configure.zcml:27
 msgid "Plone Theme: alpha.theme"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:77
+#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:72
+msgid "Postal Code:<input type=\"text\" id=\"postal_code\" data-trigger=\"manual\" data-toggle=\"popover\" data-content=\"Please fill in\">"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:83
 msgid "Postcode/zip"
 msgstr ""
 
@@ -225,19 +313,60 @@ msgid "Posted by"
 msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:61
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:31
 msgid "Price"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:120
+msgid "Price: Highest first"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:119
+msgid "Price: Lowest first"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:102
+msgid "Prodcut Code"
 msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:51
 msgid "Product"
 msgstr ""
 
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:101
+msgid "Product Code"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:96
+msgid "Product Name"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:121
+msgid "Product Name: A to Z"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:122
+msgid "Product Name: Z to A"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:133
+msgid "Product is opened"
+msgstr ""
+
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:30
 msgid "QUANTITY"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:90
+#: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:92
 msgid "Rating"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:106
+msgid "Reason for Return"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:60
+msgid "Recipient Name: <input type=\"text\" id=\"recipient_name\" data-trigger=\"manual\" data-toggle=\"popover\" data-content=\"Please fill in\">"
 msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:104
@@ -253,6 +382,10 @@ msgstr ""
 msgid "Returns"
 msgstr ""
 
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:84
+msgid "Rrder ID"
+msgstr ""
+
 #: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:16
 msgid "Seeing is believing. Experience the our engine now!"
 msgstr ""
@@ -261,8 +394,16 @@ msgstr ""
 msgid "Shop now"
 msgstr ""
 
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:97
+msgid "Show"
+msgstr ""
+
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:56
 msgid "Site Map"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:116
+msgid "Sort By"
 msgstr ""
 
 #: ./browser/overrides/alpha.content.viewlets.product_viewlet.pt:13
@@ -273,19 +414,19 @@ msgstr ""
 msgid "Specials"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:89
+#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:95
 msgid "State"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:96
+#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:102
 msgid "Subsribe"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:94
+#: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:96
 msgid "Summary"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:74
+#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:67
 msgid "TAIWAN"
 msgstr ""
 
@@ -293,11 +434,20 @@ msgstr ""
 msgid "TOTAL"
 msgstr ""
 
+#: ./browser/overrides/alpha.content.browser.templates.contact_us.pt:18
+msgid "Taichung Country 429, Taiwan(R.O.C)"
+msgstr ""
+
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:44
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:77
 msgid "Telephone"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:71
+#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:84
+msgid "Total"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:77
 msgid "Town/City"
 msgstr ""
 
@@ -313,20 +463,20 @@ msgstr ""
 msgid "Uninstalls the Plone theme package alpha.theme."
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:57
-msgid "Update Cart"
-msgstr ""
-
-#: ./browser/overrides/plone.app.layout.viewlets.footer.pt:74
+#: ./browser/overrides/plone.app.layout.viewlets.footer.pt:73
 msgid "Wish List"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:100
+#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:106
 msgid "Yes"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:55
+#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:61
 msgid "Your Address"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.contact_us.pt:38
+msgid "Your Name"
 msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:23
@@ -341,7 +491,7 @@ msgstr ""
 msgid "best sellers"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:7
+#: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:28
 msgid "checkout"
 msgstr ""
 
@@ -349,21 +499,34 @@ msgstr ""
 msgid "customer service"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.viewlets.best_sellers_viewlet.pt:45
-#: ./browser/overrides/alpha.content.viewlets.main_banner.pt:87
-#: ./browser/overrides/alpha.content.viewlets.product_viewlet.pt:55
+#: ./browser/overrides/alpha.content.browser.templates.product_view.pt:50
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:106
+#: ./browser/overrides/alpha.content.viewlets.best_sellers_viewlet.pt:55
 msgid "dollar"
 msgstr "$"
 
+#: ./browser/overrides/alpha.content.browser.templates.return_product.pt:72
+msgid "email"
+msgstr ""
+
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:52
 msgid "extras"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:108
+msgid "per page"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:56
+msgid "promoCode"
 msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.news_folder_view.pt:69
 msgid "read more"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:107
+#: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:113
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:25
 msgid "submit"
 msgstr ""
 

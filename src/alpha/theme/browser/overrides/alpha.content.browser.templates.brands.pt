@@ -5,7 +5,7 @@
     xmlns:v-on="http://vuejs.org"
     lang="en"
     metal:use-macro="context/main_template/macros/master"
-    i18n:domain="gct.content">
+    i18n:domain="alpha.theme">
 <body>
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core"
@@ -14,6 +14,8 @@
 from plone import api
 abs_url = api.portal.get().absolute_url()
 ?>
+<h1  i18n:translate="" style='font-size:20px'>Find Your Favorite Brand</h1>
+<br>
 <ul>
   <li tal:repeat="firstLetter python: sorted(view.brandList)" style='margin-bottom:10px'>
     <h3 style="font-size:25px">${firstLetter}</h3>
