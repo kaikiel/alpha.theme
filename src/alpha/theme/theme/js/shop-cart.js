@@ -34,7 +34,7 @@ var shop_cart = new Vue({
 	    json_shop_cart = JSON.parse(cookie_shop_cart)
 	    Object.keys(json_shop_cart).forEach(function(key){
 	        lang = $('html')[0].lang
-	        if(lang == 'en-us'){
+	        if(lang == 'en'){
 	            url = location.origin + '/alpha_en/products/@search?Type=Product&metadata_fields=_all&UID=' + key
 		}else if(lang == 'zh-cn'){
 		    url = location.origin + '/alpha_cn/products/@search?Type=Product&metadata_fields=_all&UID=' + key
@@ -83,7 +83,7 @@ var shop_cart = new Vue({
 	    }
 	    if(ans){
 		lang = $('html')[0].lang
-		if(lang == 'en-us'){
+		if(lang == 'en'){
                     url = location.origin + '/alpha_en/products/@search?Type=Product&metadata_fields=_all&UID=' + uid
                 }else if(lang == 'zh-cn'){
                     url = location.origin + '/alpha_cn/products/@search?Type=Product&metadata_fields=_all&UID=' + uid
