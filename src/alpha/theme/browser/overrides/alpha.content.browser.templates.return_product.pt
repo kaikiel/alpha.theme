@@ -5,7 +5,7 @@
     xmlns:v-on="http://vuejs.org"
     lang="en"
     metal:use-macro="context/main_template/macros/master"
-    i18n:domain="gct.content">
+    i18n:domain="alpha.theme">
 <body>
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core"
@@ -49,43 +49,43 @@ hr{
 </style>
 
 <h2 i18n:translate="">PRODUCT RETURNS</h2>
-<p i18n:translate="">Please complete the form below to request an RMA number.<p>
+<p i18n:translate="">Please complete the form below to request an RMA number.</p>
 <h2 i18n:translate="">Order information</h2>
 <hr>
 <form method="post" action="return_product">
 
 <div class='container'>
   <span class='red_start'>*</span>
-  <span class='title'>First Name</span>
+  <span class='title' i18n:translate="">First Name</span>
   <input type='text' name="first_name" placeholder="First Name" i18n:attributes="placeholder" required>
 </div>
 
 <div class='container'>
   <span  class='red_start'>*</span>
-  <span class='title'>Last Name</span>
+  <span class='title' i18n:translate="">Last Name</span>
   <input type='text' name="last_name" placeholder="Last Name" i18n:attributes="placeholder" required>
 </div>
 
 <div class='container'>
   <span class='red_start'>*</span>
-  <span class='title'>E-Mail</span>
+  <span class='title' i18n:translate="">E-Mail</span>
   <input type="email" name="email" placeholder="email" i18n:attributes="placeholder" required>
 </div>
 
 <div class='container'>
   <span class='red_start'>*</span>
-  <span  class='title'>Telephone</span>
+  <span  class='title' i18n:translate="">Telephone</span>
   <input type='text' name="phone" placeholder="Telephone" i18n:attributes="placeholder" required>
 </div>
 
 <div class='container'>
   <span class='red_start'>*</span>
-  <span class='title'>Order ID</span>
+  <span class='title' i18n:translate="">Order ID</span>
   <input type='text' name="order_id" placeholder="Rrder ID" i18n:attributes="placeholder" required>
 </div>
 
 <div class='container'>
-  <span class='title'>Order Date</span>
+  <span class='title' i18n:translate="">Order Date</span>
   <input type="date" name="date" style='width: 20%' >
 </div>
 
@@ -93,56 +93,56 @@ hr{
 <hr>
 <div class='container'>
   <span class='red_start'>*</span>
-  <span class='title'>Product Name</span>
+  <span class='title' i18n:translate="">Product Name</span>
   <input type='text' name="product_name" placeholder="Product Name" i18n:attributes="placeholder" required>
 </div>
 <div class='container'>
   <span class='red_start'>*</span>
-  <span class='title'>Product Code</span>
+  <span class='title' i18n:translate="">Product Code</span>
   <input type='text' name="product_code" placeholder="Prodcut Code" i18n:attributes="placeholder" required>
 </div>
 <div class='container'>
   <span class='red_start'>*</span>
-  <span class='title'>Reason for Return</span>
+  <span class='title' i18n:translate="">Reason for Return</span>
   <ul>
     <li>
-      <input type="radio" value='Dead on Arrive' name='reason' required>Dead on Arrive</input>
+      <input type="radio" value='Dead on Arrive' name='reason' required i18n:translate="">Dead on Arrive
     </li>
     <li>
-      <input type="radio" value='Faulty,please supply details' name='reason' required>Faulty,please supply details</input> 
+      <input type="radio" value='Faulty,please supply details' name='reason' required i18n:translate="">Faulty,please supply details 
     </li>
     <li>
-      <input type="radio" value='Order Error' name='reason' required>Order Error</input> 
+      <input type="radio" value='Order Error' name='reason' required i18n:translate="">Order Error 
     </li>
     <li>
-      <input type="radio" value='Other,please supply details' name='reason' required>Other,please supply details</input> 
+      <input type="radio" value='Other,please supply details' name='reason' required i18n:translate="">Other,please supply details 
     </li>
     <li>
-      <input type="radio" value='Received Wrong Item' name='reason' required>Received Wrong Item</input> 
+      <input type="radio" value='Received Wrong Item' name='reason' required i18n:translate="">Received Wrong Item 
     </li>
   </ul>
 </div>
 <div class='container'>
   <span class='red_start'>*</span>
-  <span class='title'>Amount</span>
+  <span class='title' i18n:translate="">Amount</span>
   <input type='number' name="amount" min=1 required>
 </div>
 
 <div class='container'>
   <span class='red_start'>*</span>
-  <span class='title'>Product is opened</span>
-  <input type='radio' value='yes' name='opened' required>Yes</input>
-  <input type='radio' value='No' name='opened' required>No</input>
+  <span class='title' i18n:translate="">Product is opened</span>
+  <input type='radio' value='yes' name='opened' required i18n:translate="">Yes
+  <input type='radio' value='No' name='opened' required i18n:translate="">No
 </div>
 
 <div class='container'>
-  <span class='title'>Faulty or other details</span>
+  <span class='title' i18n:translate="">Faulty or other details</span>
   <textarea rows="4" cols="50" name='detail'>
   </textarea>
 </div>
 <br>
-<a href="${abs_url}" style="padding: 13px 13px;background: black;color: white;border-radius: 37%;float:left">BACK</a>
-<input type='submit' value='SUBMIT' style="padding: 13px 13px;background: black;color: white;border-radius: 37%;float:right"></input>
+<a href="${abs_url}" style="padding: 13px 13px;background: black;color: white;border-radius: 37%;float:left" i18n:translate="">BACK</a>
+<input type='submit' value='SUBMIT' style="padding: 13px 13px;background: black;color: white;border-radius: 37%;float:right" i18n:translate="">
 
 </form>
 

@@ -12,6 +12,7 @@
                             item_url item/getURL;
                             item_price obj/price;
                             item_sale  obj/salePrice;
+                            item_availability obj/availability;
                             item_rating python: int(obj.rating or 0);
                             is_has_item_sale python: item_sale!=None">
 
@@ -46,8 +47,9 @@
                   <p>${item_description}</p>
                   <div class="add-to-links mt-15">
                     <ul>
-                      <li><a onclick="shop_cart.add_shop('${item_title}', ${item_price}, '${item_sale}', '${item_url}', '${item_url}/@@images/cover', 1, '${item_uid}')"><i class="fa fa-shopping-cart"></i></a></li>
-                      <li><a ><i class="fa fa-book"></i></a></li>
+                      <li tal:condition="python: item_availability==True"><a onclick="shop_cart.add_shop('${item_uid}', 1)"><i class="fa fa-shopping-cart"></i></a></li>
+                      <li tal:condition="python: item_availability==False"><a class="out_of_stock"><i class="fa fa-shopping-cart"></i></a></li>
+                      <li><a ><i class="fa fa-book" data-uid="${item_uid}"></i></a></li>
                       <li><a ><i data-uid="${item_uid}" class="fa fa-heart-o"></i></a></li>
                       <li><a  data-toggle="modal" data-target="#${item_uid}"><i class="fa fa-eye"></i></a></li>
                     </ul>

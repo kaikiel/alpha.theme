@@ -57,7 +57,7 @@
   <p i18n:translate="">Enter your coupon code if you have one.</p>
   <input type="text" placeholder="Coupon code" id='coupon_code' style='width:30%'>
  </div>
- <label style='width:30%'>Recipient Name:
+ <label style='width:30%'  i18n:translate="">Recipient Name:
  <input type='text' id="recipient_name" data-trigger="manual" data-toggle="popover" data-content="Please fill in" 
 	></label>
  <select id="country" data-trigger="manual" data-toggle="popover" data-content="Please fill in" 
@@ -67,21 +67,21 @@
    <option value="TW" i18n:translate="">TAIWAN</option>
  </select>
  <br>
- <label style='width:30%;margin-right:10px'>City:
+ <label style='width:30%;margin-right:10px'  i18n:translate="">City:
 	<input type='text' id="city" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
- <label >Postal Code:<input type='text' id="postal_code" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
+ <label  i18n:translate="">Postal Code:<input type='text' id="postal_code" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
  <br>
- <label style='width:50%'>Address:<input type='text' id="address" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
+ <label style='width:50%' i18n:translate="">Address:<input type='text' id="address" data-trigger="manual" data-toggle="popover" data-content="Please fill in"></label>
 </div>
 
 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px">
- <div class="cart_totals">
+ <div class="cart_totals"  i18n:translate="">
   <h2 i18n:translate="">Cart Totals</h2>
   <br>
   <table>
    <tbody>
     <tr class="order-total">
-     <th>Total</th>
+     <th i18n:translate="">Total</th>
      <td>
       <strong>
        <span class="amount total_number">${view/totalNumber}</span>
