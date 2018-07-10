@@ -28,7 +28,7 @@ lang = api.portal.get_default_language()
   <!-- single-shop-left-start -->
   <div class="single-shop-left mb-30">
     <div class="shop-left-title">
-      <h3> Price</h3>
+      <h3 i18n:translate=""> Price</h3>
       <div id="slider-range1"></div>
       <input type="text" name="text" id="amount1" readonly style=" color:#f6931f; font-weight:bold;" />
     </div>
@@ -38,7 +38,7 @@ lang = api.portal.get_default_language()
   <!-- single-shop-left-start -->
   <div class="single-shop-left mb-30">
     <div class="shop-left-title">
-      <h3> Brand </h3>
+      <h3 i18n:translate=""> Brand </h3>
     </div>
     <div class="shop-left-menu-2">
       <ul>
@@ -94,7 +94,7 @@ lang = api.portal.get_default_language()
       </div>
       <div class="field-limiter">
         <div class="label-title">
-          <span>Show</span>
+          <span i18n:translate="">Show</span>
         </div>
         <div class="control">
          <!-- chosen-start -->
@@ -105,21 +105,21 @@ lang = api.portal.get_default_language()
            <option value="24">24</option>
          </select>
          <!-- chosen-end -->
-         <span>per page</span>
+         <span i18n:translate="">per page</span>
        </div>
       </div>
       <div class="compare-form">
         <div class="toolbar-sorter">
 	  <a href="${abs_url}/compare_list" 
 		style="padding:4px 15px;background:#2f89fc;color:white;font-size:13px;font-weight:300"
-		id="go_compare_list">Go Compare List</a>
-          <span>Sort By</span>
+		id="go_compare_list"  i18n:translate="">Go Compare List</a>
+          <span  i18n:translate="">Sort By</span>
           <select id="toolber-sorter" class="sorter-options" data-role="sorter"
 		 v-model="sort" v-on:change="change_sort">
-            <option value="lowest">Price: Lowest first</option>
-            <option value="highest">Price: Highest first</option>
-            <option value="a-z" selected>Product Name: A to Z</option>
-	    <option value="z-a">Product Name: Z to A</option>
+            <option value="lowest"  i18n:translate="">Price: Lowest first</option>
+            <option value="highest" i18n:translate="">Price: Highest first</option>
+            <option value="a-z" selected i18n:translate="">Product Name: A to Z</option>
+	    <option value="z-a" i18n:translate="">Product Name: Z to A</option>
           </select>
         </div>
       </div>

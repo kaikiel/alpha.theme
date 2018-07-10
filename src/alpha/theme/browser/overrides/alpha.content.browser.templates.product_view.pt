@@ -47,20 +47,10 @@
                 </div>
               <div class="product-info-price">
                 <div class="price-final product-price">
-                  <tal:block tal:switch="python: view.context.restrictedTraverse('@@plone_portal_state').language()">
-                    <tal:case tal:case="string:zh-cn">
-                      <tal:define tal:define="global item_price python: view.context.price * view.getRMBRate();
-                                              global item_sale  python: view.context.salePrice * view.getRMBRate();"/>
-                    </tal:case>
-                    <tal:case tal:case="default">
-                      <tal:define tal:define="global item_price python: view.context.price; 
-                                              global item_sale  python: view.context.salePrice;"/>
-                    </tal:case>
-                  </tal:block>
-                  <span tal:condition="not: view/context/salePrice"><span i18n:translate="">dollar</span>${item_price}</span>
+                  <span tal:condition="not: view/context/salePrice"><span i18n:translate="">dollar</span>${python: view.context.price}</span>
 		  <ul tal:condition="view/context/salePrice">
-		    <li class="new-price sale"><span i18n:translate="">dollar</span><span>${item_sale}</span></li>
-                    <li class="old-price"><span i18n:translate="">dollar</span><span>${item_price}</span></li>
+		    <li class="new-price sale"><span i18n:translate="">dollar</span><span>${python: view.context.salePrice}</span></li>
+                    <li class="old-price"><span i18n:translate="">dollar</span><span>${python: view.context.price}</span></li>
 	          </ul>
                 </div>
               </div>
@@ -78,7 +68,7 @@
 	  
               <div class="box-cart-bottom">
                 <div class="add_to_cart" tal:condition="view/context/availability">
-                  <a onclick="shop_cart.add_shop('${view/context/title}', ${view/context/price}, '${view/context/salePrice}', '${view/context/absolute_url}', '${view/context/absolute_url}/@@images/cover', document.getElementById('qty').value, '${view/context/UID}')" href="#">Add to cart</a>
+                  <a onclick="add_shop(event)" data-uid='${view/context/UID}' >Add to cart</a>
                 </div>
                 <div class="add-to-links-2">
                   <ul>
@@ -208,7 +198,7 @@
                             </div>
                             <div class="add-to-links mt-15">
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="#" onclick="shop_cart.add_shop('${python: obj.UID()}', 1)"><i class="fa fa-shopping-cart"></i></a></li>
                                     <li><a href="#"><i class="fa fa-refresh"></i></a></li>
                                     <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
                                 </ul>
@@ -219,7 +209,13 @@
                 </div>
             </div>
         </div>
-
+<script>
+    function add_shop(e){
+	uid = e.currentTarget.dataset['uid']
+	amount = parseInt(document.getElementById('qty').value)
+	shop_cart.add_shop(uid, amount)
+    }
+</script>
 </metal:content-core>
 </metal:content-core>
 

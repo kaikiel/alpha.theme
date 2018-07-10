@@ -37,7 +37,7 @@
         <div class="footer-menu">
           <ul>
             <li><a href="${view/context/portal_url}/@@contact_us" i18n:translate="">Contact Us</a></li>
-            <li><a href="#" i18n:translate="">Returns</a></li>
+            <li><a href="${view/context/portal_url}/return_product" i18n:translate="">Returns</a></li>
             <li><a href="${view/context/portal_url}/brands" i18n:translate="">Brands</a></li>
             <li><a href="${view/context/portal_url}/return-policies" i18n:translate="">Return policies</a></li>
           </ul>
@@ -69,10 +69,9 @@
         </div>
         <div class="footer-menu">
           <ul>
-            <li><a href="${python: view.context.restrictedTraverse('@@plone_portal_state').language()}/personal_details" i18n:translate="">My Account</a></li>
-            <li><a href="#" i18n:translate="">Order History</a></li>
-            <li><a href="#" i18n:translate="">Wish List</a></li>
-            <li><a href="#" i18n:translate="">Gift Certificates</a></li>
+            <li><a href="${view/context/portal_url}/personal_details" i18n:translate="">My Account</a></li>
+            <li><a href="${view/context/portal_url}/wish_list" i18n:translate="">Wish List</a></li>
+            <li><a href="${view/context/portal_url}/products" i18n:translate="">Gift Certificates</a></li>
           </ul>
         </div>
       </div>

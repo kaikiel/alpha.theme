@@ -104,7 +104,7 @@
                   <div class="box-cart-bottom">
                     <div class="add_to_cart" tal:condition="python: item_availability == True">
                       <input min="1" class="qty" type="number" value="1" id="qty${item_uid}">
-                      <a onclick="shop_cart.add_shop('${item_title}', ${item_price}, '${item_sale}', '${item_url}', '${item_url}/@@images/cover', document.getElementById('qty${item_uid}').value, '${item_uid}')" i18n:translate="">Add to cart</a>
+                      <a onclick="shop_cart.add_shop('${item_uid}', 1)" i18n:translate="">Add to cart</a>
                     </div>
                     <div class="add-to-links-2" style="margin-top: 0;">
                       <ul>
