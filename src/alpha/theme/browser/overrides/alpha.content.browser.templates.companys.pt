@@ -11,19 +11,13 @@
 <metal:content-core define-macro="content-core"
                     tal:define="toc context/table_of_contents|nothing;">
 
-<style>
-.col-lg-5, .col-lg-6, col-xs-12, col-xs-6{
-    padding: 0;
-}
-</style>
-
-<div class="col-lg-5 col-xs-12" tal:repeat="data view/companyBrains" style='background:black;margin: 10px'>
+<div class="col-lg-6 col-xs-12" tal:repeat="data view/companyBrains" style='padding: 0 7.5px 0 7.5px; margin-bottom: 10px'>
   <tal:define define="obj python:data.getObject()">
 
     <div class="col-lg-6 col-xs-6" 
      style="background-image:url(${python: '%s/@@images/image' %obj.absolute_url()});background-position: center;
 	background-repeat: no-repeat;height: 250px;"></div>
-    <div class="col-lg-6 col-xs-6" style='position: relative;height:250px'>
+    <div class="col-lg-6 col-xs-6" style='background:black; position: relative;height:250px'>
       <p style='font-size:23px;color:white;padding: 5px 8px'>${python: obj.title}</p>
       <p style='font-size:18px;color:white;padding: 5px'>${python: obj.description}</p>
       <p style='position: absolute; bottom:0;color:yellow;font-size: 18px; padding: 5px;margin:0'>${python: obj.image_caption}</p>
@@ -31,6 +25,7 @@
 
   </tal:define>
 </div>
+
 </metal:content-core>
 </metal:content-core>
 

@@ -5918,3 +5918,22 @@ span.must{
   max-height: 400px;
   overflow-y: scroll;
 }
+.wishlist-table table .product-add-to-cart .out_of_stock {
+  position: relative;
+  overflow: hidden;
+}
+.wishlist-table table .product-add-to-cart .out_of_stock:before {
+  border-top: 3px solid #ffffff;
+  content: '';
+  position: absolute;
+  top: 46%;
+  left: 0;
+  right: -50%;
+}
+.wishlist-table table .product-add-to-cart .out_of_stock:hover {
+  background: black;
+}
+.plone-nav.plone-navbar-nav .selected a, 
+.mobile-menu-area.hidden-md.hidden-lg .selected a{
+  color: #fcc109;
+}

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-06 01:23+0000\n"
+"POT-Creation-Date: 2018-07-10 07:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,11 @@ msgstr "帐户资讯"
 msgid "Add To Cart"
 msgstr "加入购物车"
 
-#: ./browser/overrides/alpha.content.viewlets.main_banner.pt:107
+#: ./browser/overrides/alpha.content.browser.templates.wishlist_view.pt:66
+msgid "Add to Cart"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.viewlets.main_banner.pt:97
 msgid "Add to cart"
 msgstr "加入购物车"
 
@@ -148,7 +152,7 @@ msgstr "有缺现货其他细节"
 msgid "Fax"
 msgstr "传真"
 
-#: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:107
+#: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:97
 msgid "Featured Products"
 msgstr "特色商品"
 
@@ -174,6 +178,7 @@ msgid "IMAGE"
 msgstr "圖片"
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:57
+#: ./browser/overrides/alpha.content.browser.templates.wishlist_view.pt:28
 msgid "Image"
 msgstr "图片"
 
@@ -215,6 +220,7 @@ msgstr "我的帐户"
 msgid "My account"
 msgstr "我的帐户"
 
+#: ./browser/overrides/alpha.content.browser.templates.wishlist_view.pt:19
 #: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:27
 msgid "My wishlist"
 msgstr "愿望清单"
@@ -231,7 +237,7 @@ msgstr ""
 msgid "News & Events"
 msgstr "新闻"
 
-#: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:184
+#: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:164
 msgid "News Products"
 msgstr "最新商品"
 
@@ -266,6 +272,10 @@ msgstr "订单资讯"
 #: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:14
 msgid "Our engine are designed and manufactured according to the highest precision and quality requirements to meet and exceed our customers expectations."
 msgstr "我們的引擎根据最高精度和质量要求进行设计直制作，以满足并超越客户的期望"
+
+#: ./browser/overrides/alpha.content.browser.templates.wishlist_view.pt:63
+msgid "Out of Stock"
+msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:48
 msgid "PRODUCT COMPARE"
@@ -338,6 +348,7 @@ msgid "Product Code"
 msgstr "商品编号"
 
 #: ./browser/overrides/alpha.content.browser.templates.return_product.pt:96
+#: ./browser/overrides/alpha.content.browser.templates.wishlist_view.pt:29
 msgid "Product Name"
 msgstr "商品名称"
 
@@ -371,6 +382,7 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:104
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:33
+#: ./browser/overrides/alpha.content.browser.templates.wishlist_view.pt:26
 msgid "Remove"
 msgstr "移除"
 
@@ -418,6 +430,10 @@ msgstr ""
 msgid "State"
 msgstr "州/省"
 
+#: ./browser/overrides/alpha.content.browser.templates.wishlist_view.pt:31
+msgid "Stock Status"
+msgstr ""
+
 #: ./browser/overrides/alpha.content.browser.templates.personal_view.pt:102
 msgid "Subsribe"
 msgstr "订阅"
@@ -463,6 +479,10 @@ msgstr ""
 msgid "Uninstalls the Plone theme package alpha.theme."
 msgstr ""
 
+#: ./browser/overrides/alpha.content.browser.templates.wishlist_view.pt:30
+msgid "Unit Price"
+msgstr ""
+
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:73
 msgid "Wish List"
 msgstr "愿望清单"
@@ -483,6 +503,10 @@ msgstr "您的姓名"
 msgid "Your Personal Details"
 msgstr "个人详细资料"
 
+#: ./browser/overrides/alpha.content.browser.templates.wishlist_view.pt:32
+msgid "add-to-cart"
+msgstr ""
+
 #: ./browser/overrides/plone.app.layout.viewlets.footer.pt:15
 msgid "address :No 40 Baria Sreet 133/2, NewYork, USA."
 msgstr ""
@@ -501,7 +525,7 @@ msgstr "顾客服务"
 
 #: ./browser/overrides/alpha.content.browser.templates.product_view.pt:50
 #: ./browser/overrides/alpha.content.browser.templates.search_view.pt:106
-#: ./browser/overrides/alpha.content.viewlets.best_sellers_viewlet.pt:55
+#: ./browser/overrides/alpha.content.browser.templates.wishlist_view.pt:52
 msgid "dollar"
 msgstr "¥"
 
