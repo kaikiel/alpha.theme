@@ -32,10 +32,13 @@
 </div>
 
 <div class="search-form">
-  <form action="${view/context/portal_url}/search_view">
+  <form action="${view/context/portal_url}/search_view" id="search_form">
     <input name="searchableText" type="text" placeholder="Search" />
-    <a onclick="this.form.submit()">Search</a>
+    <a href="javascript:{}" onclick="document.forms.search_form.submit()">Search</a>
   </form>
+  <script>
+
+  </script>
 </div>
 
 </html>

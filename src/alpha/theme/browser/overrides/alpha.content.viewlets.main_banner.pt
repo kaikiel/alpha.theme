@@ -82,16 +82,6 @@
                       </tal:switch>
                     </tal:repeat>
                   </div>
-                  <tal:block tal:switch="python: view.context.restrictedTraverse('@@plone_portal_state').language()">
-                    <tal:case tal:case="string:zh-tw">
-                      <tal:define tal:define="global item_price python: item_price * view.getRMBRate();
-                                              global item_sale  python: (item_sale or 0) * view.getRMBRate();"/>
-                    </tal:case>
-                    <tal:case tal:case="string:en-us">
-                      <tal:define tal:define="global item_price python: item_price; 
-                                              global item_sale  python: item_sale;"/>
-                    </tal:case>
-                  </tal:block>
                   <div tal:switch="is_has_item_sale" class="product-price">
                     <ul tal:case="True">
                       <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
@@ -108,8 +98,8 @@
                     </div>
                     <div class="add-to-links-2" style="margin-top: 0;">
                       <ul>
-                        <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
+                        <li><a ><i data-uid="${item_uid}" class="fa fa-heart-o"></i></a></li>
+                        <li><a ><i class="fa fa-book"></i></a></li>
                       </ul>
                     </div>
                   </div>                  

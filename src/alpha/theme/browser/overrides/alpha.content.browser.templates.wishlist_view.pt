@@ -1,0 +1,119 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="alpha.content">
+<body>
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core"
+                    tal:define="toc context/table_of_contents|nothing;">
+
+<div class="cart-main-area mb-70">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="wishlist-content">
+          <form action="#">
+            <div class="wishlist-title">
+              <h2>My wishlist</h2>
+            </div>
+            <div class="wishlist-table table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="product-remove">
+                      <span class="nobr">Remove</span>
+                    </th>
+                    <th class="product-thumbnail">Image</th>
+                    <th class="product-name">Product Name</th>
+                    <th class="product-price">Unit Price </th>
+                    <th class="product-stock-stauts">Stock Status </th>
+                    <th class="product-subtotal">add-to-cart </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tal:repeat tal:repeat="obj view/getWishList;">
+                    <tal:define tal:define="item_title obj/title;
+                                            item_uid obj/UID;
+                                            item_url obj/absolute_url;
+                                            item_price obj/price;
+                                            item_sale  obj/salePrice;
+                                            item_availability obj/availability;
+                                            is_has_item_sale python: item_sale!=None;">
+                      <tr>
+                        <td class="product-remove"><a data-uid="${item_uid}" class="remove_btn">×</a></td>
+                        <td class="product-thumbnail"><a href="${item_url}"><img src="${item_url}/@@images/cover/preview" alt="man" /></a></td>
+                        <td class="product-name"><a href="${item_url}">${item_title}</a></td>
+                        <td class="product-price">
+                          <span class="amount">
+                            <div tal:switch="is_has_item_sale" class="product-price">
+                              <ul tal:case="True">
+                                <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
+                                <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                              </ul>
+                              <ul tal:case="False">
+                                <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                              </ul>
+                            </div>
+                          </span>
+                        </td>
+                        <td class="product-stock-status" tal:switch="item_availability">
+                          <span class="wishlist-in-stock" tal:case="True">In Stock</span>
+                          <span class="" tal:case="False">Out of Stock</span>
+                        </td>
+                        <td class="product-add-to-cart"><a href="#"> Add to Cart</a></td>
+                      </tr>
+                    </tal:define>
+                  </tal:repeat>
+                </tbody>
+              </table>
+            </div>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</metal:content-core>
+</metal:content-core>
+
+<metal:js fill-slot="js-bottom-slot">
+<script>
+
+$(document).ready(function() {
+    $( ".remove_btn" ).click(function() {
+        var host = location.origin + "/" + location.pathname.split('/')[1]
+        var uid = $(this).data("uid")
+        var form = new FormData(this);
+        form.append("wishItemUID", uid);
+        var settings = {
+          "url": host + "/delwishlist",
+          "method": "POST",
+          "headers": {
+            "Accept": "application/json",
+          },
+          "processData": false,
+          "contentType": false,
+          "mimeType": "multipart/form-data",
+          "data": form
+        }
+        var wishItemTr = $(this).parent().parent();
+        $.ajax(settings).done(function (response) {
+            var result = $.parseJSON(response)
+            if(result.hasOwnProperty('success')){
+                $.notify(result.success,  {globalPosition: 'bottom right',className:'success'})
+                wishItemTr.remove();
+            }else if(result.hasOwnProperty('error')){
+                $.notify(result.error,  {globalPosition: 'bottom right',className:'error'})
+            }
+        });
+    });
+});
+</script>
+</metal:js>
+</body>
+</html>
+

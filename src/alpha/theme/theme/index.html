@@ -2452,28 +2452,53 @@
 	<script src="js/shop-cart.js"></script>
 	<script>
 	$(function(){
-	$('.fa-book').click(function(){
-	    uid = $(this).data('uid')
-            json_compare_list = $.cookie('compare_list')
-            if(json_compare_list){
-                compare_list = JSON.parse(json_compare_list)
-            }else{
-                compare_list = []
-            }
-            if(compare_list.indexOf(uid) == -1){
-                if(compare_list.length < 4){
-                    compare_list.push(uid)
-		    var date = new Date()
-                    date.setTime(date.getTime() + (60 * 60 * 1000))
-                    $.cookie('compare_list', JSON.stringify(compare_list), {expires: date, path:'/'})
-                    $.notify('Add Compare Success!!',  {globalPosition: 'bottom right',className:'success'})
+            $('.fa-book').click(function(){
+                uid = $(this).data('uid')
+                json_compare_list = $.cookie('compare_list')
+                if(json_compare_list){
+                    compare_list = JSON.parse(json_compare_list)
                 }else{
-                    $.notify('Compare List is Full',  {globalPosition: 'bottom right',className:'error'})
-		}
-            }else{
-                $.notify('Product Already In Compare List', {globalPosition: 'bottom right',className:'error'})
-            }
-	})
+                    compare_list = []
+                }
+                if(compare_list.indexOf(uid) == -1){
+                    if(compare_list.length < 4){
+                        compare_list.push(uid)
+                        var date = new Date()
+                        date.setTime(date.getTime() + (60 * 60 * 1000))
+                        $.cookie('compare_list', JSON.stringify(compare_list), {expires: date, path:'/'})
+                        $.notify('Add Compare Success!!',  {globalPosition: 'bottom right',className:'success'})
+                    }else{
+                        $.notify('Compare List is Full',  {globalPosition: 'bottom right',className:'error'})
+                    }
+                }else{
+                    $.notify('Product Already In Compare List', {globalPosition: 'bottom right',className:'error'})
+                }
+            })
+
+            $('.fa-heart-o').click(function(){
+                var host = location.origin + "/" + location.pathname.split('/')[1]
+                var uid = $(this).data("uid")
+                var form = new FormData(this);
+                form.append("wishItemUID", uid);
+                $.ajax({
+                    method: "POST",
+                    headers: {          
+                        Accept: "application/json",         
+                    },
+                    url: host+'/addwishlist',
+                    processData: false,
+                    contentType: false,
+                    data: form,
+                }).done(function(response) {
+                    var result = $.parseJSON(response)
+                    if(result.hasOwnProperty('success')){
+                        $.notify(result.success,  {globalPosition: 'bottom right',className:'success'})
+                        wishItemTr.remove();
+                    }else if(result.hasOwnProperty('error')){
+                        $.notify(result.error,  {globalPosition: 'bottom right',className:'error'})
+                    }
+                });
+            })
 	})
 	</script>
         <script src="js/custom.js"></script>
