@@ -128,7 +128,6 @@ lang = api.portal.get_default_language()
   <!-- shop-right-area -->
   <!-- tab-area-start -->
   <p id="productData" style="display:none">${view/productData}</p>
-  <p id="rmbRate" style="display:none">${view/rmbRate}</p>
   <div class="tab-content">
     <div class="tab-pane active" id="th">
       <div class="row">
