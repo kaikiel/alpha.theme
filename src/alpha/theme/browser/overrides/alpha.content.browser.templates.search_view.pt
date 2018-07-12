@@ -287,7 +287,7 @@
 </div>
 
 <script>
-      window.onload = function selectChangeIndex() {
+      document.onreadystatechange = function selectChangeIndex() {
           var b_size =  document.getElementById("b_size");
           b_size.value = b_size.getAttribute("data-bSize");
           var sort_by =  document.getElementById("sort_by");

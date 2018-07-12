@@ -18,11 +18,9 @@
             <div class="flexslider" tal:case="True">
               <ul class="slides">
 		<tal:repeat repeat="item view/getImg">
-		<tal:define define="number repeat/item/number">
-                  <li data-thumb="${python: item.getObject().absolute_url()}/@@images/image/preview">
-                    <img src="${python: item.getObject().absolute_url()}/@@images/image/preview" />
+                  <li data-thumb="${item}">
+                    <img src="${item}" />
                   </li>
-		</tal:define>
 		</tal:repeat>
               </ul>
             </div>
@@ -68,19 +66,19 @@
 	  
               <div class="box-cart-bottom">
                 <div class="add_to_cart" tal:condition="view/context/availability">
-                  <a onclick="add_shop(event)" data-uid='${view/context/UID}' >Add to cart</a>
+                  <a onclick="add_shop(event)" data-uid='${view/context/UID}' i18n:translate="" >Add to cart</a>
                 </div>
                 <div class="add-to-links-2">
                   <ul>
-                    <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                    <li><a ><i data-uid="view/context/UID" class="fa fa-book"></i></a></li>
+                    <li><a ><i data-uid="view/context/UID" class="fa fa-heart-o"></i></a></li>
                   </ul>
                 </div>
               </div>
 	      <div class="product_detail">
-	        <p>Brand: <span>${view/context/brand}</span></p>
-		<p>Product Code: <span>${view/context/productCode}</span></p>
-	        <p>Availability: 
+	        <p><span style="color:black" i18n:translate="">Brand</span>: <span>${view/context/brand}</span></p>
+		<p><span style="color:black" i18n:translate="">Product Code</span>: <span>${view/context/productCode}</span></p>
+	        <p><span style="color:black" i18n:translate="">Availability</span>: 
                   <tal:block tal:switch="view/context/availability">
                     <span tal:case="True"  tal:content="string: In stock"/>
                     <span tal:case="False" tal:content="string: Out of stock" style="color:red;"/>
@@ -191,16 +189,16 @@
 					tal:condition="not: python:obj.salePrice">$${python: obj.price}</li>
 
 				<tal:condition condition="python: obj.salePrice">
-                                  <li class="new-price sale">$${python: obj.salePrice}</li>
-                                  <li class="old-price">$${python: obj.price}</li>
+                                  <li class="new-price sale"><span i18n:translate="">dollar</span>${python: obj.salePrice}</li>
+                                  <li class="old-price"><span i18n:translate="">dollar</span>${python: obj.price}</li>
 				</tal:condition>
                               </ul>
                             </div>
                             <div class="add-to-links mt-15">
                                 <ul>
-                                    <li><a href="#" onclick="shop_cart.add_shop('${python: obj.UID()}', 1)"><i class="fa fa-shopping-cart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                                    <li><a onclick="shop_cart.add_shop('${python: obj.UID()}', 1)"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a ><i data-uid="${obj/UID}" class="fa fa-book"></i></a></li>
+                                    <li><a ><i data-uid="${obj/UID}" class="fa fa-heart-o"></i></a></li>
                                 </ul>
                             </div>
                         </div>

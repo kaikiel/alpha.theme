@@ -64,8 +64,8 @@
                   <div tal:condition="python: len(view.getObjectImg(item)) != 0" class="flexslider">
                       <ul class="slides">
                         <tal:repeat tal:repeat="img python: view.getObjectImg(item)">
-                          <li data-thumb="${img/getURL}/@@images/image/preview" >
-                            <img src="${img/getURL}/@@images/image/preview" alt="woman"
+                          <li data-thumb="${img}" >
+                            <img src="${img}" alt="woman"
                                  class="${python:'flex-active' if repeat['img'].start else ''}">
                           </li>
                         </tal:repeat>
@@ -99,19 +99,19 @@
                     <div class="add-to-links-2" style="margin-top: 0;">
                       <ul>
                         <li><a ><i data-uid="${item_uid}" class="fa fa-heart-o"></i></a></li>
-                        <li><a ><i class="fa fa-book"></i></a></li>
+                        <li><a ><i data-uid="${item_uid}" class="fa fa-book"></i></a></li>
                       </ul>
                     </div>
                   </div>                  
                   <div class="product-meta">
                     <div class="product_reference">
-                      <p class="fa fa-angle-double-right">Brand:<span>${item_brand}</span></p>
+                      <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Brand</span>:<span>${item_brand}</span></p>
                     </div>
                     <div class="product_reference">
-                      <p class="fa fa-angle-double-right">Product Code:<span>${item_productCode}</span></p>
+                      <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Product Code</span>:<span>${item_productCode}</span></p>
                     </div>
                     <div class="product_reference">
-                      <p class="fa fa-angle-double-right">Availability:
+                      <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Availability</span>:
                         <tal:block tal:switch="item_availability">
                           <span tal:case="True"  tal:content="string: In stock"/>
                           <span tal:case="False" tal:content="string: Out of stock" style="color:red;"/>
