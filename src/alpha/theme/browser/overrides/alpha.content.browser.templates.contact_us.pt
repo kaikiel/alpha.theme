@@ -45,7 +45,7 @@
         <span i18n:translate="">Email Address</span>
       </div>
       <div class="col-lg-10 col-xs-12">
-        <input name="email" type="email" style="heught:unset;width: 100%;border: 1px solid #d7d7d7;padding: 12px 10px;margin: 16px" required>
+        <input name="email" type="email" style="height:unset;width: 100%;border: 1px solid #d7d7d7;padding: 12px 10px;margin: 16px" required>
       </div>
       <div class="col-lg-2 col-xs-12" style="padding:25px">
         <span style="color: red">*</span>
