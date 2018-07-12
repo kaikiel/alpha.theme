@@ -12,9 +12,9 @@
         <p i18n:translate="">It is a long established fact that reader will distract by the readable content of a page...</p>
         <div class="footer-address">
           <ul>
-            <li><i class="fa fa-map-marker"></i><span i18n:translate="">address :No 40 Baria Sreet 133/2, NewYork, USA.</span></li>
-            <li><i class="fa fa-envelope"></i><span i18n:translate="">Email :demo@posthemes.com</span></li>
-            <li><i class="fa fa-mobile"></i><span i18n:translate="">Phone :+(1234) 567 890</span></li>
+            <li><i class="fa fa-map-marker"></i><span i18n:translate="">address :${view/address}</span></li>
+            <li><i class="fa fa-envelope"></i><span i18n:translate="">Email :${view/email}</span></li>
+            <li><i class="fa fa-mobile"></i><span i18n:translate="">Phone :${view/cellphone}</span></li>
           </ul>
         </div>
         <div class="social-link">
