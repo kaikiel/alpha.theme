@@ -14,15 +14,14 @@
 <div class="col-lg-12 col-xs-12" style="padding: 20px 0;border: 1px solid #ccc">
     <div class="col-lg-4 col-xs-12">
       <p style="font-weight: 600;font-size: 22px" i18n:translate="">Address</p>
-      <p i18n:translate="">No.110-5,Minsheng Rd,Shengang Township,</p>
-      <p i18n:translate="">Taichung Country 429, Taiwan(R.O.C)</p>
+      <p i18n:translate="">${view/address}</p>
     </div>
     <div class="col-lg-4 col-xs-12">
       <p style="font-weight: 600;font-size: 22px" i18n:translate="">Phone</p>
-      <p>123456</p>
+      <p>${view/cellphone}</p>
     </div>
     <div class="col-lg-4 col-xs-12" style="margin-top: 20px">
-        <a target="_blank" href="https://www.google.com.tw/maps/place/429%E5%8F%B0%E4%B8%AD%E5%B8%82%E7%A5%9E%E5%B2%A1%E5%8D%80%E6%B0%91%E7%94%9F%E8%B7%AF110%E8%99%9F/@24.2431766,120.6746673,17z/data=!4m5!3m4!1s0x3469172e40cd581f:0xe8192c0cfc99e6dc!8m2!3d24.2428098!4d120.6759333?hl=zh-TW"
+        <a target="_blank" href="https://www.google.com.tw/maps/place/${view/address}"
 		style="background: #f0ce16;padding: 20px 25px; border-radius: 25px">
 	  <i class="fa fa-map-marker" style="font-size: 25px;color: white"></i> 
 	  <span style="font-size: 20px;color: #fff">VIEW GOOGLE MAP</span>
