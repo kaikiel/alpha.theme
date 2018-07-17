@@ -13,7 +13,6 @@
 
 <div class="col-lg-6 col-xs-12" tal:repeat="data view/companyBrains" style='padding: 0 7.5px 0 7.5px; margin-bottom: 10px'>
   <tal:define define="obj python:data.getObject()">
-
     <div class="col-lg-6 col-xs-6" 
      style="background-image:url(${python: '%s/@@images/image' %obj.absolute_url()});background-position: center;
 	background-repeat: no-repeat;height: 250px;"></div>

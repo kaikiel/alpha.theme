@@ -15,137 +15,204 @@ from plone import api
 abs_url = api.portal.get().absolute_url()
 ?>
 <style>
-input[type="date"]{
-    width: 20% !important;
-}
-input[type="text"], input[type="email"]{
-    display: inline !important;
-    width: 70% !important;
-}
 .title{
     font-size: 18px;
-    margin-right: 15px;
 }
 .red_start{
     color: red;
     font-size:13px;
 }
-.container{
-    padding: 10px 10px;
-}
 h2{
     font-size: 22px;
     margin: 10px 0 0 0;
 }
-hr{
-    margin-top: 5px;
+.borderless tr {
+    border: hidden;
 }
-.container ul{
-    margin-left: 188px;
+.table tr td:first-child{
+    width: 120pt;
+    text-align: right;
 }
-.container li{
-    padding: 5px 0;
+
+@media (max-width: 575px) {
+  .table tr td:first-child{
+    width: 74pt;
+  }
 }
 </style>
 
-<h2 i18n:translate="">PRODUCT RETURNS</h2>
-<p i18n:translate="">Please complete the form below to request an RMA number.</p>
-<h2 i18n:translate="">Order information</h2>
-<hr>
-<form method="post" action="return_product">
+<div class="return-products">
+  <h2 i18n:translate="">PRODUCT RETURNS</h2>
+  <p i18n:translate="">Please complete the form below to request an RMA number.</p>
+  <h2 class="documentFirstHeading" i18n:translate="">Order information</h2>
+  <form method="post" action="return_product">
+    <table class="table borderless" >
+      <tr class=''>
+        <td>
+          <span class='red_start'>*</span>
+          <span class='title' i18n:translate="">First Name</span>
+        </td>
+        <td>
+          <input type='text' name="first_name" placeholder="First Name" i18n:attributes="placeholder" required>
+        </td>
+      </tr>
 
-<div class='container'>
-  <span class='red_start'>*</span>
-  <span class='title' i18n:translate="">First Name</span>
-  <input type='text' name="first_name" placeholder="First Name" i18n:attributes="placeholder" required>
-</div>
+      <tr class=''>
+        <td>
+        <span  class='red_start'>*</span>
+        <span class='title' i18n:translate="">Last Name</span>
+        </td>
+        <td>
+        <input type='text' name="last_name" placeholder="Last Name" i18n:attributes="placeholder" required>
+        </td>
+      </tr>
 
-<div class='container'>
-  <span  class='red_start'>*</span>
-  <span class='title' i18n:translate="">Last Name</span>
-  <input type='text' name="last_name" placeholder="Last Name" i18n:attributes="placeholder" required>
-</div>
+      <tr class=''>
+        <td>
+        <span class='red_start'>*</span>
+        <span class='title' i18n:translate="">E-Mail</span>
+        </td>
+        <td>
+        <input type="email" name="email" placeholder="email" i18n:attributes="placeholder" required>
+        </td>
+      </tr>
 
-<div class='container'>
-  <span class='red_start'>*</span>
-  <span class='title' i18n:translate="">E-Mail</span>
-  <input type="email" name="email" placeholder="email" i18n:attributes="placeholder" required>
-</div>
+      <tr class=''>
+        <td>
+        <span class='red_start'>*</span>
+        <span  class='title' i18n:translate="">Telephone</span>
+        </td>
+        <td>
+        <input type='text' name="phone" placeholder="Telephone" i18n:attributes="placeholder" required>
+        </td>
+      </tr>
 
-<div class='container'>
-  <span class='red_start'>*</span>
-  <span  class='title' i18n:translate="">Telephone</span>
-  <input type='text' name="phone" placeholder="Telephone" i18n:attributes="placeholder" required>
-</div>
+      <tr class=''>
+        <td>
+        <span class='red_start'>*</span>
+        <span class='title' i18n:translate="">Order ID</span>
+        </td>
+        <td>
+        <input type='text' name="order_id" placeholder="Rrder ID" i18n:attributes="placeholder" required>
+        </td>
+      </tr>
 
-<div class='container'>
-  <span class='red_start'>*</span>
-  <span class='title' i18n:translate="">Order ID</span>
-  <input type='text' name="order_id" placeholder="Rrder ID" i18n:attributes="placeholder" required>
-</div>
+      <tr class=''>
+        <td>
+        <span class='title' i18n:translate="">Order Date</span>
+        </td>
+        <td>
+        <input type="date" name="date"  class="form-control">
+        </td>
+      </tr>
+    </table>
+    <h2 class="documentFirstHeading" i18n:translate="">Product Information</h2>
+    <table class="table borderless">
+      <tr class=''>
+        <td>
+        <span class='red_start'>*</span>
+        <span class='title' i18n:translate="">Product Name</span>
+        </td>
+        <td>
+        <input type='text' name="product_name" placeholder="Product Name" i18n:attributes="placeholder" required>
+        </td>
+      </tr>
+      <tr class=''>
+        <td>
+        <span class='red_start'>*</span>
+        <span class='title' i18n:translate="">Product Code</span>
+        </td>
+        <td>
+        <input type='text' name="product_code" placeholder="Prodcut Code" i18n:attributes="placeholder" required>
+        </td>
+      </tr>
+      <tr class=''>
+        <td>
+        <span class='red_start'>*</span>
+        <span class='title' i18n:translate="">Reason for Return</span>
+        </td>
+        <td>
+          <ul>
+            <li>
+              <div class="radio">
+                <label>
+                  <input type="radio" value='Dead on Arrive' name='reason' required /><span i18n:translate="">Dead on Arrive</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <div class="radio">
+                <label>
+                  <input type="radio" value='Faulty,please supply details' name='reason' required /><span i18n:translate="">Faulty,please supply details</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <div class="radio">
+                <label>
+                  <input type="radio" value='Order Error' name='reason' required /><span i18n:translate="">Order Error</span>  
+                </label>
+              </div>
+            </li>
+            <li>
+              <div class="radio">
+                <label>
+                  <input type="radio" value='Other,please supply details' name='reason' required /><span i18n:translate="">Other,please supply details</span> 
+                </label>
+              </div>
+            </li>
+            <li>
+              <div class="radio">
+                <label>
+                  <input type="radio" value='Received Wrong Item' name='reason' required /><span i18n:translate="">Received Wrong Item</span> 
+                </label>
+              </div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr class=''>
+        <td>
+        <span class='red_start'>*</span>
+        <span class='title' i18n:translate="">Amount</span>
+        </td>
+        <td>
+        <input class="form-control" type='number' name="amount" min=1 required>
+        </td>
+      </tr>
 
-<div class='container'>
-  <span class='title' i18n:translate="">Order Date</span>
-  <input type="date" name="date" style='width: 20%' >
-</div>
+      <tr class=''>
+        <td>
+        <span class='red_start'>*</span>
+        <span class='title' i18n:translate="">Product is opened</span>
+        </td>
+        <td>
+          <div class="radio">
+            <label>
+              <input type='radio' value='yes' name='opened' required><span i18n:translate="">Yes</span>
+            </label>
+            <label style="margin-left:10pt">
+              <input type='radio' value='No' name='opened' required><span i18n:translate="">No</span>
+            </label>
+          </div>
+        </td>
+      </tr>
 
-<h2>Product Information</h2>
-<hr>
-<div class='container'>
-  <span class='red_start'>*</span>
-  <span class='title' i18n:translate="">Product Name</span>
-  <input type='text' name="product_name" placeholder="Product Name" i18n:attributes="placeholder" required>
-</div>
-<div class='container'>
-  <span class='red_start'>*</span>
-  <span class='title' i18n:translate="">Product Code</span>
-  <input type='text' name="product_code" placeholder="Prodcut Code" i18n:attributes="placeholder" required>
-</div>
-<div class='container'>
-  <span class='red_start'>*</span>
-  <span class='title' i18n:translate="">Reason for Return</span>
-  <ul>
-    <li>
-      <input type="radio" value='Dead on Arrive' name='reason' required i18n:translate="">Dead on Arrive
-    </li>
-    <li>
-      <input type="radio" value='Faulty,please supply details' name='reason' required i18n:translate="">Faulty,please supply details 
-    </li>
-    <li>
-      <input type="radio" value='Order Error' name='reason' required i18n:translate="">Order Error 
-    </li>
-    <li>
-      <input type="radio" value='Other,please supply details' name='reason' required i18n:translate="">Other,please supply details 
-    </li>
-    <li>
-      <input type="radio" value='Received Wrong Item' name='reason' required i18n:translate="">Received Wrong Item 
-    </li>
-  </ul>
-</div>
-<div class='container'>
-  <span class='red_start'>*</span>
-  <span class='title' i18n:translate="">Amount</span>
-  <input type='number' name="amount" min=1 required>
-</div>
+      <tr class=''>
+        <td>
+        <span class='title' i18n:translate="">Faulty or other details</span>
+        </td>
+        <td>
+        <textarea class="form-control" rows="8" style="resize:none;" name='detail'></textarea>
+        </td>
+      </tr>
+    </table>
 
-<div class='container'>
-  <span class='red_start'>*</span>
-  <span class='title' i18n:translate="">Product is opened</span>
-  <input type='radio' value='yes' name='opened' required i18n:translate="">Yes
-  <input type='radio' value='No' name='opened' required i18n:translate="">No
+    <a href="${abs_url}" style="float:left" class="oval-btn" i18n:translate="">BACK</a>
+    <input type='submit' value="submit" style="float:right" class="oval-btn" i18n:attributes="value">
+
+  </form>
 </div>
-
-<div class='container'>
-  <span class='title' i18n:translate="">Faulty or other details</span>
-  <textarea rows="4" cols="50" name='detail'>
-  </textarea>
-</div>
-<br>
-<a href="${abs_url}" style="padding: 13px 13px;background: black;color: white;border-radius: 37%;float:left" i18n:translate="">BACK</a>
-<input type='submit' value='SUBMIT' style="padding: 13px 13px;background: black;color: white;border-radius: 37%;float:right" i18n:translate="">
-
-</form>
-
 </metal:content-core>
 </metal:content-core>
 

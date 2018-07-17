@@ -1,101 +1,102 @@
 <html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="alpha.theme">
-<div class="footer-top-area pt-80 pb-50">
-<div class="container">
-  <div class="row">
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-      <!-- single-footer-start -->
-      <div class="single-footer">
-        <div class="footer-logo mb-30">
-          <h1 style="font-size:25px; color:#fff" i18n:translate="">Alpha Hobbies Group</h1>
+<footer id="footer-area">
+  <div class="footer-top-area pt-80 pb-50">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <!-- single-footer-start -->
+          <div class="single-footer">
+            <div class="footer-logo mb-30">
+              <h1 style="font-size:25px; color:#fff" i18n:translate="">Alpha Hobbies Group</h1>
+            </div>
+            <p i18n:translate="">It is a long established fact that reader will distract by the readable content of a page...</p>
+            <div class="footer-address">
+              <ul>
+                <li><i class="fa fa-map-marker"></i><span i18n:translate="">address :${view/address}</span></li>
+                <li><i class="fa fa-envelope"></i><span i18n:translate="">Email :${view/email}</span></li>
+                <li><i class="fa fa-mobile"></i><span i18n:translate="">Phone :${view/cellphone}</span></li>
+              </ul>
+            </div>
+            <div class="social-link">
+              <ul>
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-weibo"></i></a></li>
+                <li><a href="#"><i style="position: relative; left: -3px; top: 2px;" class="icon-youku"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- single-footer-end -->
         </div>
-        <p i18n:translate="">It is a long established fact that reader will distract by the readable content of a page...</p>
-        <div class="footer-address">
-          <ul>
-            <li><i class="fa fa-map-marker"></i><span i18n:translate="">address :${view/address}</span></li>
-            <li><i class="fa fa-envelope"></i><span i18n:translate="">Email :${view/email}</span></li>
-            <li><i class="fa fa-mobile"></i><span i18n:translate="">Phone :${view/cellphone}</span></li>
-          </ul>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <!-- single-footer-start -->
+          <div class="single-footer">
+            <div class="footer-title">
+              <h4 i18n:translate="">customer service</h4>
+            </div>
+            <div class="footer-menu">
+              <ul>
+                <li><a href="${view/context/portal_url}/@@contact_us" i18n:translate="">Contact Us</a></li>
+                <li><a href="${view/context/portal_url}/return_product" i18n:translate="">Returns</a></li>
+                <li><a href="${view/context/portal_url}/brands" i18n:translate="">Brands</a></li>
+                <li><a href="${view/context/portal_url}/return-policies" i18n:translate="">Return policies</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- single-footer-end -->
         </div>
-        <div class="social-link">
-          <ul>
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-weibo"></i></a></li>
-            <li><a href="#"><i style="position: relative; left: -3px; top: 2px;" class="icon-youku"></i></a></li>
-            <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-          </ul>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <!-- single-footer-start -->
+          <div class="single-footer">
+            <div class="footer-title">
+              <h4 i18n:translate="">extras</h4>
+            </div>
+            <div class="footer-menu">
+              <ul>
+                <li><a href="${view/context/portal_url}/site_map" i18n:translate="">Site Map</a></li>
+                <li><a href="#" i18n:translate="">Affiliates</a></li>
+                <li><a href="#" i18n:translate="">Specials</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- single-footer-end -->
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <!-- single-footer-start -->
+          <div class="single-footer">
+            <div class="footer-title">
+              <h4 i18n:translate="">My Account</h4>
+            </div>
+            <div class="footer-menu">
+              <ul>
+                <li><a href="${view/context/portal_url}/personal_details" i18n:translate="">My Account</a></li>
+                <li><a href="${view/context/portal_url}/wishlist" i18n:translate="">Wish List</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- single-footer-end -->
         </div>
       </div>
-      <!-- single-footer-end -->
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-      <!-- single-footer-start -->
-      <div class="single-footer">
-        <div class="footer-title">
-          <h4 i18n:translate="">customer service</h4>
-        </div>
-        <div class="footer-menu">
-          <ul>
-            <li><a href="${view/context/portal_url}/@@contact_us" i18n:translate="">Contact Us</a></li>
-            <li><a href="${view/context/portal_url}/return_product" i18n:translate="">Returns</a></li>
-            <li><a href="${view/context/portal_url}/brands" i18n:translate="">Brands</a></li>
-            <li><a href="${view/context/portal_url}/return-policies" i18n:translate="">Return policies</a></li>
-          </ul>
-        </div>
-      </div>
-      <!-- single-footer-end -->
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-      <!-- single-footer-start -->
-      <div class="single-footer">
-        <div class="footer-title">
-          <h4 i18n:translate="">extras</h4>
-        </div>
-        <div class="footer-menu">
-          <ul>
-            <li><a href="${view/context/portal_url}/site_map" i18n:translate="">Site Map</a></li>
-            <li><a href="#" i18n:translate="">Affiliates</a></li>
-            <li><a href="#" i18n:translate="">Specials</a></li>
-          </ul>
-        </div>
-      </div>
-      <!-- single-footer-end -->
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-      <!-- single-footer-start -->
-      <div class="single-footer">
-        <div class="footer-title">
-          <h4 i18n:translate="">My Account</h4>
-        </div>
-        <div class="footer-menu">
-          <ul>
-            <li><a href="${view/context/portal_url}/personal_details" i18n:translate="">My Account</a></li>
-            <li><a href="${view/context/portal_url}/wishlist" i18n:translate="">Wish List</a></li>
-            <li><a href="${view/context/portal_url}/products" i18n:translate="">Gift Certificates</a></li>
-          </ul>
-        </div>
-      </div>
-      <!-- single-footer-end -->
     </div>
   </div>
-</div>
-</div>
-      <div class="footer-bottom-area ptb-20">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-              <div class="copy-right">
-                <?python import datetime ?>
-                <p>Copyright © ${python: datetime.datetime.now().year}
-                             <a href="${view/context/portal_url}">ALPHA PLUS MODEL CO., LTD</a>. All Rights Reserved</p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-              <div class="payment-area">
-                <a href="#"><img src="++theme++alpha.theme/img/1.png" alt="payment" /></a>
-              </div>
-            </div>
+  <div class="footer-bottom-area ptb-20">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+          <div class="copy-right">
+            <?python import datetime ?>
+            <p>Copyright © ${python: datetime.datetime.now().year}
+                         <a href="${view/context/portal_url}">ALPHA PLUS MODEL CO., LTD</a>. All Rights Reserved</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="payment-area">
+            <a ><img src="++theme++alpha.theme/img/1.png" alt="payment" /></a>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</footer>
 </html>

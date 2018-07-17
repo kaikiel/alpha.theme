@@ -111,7 +111,7 @@
   <!--nav bar and footer -->
   <replace css:content=".plone-collapse.plone-navbar-collapse" css:theme-children=".main-menu.hidden-sm.hidden-xs" />  
   <replace css:content=".plone-collapse.plone-mobile-navbar-collapse" css:theme-children=".mobile-menu-area.hidden-md.hidden-lg" />  
-  <replace css:content=".footer-top-area" css:theme=".footer-top-area" /> 
+  <replace css:content="#footer-area" css:theme="#footer-area" /> 
   <replace css:content=".newslatter-area.ptb-30" css:theme-children=".newslatter-area.ptb-30" />  
   <!--path bar-->
   <after css:content=".breadcrumb-area.mb-70" css:theme="header" css:if-not-content=".portaltype-cover" />

@@ -145,6 +145,7 @@
     <drop css:content=".submenu-top" />
     <drop css:content="#languageselector" />
     <drop css:content=".search-form" />
+    <drop css:content="#footer-area" /> 
   </rules>
 
 </rules>

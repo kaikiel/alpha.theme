@@ -17,7 +17,7 @@
           <form method="get">
             <div class="page-heading mb-10">
               <div class="cart-name">
-                <span>Search</span>
+                <span i18n:translate="">Search</span>
               </div>
             </div>
             <div >
@@ -29,14 +29,23 @@
                 <!-- tab-menu-start -->
                 <div class="tab-menu">
                   <ul>
-                    <li class="active"><a href="#th" data-toggle="tab"><i class="fa fa-th"></i></a></li>
-                    <li><a href="#list"  data-toggle="tab"><i class="fa fa-list"></i></a></li>
+                    <li id="tab_th" class="active"><a href="#th" data-toggle="tab" onclick="setThumbOrDetail(1)"><i class="fa fa-th"></i></a></li>
+                    <li id="tab_list"><a href="#list" data-toggle="tab" onclick="setThumbOrDetail(2)"><i class="fa fa-list"></i></a></li>
                   </ul>
                 </div>
                 <!-- tab-menu-end -->
                 <div class="toolbar-sorter">
-                  <span>Sort By</span>
-                  <select id="sort_by" name="sort_by" id="toolber-sorter" class="sorter-options" data-sort_by="${view/sort_by}"  >
+                  <span i18n:translate="">Category</span>
+                  <select id="category" name="p_category" id="toolber-sorter" class="sorter-options" data-category="${view/p_category}"  >
+                    <option value="" >All</option>
+                    <tal:repeat tal:repeat="category view/categoryList">
+                    <option value="${category}" >${category}</option>
+                    </tal:repeat>
+                  </select>
+                </div>
+                <div class="toolbar-sorter">
+                  <span i18n:translate="">Sort By</span>
+                  <select id="sort_by" name="sort_by" id="toolber-sorter" class="sorter-options" data-sort_by="${view/sort_by}" >
                     <option value="sort_on:sortable_title,sort_order:ascending"  i18n:translate="">Name (A to Z)</option>
                     <option value="sort_on:sortable_title,sort_order:descending" i18n:translate="">Name (Z - A)</option>
                     <option value="sort_on:created,sort_order:reverse" i18n:translate="">Creation Date(new &gt;old)</option>
@@ -45,7 +54,7 @@
                 </div>
                 <div class="field-limiter">
                   <div class="label-title">
-                    <span>Show</span>
+                    <span i18n:translate="">Show</span>
                   </div>
                   <div class="control">
                     <!-- chosen-start -->
@@ -55,12 +64,12 @@
                        <option value="6">6</option>
                     </select>
                     <!-- chosen-end -->
-                    <span>per page</span>
+                    <span i18n:translate="">per page</span>
                   </div>
                 </div>
               </div>
               <div class="compare-form">
-                <a href="${view/context/portal_url}/compare_list"><span>Compare<i class="fa fa-chevron-right"></i></span></a>
+                <a href="${view/context/portal_url}/compare_list"><span><span i18n:translate="">Compare</span><i class="fa fa-chevron-right"></i></span></a>
               </div>
             </div>
           </form>
@@ -71,7 +80,7 @@
             <tal:listing condition="batch">
             <!-- tab-area-start -->
             <div class="tab-content" >
-              <div class="tab-pane active" id="th">
+              <div class="tab-pane active"  id="th">
                 <div class="row">
                   <tal:repeat repeat="item batch" >
                     <tal:block tal:define="obj item/getObject;
@@ -174,10 +183,10 @@
                         <p>${item_description}</p>
                         <div class="action-inner mt-20">
                           <div class="product-button-3" tal:condition="item_availability">
-                            <a onclick="shop_cart.add_shop('${item_uid}', 1)"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            <a onclick="shop_cart.add_shop('${item_uid}', 1)"><i class="fa fa-shopping-cart"></i><span i18n:translate="">Add to cart</span></a>
                           </div>
                           <div class="availability" tal:condition="python: not item_availability">
-                            <span>Not In stock</span>
+                            <span i18n:translate="">Not In stock</span>
                           </div>
                           <div class="add-to-links">
                             <ul>
@@ -223,7 +232,7 @@
       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="most-popular-product mb-30">
           <div class="section-title mb-30">
-            <h2>Random Product</h2>
+            <h2 i18n:translate="">Random Product</h2>
           </div>
           <div class="product-total">
           <ul>
@@ -288,12 +297,36 @@
 
 <script>
       document.onreadystatechange = function selectChangeIndex() {
+          var re = new RegExp('[; ]'+'showThumbOrDetail'+'=([^\\s;]*)');
+          var sMatch = (' '+document.cookie).match(re);
+          if(sMatch){
+              if(sMatch[1] == 1){
+                  $("#tab_th").addClass("active")
+                  $("#tab_list").removeClass("active")
+                  $("#th").removeClass("fade")
+                  $("#th").addClass("active")
+                  $("#list").removeClass("active")
+                  $("#list").addClass("fade")
+              }else if(sMatch[1] == 2){
+                  $("#tab_th").removeClass("active")
+                  $("#tab_list").addClass("active")
+                  $("#th").addClass("fade")
+                  $("#th").removeClass("active")
+                  $("#list").addClass("active")
+                  $("#list").removeClass("fade")
+              }
+          }
           var b_size =  document.getElementById("b_size");
           b_size.value = b_size.getAttribute("data-bSize");
           var sort_by =  document.getElementById("sort_by");
           sort_by.value = sort_by.getAttribute("data-sort_by");
+          var category =  document.getElementById("category") || "";
+          category.value = category.getAttribute("data-category");
       }
 
+      function setThumbOrDetail(id){
+          document.cookie = "showThumbOrDetail="+id;
+      }
 </script>
 
 </metal:content-core>
