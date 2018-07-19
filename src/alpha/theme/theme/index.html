@@ -2455,6 +2455,9 @@
             $('.fa-book').click(function(){
                 uid = $(this).data('uid')
                 json_compare_list = $.cookie('compare_list')
+                msg_success = $("#notify-msg-translate").data("c_success")
+                msg_exist = $("#notify-msg-translate").data("c_exist")
+                msg_full = $("#notify-msg-translate").data("c_full")
                 if(json_compare_list){
                     compare_list = JSON.parse(json_compare_list)
                 }else{
@@ -2466,12 +2469,12 @@
                         var date = new Date()
                         date.setTime(date.getTime() + (60 * 60 * 1000))
                         $.cookie('compare_list', JSON.stringify(compare_list), {expires: date, path:'/'})
-                        $.notify('Add Compare Success!!',  {globalPosition: 'bottom right',className:'success'})
+                        $.notify(msg_success ,  {globalPosition: 'bottom right',className:'success'})
                     }else{
-                        $.notify('Compare List is Full',  {globalPosition: 'bottom right',className:'error'})
+                        $.notify(msg_full ,  {globalPosition: 'bottom right',className:'error'})
                     }
                 }else{
-                    $.notify('Product Already In Compare List', {globalPosition: 'bottom right',className:'error'})
+                    $.notify(msg_exist , {globalPosition: 'bottom right',className:'error'})
                 }
             })
 

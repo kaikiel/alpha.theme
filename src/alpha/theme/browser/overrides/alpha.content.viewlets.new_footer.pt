@@ -13,9 +13,9 @@
             <p i18n:translate="">It is a long established fact that reader will distract by the readable content of a page...</p>
             <div class="footer-address">
               <ul>
-                <li><i class="fa fa-map-marker"></i><span i18n:translate="">address :${view/address}</span></li>
-                <li><i class="fa fa-envelope"></i><span i18n:translate="">Email :${view/email}</span></li>
-                <li><i class="fa fa-mobile"></i><span i18n:translate="">Phone :${view/cellphone}</span></li>
+                <li><i class="fa fa-map-marker"></i><span ><span i18n:translate="">address</span> :${view/address}</span></li>
+                <li><i class="fa fa-envelope"></i><span ><span i18n:translate="">Email</span> :${view/email}</span></li>
+                <li><i class="fa fa-mobile"></i><span ><span i18n:translate="">Phone</span> :${view/cellphone}</span></li>
               </ul>
             </div>
             <div class="social-link">
@@ -98,5 +98,9 @@
       </div>
     </div>
   </div>
+  <div id="notify-msg-translate" style="display: none;" 
+       data-c_success="add compare success" data-c_exist="add compare exist" data-c_full="add compare full"
+       data-s_success="add shop-cart success" data-s_exist="add shop-cart exist" data-s_empty="add shop-cart empty"
+       i18n:attributes="data-c_success;data-c_exist;data-c_full;data-s_success;data-s_exist;data-s_empty;"></div>
 </footer>
 </html>

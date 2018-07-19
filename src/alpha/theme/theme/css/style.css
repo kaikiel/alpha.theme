@@ -1832,6 +1832,7 @@ a#scrollUp {
 	font-size: 14px;
 	line-height: 25px;
 	margin: 0;
+        text-transform: uppercase;
 }
 .single-banner:hover .banner-img.card a img {
   animation: 1s linear 0s normal none infinite running flip;

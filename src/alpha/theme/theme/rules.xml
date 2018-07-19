@@ -99,6 +99,8 @@
 
   <!--edit zone-->
   <drop css:content="#edit-zone" />
+
+  <!-- index viewlet -->
   <replace css:content=".slider-area" css:theme=".slider-area" />
   <replace css:content=".banner-area.pt-50.pb-20" css:theme=".banner-area.pt-50.pb-20" />
   <replace css:content=".pos_new_product.pt-50" css:theme=".pos_new_product.pt-50" />

@@ -34,7 +34,7 @@ var shop_cart = new Vue({
 	    json_shop_cart = JSON.parse(cookie_shop_cart)
 	    Object.keys(json_shop_cart).forEach(function(key){
 	        lang = $('html')[0].lang
-	        if(lang == 'en'){
+	        if(lang == 'en-us'){
 	            url = location.origin + '/alpha_en/products/@search?Type=Product&metadata_fields=_all&UID=' + key
 		}else if(lang == 'zh-cn'){
 		    url = location.origin + '/alpha_cn/products/@search?Type=Product&metadata_fields=_all&UID=' + key
@@ -83,7 +83,7 @@ var shop_cart = new Vue({
 	    }
 	    if(ans){
 		lang = $('html')[0].lang
-		if(lang == 'en'){
+		if(lang == 'en-us'){
                     url = location.origin + '/alpha_en/products/@search?Type=Product&metadata_fields=_all&UID=' + uid
                 }else if(lang == 'zh-cn'){
                     url = location.origin + '/alpha_cn/products/@search?Type=Product&metadata_fields=_all&UID=' + uid
@@ -112,15 +112,16 @@ var shop_cart = new Vue({
 		    }
 		})
 		shop_cart_data[uid] = amount
-
                 var date = new Date()
                 date.setTime(date.getTime() + (60 * 60 * 1000))
 		$.cookie('shop_cart', JSON.stringify(shop_cart_data), {expires: date, path:'/'})
-
-		$.notify('Add Product Success', {globalPosition: 'bottom right',className:'success'})
+                
+                msg_success = $("#notify-msg-translate").data("s_success")
+		$.notify(msg_success, {globalPosition: 'bottom right',className:'success'})
 		return 'success'
 	    }else{
-		$.notify('Product Already In Cart', {globalPosition: 'bottom right',className:'error'})
+                msg_exist = $("#notify-msg-translate").data("s_exist")
+		$.notify(msg_exist , {globalPosition: 'bottom right',className:'error'})
 		return 'error'
 	    }
 	},
@@ -136,7 +137,8 @@ var shop_cart = new Vue({
 	    if($.cookie('shop_cart')){
 		return true
 	    }else{
-		$.notify('Shop Cart Is Empty',  {globalPosition: 'bottom right',className:'error'})
+                msg_empty = $("#notify-msg-translate").data("s_empty")
+		$.notify(msg_empty ,  {globalPosition: 'bottom right',className:'error'})
 		return false
 	    }
 	}
