@@ -2468,7 +2468,7 @@
                         compare_list.push(uid)
                         var date = new Date()
                         date.setTime(date.getTime() + (60 * 60 * 1000))
-                        $.cookie('compare_list', JSON.stringify(compare_list), {expires: date, path:'/'})
+                        $.cookie('compare_list', JSON.stringify(compare_list), {expires: date})
                         $.notify(msg_success ,  {globalPosition: 'bottom right',className:'success'})
                     }else{
                         $.notify(msg_full ,  {globalPosition: 'bottom right',className:'error'})
@@ -2496,7 +2496,6 @@
                     var result = $.parseJSON(response)
                     if(result.hasOwnProperty('success')){
                         $.notify(result.success,  {globalPosition: 'bottom right',className:'success'})
-                        wishItemTr.remove();
                     }else if(result.hasOwnProperty('error')){
                         $.notify(result.error,  {globalPosition: 'bottom right',className:'error'})
                     }

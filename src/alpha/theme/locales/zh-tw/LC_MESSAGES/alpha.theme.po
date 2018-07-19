@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-19 04:47+0000\n"
+"POT-Creation-Date: 2018-07-19 06:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgid "Add to Cart"
 msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.product_view.pt:69
-#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:186
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:187
 #: ./browser/overrides/alpha.content.viewlets.main_banner.pt:97
 msgid "Add to cart"
 msgstr "加入購物車"
@@ -67,7 +67,7 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:75
 #: ./browser/overrides/alpha.content.browser.templates.product_view.pt:81
-#: ./browser/overrides/alpha.content.viewlets.main_banner.pt:114
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:292
 msgid "Availability"
 msgstr "庫存"
 
@@ -268,11 +268,11 @@ msgstr "電子報"
 msgid "No"
 msgstr "否"
 
-#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:221
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:333
 msgid "No results were found."
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:189
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:190
 msgid "Not In stock"
 msgstr ""
 
@@ -369,7 +369,7 @@ msgstr "商品"
 
 #: ./browser/overrides/alpha.content.browser.templates.product_view.pt:80
 #: ./browser/overrides/alpha.content.browser.templates.return_product.pt:123
-#: ./browser/overrides/alpha.content.viewlets.main_banner.pt:111
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:289
 msgid "Product Code"
 msgstr ""
 
@@ -398,7 +398,7 @@ msgstr ""
 msgid "QUANTITY"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:235
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:347
 msgid "Random Product"
 msgstr ""
 
@@ -438,6 +438,10 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.search_view.pt:20
 msgid "Search"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:24
+msgid "Search Criteria"
 msgstr ""
 
 #: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:16
