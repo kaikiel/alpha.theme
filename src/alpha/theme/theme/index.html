@@ -2496,7 +2496,6 @@
                     var result = $.parseJSON(response)
                     if(result.hasOwnProperty('success')){
                         $.notify(result.success,  {globalPosition: 'bottom right',className:'success'})
-                        wishItemTr.remove();
                     }else if(result.hasOwnProperty('error')){
                         $.notify(result.error,  {globalPosition: 'bottom right',className:'error'})
                     }

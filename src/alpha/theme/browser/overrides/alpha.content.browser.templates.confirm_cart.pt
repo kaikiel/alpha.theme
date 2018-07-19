@@ -193,6 +193,8 @@
 		setTimeout(function(){$('#address').popover('hide')}, 3000)
 		flag = 0
             }
+	    lang = $(html)[0].lang
+
 	    transactions = [
                     {
                         amount: { total: total_number, currency: 'USD' },
@@ -233,7 +235,14 @@
                         url: url,
                         data: data,
                         success: function(){
-
+                            $.cookie('shop_cart', null)
+                            msg = $('notify-msg-translate').data('buy_success')
+                            $.notify(msg,  {globalPosition: 'bottom right',className:'error'})
+			    url = location.href.replace('confirm_cart', 'products')
+                            
+			    setTimeout(function(){
+                                location.href = url
+                            }, 2000)
                         }
                     })
 		}
