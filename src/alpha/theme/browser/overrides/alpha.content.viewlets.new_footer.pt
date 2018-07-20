@@ -101,6 +101,8 @@
   <div id="notify-msg-translate" style="display: none;" 
        data-c_success="add compare success" data-c_exist="add compare exist" data-c_full="add compare full"
        data-s_success="add shop-cart success" data-s_exist="add shop-cart exist" data-s_empty="add shop-cart empty"
-       i18n:attributes="data-c_success;data-c_exist;data-c_full;data-s_success;data-s_exist;data-s_empty;"></div>
+       data-buy_success="buy success"
+       i18n:attributes="data-c_success;data-c_exist;data-c_full;data-s_success;data-s_exist;data-s_empty;data-buy_success"></div>
+
 </footer>
 </html>

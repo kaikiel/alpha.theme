@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-19 06:16+0000\n"
+"POT-Creation-Date: 2018-07-19 08:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,9 +34,9 @@ msgstr "加入购物车"
 msgid "Add to Cart"
 msgstr "加入购物车"
 
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:125
 #: ./browser/overrides/alpha.content.browser.templates.product_view.pt:69
 #: ./browser/overrides/alpha.content.browser.templates.search_view.pt:187
-#: ./browser/overrides/alpha.content.viewlets.main_banner.pt:97
 msgid "Add to cart"
 msgstr "加入购物车"
 
@@ -66,8 +66,8 @@ msgid "Amount"
 msgstr "数量"
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:75
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:227
 #: ./browser/overrides/alpha.content.browser.templates.product_view.pt:81
-#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:292
 msgid "Availability"
 msgstr "库存"
 
@@ -76,7 +76,7 @@ msgid "BACK"
 msgstr "退出"
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:88
-#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:41
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:221
 #: ./browser/overrides/alpha.content.browser.templates.product_view.pt:79
 msgid "Brand"
 msgstr "品牌"
@@ -187,10 +187,6 @@ msgstr "寻找你最喜欢的品牌"
 msgid "First Name"
 msgstr "名"
 
-#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:113
-msgid "Go Compare List"
-msgstr "比较表"
-
 #: ./browser/overrides/alpha.content.browser.templates.confirm_cart.pt:28
 msgid "IMAGE"
 msgstr "图片"
@@ -268,10 +264,12 @@ msgstr "电子报"
 msgid "No"
 msgstr "否"
 
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:267
 #: ./browser/overrides/alpha.content.browser.templates.search_view.pt:333
 msgid "No results were found."
 msgstr "查询不到澬料"
 
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:128
 #: ./browser/overrides/alpha.content.browser.templates.search_view.pt:190
 msgid "Not In stock"
 msgstr "没有库存"
@@ -347,17 +345,8 @@ msgid "Posted by"
 msgstr "发怖者"
 
 #: ./browser/overrides/alpha.content.browser.templates.compare_list.pt:61
-#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:31
 msgid "Price"
 msgstr "价格"
-
-#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:120
-msgid "Price: Highest first"
-msgstr "价钱：由高至低"
-
-#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:119
-msgid "Price: Lowest first"
-msgstr "价前：由低至高"
 
 #: ./browser/overrides/alpha.content.browser.templates.return_product.pt:126
 msgid "Prodcut Code"
@@ -367,9 +356,9 @@ msgstr "商品编号"
 msgid "Product"
 msgstr "商品"
 
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:224
 #: ./browser/overrides/alpha.content.browser.templates.product_view.pt:80
 #: ./browser/overrides/alpha.content.browser.templates.return_product.pt:123
-#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:289
 msgid "Product Code"
 msgstr "商品编号"
 
@@ -381,14 +370,6 @@ msgstr "产品信息"
 #: ./browser/overrides/alpha.content.browser.templates.wishlist_view.pt:29
 msgid "Product Name"
 msgstr "商品名称"
-
-#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:121
-msgid "Product Name: A to Z"
-msgstr "商品名称: 由低到高"
-
-#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:122
-msgid "Product Name: Z to A"
-msgstr "商品名称: 由高到低"
 
 #: ./browser/overrides/alpha.content.browser.templates.return_product.pt:187
 msgid "Product is opened"
@@ -452,7 +433,6 @@ msgstr "眼见为凭，立即体验我们的引擎"
 msgid "Shop now"
 msgstr "购物去"
 
-#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:97
 #: ./browser/overrides/alpha.content.browser.templates.search_view.pt:57
 msgid "Show"
 msgstr "显示"
@@ -461,7 +441,6 @@ msgstr "显示"
 msgid "Site Map"
 msgstr "网站地图"
 
-#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:116
 #: ./browser/overrides/alpha.content.browser.templates.search_view.pt:47
 msgid "Sort By"
 msgstr "排序"
@@ -616,6 +595,10 @@ msgstr "selectfrom our diverse range of products and complete your purchase in o
 msgid "best sellers"
 msgstr "热门商品"
 
+#: ./browser/overrides/alpha.content.viewlets.new_footer.pt:101
+msgid "buy success"
+msgstr "订单建立成功"
+
 #: ./browser/overrides/alpha.content.viewlets.account_viewlet.pt:28
 msgid "checkout"
 msgstr "结帐"
@@ -624,9 +607,9 @@ msgstr "结帐"
 msgid "customer service"
 msgstr "顾客服务"
 
+#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:53
 #: ./browser/overrides/alpha.content.browser.templates.product_view.pt:48
 #: ./browser/overrides/alpha.content.browser.templates.search_view.pt:115
-#: ./browser/overrides/alpha.content.browser.templates.wishlist_view.pt:52
 msgid "dollar"
 msgstr "¥"
 
@@ -638,7 +621,6 @@ msgstr ""
 msgid "extras"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:108
 #: ./browser/overrides/alpha.content.browser.templates.search_view.pt:67
 msgid "per page"
 msgstr "每页"

@@ -1,0 +1,223 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:v-on="http://www.vue.org/v-on"
+    xmlns:v-bind="http://www.vue.org/v-bind"
+    xmlns:v-model="http://www.vue.org/v-model"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="alpha.theme">
+<body>
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core"
+                    tal:define="toc context/table_of_contents|nothing;">
+<?python
+from plone import api
+abs_url = api.portal.get().absolute_url()
+lang = api.portal.get_default_language()
+?>
+<div  id="product-listing">
+<p style='display:none' id="pre_category">${view/pre_category}</p>
+<p style='display:none' id="pre_subject">${view/pre_subject}</p>
+<p style='display:none' id="pre_brand">${view/pre_brand}</p>
+<p style='display:none' id='lang'>${lang}</p>
+
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+  <!-- shop-left-area-start -->
+  <div class="shop-left-area">
+  <!-- single-shop-left-start -->
+  <div class="single-shop-left mb-30">
+    <div class="shop-left-title">
+      <h3 i18n:translate=""> Price</h3>
+      <div id="slider-range1"></div>
+      <input type="text" name="text" id="amount1" readonly style=" color:#f6931f; font-weight:bold;" />
+    </div>
+  </div>
+  <!-- single-shop-left-end -->
+
+  <!-- single-shop-left-start -->
+  <div class="single-shop-left mb-30">
+    <div class="shop-left-title">
+      <h3 i18n:translate=""> Brand </h3>
+    </div>
+    <div class="shop-left-menu-2">
+      <ul>
+        <li tal:repeat="brand view/brandList">
+          <a class="change_brand" data-brand="${brand}"  data-mode="brand" style="cursor:pointer">
+		${brand}(${python: view.brandList[brand]})</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- single-shop-left-end -->
+
+  <!-- single-shop-left-start -->
+  <div class="single-shop-left mb-30" tal:repeat="sort view/sortList">
+    <div class="shop-left-title">
+      <h3> ${sort} </h3>
+    </div>
+    <div class="shop-left-menu-2">
+      <ul>
+        <li tal:repeat="item python: view.sortList[sort][1]">
+          <a data-subject="${item}" data-category="${sort}" data-mode="category" class="change_category" 
+		style="cursor:pointer"> ${item}(${python: view.sortList[sort][1][item]})</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- single-shop-left-end -->
+</div>
+</div>
+
+<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 pull-right shop" >
+  <!-- shop-right-area -->
+  <div class="shop-right-area">
+    <div class="page-heading mb-10">
+      <div class="cart-name">
+      </div>
+      <div class="heading-counter">
+      </div>
+    </div>
+    <div class="page-bar mb-30">
+      <div class="shop-tab">
+        <!-- tab-menu-start -->
+        <div class="tab-menu">
+          <ul>
+            <li class="active">
+	      <a href="javascript:void(0)" v-bind:key="'product_gernal'" v-on:click="now_template = 'product_gernal'" 
+		data-toggle="tab"><i class="fa fa-th"></i></a></li>
+            <li>
+	      <a href="javascript:void(0)"  v-bind:key="'product_detail'" v-on:click="now_template = 'product_detail'"
+		data-toggle="tab"><i class="fa fa-list"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="field-limiter">
+        <div class="label-title">
+          <span i18n:translate="">Show</span>
+        </div>
+        <div class="control">
+         <!-- chosen-start -->
+         <select data-placeholder="Default Sorting" style="width:50px;" class="chosen-select" tabindex="1"
+		v-model="numbers" v-on:change="change_numbers">
+           <option value="6">6</option>
+           <option value="12" selected>12</option>
+           <option value="24">24</option>
+         </select>
+         <!-- chosen-end -->
+         <span i18n:translate="">per page</span>
+       </div>
+      </div>
+      <div class="compare-form">
+        <div class="toolbar-sorter">
+	  <a href="${abs_url}/compare_list" 
+		style="padding:4px 15px;background:#2f89fc;color:white;font-size:13px;font-weight:300"
+		id="go_compare_list"  i18n:translate="">Go Compare List</a>
+          <span  i18n:translate="">Sort By</span>
+          <select id="toolber-sorter" class="sorter-options" data-role="sorter"
+		 v-model="sort" v-on:change="change_sort">
+            <option value="lowest"  i18n:translate="">Price: Lowest first</option>
+            <option value="highest" i18n:translate="">Price: Highest first</option>
+            <option value="a-z" selected i18n:translate="">Product Name: A to Z</option>
+	    <option value="z-a" i18n:translate="">Product Name: Z to A</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- shop-right-area -->
+  <!-- tab-area-start -->
+  <p id="productData" style="display:none">${view/productData}</p>
+  <div class="tab-content">
+    <div class="tab-pane active" id="th">
+      <div class="row">
+        <component 
+	     v-bind:is="now_template"
+             v-model="product_data"
+             v-for="item in product_data"
+             v-bind:title="item[0]"
+             v-bind:price="item[4]"
+	     v-bind:sale_price="item[5]"
+             v-bind:product_number="item[7]"
+             v-bind:url="item[6]"
+             v-bind:image="item[8]"
+	     v-bind:uid="item[9]"
+             v-bind:key="item[9]"
+	     v-bind:stock="item[10]"
+	     v-bind:description="item[11]"
+	     v-bind:rating="item[12]"
+	     v-on:add_to_cart="add_to_cart(item[9], 1)"
+	     v-on:add_to_compare="add_to_compare(item[9])"
+             v-on:add_to_wishlist="add_to_wishlist(item[9])"
+	     >
+        </component>
+      </div>
+    </div>
+  </div>
+  <!-- tab-area-end -->
+  <!-- pagination-area-start -->
+  <div class="pagination-area">
+    <div class="product-count">
+    </div>
+    <div class="pagination-number">
+      <paginate
+         v-bind:page-count="pages"
+         v-bind:page-class="'page_list'"
+         v-bind:prev-text="'<'"
+         v-bind:next-text="'>'"
+         v-bind:prev-class="'page_list'"
+         v-bind:next-class="'page_list'"
+         v-bind:click-handler="change_page">
+      </paginate>
+    </div>
+
+  </div>
+  <!-- pagination-area-end -->
+</div>
+</div>
+</metal:content-core>
+</metal:content-core>
+
+<metal:js fill-slot="js-bottom-slot">
+    <script>
+    $(function(){
+       $( "#slider-range1" ).slider({
+          range: true,
+          min: 0,
+          max: 20000,
+          values: [ 0, 20000 ],
+          slide: function( event, ui ) {
+            $( "#amount1" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+            product_listing.change_price_range(ui.values[0], ui.values[1])
+          }
+        });
+        $( "#amount1" ).val(  $( "#slider-range1" ).slider( "values", 0 ) +
+          " - " + $( "#slider-range1" ).slider( "values", 1 ) );
+    })
+    </script>
+    <script src="++theme++alpha.theme/js/vue-paginate.js"></script>
+    <script src="${portal_url}/++plone++alpha.content/product_listing.js"></script>
+    <script>
+    $(function(){
+	$('.change_category').click(function(){
+	    category = $(this).data('category')
+	    subject = $(this).data('subject')
+	    $('.activity').removeClass('activity')
+	    $(this).addClass('activity')
+	    product_listing.change_category(category, subject)
+	})
+	$('.change_brand').click(function(){
+            $('.activity').removeClass('activity')
+            $(this).addClass('activity')
+	    brand = $(this).data('brand')
+	    product_listing.change_brand(brand)
+	})
+	$('#go_compare_list').click(function(){
+	    
+	})
+    })
+    </script>
+</metal:js>
+
+</body>
+</html>
