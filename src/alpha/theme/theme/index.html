@@ -2452,7 +2452,15 @@
 	<script src="js/shop-cart.js"></script>
 	<script>
 	$(function(){
-            $('.fa-book').click(function(){
+document.querySelectorAll('.fa-book').forEach(function(val){
+
+  val.addEventListener('click', function(){
+    alert('jsp click')
+  })
+})
+
+            $('.fa-book').on("click", function(){
+alert('jquery click')
                 uid = $(this).data('uid')
                 json_compare_list = $.cookie('compare_list')
                 msg_success = $("#notify-msg-translate").data("c_success")
@@ -2478,7 +2486,7 @@
                 }
             })
 
-            $('.fa-heart-o').click(function(){
+            $('.fa-heart-o').on("click", function(){
                 var host = location.origin + "/" + location.pathname.split('/')[1]
                 var uid = $(this).data("uid")
                 var form = new FormData(this);

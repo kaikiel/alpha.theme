@@ -114,7 +114,7 @@ var shop_cart = new Vue({
 		shop_cart_data[uid] = amount
                 var date = new Date()
                 date.setTime(date.getTime() + (60 * 60 * 1000))
-		$.cookie('shop_cart', JSON.stringify(shop_cart_data), {expires: date, path:'/'})
+		$.cookie('shop_cart', JSON.stringify(shop_cart_data), {expires: date})
                 
                 msg_success = $("#notify-msg-translate").data("s_success")
 		$.notify(msg_success, {globalPosition: 'bottom right',className:'success'})

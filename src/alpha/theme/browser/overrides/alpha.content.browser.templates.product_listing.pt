@@ -1,320 +1,220 @@
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
     xmlns:tal="http://xml.zope.org/namespaces/tal"
     xmlns:metal="http://xml.zope.org/namespaces/metal"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:v-on="http://www.vue.org/v-on"
+    xmlns:v-bind="http://www.vue.org/v-bind"
+    xmlns:v-model="http://www.vue.org/v-model"
     metal:use-macro="context/main_template/macros/master"
     i18n:domain="alpha.theme">
 <body>
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core"
                     tal:define="toc context/table_of_contents|nothing;">
-<div class="shop-main-area mb-70">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 pull-right shop">
-        <!-- shop-right-area -->
-        <metal:listingmacro define-macro="listing">
-          <tal:results define="batch view/batch;">
-            <tal:listing condition="batch">
-            <!-- tab-area-start -->
-            <div class="tab-content" >
-              <div class="tab-pane active"  id="th">
-                <div class="row">
-                  <tal:repeat repeat="item batch" >
-                    <tal:block tal:define="obj item/getObject;
-                                           item_title item/Title;
-                                           item_productNo obj/productNo;
-                                           item_uid item/UID;
-                                           item_url item/getURL;
-                                           item_price obj/price;
-                                           item_sale  obj/salePrice;
-                                           item_availability obj/availability;
-                                           item_rating python: int(obj.rating or 0);
-                                           is_has_item_sale python: item_sale!=None;">
-                          <!-- single-product-start -->
-                          <div class="single-product mb-30">
-                            <div class="single-img">
-                              <a href="${item_url}">
-                                <img src="${item_url}/@@images/cover/preview" class="first" />
-                              </a>
-                            </div>
-                            <div class="product-content">
-                              <h3><a href="${item_url}">${item_title}</a></h3>
-                              <div class="product-rating mb-10">
-                                <tal:repeat tal:repeat="star python: range(5)">
-                                  <tal:switch tal:switch="python: (item_rating-1) >= star">
-                                    <span tal:case="True"><i class="fa fa-star checked"></i></span>
-                                    <span tal:case="False"><i class="fa fa-star"></i></span>
-                                  </tal:switch>
-                                </tal:repeat>
-                              </div>
-                              <div tal:switch="is_has_item_sale" class="product-price">
-                                <ul tal:case="True">
-                                  <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
-                                  <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
-                                </ul>
-                                <ul tal:case="False">
-                                  <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
-                                </ul>
-                              </div>
-                              <div class="add-to-links mt-15">
-                                <ul>
-                                  <li><a onclick="shop_cart.add_shop('${item_uid}', 1)"><i class="fa fa-shopping-cart"></i></a></li>
-                                  <li><a ><i data-uid="${item_uid}" class="fa fa-book"></i></a></li>
-                                  <li><a ><i data-uid="${item_uid}" class="fa fa-heart-o"></i></a></li>
-                                  <li><a  data-toggle="modal" data-target="#${item_uid}"><i class="fa fa-eye"></i></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                    </tal:block>
-                  </tal:repeat>
-                </div>
-              </div>
-              <div class="tab-pane fade" id="list">
-                <div class="row">
-                  <tal:repeat repeat="item batch" >
-                    <tal:block tal:define="obj item/getObject;
-                                           item_title item/Title;
-                                           item_productNo obj/productNo;
-                                           item_uid item/UID;
-                                           item_url item/getURL;
-                                           item_description obj/description;
-                                           item_price obj/price;
-                                           item_sale  obj/salePrice;
-                                           item_availability obj/availability;
-                                           item_rating python: int(obj.rating or 0);
-                                           is_has_item_sale python: item_sale!=None;">
-                  <!-- shop-product-start -->
-                  <div class="shop-product bb-5">
-                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-                      <!-- single-product-start -->
-                      <div class="product-wrapper-2">
-                        <div class="single-img">
-                          <a href="${item_url}">
-                            <img src="${item_url}/@@images/cover/preview" alt="product" class="first" />
-                          </a>
-                        </div>
-                      </div>
-                      <!-- single-product-end -->
-                    </div>
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
-                      <!-- single-details-start -->
-                      <div class="product-details-2">
-                        <h3><a href="${item_url}">${item_title}</a></h3>
-                              <div class="product-rating mb-10">
-                                <tal:repeat tal:repeat="star python: range(5)">
-                                  <tal:switch tal:switch="python: (item_rating-1) >= star">
-                                    <span tal:case="True"><i class="fa fa-star checked"></i></span>
-                                    <span tal:case="False"><i class="fa fa-star"></i></span>
-                                  </tal:switch>
-                                </tal:repeat>
-                              </div>
-                              <div tal:switch="is_has_item_sale" class="product-price">
-                                <ul tal:case="True">
-                                  <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
-                                  <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
-                                </ul>
-                                <ul tal:case="False">
-                                  <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
-                                </ul>
-                              </div>
-                        <p>${item_description}</p>
-                        <div class="action-inner mt-20">
-                          <div class="product-button-3" tal:condition="item_availability">
-                            <a onclick="shop_cart.add_shop('${item_uid}', 1)"><i class="fa fa-shopping-cart"></i><span i18n:translate="">Add to cart</span></a>
-                          </div>
-                          <div class="availability" tal:condition="python: not item_availability">
-                            <span i18n:translate="">Not In stock</span>
-                          </div>
-                          <div class="add-to-links">
-                            <ul>
-                              <li><a ><i data-uid="${item_uid}" class="fa fa-book"></i></a></li>
-                              <li><a ><i data-uid="${item_uid}" class="fa fa-heart-o"></i></a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>                    
-                      <!-- single-details-end -->
-                    </div>
-                  </div>
-                  <!-- shop-product-end -->
-                    </tal:block>
-                  </tal:repeat>
-                </div>  
-              </div>
-            </div>
-            <!-- tab-area-end -->
-  <div class="modal-area">
-    <tal:repeat repeat="item batch">
-      <tal:define define="obj item/getObject;
-                          item_title item/Title;
-                          item_description obj/description;
-                          item_uid item/UID;
-                          item_url item/getURL;
-                          item_price obj/price;
-                          item_sale  obj/salePrice;
-                          item_brand obj/brand;
-                          item_productCode obj/productCode;
-                          item_availability obj/availability;
-                          item_rating python: int(item.rating or 0);
-                          is_has_item_sale python: item_sale!=None;">
-        
-        <!-- single-modal-start -->
-        <div class="modal fade" id="${item_uid}" tabindex="-1" role="dialog">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="modal-img">
-                  <div tal:condition="python: len(view.getObjectImg(obj)) == 0" class="single-img">
-                    <img src="${item_url}/@@images/cover/preview" alt="mobile" class="primary" />
-                  </div>
-                  <div tal:condition="python: len(view.getObjectImg(obj)) != 0" class="flexslider">
-                      <ul class="slides">
-                        <tal:repeat tal:repeat="img python: view.getObjectImg(item)">
-                          <li data-thumb="${img}" >
-                            <img src="${img}" alt="woman"
-                                 class="${python:'flex-active' if repeat['img'].start else ''}">
-                          </li>
-                        </tal:repeat>
-                      </ul>
-                  </div>
-                </div>
-                <div class="model-text">
-                  <h2><a href="${item_url}">${item_title}</a> </h2>
-                  <div class="product-rating mb-10">
-                    <tal:repeat tal:repeat="star python: range(5)">
-                      <tal:switch tal:switch="python: (item_rating-1) >= star">
-                        <span tal:case="True"><i class="fa fa-star checked"></i></span>
-                        <span tal:case="False"><i class="fa fa-star"></i></span>
-                      </tal:switch>
-                    </tal:repeat>
-                  </div>
-                  <div tal:switch="is_has_item_sale" class="product-price">
-                    <ul tal:case="True">
-                      <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
-                      <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
-                    </ul>
-                    <ul tal:case="False">
-                      <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
-                    </ul>
-                  </div>
-                  <div class="box-cart-bottom">
-                    <div class="add_to_cart" tal:condition="python: item_availability == True">
-                      <input min="1" class="qty" type="number" value="1" id="qty${item_uid}">
-                      <a onclick="shop_cart.add_shop('${item_uid}', document.getElementById('qty${item_uid}').value)" i18n:translate="">Add to cart</a>
-                    </div>
-                    <div class="add-to-links-2" style="margin-top: 0;">
-                      <ul>
-                        <li><a ><i data-uid="${item_uid}" class="fa fa-heart-o"></i></a></li>
-                        <li><a ><i data-uid="${item_uid}" class="fa fa-book"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>                  
-                  <div class="product-meta">
-                    <div class="product_reference">
-                      <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Brand</span>:<span>${item_brand}</span></p>
-                    </div>
-                    <div class="product_reference">
-                      <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Product Code</span>:<span>${item_productCode}</span></p>
-                    </div>
-                    <div class="product_reference">
-                      <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Availability</span>:
-                        <tal:block tal:switch="item_availability">
-                          <span tal:case="True"  tal:content="string: In stock"/>
-                          <span tal:case="False" tal:content="string: Out of stock" style="color:red;"/>
-                        </tal:block>
-                      </p>
-                    </div>
-                  </div>
-                  <!-- social-icon-start -->
-                  <div class="social-icon mt-20" id="social-button" data-title="alpha - ${item_title}" data-url="${item_url}">
-                    <metal:block  metal:use-macro="context/social_button_macro/macros/social_btn_fb" />
-                    <metal:block  metal:use-macro="context/social_button_macro/macros/social_btn_tweet_formodal" />
-                  </div>
-                  <!-- social-icon-end -->
-                  <div class="short-description mt-20">
-                    <p>${item_description}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- single-modal-end -->
+<?python
+from plone import api
+abs_url = api.portal.get().absolute_url()
+lang = api.portal.get_default_language()
+?>
+<div  id="product-listing">
+<p style='display:none' id="pre_category">${view/pre_category}</p>
+<p style='display:none' id="pre_subject">${view/pre_subject}</p>
+<p style='display:none' id="pre_brand">${view/pre_brand}</p>
+<p style='display:none' id='lang'>${lang}</p>
 
-        
-      </tal:define>
-    </tal:repeat>
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+  <!-- shop-left-area-start -->
+  <div class="shop-left-area">
+  <!-- single-shop-left-start -->
+  <div class="single-shop-left mb-30">
+    <div class="shop-left-title">
+      <h3 i18n:translate=""> Price</h3>
+      <div id="slider-range1"></div>
+      <input type="text" name="text" id="amount1" readonly style=" color:#f6931f; font-weight:bold;" />
+    </div>
   </div>
+  <!-- single-shop-left-end -->
 
-            <!-- pagination-area-start -->
-            <div class="pagination-area">
-              <div class="pagination-number">
-                <div metal:use-macro="context/batch_macros/macros/navigation" />
-              </div>
-            </div>
-            <!-- pagination-area-end -->
+  <!-- single-shop-left-start -->
+  <div class="single-shop-left mb-30">
+    <div class="shop-left-title">
+      <h3 i18n:translate=""> Brand </h3>
+    </div>
+    <div class="shop-left-menu-2">
+      <ul>
+        <li tal:repeat="brand view/brandList">
+          <a class="change_brand" data-brand="${brand}"  data-mode="brand" style="cursor:pointer">
+		${brand}(${python: view.brandList[brand]})</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- single-shop-left-end -->
 
-            </tal:listing>
+  <!-- single-shop-left-start -->
+  <div class="single-shop-left mb-30" tal:repeat="sort view/sortList">
+    <div class="shop-left-title">
+      <h3> ${sort} </h3>
+    </div>
+    <div class="shop-left-menu-2">
+      <ul>
+        <li tal:repeat="item python: view.sortList[sort][1]">
+          <a data-subject="${item}" data-category="${sort}" data-mode="category" class="change_category" 
+		style="cursor:pointer"> ${item}(${python: view.sortList[sort][1][item]})</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- single-shop-left-end -->
+</div>
+</div>
 
-            <metal:empty metal:define-slot="no_items_in_listing">
-              <p class="discreet"
-                  tal:condition="not: view/batch"
-                  i18n:translate="">
-                No results were found.
-              </p>
-            </metal:empty>
-
-          </tal:results>
-        </metal:listingmacro>
-
+<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 pull-right shop" >
+  <!-- shop-right-area -->
+  <div class="shop-right-area">
+    <div class="page-heading mb-10">
+      <div class="cart-name">
+      </div>
+      <div class="heading-counter">
+      </div>
+    </div>
+    <div class="page-bar mb-30">
+      <div class="shop-tab">
+        <!-- tab-menu-start -->
+        <div class="tab-menu">
+          <ul>
+            <li class="active">
+	      <a href="javascript:void(0)" v-bind:key="'product_gernal'" v-on:click="now_template = 'product_gernal'" 
+		data-toggle="tab"><i class="fa fa-th"></i></a></li>
+            <li>
+	      <a href="javascript:void(0)"  v-bind:key="'product_detail'" v-on:click="now_template = 'product_detail'"
+		data-toggle="tab"><i class="fa fa-list"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="field-limiter">
+        <div class="label-title">
+          <span i18n:translate="">Show</span>
+        </div>
+        <div class="control">
+         <!-- chosen-start -->
+         <select data-placeholder="Default Sorting" style="width:50px;" class="chosen-select" tabindex="1"
+		v-model="numbers" v-on:change="change_numbers">
+           <option value="6">6</option>
+           <option value="12" selected>12</option>
+           <option value="24">24</option>
+         </select>
+         <!-- chosen-end -->
+         <span i18n:translate="">per page</span>
+       </div>
+      </div>
+      <div class="compare-form">
+        <div class="toolbar-sorter">
+	  <a href="${abs_url}/compare_list" 
+		style="padding:4px 15px;background:#2f89fc;color:white;font-size:13px;font-weight:300"
+		id="go_compare_list"  i18n:translate="">Go Compare List</a>
+          <span  i18n:translate="">Sort By</span>
+          <select id="toolber-sorter" class="sorter-options" data-role="sorter"
+		 v-model="sort" v-on:change="change_sort">
+            <option value="lowest"  i18n:translate="">Price: Lowest first</option>
+            <option value="highest" i18n:translate="">Price: Highest first</option>
+            <option value="a-z" selected i18n:translate="">Product Name: A to Z</option>
+	    <option value="z-a" i18n:translate="">Product Name: Z to A</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
+  <!-- shop-right-area -->
+  <!-- tab-area-start -->
+  <p id="productData" style="display:none">${view/productData}</p>
+  <div class="tab-content">
+    <div class="tab-pane active" id="th">
+      <div class="row">
+        <component 
+	     v-bind:is="now_template"
+             v-model="product_data"
+             v-for="item in product_data"
+             v-bind:title="item[0]"
+             v-bind:price="item[4]"
+	     v-bind:sale_price="item[5]"
+             v-bind:product_number="item[7]"
+             v-bind:url="item[6]"
+             v-bind:image="item[8]"
+	     v-bind:uid="item[9]"
+             v-bind:key="item[9]"
+	     v-bind:stock="item[10]"
+	     v-bind:description="item[11]"
+	     v-bind:rating="item[12]"
+	     >
+        </component>
+      </div>
+    </div>
+  </div>
+  <!-- tab-area-end -->
+  <!-- pagination-area-start -->
+  <div class="pagination-area">
+    <div class="product-count">
+    </div>
+    <div class="pagination-number">
+      <paginate
+         v-bind:page-count="pages"
+         v-bind:page-class="'page_list'"
+         v-bind:prev-text="'<'"
+         v-bind:next-text="'>'"
+         v-bind:prev-class="'page_list'"
+         v-bind:next-class="'page_list'"
+         v-bind:click-handler="change_page">
+      </paginate>
+    </div>
+
+  </div>
+  <!-- pagination-area-end -->
 </div>
+</div>
+</metal:content-core>
+</metal:content-core>
 
-<script>
-      document.onreadystatechange = function selectChangeIndex() {
-          var re = new RegExp('[; ]'+'showThumbOrDetail'+'=([^\\s;]*)');
-          var sMatch = (' '+document.cookie).match(re);
-          if(sMatch){
-              if(sMatch[1] == 1){
-                  $("#tab_th").addClass("active")
-                  $("#tab_list").removeClass("active")
-                  $("#th").removeClass("fade")
-                  $("#th").addClass("active")
-                  $("#list").removeClass("active")
-                  $("#list").addClass("fade")
-              }else if(sMatch[1] == 2){
-                  $("#tab_th").removeClass("active")
-                  $("#tab_list").addClass("active")
-                  $("#th").addClass("fade")
-                  $("#th").removeClass("active")
-                  $("#list").addClass("active")
-                  $("#list").removeClass("fade")
-              }
+<metal:js fill-slot="js-bottom-slot">
+    <script>
+    $(function(){
+       $( "#slider-range1" ).slider({
+          range: true,
+          min: 0,
+          max: 20000,
+          values: [ 0, 20000 ],
+          slide: function( event, ui ) {
+            $( "#amount1" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+            product_listing.change_price_range(ui.values[0], ui.values[1])
           }
-          var b_size =  document.getElementById("b_size");
-          b_size.value = b_size.getAttribute("data-bSize");
-          var sort_by =  document.getElementById("sort_by");
-          sort_by.value = sort_by.getAttribute("data-sort_by");
-          var category =  document.getElementById("category") || "";
-          category.value = category.getAttribute("data-category");
-      }
-
-      function setThumbOrDetail(id){
-          document.cookie = "showThumbOrDetail="+id;
-      }
-</script>
-
-</metal:content-core>
-</metal:content-core>
+        });
+        $( "#amount1" ).val(  $( "#slider-range1" ).slider( "values", 0 ) +
+          " - " + $( "#slider-range1" ).slider( "values", 1 ) );
+    })
+    </script>
+    <script src="++theme++alpha.theme/js/vue-paginate.js"></script>
+    <script src="${portal_url}/++plone++alpha.content/product_listing.js"></script>
+    <script>
+    $(function(){
+	$('.change_category').click(function(){
+	    category = $(this).data('category')
+	    subject = $(this).data('subject')
+	    $('.activity').removeClass('activity')
+	    $(this).addClass('activity')
+	    product_listing.change_category(category, subject)
+	})
+	$('.change_brand').click(function(){
+            $('.activity').removeClass('activity')
+            $(this).addClass('activity')
+	    brand = $(this).data('brand')
+	    product_listing.change_brand(brand)
+	})
+	$('#go_compare_list').click(function(){
+	    
+	})
+    })
+    </script>
+</metal:js>
 
 </body>
 </html>
