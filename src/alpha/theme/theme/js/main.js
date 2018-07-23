@@ -567,6 +567,9 @@ $('.counter').counterUp({
 	   min: 0,
 	   max: 20000,
 	   values: [ 200, 1000 ],
+           slide: function(event, ui){
+                $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+           },
 	   stop: function( event, ui ) {
                var b_size =  document.getElementById("b_size").value;
                var sort_by =  document.getElementById("sort_by").value;
@@ -587,7 +590,6 @@ $('.counter').counterUp({
 
                location.assign(queryStr);
 
-		$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 	   }
 	  });
 $( "#slider-range" ).slider('values', 0, document.querySelector('#price_min').innerText)
