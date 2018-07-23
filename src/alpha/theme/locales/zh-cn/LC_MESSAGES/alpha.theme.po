@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-19 07:21+0000\n"
+"POT-Creation-Date: 2018-07-19 08:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -265,7 +265,7 @@ msgid "No"
 msgstr "否"
 
 #: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:267
-#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:329
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:333
 msgid "No results were found."
 msgstr "查询不到澬料"
 
@@ -379,7 +379,7 @@ msgstr "商品是否打开"
 msgid "QUANTITY"
 msgstr "数量"
 
-#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:343
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:347
 msgid "Random Product"
 msgstr "随机产品"
 
@@ -420,6 +420,10 @@ msgstr "商品ID"
 #: ./browser/overrides/alpha.content.browser.templates.search_view.pt:20
 msgid "Search"
 msgstr "搜寻"
+
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:24
+msgid "Search Criteria"
+msgstr "搜索条件"
 
 #: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:16
 msgid "Seeing is believing. Experience the our engine now!"
@@ -553,7 +557,7 @@ msgstr "加入购物车"
 
 #: ./browser/overrides/alpha.content.viewlets.new_footer.pt:16
 msgid "address"
-msgstr ""
+msgstr "地址"
 
 #: ./browser/overrides/alpha.content.viewlets.brands_viewlet.pt:12
 msgid "banner_h4_1"

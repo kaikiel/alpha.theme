@@ -2476,7 +2476,7 @@ alert('jquery click')
                         compare_list.push(uid)
                         var date = new Date()
                         date.setTime(date.getTime() + (60 * 60 * 1000))
-                        $.cookie('compare_list', JSON.stringify(compare_list), {expires: date, path:'/'})
+                        $.cookie('compare_list', JSON.stringify(compare_list), {expires: date})
                         $.notify(msg_success ,  {globalPosition: 'bottom right',className:'success'})
                     }else{
                         $.notify(msg_full ,  {globalPosition: 'bottom right',className:'error'})

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-19 07:21+0000\n"
+"POT-Creation-Date: 2018-07-19 08:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -268,7 +268,7 @@ msgid "No"
 msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.product_listing.pt:267
-#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:329
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:333
 msgid "No results were found."
 msgstr ""
 
@@ -382,7 +382,7 @@ msgstr ""
 msgid "QUANTITY"
 msgstr ""
 
-#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:343
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:347
 msgid "Random Product"
 msgstr ""
 
@@ -422,6 +422,10 @@ msgstr ""
 
 #: ./browser/overrides/alpha.content.browser.templates.search_view.pt:20
 msgid "Search"
+msgstr ""
+
+#: ./browser/overrides/alpha.content.browser.templates.search_view.pt:24
+msgid "Search Criteria"
 msgstr ""
 
 #: ./browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:16
