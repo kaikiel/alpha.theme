@@ -8,6 +8,18 @@
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core"
                     tal:define="toc context/table_of_contents|nothing;">
+<style>
+  a{
+    cursor: pointer;
+  }
+  a h3{
+    cursor: pointer;
+  }
+  a h3:hover{
+    color: #f0ce16;
+  }
+</style>
+
 <div class="shop-main-area mb-70">
   <div class="container">
     <div class="row">
@@ -26,7 +38,7 @@
               <!-- tab-menu-end -->
               <div class="toolbar-sorter">
                 <span i18n:translate="">Sort By</span>
-                <select id="sort_by" name="sort_by" id="toolber-sorter" class="sorter-options" data-sort_by="${view/sort_by}" >
+                <select id="sort_by" name="sort_by" id="toolber-sorter" class="sorter-options" data-sort_by="${view/sort_by}"  onchange="getCategorySort()" >
                   <option value="sort_on:sortable_title,sort_order:ascending"  i18n:translate="">Name (A to Z)</option>
                   <option value="sort_on:sortable_title,sort_order:descending" i18n:translate="">Name (Z - A)</option>
                   <option value="sort_on:created,sort_order:reverse" i18n:translate="">Creation Date(new &gt;old)</option>
@@ -39,7 +51,7 @@
                 </div>
                 <div class="control">
                   <!-- chosen-start -->
-                  <select id="b_size" name="b_size" data-bSize="${view/b_size}" style="width:50px;" class="chosen-select" tabindex="1">
+                  <select id="b_size" name="b_size" data-bSize="${view/b_size}" style="width:50px;" class="chosen-select" tabindex="1" onchange="getCategorySort()">
                      <option value="24">24</option>
                      <option selected value="12">12</option>
                      <option value="6">6</option>
@@ -336,7 +348,7 @@
           <!-- single-shop-left-start -->
           <div class="single-shop-left mb-30">
             <div class="shop-left-title">
-              <h3> <span i18n:translate="">Brands</span>:</h3>
+              <h3> <span i18n:translate="">Brands</span></h3>
             </div>
             <div class="shop-left-menu-2">
               <ul>
@@ -370,7 +382,7 @@
                                 tal:repeat="subject python: sorted(subjectDict.keys())">
                       <tal:define tal:define="subject_id python: ''.join(str(ord(c)) for c in subject)">
                         <li>
-                          <a id="a${subject_id}" onclick="getCategorySort('brands:','p_category:${category}','p_subject:${subject}')" >
+                          <a id="a${category_id}${subject_id}" onclick="getCategorySort('brands:','p_category:${category}','p_subject:${subject}')" >
                             ${subject} (${python: subjectDict[subject]})
                           </a>
                         </li>
@@ -421,6 +433,38 @@
           b_size.value = b_size.getAttribute("data-bSize");
           var sort_by =  document.getElementById("sort_by");
           sort_by.value = sort_by.getAttribute("data-sort_by");
+
+          var url = new URL(location.href);
+          brands = url.searchParams.get("brands");
+          p_category = url.searchParams.get("p_category");
+          p_subject  = url.searchParams.get("p_subject");
+          if(p_category != null && p_category != ""){
+              temp=""
+              for(var i=0; i<p_category.length; i++){
+                  temp+=p_category.charCodeAt(i);
+              }
+              p_category = temp;
+              $("#a"+p_category).css('color', '#f0ce16');
+          }else{
+              $("#all").css('color', '#f0ce16');
+          }
+          if(p_subject != null){
+              temp=""
+              for(var i=0; i<p_subject.length; i++){
+                  temp+=p_subject.charCodeAt(i);
+              }
+              p_subject = temp;
+              $("#a"+p_category+p_subject).css('color', '#f0ce16');
+          }
+          if(brands != null && brands != ""){
+              temp=""
+              for(var i=0; i<brands.length; i++){
+                  temp+=brands.charCodeAt(i);
+              }
+              brands = temp;
+              $("#b"+brands).css('color', '#f0ce16');
+          }
+          
       }
 
       function setThumbOrDetail(id){
@@ -428,7 +472,6 @@
       }
 
       function getCategorySort(){
-
           // query string add b_size and sort_by(sort_on & sort_order)
           var b_size =  document.getElementById("b_size").value;
           var sort_by =  document.getElementById("sort_by").value;
@@ -438,9 +481,13 @@
               }
           )
           var queryStr = "?" +  "b_size=" + b_size + "&" + sortByStr;
-          
+
+          var url = new URL(location.href);
+          brands = url.searchParams.get("brands");
+          p_category = url.searchParams.get("p_category");
+          p_subject  = url.searchParams.get("p_subject");
+
           if(arguments.length != 0){
-              var url = new URL(location.href);
 
               // query string add category and subject
               if(arguments[1].split(':')[1] || arguments[2].split(':')[1]){
@@ -448,7 +495,6 @@
                   for(i=1; i<arguments.length; i++){
                       categoryStr += arguments[i].split(':')[0] + "=" + arguments[i].split(':')[1] + "&";
                   }          
-                  brands = url.searchParams.get("brands");
                   categoryStr += 'brands' + "=" + brands + "&";
                   queryStr += categoryStr;
               }
@@ -456,11 +502,20 @@
               // query string add brand
               if(arguments[0].split(':')[1]){
                   var brandStr = arguments[0].split(':')[0] + "=" + arguments[0].split(':')[1] + "&";
-                  p_category = url.searchParams.get("p_category");
-                  p_subject  = url.searchParams.get("p_subject");
                   brandStr += 'p_category' + "=" + p_category + "&" + 'p_subject' + '=' + p_subject;
                   queryStr += brandStr;
               }
+          }else{
+              originalStr = 'brands' + "=" + brands + "&" + 'p_category' + "=" + p_category + "&" + 'p_subject' + '=' + p_subject + "&";
+              queryStr += originalStr;
+          }
+          price_min = url.searchParams.get("price_min");
+          price_max = url.searchParams.get("price_max");
+          if (price_min){
+              queryStr += 'price_min' + "=" + price_min + "&"
+          }
+          if (price_max){
+              queryStr += 'price_max' + "=" + price_min + "&"
           }
           location.assign(queryStr);
       }
