@@ -406,6 +406,9 @@
       </div>
     </div>
   </div>
+<p id='price_min' style='display:none'>${view/price_min}</p>
+<p id='price_max' style='display:none'>${view/price_max}</p>
+
 </div>
 
 <script>

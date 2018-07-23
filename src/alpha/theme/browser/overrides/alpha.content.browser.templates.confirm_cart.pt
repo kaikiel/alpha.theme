@@ -147,7 +147,7 @@
             tagline: false    
         },
         client: {
-            sandbox:    'AfvZGxN2mgb0_0Jnm1l9UpLfKXqllAM2rg_6qSNslsgIuDc0ofR_8dE7z5Mdj2lU8yzb5mdAyV6GkXsn',
+            sandbox:    'AR9xXr9fOnO7jYisOauYd_lAeo4FcHcIwBKwkVnRBS-sq_svQ2qB8ydP2Zbqz3SuelOdub4hdpluhfzq',
             production: ''
         },
         payment: function(data, actions) {
@@ -173,7 +173,7 @@
 		setTimeout(function(){$('#recipient_name').popover('hide')}, 3000)	 
 		flag = 0
             }
-            if(!country || country == 'Please Choice'){
+            if(!country || country == 'Please Choice' || country == '請选择'){
                 $('#country').popover('show')
 		setTimeout(function(){$('#country').popover('hide')}, 3000)
 		flag = 0
@@ -234,17 +234,17 @@
                         url: url,
                         data: data,
                         success: function(){
-                            $.cookie('shop_cart', null)
-                            msg = $('notify-msg-translate').data('buy_success')
-                            $.notify(msg,  {globalPosition: 'bottom right',className:'error'})
-			    url = location.href.replace('confirm_cart', 'products')
-                            
-			    setTimeout(function(){
-                                location.href = url
-                            }, 2000)
                         }
                     })
 		}
+                $.cookie('shop_cart', '')
+                msg = $('#notify-msg-translate').data('buy_success')
+                $.notify(msg,  {globalPosition: 'bottom right',className:'success'})
+                url = location.href.replace('confirm_cart', 'products')
+                setTimeout(function(){
+                    location.href = url
+                }, 4000)
+
             });
         }
     }, '#paypal-button-container');
