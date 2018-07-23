@@ -394,6 +394,9 @@
       </div>
     </div>
   </div>
+<p id='price_min' style='display:none'>${view/getPriceMin}</p>
+<p id='price_max' style='display:none'>${view/getPriceMax}</p>
+
 </div>
 
 <script>
@@ -441,7 +444,6 @@
           
           if(arguments.length != 0){
               var url = new URL(location.href);
-
               // query string add category and subject
               if(arguments[1].split(':')[1] || arguments[2].split(':')[1]){
                   var categoryStr = '';
