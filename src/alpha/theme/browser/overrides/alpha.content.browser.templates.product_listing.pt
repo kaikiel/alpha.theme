@@ -394,8 +394,8 @@
       </div>
     </div>
   </div>
-<p id='min'>1500</p>
-<p id='max'>3000</p>
+<p id='price_min' style='display:none'>${view/getPriceMin}</p>
+<p id='price_max' style='display:none'>${view/getPriceMax}</p>
 
 </div>
 

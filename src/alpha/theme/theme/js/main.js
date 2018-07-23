@@ -565,7 +565,7 @@ $('.counter').counterUp({
 	  $( "#slider-range" ).slider({
 	   range: true,
 	   min: 0,
-	   max: 5000,
+	   max: 20000,
 	   values: [ 200, 1000 ],
 	   slide: function( event, ui ) {
                var b_size =  document.getElementById("b_size").value;
@@ -603,9 +603,9 @@ $('.counter').counterUp({
 		$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 	   }
 	  });
-$( "#slider-range" ).slider('values', 0, document.querySelector('#min').innerText)
-$( "#slider-range" ).slider('values', 1, document.querySelector('#max').innerText)
-$('#amount').val('$' + document.querySelector('#min').innerText + '- $' + document.querySelector('#max').innerText  );
+$( "#slider-range" ).slider('values', 0, document.querySelector('#price_min').innerText)
+$( "#slider-range" ).slider('values', 1, document.querySelector('#price_max').innerText)
+$('#amount').val('$' + document.querySelector('#price_min').innerText + '- $' + document.querySelector('#price_max').innerText  );
 	  /*$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
 	   " - $" + $( "#slider-range" ).slider( "values", 1 ) );*/
 
