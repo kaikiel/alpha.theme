@@ -9,7 +9,6 @@
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core"
                     tal:define="toc context/table_of_contents|nothing;">
-
     <div class="product-details-area">
       <div class="container">
         <div class="row">
@@ -45,9 +44,9 @@
                 </div>
               <div class="product-info-price">
                 <div class="price-final product-price">
-                  <span tal:condition="not: view/context/salePrice"><span i18n:translate="">dollar</span>${python: view.context.price}</span>
-		  <ul tal:condition="view/context/salePrice">
-		    <li class="new-price sale"><span i18n:translate="">dollar</span><span>${python: view.context.salePrice}</span></li>
+                  <span tal:condition="not: python: view.salePrice(view.context)"><span i18n:translate="">dollar</span>${python: view.context.price}</span>
+		  <ul tal:condition="python: view.salePrice(view.context)">
+		    <li class="new-price sale"><span i18n:translate="">dollar</span><span>${python: view.salePrice(view.context)}</span></li>
                     <li class="old-price"><span i18n:translate="">dollar</span><span>${python: view.context.price}</span></li>
 	          </ul>
                 </div>

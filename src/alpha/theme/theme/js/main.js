@@ -567,6 +567,7 @@ $('.counter').counterUp({
 	   min: 0,
 	   max: 20000,
 	   values: [ 200, 1000 ],
+
            slide: function(event, ui){
                 $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
            },

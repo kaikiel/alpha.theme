@@ -81,7 +81,7 @@
                                            item_uid item/UID;
                                            item_url item/getURL;
                                            item_price obj/price;
-                                           item_sale  obj/salePrice;
+                                           item_sale  python: view.salePrice(obj);
                                            item_availability obj/availability;
                                            item_rating python: int(obj.rating or 0);
                                            is_has_item_sale python: item_sale!=None;">
@@ -135,7 +135,7 @@
                                            item_url item/getURL;
                                            item_description obj/description;
                                            item_price obj/price;
-                                           item_sale  obj/salePrice;
+                                           item_sale  python: view.salePrice(obj);
                                            item_availability obj/availability;
                                            item_rating python: int(obj.rating or 0);
                                            is_has_item_sale python: item_sale!=None;">
@@ -210,7 +210,7 @@
                                     item_uid item/UID;
                                     item_url item/getURL;
                                     item_price obj/price;
-                                    item_sale  obj/salePrice;
+                                    item_sale  python: view.salePrice(obj);
                                     item_brand obj/brand;
                                     item_productCode obj/productCode;
                                     item_availability obj/availability;

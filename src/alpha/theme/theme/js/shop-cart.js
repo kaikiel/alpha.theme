@@ -7,15 +7,10 @@ var shop_product = {
            <div class="cart-info">
              <h5><a v-bind:href="url">{{title}}</a></h5>
 
-             <template v-if="sale_price == null || sale_price == ''">
              <p>{{amount}} x {{price}}</p>
-             </template>
-             <template v-else>
-             <p>{{amount}} x {{sale_price}}</p>
-             </template>
            </div>
         </div>`,
-    props: ['title', 'url', 'image', 'price', 'sale_price', 'amount']
+    props: ['title', 'url', 'image', 'price', 'amount']
 }
 
 var shop_cart = new Vue({
@@ -32,36 +27,21 @@ var shop_cart = new Vue({
         cookie_shop_cart = $.cookie('shop_cart')
 	if(cookie_shop_cart){
 	    json_shop_cart = JSON.parse(cookie_shop_cart)
-	    Object.keys(json_shop_cart).forEach(function(key){
-	        lang = $('html')[0].lang
-	        if(lang == 'en-us'){
-	            url = location.origin + '/alpha_en/products/@search?Type=Product&metadata_fields=_all&UID=' + key
-		}else if(lang == 'zh-cn'){
-		    url = location.origin + '/alpha_cn/products/@search?Type=Product&metadata_fields=_all&UID=' + key
-		}
+            abs_url = $('#abs_url').text()
+            Object.keys(json_shop_cart).forEach(function(key){
+                url = abs_url + '/get_product_data'
 		$.ajax({
-		    type: "get",
-                    headers: {
-                        'Accept': 'application/json'
-                    },
+		    type: "post",
                     url: url,
-                    success: function(rep){
-			if(rep['items'].length != 0){
-                            items = rep['items'][0]
-                            title = items['Title']
-                            abs_url = items['getURL']
-                            price = items['price']
-                            salePrice = items['salePrice']
-                            img = abs_url + '/@@images/cover'
+                    data: {'uid': key},
+                    success: function(result){
+			if(result != 'error'){
+                            result = JSON.parse(result)
 			    amount = json_shop_cart[key]
-
-			    if(salePrice){
-			        shop_cart.total_price += salePrice * amount
-			    }else{
-			        shop_cart.total_price += price * amount
-			    }
 			    shop_cart.total_number += 1
-                            shop_cart.shop_data[key] = [title, abs_url, price, salePrice, img, json_shop_cart[key]]
+                            result.push(json_shop_cart[key])
+                            shop_cart.shop_data[key] = result
+                            shop_cart.total_price += result[2] * amount
 		        }
                     }
 		})
@@ -82,40 +62,29 @@ var shop_cart = new Vue({
 		ans = true
 	    }
 	    if(ans){
-		lang = $('html')[0].lang
-		if(lang == 'en-us'){
-                    url = location.origin + '/alpha_en/products/@search?Type=Product&metadata_fields=_all&UID=' + uid
-                }else if(lang == 'zh-cn'){
-                    url = location.origin + '/alpha_cn/products/@search?Type=Product&metadata_fields=_all&UID=' + uid
-                }
-		$.ajax({
-		    type: "get",
-		    headers: {
-		        'Accept': 'application/json'
-		    },
-		    url: url,
-		    success: function(rep){
-			items = rep['items'][0]
-			title = items['Title']
-			abs_url = items['getURL']
-			price = items['price']
-			salePrice = items['salePrice']
-			img = abs_url + '/@@images/cover'
-
-			if(salePrice){
-                            shop_cart.total_price += salePrice * amount
-                        }else{
-                            shop_cart.total_price += price * amount
+                abs_url = $('#abs_url').text()
+                url = abs_url + '/get_product_data'
+                $.ajax({
+                    type: "post",
+                    url: url,
+                    data: {'uid': uid},
+                    success: function(result){
+                        if(result != 'error'){
+                            result = JSON.parse(result)
+                            shop_cart.total_number += 1
+                            result.push(amount)
+                            shop_cart.shop_data[uid] = result
+                            shop_cart.total_price += result[2] * amount
+debugger
                         }
-			shop_cart.total_number += 1
-			shop_data[uid] = [title, abs_url, price, salePrice, img, amount]
-		    }
-		})
+                    }
+                })
+
 		shop_cart_data[uid] = amount
                 var date = new Date()
                 date.setTime(date.getTime() + (60 * 60 * 1000))
 		$.cookie('shop_cart', JSON.stringify(shop_cart_data), {expires: date})
-                
+
                 msg_success = $("#notify-msg-translate").data("s_success")
 		$.notify(msg_success, {globalPosition: 'bottom right',className:'success'})
 		return 'success'
