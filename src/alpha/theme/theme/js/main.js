@@ -567,38 +567,25 @@ $('.counter').counterUp({
 	   min: 0,
 	   max: 20000,
 	   values: [ 200, 1000 ],
-	   slide: function( event, ui ) {
+	   stop: function( event, ui ) {
                var b_size =  document.getElementById("b_size").value;
                var sort_by =  document.getElementById("sort_by").value;
                var sortByStr = '';
                sort_by.split(',').forEach(function(sortBy){
                        sortByStr += sortBy.split(':')[0] + "=" + sortBy.split(':')[1] + "&";
                })
-               var queryStr = "?" +  "b_size=" + b_size + "&" + sortByStr;
-               if(arguments.length != 0){
-                   var url = new URL(location.href);
-                   // query string add category and subject
-                   if(arguments[1].split(':')[1] || arguments[2].split(':')[1]){
-                       var categoryStr = '';
-                       for(i=1; i<arguments.length; i++){
-                          categoryStr += arguments[i].split(':')[0] + "=" + arguments[i].split(':')[1] + "&";
-                       }
-                       brands = url.searchParams.get("brands");
-                       categoryStr += 'brands' + "=" + brands + "&";
-                       queryStr += categoryStr;
-                   }
+               location.assign(queryStr);
+               var url = new URL(location.href);
+               brands = url.searchParams.get("brands") || "";
+               p_category = url.searchParams.get("p_category") || "";
+               p_subject  = url.searchParams.get("p_subject") || "";
 
-                   // query string add brand
-                   if(arguments[0].split(':')[1]){
-                       var brandStr = arguments[0].split(':')[0] + "=" + arguments[0].split(':')[1] + "&";
-                       p_category = url.searchParams.get("p_category");
-                       p_subject  = url.searchParams.get("p_subject");
-                       brandStr += 'p_category' + "=" + p_category + "&" + 'p_subject' + '=' + p_subject;
-                       queryStr += brandStr;
-                   }
-                }
-                queryStr += 'price_min=' + ui.values[0] + '&price_max=' + ui.values[1]
-                location.assign(queryStr);
+               var queryStr = "?" +  "b_size=" + b_size + "&" + sortByStr;
+
+               queryStr += 'price_min=' + ui.values[0] + '&price_max=' + ui.values[1] + '&brands=' + brands + '&p_category='
+                              + p_category + '&p_subject' + p_subject
+
+               location.assign(queryStr);
 
 		$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 	   }

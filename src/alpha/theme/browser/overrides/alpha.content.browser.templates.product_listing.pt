@@ -486,9 +486,9 @@
           var queryStr = "?" +  "b_size=" + b_size + "&" + sortByStr;
 
           var url = new URL(location.href);
-          brands = url.searchParams.get("brands");
-          p_category = url.searchParams.get("p_category");
-          p_subject  = url.searchParams.get("p_subject");
+          brands = url.searchParams.get("brands") || "";
+          p_category = url.searchParams.get("p_category") || "";
+          p_subject  = url.searchParams.get("p_subject") || "";
 
           if(arguments.length != 0){
 
