@@ -40,7 +40,7 @@
                           item_uid item/UID;
                           item_url item/absolute_url;
                           item_price item/price;
-                          item_sale  item/salePrice;
+                          item_sale  python: view.salePrice(item);
                           item_brand item/brand;
                           item_productCode item/productCode;
                           item_availability item/availability;

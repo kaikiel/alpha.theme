@@ -11,7 +11,6 @@
 
 <metal:content-core define-macro="content-core"
                     tal:define="toc context/table_of_contents|nothing;">
-
 <div class="entry-header-area">
  <div class="col-lg-12">
   <div class="entry-header-title">
@@ -39,10 +38,10 @@
           <td class="product-name"><a href="${python: product[3]}">${python: product[0]}</a></td>
           <td class="product-quantity">
 		<input class="amount" data-uid="${python: product[5]}" type="number" value="${python: product[4]}"></td>
-          <td class="product-price" tal:condition="not: python: product[2]"><span class="amount">${python: product[1]}</span></td>
-	  <td class="product-price" tal:condition="python: product[2]"><span class="amount">${python: product[2]}</span></td>
-          <td class="product-subtotal sub_total" tal:condition="not: python: product[2]">${python: product[4] * product[1]}</td>
-          <td class="product-subtotal sub_total" tal:condition="python: product[2]">${python: product[4] * product[2]}</td>
+          <td class="product-price" tal:condition="not: python: view.salePrice(product[6])"><span class="amount">${python: product[1]}</span></td>
+	  <td class="product-price" tal:condition="python: view.salePrice(product[6])"><span class="amount">${python: view.salePrice(product[6])}</span></td>
+          <td class="product-subtotal sub_total" tal:condition="not: python: view.salePrice(product[6])">${python: product[4] * product[1]}</td>
+          <td class="product-subtotal sub_total" tal:condition="python: view.salePrice(product[6])">${python: product[4] * view.salePrice(product[6])}</td>
           <td class="product-remove"><i class="fa fa-times" data-uid="${python: product[5]}" style="cursor:pointer"></i></td>
       </tr>
     </tbody>
