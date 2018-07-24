@@ -6,6 +6,8 @@ from plone import api
 abs_url = api.portal.get().absolute_url()
 ?>
 <li class="shop-cart" id="shop-cart"><a href="#"><i class="fa fa-shopping-cart"></i></a>
+<p id='abs_url' style='display:none'>${abs_url}</p>
+
  <span>{{total_number}}</span>
  <div class="mini-cart-sub">
   <div class="cart-product">
@@ -14,10 +16,9 @@ abs_url = api.portal.get().absolute_url()
 	 v-for="(val, key) in shop_data"
 	 v-bind:title="val[0]"
          v-bind:price="val[2]"
-         v-bind:sale_price="val[3]"
          v-bind:url="val[1]"
-         v-bind:image="val[4]" 
-	 v-bind:amount="val[5]"
+         v-bind:image="val[3]" 
+	 v-bind:amount="val[4]"
 	>
     </div>
     <div class="cart-totals">
