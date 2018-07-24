@@ -38,10 +38,16 @@
           <td class="product-name"><a href="${python: product[3]}">${python: product[0]}</a></td>
           <td class="product-quantity">
 		<input class="amount" data-uid="${python: product[5]}" type="number" value="${python: product[4]}"></td>
-          <td class="product-price" tal:condition="not: python: view.salePrice(product[6])"><span class="amount">${python: product[1]}</span></td>
-	  <td class="product-price" tal:condition="python: view.salePrice(product[6])"><span class="amount">${python: view.salePrice(product[6])}</span></td>
-          <td class="product-subtotal sub_total" tal:condition="not: python: view.salePrice(product[6])">${python: product[4] * product[1]}</td>
-          <td class="product-subtotal sub_total" tal:condition="python: view.salePrice(product[6])">${python: product[4] * view.salePrice(product[6])}</td>
+          <td class="product-price" tal:switch="python: view.salePrice(product[6]) == None">
+            <span class="amount" tal:case="True">${python: product[1]}</span>
+            <span class="amount" tal:case="False">${python: view.salePrice(product[6])}</span>
+          </td>
+          <td class="product-subtotal sub_total" tal:condition="not: python: view.salePrice(product[6])" data-discount="${python: product[6].disc_amount}">
+            ${python: product[4] * product[1]}
+          </td>
+          <td class="product-subtotal sub_total" tal:condition="python: view.salePrice(product[6])" data-discount="${python: product[6].disc_amount}">
+            ${python: product[4] * view.salePrice(product[6])}
+          </td>
           <td class="product-remove"><i class="fa fa-times" data-uid="${python: product[5]}" style="cursor:pointer"></i></td>
       </tr>
     </tbody>
@@ -54,7 +60,7 @@
  <div class="coupon">
   <h3 i18n:translate="">Coupon</h3>
   <p i18n:translate="">Enter your coupon code if you have one.</p>
-  <input type="text" placeholder="Coupon code" id='coupon_code' style='width:30%'>
+  <input type="text" placeholder="Coupon code" id='coupon_code' style='width:30%; margin-left: 5pt;' onblur="checkPromoCode()">
  </div>
  <label style='width:30%' ><span i18n:translate="">Recipient Name</span>:
  <input type='text' id="recipient_name" data-trigger="manual" data-toggle="popover" data-content="Please fill in" 
@@ -79,6 +85,14 @@
   <br>
   <table>
    <tbody>
+    <tr class="order-discount">
+     <th i18n:translate="">Discount Amount</th>
+     <td>
+      <strong>
+       <span class="amount discount-price" id="discount-price">0</span>
+      </strong>
+     </td>
+    </tr>
     <tr class="order-total">
      <th i18n:translate="">Total</th>
      <td>
@@ -106,14 +120,23 @@
 	    unit_price = $(this).parent().parent().find('.product-price').text()
 	    total = $(this).parent().parent().find('.product-subtotal').text(val * unit_price)
 	    total_price = 0
-	    $('.sub_total').each(function(){
-	        price = parseInt($(this).text())
-		total_price += price
-	    })
-	    $('.total_number').text(total_price)
+            total_disc = 0
+            $('.sub_total').each(function(){
+                price = parseInt($(this).text())
+                var coupon_code = document.getElementById("coupon_code").value;
+                if(coupon_code != ""){
+                    var qty = parseInt($(this).prev().prev().children().val());
+                    var disc = parseInt($(this).data("discount")) * qty;
+                    total_disc += disc;
+                    price -= disc
+                }
+                total_price += price
+            })
+            $(".discount-price").text(total_disc)
+            $('.total_number').text(total_price)
 
 	    cookie_shop_cart = JSON.parse($.cookie('shop_cart'))
-	    cookie_shop_cart[uid][4] = val
+	    cookie_shop_cart[uid] = val
 	    $.cookie('shop_cart', JSON.stringify(cookie_shop_cart))
 	})
 
@@ -248,7 +271,49 @@
         }
     }, '#paypal-button-container');
   </script>
-
+  <script>
+    function checkPromoCode(){
+        promoCodeElement = event.srcElement;
+        promoCode = event.srcElement.value;
+        if(promoCode){
+            var host = location.origin + "/" + location.pathname.split('/')[1]
+            var form = new FormData(this);
+            form.append("promoCode", promoCode);
+            $.ajax({
+                method: "POST",
+                url: host+'/checkpromocode',
+                processData: false,
+                contentType: false,
+                mimeType: "multipart/form-data",
+                data: form,
+            }).done(function(response) {
+                if(response == "1"){
+                    var total_price = 0;
+                    var total_disc = 0;
+                    $('.sub_total').each(function(){
+                        price = parseInt($(this).text())
+                        var coupon_code = document.getElementById("coupon_code").value;
+                        if(coupon_code != ""){
+                            var qty = parseInt($(this).prev().prev().children()["0"].value);
+                            var disc = parseInt($(this).data("discount")) * qty;
+                            total_disc += disc;
+                            price -= disc
+                        }
+                        total_price += price
+                    })
+                    $(".discount-price").text(total_disc)
+                    $('.total_number').text(total_price)
+                    promoCodeElement.classList.remove('validate');
+                }else{
+                    promoCodeElement.value = '';
+                    promoCodeElement.classList.add('validate');
+                }
+            });
+        }else{
+            promoCodeElement.classList.remove('validate');
+        }
+    }
+  </script>
 </metal:js>
 
 </body>

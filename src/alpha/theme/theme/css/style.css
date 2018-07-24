@@ -5938,3 +5938,6 @@ span.must{
 .mobile-menu-area.hidden-md.hidden-lg .selected a{
   color: #fcc109;
 }
+input[type="text"].validate{
+  box-shadow: 0 0 5px 1px red;
+}
