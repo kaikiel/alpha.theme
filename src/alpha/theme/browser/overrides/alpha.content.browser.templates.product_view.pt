@@ -44,11 +44,16 @@
                 </div>
               <div class="product-info-price">
                 <div class="price-final product-price">
-                  <span tal:condition="not: python: view.salePrice(view.context)"><span i18n:translate="">dollar</span>${python: view.context.price}</span>
+                  <tal:define tal:define="item_disc view/context/disc_amount;
+                                          item_price python: view.salePrice(view.context);
+                                          item_sale python: item_price - item_disc;
+                                          has_sale_price python: item_disc>0">
+                  <span tal:condition="not: has_sale_price"><span i18n:translate="">dollar</span>${item_price}</span>
 		  <ul tal:condition="python: view.salePrice(view.context)">
-		    <li class="new-price sale"><span i18n:translate="">dollar</span><span>${python: view.salePrice(view.context)}</span></li>
-                    <li class="old-price"><span i18n:translate="">dollar</span><span>${python: view.context.price}</span></li>
+		    <li class="new-price sale"><span i18n:translate="">dollar</span><span>${item_sale}</span></li>
+                    <li class="old-price"><span i18n:translate="">dollar</span><span>${item_price}</span></li>
 	          </ul>
+                  </tal:define>
                 </div>
               </div>
               <div class="short_description_block">

@@ -80,11 +80,12 @@
                                            item_productNo obj/productNo;
                                            item_uid item/UID;
                                            item_url item/getURL;
-                                           item_price obj/price;
-                                           item_sale  python: view.salePrice(obj);
+                                           item_disc obj/disc_amount;
+                                           item_price python: view.salePrice(obj);
+                                           item_sale python: item_price - item_disc;
+                                           is_has_item_sale python: item_disc>0;
                                            item_availability obj/availability;
-                                           item_rating python: int(obj.rating or 0);
-                                           is_has_item_sale python: item_sale!=None;">
+                                           item_rating python: int(obj.rating or 0);">
                           <!-- single-product-start -->
                           <div class="single-product mb-30">
                             <div class="single-img">
@@ -134,11 +135,12 @@
                                            item_uid item/UID;
                                            item_url item/getURL;
                                            item_description obj/description;
-                                           item_price obj/price;
-                                           item_sale  python: view.salePrice(obj);
+                                           item_disc obj/disc_amount;
+                                           item_price python: view.salePrice(obj);
+                                           item_sale python: item_price - item_disc;
+                                           is_has_item_sale python: item_disc>0;
                                            item_availability obj/availability;
-                                           item_rating python: int(obj.rating or 0);
-                                           is_has_item_sale python: item_sale!=None;">
+                                           item_rating python: int(obj.rating or 0);">
                   <!-- shop-product-start -->
                   <div class="shop-product bb-5">
                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
@@ -209,13 +211,14 @@
                                     item_description obj/description;
                                     item_uid item/UID;
                                     item_url item/getURL;
-                                    item_price obj/price;
-                                    item_sale  python: view.salePrice(obj);
                                     item_brand obj/brand;
                                     item_productCode obj/productCode;
+                                    item_disc obj/disc_amount;
+                                    item_price python: view.salePrice(obj);
+                                    item_sale python: item_price - item_disc;
+                                    is_has_item_sale python: item_disc>0;
                                     item_availability obj/availability;
-                                    item_rating python: int(item.rating or 0);
-                                    is_has_item_sale python: item_sale!=None;">
+                                    item_rating python: int(obj.rating or 0);">
                   
                   <!-- single-modal-start -->
                   <div class="modal fade" id="${item_uid}" tabindex="-1" role="dialog">
@@ -396,8 +399,9 @@
           </tal:repeat>
           <!-- single-shop-left-start -->
           <div class="single-shop-left mb-30">
-            <div class="single-banner-2">
-              <a href="#"><img src="++theme++alpha.theme/img/banner/34.jpg" alt="banner" /></a>
+            <div class="single-banner-2" tal:define="img view/getProductAD" tal:switch="python: len(img)>0">
+              <a href="${python: img[0].Description}" tal:case="True"><img src="${python: img[0].getURL()}" alt="banner" /></a>
+              <a href="" tal:case="False"><img src="++theme++alpha.theme/img/banner/34.jpg" alt="banner" /></a>
             </div>
           </div>
           <!-- single-shop-left-end -->

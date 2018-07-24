@@ -29,11 +29,12 @@
                                   item_title item/Title;
                                   item_uid item/UID;
                                   item_url item/getURL;
-                                  item_price obj/price;
-                                  item_sale  python: view.salePrice(obj);
+                                  item_disc obj/disc_amount;
+                                  item_price python: view.salePrice(obj);
+                                  item_sale python: item_price - item_disc;
+                                  is_has_item_sale python: item_disc>0;
                                   item_availability obj/availability;
-                                  item_rating python: int(obj.rating or 0);
-                                  is_has_item_sale python: item_sale!=None">
+                                  item_rating python: int(obj.rating or 0);">
                 <div class="single-product">
                   <div class="product-img">
                     <a href="${item_url}" >
@@ -85,11 +86,12 @@
                                   item_title item/Title;
                                   item_uid item/UID;
                                   item_url item/getURL;
-                                  item_price obj/price;
-                                  item_sale  python: view.salePrice(obj);
+                                  item_disc obj/disc_amount;
+                                  item_price python: view.salePrice(obj);
+                                  item_sale python: item_price - item_disc;
+                                  is_has_item_sale python: item_disc>0;
                                   item_availability obj/availability;
-                                  item_rating python: int(obj.rating or 0);
-                                  is_has_item_sale python: item_sale!=None">
+                                  item_rating python: int(obj.rating or 0);">
                 <div class="single-product">
                   <div class="product-img">
                     <a href="${item_url}" >
@@ -141,11 +143,12 @@
                                   item_title item/Title;
                                   item_uid item/UID;
                                   item_url item/getURL;
-                                  item_price obj/price;
-                                  item_sale  python: view.salePrice(obj);
+                                  item_disc obj/disc_amount;
+                                  item_price python: view.salePrice(obj);
+                                  item_sale python: item_price - item_disc;
+                                  is_has_item_sale python: item_disc>0;
                                   item_availability obj/availability;
-                                  item_rating python: int(obj.rating or 0);
-                                  is_has_item_sale python: item_sale!=None">
+                                  item_rating python: int(obj.rating or 0);">
                 <div class="single-product">
                   <div class="product-img">
                     <a href="${item_url}" >
