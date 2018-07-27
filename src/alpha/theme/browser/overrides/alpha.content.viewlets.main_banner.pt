@@ -14,7 +14,7 @@
   <tal:define define="obj item/getObject;
                       item_uid item/UID;
                       item_url item/getURL;
-                      item_text obj/text/raw;
+                      item_text obj/text/raw | string:  ;
                       item_link obj/image_caption">
   <div class="nivo-html-caption" id="banner${repeat/item/index}" >
     <div class="container">
@@ -23,7 +23,7 @@
           <div class="slider-text" >
             <div class="wow bounceInDown" data-wow-delay=".5s">
               <tal:block tal:content="structure item_text" />
-              <a href="${item_link}"><i class="fa fa-shopping-cart"></i>buy now</a>
+              <a tal:condition="item_link" href="${item_link}"><i class="fa fa-shopping-cart"></i>buy now</a>
             </div>
           </div>
         </div>

@@ -83,7 +83,8 @@ debugger
 		shop_cart_data[uid] = amount
                 var date = new Date()
                 date.setTime(date.getTime() + (60 * 60 * 1000))
-		$.cookie('shop_cart', JSON.stringify(shop_cart_data), {expires: date})
+                var f_path = '/'+location.pathname.split('/')[1]
+                document.cookie = "shop_cart="+JSON.stringify(shop_cart_data)+"; expires="+date+"; path="+f_path; 
 
                 msg_success = $("#notify-msg-translate").data("s_success")
 		$.notify(msg_success, {globalPosition: 'bottom right',className:'success'})
