@@ -417,6 +417,10 @@
 
 <script>
       document.onreadystatechange = function selectChangeIndex() {
+          $( "#slider-range" ).slider('values', 0, document.querySelector('#price_min').innerText)
+          $( "#slider-range" ).slider('values', 1, document.querySelector('#price_max').innerText)
+          $('#amount').val('$' + document.querySelector('#price_min').innerText + '- $' + document.querySelector('#price_max').innerText);
+
           var re = new RegExp('[; ]'+'showThumbOrDetail'+'=([^\\s;]*)');
           var sMatch = (' '+document.cookie).match(re);
           if(sMatch){

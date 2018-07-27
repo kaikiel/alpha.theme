@@ -5432,7 +5432,7 @@ width: 170px;
   border-bottom: 1px solid #e5e5e5;
   border-right: 1px solid #e5e5e5;
   font-size: 14px;
-  padding: 15px 10px;
+  padding: 15pt 1pt;
   text-align: center;
   color:#777;
 }
@@ -5484,9 +5484,9 @@ width: 170px;
   color: #fff;
   display: block;
   font-weight: 700;
-  padding: 10px 56px;
+  padding: 10pt 10pt;
   text-transform: uppercase;
-  width: 260px;
+  max-width: 260px;
 }
 .wishlist-table table .product-add-to-cart > a:hover {
   background: #f0ce16 none repeat scroll 0 0;

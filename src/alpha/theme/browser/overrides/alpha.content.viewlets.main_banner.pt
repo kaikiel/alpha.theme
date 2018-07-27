@@ -6,7 +6,7 @@
   <tal:define define="obj item/getObject;
                       item_uid item/UID;
                       item_url item/getURL;">
-    <img src="${item_url}/@@images/image" alt="slider-img" title="#${item_uid}" />
+    <img src="${item_url}/@@images/image" alt="slider-img" title="#banner${repeat/item/index}" />
   </tal:define>
   </tal:repeat>
   </div>
@@ -16,7 +16,7 @@
                       item_url item/getURL;
                       item_text obj/text/raw;
                       item_link obj/image_caption">
-  <div class="nivo-html-caption" id="${item_uid}" >
+  <div class="nivo-html-caption" id="banner${repeat/item/index}" >
     <div class="container">
       <div class="row">
         <div class="col-lg-12">

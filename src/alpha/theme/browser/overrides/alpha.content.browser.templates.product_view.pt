@@ -49,7 +49,7 @@
                                           item_sale python: item_price - item_disc;
                                           has_sale_price python: item_disc>0">
                   <span tal:condition="not: has_sale_price"><span i18n:translate="">dollar</span>${item_price}</span>
-		  <ul tal:condition="python: view.salePrice(view.context)">
+		  <ul tal:condition="has_sale_price">
 		    <li class="new-price sale"><span i18n:translate="">dollar</span><span>${item_sale}</span></li>
                     <li class="old-price"><span i18n:translate="">dollar</span><span>${item_price}</span></li>
 	          </ul>

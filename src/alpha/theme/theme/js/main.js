@@ -50,7 +50,7 @@ if ($(this).scrollTop() > 40){
     manualAdvance: true,             // Force manual transitions 
     prevText: '<i class="fa fa-angle-left"></i>',   // Prev directionNav text 
     nextText: '<i class="fa fa-angle-right"></i>',  // Next directionNav text 
-    randomStart: true,               // Start on a random slide 
+    randomStart: false,               // Start on a random slide 
     beforeChange: function(){},       // Triggers before a slide transition 
     afterChange: function(){},        // Triggers after a slide transition 
     slideshowEnd: function(){},       // Triggers after all slides have been shown 
@@ -593,11 +593,6 @@ $('.counter').counterUp({
 
 	   }
 	  });
-$( "#slider-range" ).slider('values', 0, document.querySelector('#price_min').innerText)
-$( "#slider-range" ).slider('values', 1, document.querySelector('#price_max').innerText)
-$('#amount').val('$' + document.querySelector('#price_min').innerText + '- $' + document.querySelector('#price_max').innerText  );
-	  /*$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-	   " - $" + $( "#slider-range" ).slider( "values", 1 ) );*/
 
 /*--------------------------
  scrollUp

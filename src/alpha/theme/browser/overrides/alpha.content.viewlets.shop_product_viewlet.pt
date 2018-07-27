@@ -51,7 +51,7 @@
                   <div class="single-product">
                     <div class="product-img">
                       <a href="${item_url}">
-                        <img src="${item_url}/@@images/cover" alt="product" class="first" />
+                        <img src="${item_url}/@@images/cover/preview" alt="product" class="first" />
                       </a>
                     </div>
                     <div class="product-content">
@@ -119,7 +119,7 @@
                   <div class="single-product">
                     <div class="product-img">
                       <a href="${item_url}">
-                        <img src="${item_url}/@@images/cover" alt="product" class="first" />
+                        <img src="${item_url}/@@images/cover/preview" alt="product" class="first" />
                       </a>
                     </div>
                     <div class="product-content">
@@ -187,7 +187,7 @@
                   <div class="single-product">
                     <div class="product-img">
                       <a href="${item_url}">
-                        <img src="${item_url}/@@images/cover" alt="product" class="first" />
+                        <img src="${item_url}/@@images/cover/preview" alt="product" class="first" />
                       </a>
                     </div>
                     <div class="product-content">

@@ -2452,15 +2452,7 @@
 	<script src="js/shop-cart.js"></script>
 	<script>
 	$(function(){
-document.querySelectorAll('.fa-book').forEach(function(val){
-
-  val.addEventListener('click', function(){
-    alert('jsp click')
-  })
-})
-
             $('.fa-book').on("click", function(){
-alert('jquery click')
                 uid = $(this).data('uid')
                 json_compare_list = $.cookie('compare_list')
                 msg_success = $("#notify-msg-translate").data("c_success")
