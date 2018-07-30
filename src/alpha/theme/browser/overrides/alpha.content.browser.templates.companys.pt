@@ -11,6 +11,17 @@
 <metal:content-core define-macro="content-core"
                     tal:define="toc context/table_of_contents|nothing;">
 
+<div class="map" style="height: 700px;">
+  <a style="position:absolute;top:0;left:0;top:0" href="javascript:void(0)"><img style="width:1800px" src="${portal_url}/++theme++alpha.theme/img/map/map_bg.png"></a>
+  <a style="display:none; position:absolute;top:0;left:0;top:0" href="javascript:void(0)"><img style="width:1800px" src="${portal_url}/++theme++alpha.theme/img/map/map_Africa.png"></a>
+  <a style="display:none; position:absolute;top:0;left:0;top:0" href="javascript:void(0)"><img style="width:1800px" src="${portal_url}/++theme++alpha.theme/img/map/map_Asia.png"></a>
+  <a style="display:none; position:absolute;top:0;left:0;top:0" href="javascript:void(0)"><img style="width:1800px" src="${portal_url}/++theme++alpha.theme/img/map/map_Middle-East.png"></a>
+  <a style="display:none; position:absolute;top:0;left:0;top:0" href="javascript:void(0)"><img style="width:1800px" src="${portal_url}/++theme++alpha.theme/img/map/map_North-America.png"></a>
+  <a style="display:none; position:absolute;top:0;left:0;top:0" href="javascript:void(0)"><img style="width:1800px" src="${portal_url}/++theme++alpha.theme/img/map/map_South-America.png "></a>
+  <a style="display:none; position:absolute;top:0;left:0;top:0" href="javascript:void(0)"><img style="width:1800px" src="${portal_url}/++theme++alpha.theme/img/map/map_South-Pacific.png"></a>
+  <a style="display:none; position:absolute;top:0;left:0;top:0" href="javascript:void(0)"><img style="width:1800px" src="${portal_url}/++theme++alpha.theme/img/map/map_Europe.png"></a>
+</div>
+
 <div class="col-lg-6 col-xs-12" tal:repeat="data view/companyBrains" style='padding: 0 7.5px 0 7.5px; margin-bottom: 10px'>
   <tal:define define="obj python:data.getObject()">
     <div class="col-lg-6 col-xs-6" 
