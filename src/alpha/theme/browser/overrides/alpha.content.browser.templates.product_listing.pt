@@ -39,10 +39,10 @@
               <div class="toolbar-sorter">
                 <span i18n:translate="">Sort By</span>
                 <select id="sort_by" name="sort_by" id="toolber-sorter" class="sorter-options" data-sort_by="${view/sort_by}"  onchange="getCategorySort()" >
-                  <option value="sort_on:sortable_title,sort_order:ascending"  i18n:translate="">Name (A to Z)</option>
+                  <option value="sort_on:sortable_title,sort_order:ascending"  i18n:translate="">Name (A - Z)</option>
                   <option value="sort_on:sortable_title,sort_order:descending" i18n:translate="">Name (Z - A)</option>
-                  <option value="sort_on:created,sort_order:reverse" i18n:translate="">Creation Date(new &gt;old)</option>
-                  <option value="sort_on:created,sort_order:ascending" i18n:translate="">Creation Date(old &gt; new)</option>
+                  <option value="sort_on:p_modelNo,sort_order:ascending" i18n:translate="">Model No(A - Z)</option>
+                  <option value="sort_on:p_modelNo,sort_order:descending" i18n:translate="">Model No(Z - A)</option>
                 </select>
               </div>
               <div class="field-limiter">
