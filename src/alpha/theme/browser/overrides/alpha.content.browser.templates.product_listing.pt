@@ -351,6 +351,15 @@
           <!-- single-shop-left-start -->
           <div class="single-shop-left mb-30">
             <div class="shop-left-title">
+              <a onclick="getCategorySort('brands:','p_category:','p_subject:')">
+                <h3> <span id="all" i18n:translate="">All</span></h3>
+              </a>
+            </div>
+          </div>
+          <!-- single-shop-left-end -->
+          <!-- single-shop-left-start -->
+          <div class="single-shop-left mb-30">
+            <div class="shop-left-title">
               <h3> <span i18n:translate="">Brands</span></h3>
             </div>
             <div class="shop-left-menu-2">
@@ -449,33 +458,34 @@
           brands = url.searchParams.get("brands");
           p_category = url.searchParams.get("p_category");
           p_subject  = url.searchParams.get("p_subject");
-          if(p_category != null && p_category != ""){
-              temp=""
-              for(var i=0; i<p_category.length; i++){
-                  temp+=p_category.charCodeAt(i);
+          if(brands || p_category || p_subject){
+              if(p_category){
+                  temp=""
+                  for(var i=0; i<p_category.length; i++){
+                      temp+=p_category.charCodeAt(i);
+                  }
+                  p_category = temp;
+                  $("#a"+p_category).css('color', '#f0ce16');
               }
-              p_category = temp;
-              $("#a"+p_category).css('color', '#f0ce16');
+              if(p_subject){
+                  temp=""
+                  for(var i=0; i<p_subject.length; i++){
+                      temp+=p_subject.charCodeAt(i);
+                  }
+                  p_subject = temp;
+                  $("#a"+p_category+p_subject).css('color', '#f0ce16');
+              }
+              if(brands){
+                  temp=""
+                  for(var i=0; i<brands.length; i++){
+                      temp+=brands.charCodeAt(i);
+                  }
+                  brands = temp;
+                  $("#b"+brands).css('color', '#f0ce16');
+              }
           }else{
               $("#all").css('color', '#f0ce16');
           }
-          if(p_subject != null){
-              temp=""
-              for(var i=0; i<p_subject.length; i++){
-                  temp+=p_subject.charCodeAt(i);
-              }
-              p_subject = temp;
-              $("#a"+p_category+p_subject).css('color', '#f0ce16');
-          }
-          if(brands != null && brands != ""){
-              temp=""
-              for(var i=0; i<brands.length; i++){
-                  temp+=brands.charCodeAt(i);
-              }
-              brands = temp;
-              $("#b"+brands).css('color', '#f0ce16');
-          }
-          
       }
 
       function setThumbOrDetail(id){
@@ -488,10 +498,10 @@
           var sort_by =  document.getElementById("sort_by").value;
           var sortByStr = '';
           sort_by.split(',').forEach(function(sortBy){
-              sortByStr += sortBy.split(':')[0] + "=" + sortBy.split(':')[1] + "&";
+              sortByStr += sortBy.split(':')[0] + "=" + encodeURIComponent(sortBy.split(':')[1]) + "&";
               }
           )
-          var queryStr = "?" +  "b_size=" + b_size + "&" + sortByStr;
+          var queryStr = "?" +  "b_size=" + encodeURIComponent(b_size) + "&" + sortByStr;
 
           var url = new URL(location.href);
           brands = url.searchParams.get("brands") || "";
@@ -504,16 +514,16 @@
               if(arguments[1].split(':')[1] || arguments[2].split(':')[1]){
                   var categoryStr = '';
                   for(i=1; i<arguments.length; i++){
-                      categoryStr += arguments[i].split(':')[0] + "=" + arguments[i].split(':')[1] + "&";
+                      categoryStr += arguments[i].split(':')[0] + "=" + encodeURIComponent(arguments[i].split(':')[1]) + "&";
                   }          
-                  categoryStr += 'brands' + "=" + brands + "&";
+                  categoryStr += 'brands' + "=" + encodeURIComponent(brands) + "&";
                   queryStr += categoryStr;
               }
 
               // query string add brand
               if(arguments[0].split(':')[1]){
-                  var brandStr = arguments[0].split(':')[0] + "=" + arguments[0].split(':')[1] + "&";
-                  brandStr += 'p_category' + "=" + p_category + "&" + 'p_subject' + '=' + p_subject;
+                  var brandStr = arguments[0].split(':')[0] + "=" + encodeURIComponent(arguments[0].split(':')[1]) + "&";
+                  brandStr += 'p_category' + "=" + encodeURIComponent(p_category) + "&" + 'p_subject' + '=' + encodeURIComponent(p_subject);
                   queryStr += brandStr;
               }
           }else{
