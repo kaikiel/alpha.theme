@@ -27,26 +27,37 @@
         <th class="product-thumbnail" i18n:translate="">IMAGE</th>
         <th class="product-name" i18n:translate="">PRODUCT NAME</th>
         <th class="product-quantity" i18n:translate="">QUANTITY</th>
+        <th class="product_discount" i18n:translate="" style='display:none'>DISCOUNT</th>
         <th class="product-price" i18n:translate="">UNIT PRICE</th>
         <th class="product-subtotal" i18n:translate="">TOTAL</th>
         <th class="product-remove" i18n:translate="">Remove</th>
       </tr>
     </thead>
     <tbody>
+
       <tr tal:repeat="product view/productData">
+<p class='detail' style='display:none'>${python: '%s * %s' %(product[0], product[4])}</p>
           <td class="product-thumbnail"><a href="${python: product[3]}"><img src="${python: product[3]}/@@images/cover"  /></a></td>
           <td class="product-name"><a href="${python: product[3]}">${python: product[0]}</a></td>
           <td class="product-quantity">
-		<input class="amount" data-uid="${python: product[5]}" type="number" value="${python: product[4]}"></td>
-          <td class="product-price" tal:switch="python: view.salePrice(product[6]) == None">
-            <span class="amount" tal:case="True">${python: product[1]}</span>
-            <span class="amount" tal:case="False">${python: view.salePrice(product[6])}</span>
+		<input class="amount" data-uid="${python: product[5]}" type="number" value="${python: product[4]}">
           </td>
-          <td class="product-subtotal sub_total" tal:condition="not: python: view.salePrice(product[6])" data-discount="${python: product[6].disc_amount}">
-            ${python: product[4] * product[1]}
+          <td class='product_discount' style='display:none'>
+            ${python: product[6].disc_amount}
+          </td>
+          <td class="product-price" tal:switch="python: view.salePrice(product[6]) == None">
+            <span i18n:translate="dollar"></span>
+            <span class="price" tal:case="True">${python: product[1]}</span>
+            <span class="price" tal:case="False">${python: view.salePrice(product[6])}</span>
+          </td>
+          <td class="product-subtotal sub_total" tal:condition="not: python: view.salePrice(product[6])" 
+              data-discount="${python: product[6].disc_amount}">
+	    <span i18n:translate="dollar"></span>
+            <span class='sub_total_price'>${python: product[4] * product[1]}</span>
           </td>
           <td class="product-subtotal sub_total" tal:condition="python: view.salePrice(product[6])" data-discount="${python: product[6].disc_amount}">
-            ${python: product[4] * view.salePrice(product[6])}
+            <span i18n:translate="dollar"></span>
+            <span class='sub_total_price'>${python: product[4] * view.salePrice(product[6])}</span>
           </td>
           <td class="product-remove"><i class="fa fa-times" data-uid="${python: product[5]}" style="cursor:pointer"></i></td>
       </tr>
@@ -117,20 +128,20 @@
 	    val = parseInt($(this).val())
 	    uid = $(this).data('uid')
 
-	    unit_price = $(this).parent().parent().find('.product-price').text()
-	    total = $(this).parent().parent().find('.product-subtotal').text(val * unit_price)
+	    unit_price = $(this).parent().parent().find('.price').text()
+	    total = $(this).parent().parent().find('.sub_total_price').text(val * unit_price)
 	    total_price = 0
             total_disc = 0
             $('.sub_total').each(function(){
-                price = parseInt($(this).text())
                 var coupon_code = document.getElementById("coupon_code").value;
+                sub_total = parseInt($(this).find('.sub_total_price').text())
                 if(coupon_code != ""){
-                    var qty = parseInt($(this).prev().prev().children().val());
+                    var qty = parseInt($(this).parent().find('.amount').val());
                     var disc = parseInt($(this).data("discount")) * qty;
-                    total_disc += disc;
-                    price -= disc
+                    total_disc += disc
                 }
-                total_price += price
+                total_price += sub_total 
+                
             })
             $(".discount-price").text(total_disc)
             $('.total_number').text(total_price)
@@ -245,10 +256,18 @@
 		currency = rep['transactions'][0]['amount']['currency']
 		coupon_code = $('#coupon_code').val()
 		if(coupon_code){
+                    shop_data = JSON.parse($.cookie('shop_cart'))
+                    detail = ''
+                    $('.detail').each(function(){
+                        detail += $(this).text() + ','
+                    })
+                    discount = $('.discount-price').text() 
                     data = {
                         'coupon_code': coupon_code,
 			'total': total,
-			'currency': currency
+			'currency': currency,
+                        'detail': detail,
+                        'discount': discount
                     }
                     url = location.href.replace('confirm_cart', 'use_coupon')
                     $.ajax({
@@ -256,17 +275,16 @@
                         url: url,
                         data: data,
                         success: function(){
+	                    msg = $('#notify-msg-translate').data('buy_success')
+                            $.notify(msg,  {globalPosition: 'bottom right',className:'success'})
+                            $.cookie('shop_cart', '')
                         }
                     })
 		}
-                $.cookie('shop_cart', '')
-                msg = $('#notify-msg-translate').data('buy_success')
-                $.notify(msg,  {globalPosition: 'bottom right',className:'success'})
                 url = location.href.replace('confirm_cart', 'products')
                 setTimeout(function(){
                     location.href = url
-                }, 4000)
-
+                }, 3000)
             });
         }
     }, '#paypal-button-container');
@@ -291,16 +309,21 @@
                     var total_price = 0;
                     var total_disc = 0;
                     $('.sub_total').each(function(){
-                        price = parseInt($(this).text())
-                        var coupon_code = document.getElementById("coupon_code").value;
+                        var coupon_code = document.getElementById("coupon_code").value;                        
                         if(coupon_code != ""){
-                            var qty = parseInt($(this).prev().prev().children()["0"].value);
-                            var disc = parseInt($(this).data("discount")) * qty;
-                            total_disc += disc;
-                            price -= disc
+                            var disc = parseInt($(this).data("discount")) ;
+
+                            unit_price = parseInt($(this).parent().find('.price').text())
+                            $(this).parent().find('.price').text(unit_price - disc)
+
+                            var qty = parseInt($(this).parent().find('.amount').val());
+                            $(this).parent().find('.sub_total_price').text((unit_price - disc) * qty)
+                            
+                            total_disc += disc * qty
+                            total_price += (unit_price - disc) * qty
                         }
-                        total_price += price
                     })
+                    $('.product_discount').show()
                     $(".discount-price").text(total_disc)
                     $('.total_number').text(total_price)
                     promoCodeElement.classList.remove('validate');

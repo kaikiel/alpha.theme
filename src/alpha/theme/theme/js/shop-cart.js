@@ -7,10 +7,10 @@ var shop_product = {
            <div class="cart-info">
              <h5><a v-bind:href="url">{{title}}</a></h5>
 
-             <p>{{amount}} x {{price}}</p>
+             <p>{{dollar}} {{amount}} x {{price}}</p>
            </div>
         </div>`,
-    props: ['title', 'url', 'image', 'price', 'amount']
+    props: ['title', 'url', 'image', 'price', 'amount', 'dollar']
 }
 
 var shop_cart = new Vue({
@@ -19,11 +19,19 @@ var shop_cart = new Vue({
 	total_number: 0,
 	total_price: 0,
 	shop_data: {},
+        dollar: ""
     },
     components:{
         'shop_product': shop_product,
     },
     created: function(){
+        pathname = location.pathname.search('alpha_en')
+        if(pathname != -1){
+            this.dollar = '$'
+        }
+	else{
+            this.dollar = '¥'
+        }
         cookie_shop_cart = $.cookie('shop_cart')
 	if(cookie_shop_cart){
 	    json_shop_cart = JSON.parse(cookie_shop_cart)
@@ -75,7 +83,6 @@ var shop_cart = new Vue({
                             result.push(amount)
                             shop_cart.shop_data[uid] = result
                             shop_cart.total_price += result[2] * amount
-debugger
                         }
                     }
                 })

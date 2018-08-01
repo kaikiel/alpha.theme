@@ -565,7 +565,7 @@ $('.counter').counterUp({
 	  $( "#slider-range" ).slider({
 	   range: true,
 	   min: 0,
-	   max: 20000,
+	   max: $('#price_max').data('max_price'),
 	   values: [ 200, 1000 ],
 
            slide: function(event, ui){
