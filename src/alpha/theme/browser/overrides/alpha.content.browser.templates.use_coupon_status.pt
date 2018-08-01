@@ -29,19 +29,21 @@ td{
 
 <table>
   <tr>
-    <th>推薦人</th>
-    <th>使用人</th>
+    <th>優惠卷</th>
     <th>貨幣</th>
     <th>金額</th>
+    <th>折扣金額</th>
+    <th>明細</th>
     <th>日期</th>
   </tr>
   
   <tr tal:repeat="data view/data">
-    <td>${python: data[4]}</td>
-    <td>${python: data[0]}</td>
     <td>${python: data[1]}</td>
-    <td>${python: data[2]}</td>
+    <td>${python: data[4]}</td>
+    <td>${python: data[5]}</td>
+    <td>${python: data[6]}</td>
     <td>${python: data[3]}</td>
+    <td>${python: data[7]}</td>
   </tr>
 </table>
 

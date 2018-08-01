@@ -613,8 +613,8 @@
             </div>
           </div>
           <!-- single-shop-left-end -->
-          <tal:repeat tal:define="categoryDict view/getCategoryList"
-                      tal:repeat="category python: sorted(categoryDict.keys())">
+          <div tal:define="categoryDict view/categoryList"
+               tal:repeat="category python: sorted(categoryDict.keys())">
             <tal:define tal:define="category_id python: ''.join(str(ord(c)) for c in category)">
               <!-- single-shop-left-start -->
               <div class="single-shop-left mb-30">
@@ -640,7 +640,7 @@
               </div>
               <!-- single-shop-left-end -->
             </tal:define>
-          </tal:repeat>
+          </div>
           <!-- single-shop-left-start -->
           <div class="single-shop-left mb-30">
             <div class="single-banner-2" tal:define="img view/getProductAD" tal:switch="python: len(img)>0">
@@ -655,8 +655,7 @@
     </div>
   </div>
 <p id='price_min' style='display:none'>${view/price_min}</p>
-<p id='price_max' style='display:none'>${view/price_max}</p>
-
+<p id='price_max' data-max_price="${view/max_price}" style='display:none'>${view/price_max}</p>
 </div>
 
 <script>
