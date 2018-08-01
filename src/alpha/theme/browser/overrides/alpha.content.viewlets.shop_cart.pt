@@ -1,6 +1,7 @@
 <html xmlns:v-on="http://www.vue.org/v-on"
     xmlns:v-bind="http://www.vue.org/v-bind"
-    xmlns:v-model="http://www.vue.org/v-model">
+    xmlns:v-model="http://www.vue.org/v-model" 
+    i18n:domain="alpha.theme">
 <?python
 from plone import api
 abs_url = api.portal.get().absolute_url()
@@ -19,10 +20,11 @@ abs_url = api.portal.get().absolute_url()
          v-bind:url="val[1]"
          v-bind:image="val[3]" 
 	 v-bind:amount="val[4]"
+         v-bind:dollar="dollar"
 	>
     </div>
     <div class="cart-totals">
-      <h5>Total <span style="color: rgb(246, 147, 31)">{{total_price}}</span></h5>
+      <h5>Total <span style="color: rgb(246, 147, 31)">{{total_price}}</span><span i18n:translate="dollar"> </span></h5>
     </div>
 
     <div class="cart-bottom">
@@ -30,6 +32,7 @@ abs_url = api.portal.get().absolute_url()
     </div>
    </div>
   </div>
+
 </li>
 
 </html>
