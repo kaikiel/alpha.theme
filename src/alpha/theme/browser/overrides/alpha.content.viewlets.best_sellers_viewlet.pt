@@ -14,12 +14,13 @@
       <tal:repeat repeat="item view/getBestSellers">
         <tal:define define="obj item/getObject;
                             item_title item/Title;
+                            item_productNo obj/productNo;
                             item_uid item/UID;
                             item_url item/getURL;
                             item_disc obj/disc_amount;
-                            item_price python: view.salePrice(obj);
-                            item_sale python: item_price - item_disc;
-                            is_has_item_sale python: item_disc>0;
+                            item_price obj/price;
+                            item_sale python: view.salePrice(obj);
+                            is_has_item_sale view/hasSale;
                             item_availability obj/availability;
                             item_rating python: int(obj.rating or 0);
                             not_odd_item python: repeat.item.length%2 != 0;">
@@ -32,6 +33,7 @@
                 </a>
               </div>
               <div class="product-content">
+                <span>${item_productNo}</span>
                 <h3><a href="${item_url}">${item_title}</a></h3>
                 <div class="product-rating mb-10">
                   <tal:repeat tal:repeat="star python: range(5)">
@@ -47,7 +49,7 @@
                     <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
                   </ul>
                   <ul tal:case="False">
-                    <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                    <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
                   </ul>
                 </div>
                 <div class="add-to-links mt-15">
@@ -70,6 +72,7 @@
                 </a>
               </div>
               <div class="product-content">
+                <span>${item_productNo}</span>
                 <h3><a href="${item_url}">${item_title}</a></h3>
                 <div class="product-rating mb-10">
                   <tal:repeat tal:repeat="star python: range(5)">
@@ -85,7 +88,7 @@
                     <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
                   </ul>
                   <ul tal:case="False">
-                    <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                    <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
                   </ul>
                 </div>
                 <div class="add-to-links mt-15">

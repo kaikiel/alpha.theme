@@ -89,9 +89,9 @@
                                            item_uid item/UID;
                                            item_url item/getURL;
                                            item_disc obj/disc_amount;
-                                           item_price python: view.salePrice(obj);
-                                           item_sale python: item_price - item_disc;
-                                           is_has_item_sale python: item_disc>0;
+                                           item_price obj/price;
+                                           item_sale python: view.salePrice(obj);
+                                           is_has_item_sale view/hasSale;
                                            item_availability obj/availability;
                                            item_rating python: int(obj.rating or 0);">
                           <!-- single-product-start -->
@@ -102,6 +102,7 @@
                               </a>
                             </div>
                             <div class="product-content">
+                              <span>${item_productNo}</span>
                               <h3><a href="${item_url}">${item_title}</a></h3>
                               <div class="product-rating mb-10">
                                 <tal:repeat tal:repeat="star python: range(5)">
@@ -117,7 +118,7 @@
                                   <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
                                 </ul>
                                 <ul tal:case="False">
-                                  <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                                  <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
                                 </ul>
                               </div>
                               <div class="add-to-links mt-15">
@@ -144,9 +145,9 @@
                                            item_url item/getURL;
                                            item_description obj/description;
                                            item_disc obj/disc_amount;
-                                           item_price python: view.salePrice(obj);
-                                           item_sale python: item_price - item_disc;
-                                           is_has_item_sale python: item_disc>0;
+                                           item_price obj/price;
+                                           item_sale python: view.salePrice(obj);
+                                           is_has_item_sale view/hasSale;
                                            item_availability obj/availability;
                                            item_rating python: int(obj.rating or 0);">
                   <!-- shop-product-start -->
@@ -165,6 +166,7 @@
                     <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
                       <!-- single-details-start -->
                       <div class="product-details-2">
+                        <span>${item_productNo}</span>
                         <h3><a href="${item_url}">${item_title}</a></h3>
                               <div class="product-rating mb-10">
                                 <tal:repeat tal:repeat="star python: range(5)">
@@ -180,7 +182,7 @@
                                   <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
                                 </ul>
                                 <ul tal:case="False">
-                                  <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                                  <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
                                 </ul>
                               </div>
                         <p>${item_description}</p>
@@ -216,15 +218,16 @@
               <tal:repeat repeat="item batch">
                 <tal:define define="obj item/getObject;
                                     item_title item/Title;
+                                    item_productNo obj/productNo;
                                     item_description obj/description;
                                     item_uid item/UID;
                                     item_url item/getURL;
                                     item_brand obj/brand;
                                     item_productCode obj/productCode;
                                     item_disc obj/disc_amount;
-                                    item_price python: view.salePrice(obj);
-                                    item_sale python: item_price - item_disc;
-                                    is_has_item_sale python: item_disc>0;
+                                    item_price obj/price;
+                                    item_sale python: view.salePrice(obj);
+                                    is_has_item_sale view/hasSale;
                                     item_availability obj/availability;
                                     item_rating python: int(obj.rating or 0);">
                   
@@ -254,6 +257,7 @@
                             </div>
                           </div>
                           <div class="model-text">
+                            <span>${item_productNo}</span>
                             <h2><a href="${item_url}">${item_title}</a> </h2>
                             <div class="product-rating mb-10">
                               <tal:repeat tal:repeat="star python: range(5)">
@@ -269,7 +273,7 @@
                                 <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
                               </ul>
                               <ul tal:case="False">
-                                <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                                <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
                               </ul>
                             </div>
                             <div class="box-cart-bottom">
@@ -358,9 +362,9 @@
                                    item_uid item/UID;
                                    item_url item/getURL;
                                    item_disc obj/disc_amount;
-                                   item_price python: view.salePrice(obj);
-                                   item_sale python: item_price - item_disc;
-                                   is_has_item_sale python: item_disc>0;
+                                   item_price obj/price;
+                                   item_sale python: view.salePrice(obj);
+                                   is_has_item_sale view/hasSale;
                                    item_availability obj/availability;
                                    item_rating python: int(obj.rating or 0);">
             <li>
@@ -372,6 +376,7 @@
                       </a>
                     </div>
                     <div class="product-content">
+                      <span>${item_productNo}</span>
                       <h3><a href="${item_url}">${item_title}</a></h3>
                       <div class="product-rating mb-10">
                         <tal:repeat tal:repeat="star python: range(5)">
@@ -387,7 +392,7 @@
                           <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
                         </ul>
                         <ul tal:case="False">
-                          <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                          <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
                         </ul>
                       </div>
                       <div class="add-to-links mt-15">

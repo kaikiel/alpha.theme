@@ -36,13 +36,14 @@
   <div class="modal-area">
     <tal:repeat repeat="item view/getAllIndexProduct">
       <tal:define define="item_title item/title;
+                          item_productNo item/productNo;
                           item_description item/description;
                           item_uid item/UID;
                           item_url item/absolute_url;
                           item_disc item/disc_amount;
-                          item_price python: view.salePrice(item);
-                          item_sale python: item_price - item_disc;
-                          is_has_item_sale python: item_disc>0;
+                          item_price item/price;
+                          item_sale python: view.salePrice(item);
+                          is_has_item_sale view/hasSale;
                           item_brand item/brand;
                           item_productCode item/productCode;
                           item_availability item/availability;
@@ -74,6 +75,7 @@
                   </div>
                 </div>
                 <div class="model-text">
+                  <span>${item_productNo}</span>
                   <h2><a href="${item_url}">${item_title}</a> </h2>
                   <div class="product-rating mb-10">
                     <tal:repeat tal:repeat="star python: range(5)">
@@ -89,7 +91,7 @@
                       <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
                     </ul>
                     <ul tal:case="False">
-                      <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                      <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
                     </ul>
                   </div>
                   <div class="box-cart-bottom">

@@ -7,16 +7,16 @@
         <tal:repeat tal:repeat="item view/getTimeLimit">
         <tal:define define="obj item/getObject;
                             item_title item/Title;
+                            item_productNo obj/productNo;
                             item_description item/Description;
                             item_uid item/UID;
                             item_url item/getURL;
                             item_disc obj/disc_amount;
-                            item_price python: view.salePrice(obj);
-                            item_sale python: item_price - item_disc;
-                            is_has_item_sale python: item_disc>0;
+                            item_price obj/price;
+                            item_sale python: view.salePrice(obj);
+                            is_has_item_sale False;
                             item_availability obj/availability;
                             item_rating python: int(obj.rating or 0);">
-
           <div class="col-lg-12">
             <div class="single-special-product">
               <div class="special-product-img">
@@ -27,6 +27,7 @@
                   <div data-countdown="${obj/timeLimit}"></div>
                 </div>
                 <div class="special-product-text">
+                  <span>${item_productNo}</span>
                   <h3><a href="${item_url}">${item_title}</a></h3>
                   <div class="product-rating mb-10">
                     <tal:repeat tal:repeat="star python: range(5)">
@@ -42,7 +43,7 @@
                       <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
                     </ul>
                     <ul tal:case="False">
-                      <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                      <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
                     </ul>
                   </div>
                   <p>${item_description}</p>

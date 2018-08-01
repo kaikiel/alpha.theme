@@ -1462,7 +1462,7 @@ body {
 }
 .product-total .single-product .product-content .add-to-links {
   position: absolute;
-  top: 40px;
+  top: 70px;
   left: 0;
   opacity:0;
   visibility:hidden;

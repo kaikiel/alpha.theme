@@ -46,13 +46,20 @@
                 <div class="price-final product-price">
                   <tal:define tal:define="item_disc view/context/disc_amount;
                                           item_price python: view.salePrice(view.context);
-                                          item_sale python: item_price - item_disc;
-                                          has_sale_price python: item_disc>0">
-                  <span tal:condition="not: has_sale_price"><span i18n:translate="">dollar</span>${item_price}</span>
-		  <ul tal:condition="has_sale_price">
-		    <li class="new-price sale"><span i18n:translate="">dollar</span><span>${item_sale}</span></li>
-                    <li class="old-price"><span i18n:translate="">dollar</span><span>${item_price}</span></li>
-	          </ul>
+                                          item_sale view/context/price;
+                                          is_has_item_sale view/hasSale">
+                    <tal:switch tal:switch="python: view.context.getParentNode().id == 'promotions'">
+                      <tal:case tal:case="False"> 
+                        <span tal:condition="not: is_has_item_sale"><span i18n:translate="">dollar</span>${item_price}</span>
+                        <ul tal:condition="is_has_item_sale">
+                          <li class="new-price sale"><span i18n:translate="">dollar</span><span>${item_price}</span></li>
+                          <li class="old-price"><span i18n:translate="">dollar</span><span>${item_sale}</span></li>
+                        </ul>
+                      </tal:case>
+                      <tal:case tal:case="True">
+                        <span tal:condition="not: is_has_item_sale"><span i18n:translate="">dollar</span>${item_price}</span>
+                      </tal:case> 
+                    </tal:switch>
                   </tal:define>
                 </div>
               </div>

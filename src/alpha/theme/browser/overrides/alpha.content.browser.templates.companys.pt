@@ -48,7 +48,7 @@
 	background-repeat: no-repeat;height: 250px;"></div>
     <div class="col-lg-6 col-xs-6" style='background:black; position: relative;height:250px'>
       <p style='font-size:23px;color:white;padding: 5px 8px'>${python: obj.title}</p>
-      <p style='font-size:18px;color:white;padding: 5px'>${python: obj.description}</p>
+      <div style='font-size:18px;color:white;padding: 5px' tal:content="structure python: getattr(obj.text, 'raw', '')"></div>
       <p style='position: absolute; bottom:0;color:yellow;font-size: 18px; padding: 5px;margin:0'>${python: obj.image_caption}</p>
     </div>
 
