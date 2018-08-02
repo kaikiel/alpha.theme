@@ -18,6 +18,7 @@ th, td{
     border: 1px solid #ccc;
     text-align: center;
     padding: 5px 10px;
+    vertical-align: middle !important;
 }
 th{
     font-size: 20px;
@@ -30,23 +31,38 @@ td{
 <table>
   <tr>
     <th>優惠卷</th>
+    <th>持有人</th>
+    <th>使用人</th>
     <th>貨幣</th>
     <th>金額</th>
-    <th>折扣金額</th>
     <th>明細</th>
+    <th>折扣金額</th>
+    <th>折扣明細</th>
     <th>日期</th>
   </tr>
   
   <tr tal:repeat="data view/data">
     <td>${python: data[1]}</td>
-    <td>${python: data[4]}</td>
+    <td>${python: data[2]}</td>
+    <td>${python: data[3]}</td>
     <td>${python: data[5]}</td>
     <td>${python: data[6]}</td>
-    <td>${python: data[3]}</td>
+    <td>
+      <tal:repeat  repeat="item python: data[4].split(',')">
+         <span tal:condition="item">${python: item + '/'}</span>
+      </tal:repeat>
+    </td>
     <td>${python: data[7]}</td>
+
+    <td>
+      <tal:repeat  repeat="item python: data[8].split(',')">
+        <span tal:condition="item">${python: item + '/'}</span>
+      </tal:repeat>
+    </td>
+
+    <td>${python: data[9]}</td>
   </tr>
 </table>
-
 
 </metal:content-core>
 </metal:content-core>
