@@ -66,8 +66,10 @@
  </form>
 </div>
 
+<tal:cond condition="not: view/isHighLv">
+
 <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
- <div class="coupon" tal:condition="view/useCoupon">
+ <div class="coupon" >
   <h3 i18n:translate="">Coupon</h3>
   <p i18n:translate="">Enter your coupon code if you have one.</p>
   <input type="text" placeholder="Coupon code" id='coupon_code' style='width:30%; margin-left: 5pt;' onblur="checkPromoCode()">
@@ -117,6 +119,16 @@
 <div id="paypal-button-container"></div>
  </div>
 </div>
+
+</tal:cond>
+
+<tal:cond condition="view/isHighLv">
+  <form action='download_excel' method='post'>
+    <input type='hidden' value='' name='productData' id='productData'>
+    <button id='download'> Download Excel</button>
+  </form>
+</tal:cond>
+
 </metal:content-core>
 </metal:content-core>
 
@@ -124,7 +136,10 @@
   <script src="https://www.paypalobjects.com/api/checkout.js"></script>
   <script>
     $(function(){
-
+        $('#download').click(function(){
+            $('#productData').val($.cookie('shop_cart'))
+        })   
+  
 	$('.amount').change(function(){
 	    val = parseInt($(this).val())
 	    uid = $(this).data('uid')
@@ -133,20 +148,20 @@
 	    total = $(this).parent().parent().find('.sub_total_price').text(val * unit_price)
 	    total_price = 0
             total_disc = 0
-            $('.sub_total').each(function(){
-                var coupon_code = document.getElementById("coupon_code").value;
-                sub_total = parseInt($(this).find('.sub_total_price').text())
-                if(coupon_code != ""){
-                    var qty = parseInt($(this).parent().find('.amount').val());
-                    var disc = parseInt($(this).data("discount")) * qty;
-                    total_disc += disc
-                }
-                total_price += sub_total 
-                
-            })
-            $(".discount-price").text(total_disc)
-            $('.total_number').text(total_price)
-
+            if('${view/isHighLv}' != 'True'){
+                $('.sub_total').each(function(){
+                    var coupon_code = document.getElementById("coupon_code").value;
+                    sub_total = parseInt($(this).find('.sub_total_price').text())
+                    if(coupon_code != ""){
+                        var qty = parseInt($(this).parent().find('.amount').val());
+                        var disc = parseInt($(this).data("discount")) * qty;
+                        total_disc += disc
+                    }
+                    total_price += sub_total 
+                })
+                $(".discount-price").text(total_disc)
+                $('.total_number').text(total_price)
+            }
 	    cookie_shop_cart = JSON.parse($.cookie('shop_cart'))
 	    cookie_shop_cart[uid] = val
 	    $.cookie('shop_cart', JSON.stringify(cookie_shop_cart))
@@ -287,6 +302,7 @@
                         success: function(){
 	                    msg = $('#notify-msg-translate').data('buy_success')
                             $.notify(msg,  {globalPosition: 'bottom right',className:'success'})
+                            $.cookie('shop_cart', '')
                         }
                     })
 		}
