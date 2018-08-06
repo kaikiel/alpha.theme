@@ -2409,15 +2409,16 @@
     <!-- all js here -->
     <!-- facebook like button -->
     <div id="fb-root"></div>
-    <script defer>(function(d, s, id) {
+    <script async>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
+      js.async=true;
       js.src = 'https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.0';
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
     <!-- twitter share button -->
-    <script defer async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <!-- jquery latest version -->
         <script src="js/vendor/jquery-1.12.0.min.js"></script>
     <!-- bootstrap js -->

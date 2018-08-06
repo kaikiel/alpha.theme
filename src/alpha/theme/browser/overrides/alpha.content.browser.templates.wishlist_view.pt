@@ -37,10 +37,11 @@
                     <tal:define tal:define="item_title obj/title;
                                             item_uid obj/UID;
                                             item_url obj/absolute_url;
+                                            item_disc obj/disc_amount;
                                             item_price obj/price;
-                                            item_sale  obj/salePrice;
-                                            item_availability obj/availability;
-                                            is_has_item_sale python: item_sale!=None;">
+                                            item_sale python: view.salePrice(obj);
+                                            is_has_item_sale view/hasSale;
+                                            item_availability obj/availability;">
                       <tr>
                         <td class="product-remove"><a data-uid="${item_uid}" class="remove_btn">×</a></td>
                         <td class="product-thumbnail"><a href="${item_url}"><img src="${item_url}/@@images/cover/preview" alt="man" /></a></td>
@@ -53,7 +54,7 @@
                                 <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
                               </ul>
                               <ul tal:case="False">
-                                <li class="new-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                                <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
                               </ul>
                             </div>
                           </span>

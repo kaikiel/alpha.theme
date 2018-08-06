@@ -49,29 +49,31 @@ th{
   </tr>
   <tr>
     <td i18n:translate="">Product</td>
-    <td tal:repeat="item view/data" >
+    <td tal:repeat="item view/data" class="product-name" >
 	<a tal:define="obj python:item.getObject()" href="${python: obj.absolute_url()}">${python: obj.title}</a>
     </td>
   </tr>
   <tr>
     <td i18n:translate="">Image</td>
-    <td tal:repeat="item view/data"><img tal:define="obj python:item.getObject()" src="${python: obj.absolute_url()}/@@images/cover"></td>
+    <td class="product-thumbnail" tal:repeat="item view/data"><a tal:define="obj python:item.getObject()" href="${python: obj.absolute_url()}"><img src="${python: obj.absolute_url()}/@@images/cover"></a></td>
   </tr>
   <tr>
     <td i18n:translate="">Price</td>
     <td tal:repeat="item view/data" class="product-price" >
       <ul tal:define="obj python:item.getObject();
                       item_disc obj/disc_amount;
-                      item_price python: view.salePrice(obj);
-                      item_sale python: item_price - item_disc;
-                      is_has_item_sale python: item_disc>0;">
-	<tal:condition condition="is_has_item_sale">
-          <li class="new-price sale" style="font-size:30px">${item_sale}</li>
-          <li class="old-price">${item_price}</li>
-	</tal:condition>
-        <tal:condition condition="not: is_has_item_sale">
-          <li>${item_price}</li>
-        </tal:condition>
+                      item_price obj/price;
+                      item_sale python: view.salePrice(obj);
+                      is_has_item_sale view/hasSale;">
+        <tal:switch tal:switch="is_has_item_sale" >
+          <tal:case tal:case="True">
+            <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
+            <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
+          </tal:case>
+          <tal:case tal:case="False">
+            <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
+          </tal:case>
+        </tal:switch>
       </ul>
     </td>
   </tr>

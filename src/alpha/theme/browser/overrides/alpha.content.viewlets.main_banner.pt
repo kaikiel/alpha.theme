@@ -123,10 +123,12 @@
                     </div>
                   </div>
                   <!-- social-icon-start -->
+                  <!--
                   <div class="social-icon mt-20" id="social-button" data-title="alpha - ${item_title}" data-url="${item_url}">
                     <metal:block  metal:use-macro="context/social_button_macro/macros/social_btn_fb" />
                     <metal:block  metal:use-macro="context/social_button_macro/macros/social_btn_tweet_formodal" />
                   </div>
+                  -->
                   <!-- social-icon-end -->
                   <div class="short-description mt-20">
                     <p>${item_description}</p>

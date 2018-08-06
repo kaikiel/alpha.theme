@@ -7,7 +7,7 @@ var shop_product = {
            <div class="cart-info">
              <h5><a v-bind:href="url">{{title}}</a></h5>
 
-             <p>{{dollar}} {{amount}} x {{price}}</p>
+             <p>{{dollar}} {{price}} x {{amount}}</p>
            </div>
         </div>`,
     props: ['title', 'url', 'image', 'price', 'amount', 'dollar']
