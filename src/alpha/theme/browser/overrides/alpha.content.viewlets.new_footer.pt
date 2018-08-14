@@ -72,6 +72,7 @@
               <ul>
                 <li><a href="${view/context/portal_url}/personal_details" i18n:translate="">My Account</a></li>
                 <li><a href="${view/context/portal_url}/wishlist" i18n:translate="">Wish List</a></li>
+                <li><a href="${view/context/portal_url}/order_history" i18n:translate="">Order History</a></li>
               </ul>
             </div>
           </div>

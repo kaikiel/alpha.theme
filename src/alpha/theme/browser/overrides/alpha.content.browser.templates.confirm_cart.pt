@@ -6,11 +6,16 @@
     i18n:domain="alpha.theme">
 <body>
 
-
 <metal:content-core fill-slot="content-core">
 
 <metal:content-core define-macro="content-core"
                     tal:define="toc context/table_of_contents|nothing;">
+<style>
+label{
+  width: 100% !important;
+}
+</style>
+
   <div class="entry-header-area">
    <div class="col-lg-12">
     <div class="entry-header-title">
@@ -62,69 +67,104 @@
 
   <tal:switch tal:switch="view/hasCheckOut">
     <tal:case tal:case="True" tal:define="property view/getUserProperties">
-      <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-       <div class="coupon" tal:condition="view/hasPromoCode">
-        <h3 i18n:translate="">Coupon</h3>
-        <p i18n:translate="">Enter your coupon code if you have one.</p>
-        <input type="text" data-toggle="popover" data-content="Your Coupon Code is invalid" placeholder="Coupon code" id='coupon_code' style='width:30%; margin-left: 5pt;' onblur="checkPromoCode()" i18n:attributes="data-content;placeholder;">
-       </div>
+      <div class="col-sm-8 col-xs-12">
+        <div class="coupon row" tal:condition="view/hasPromoCode">
+         <div class="col-xs-8 col-sm-6 col-md-4">
+           <h3 i18n:translate="">Coupon</h3>
+           <p i18n:translate="">Enter your coupon code if you have one.</p>
+           <input type="text" data-toggle="popover" data-content="Your Coupon Code is invalid" placeholder="Coupon code" id='coupon_code' style='margin-left: 5pt;' onblur="checkPromoCode()" i18n:attributes="data-content;placeholder;">
+         </div>
+        </div>
        
-       <label style='width:30%' ><span i18n:translate="">Recipient Name</span>:
-       <input type='text' id="recipient_name" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/fName}" 
-              ></label>
-       <select id="country" data-trigger="manual" data-toggle="popover" data-content="Please fill in" 
-              style='padding:5px 10px;margin-top:22px;border:none'>
-         <option i18n:translate="">Please Choice</option>
-         <option value="US" i18n:translate="">USA</option>
-         <option value="C2" i18n:translate="">CHINA</option>
-         <option value="TW" i18n:translate="">TAIWAN</option>
-       </select>
-       <br>
-       <label style='width:30%;margin-right:10px' ><span i18n:translate="">State</span>:
-              <input type='text' id="state" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/state}" i18n:attributes="data-content;"></label>
-       <label style='width:30%;margin-right:10px' ><span i18n:translate="">City</span>:
-              <input type='text' id="city" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/city}"></label>
-       <label ><span i18n:translate="">Postal Code</span>:<input type='text' id="postal_code" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/zip}"></label>
-       <br>
-       <label style='width:100%'><span i18n:translate="">Address</span>:<input type='text' id="address" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/address1} ${property/address2}"></label>
+        <div class="row"> 
+          <div class="col-xs-6 col-md-4">
+            <label ><span i18n:translate="">Recipient Name</span>:
+              <input class="form-control" type='text' id="recipient_name" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/fName}"  i18n:attributes="data-content;" >
+            </label>
+          </div>
+          <div class="col-xs-6 col-sm-5 col-md-3">
+            <label><span i18n:translate="">Country</span>
+              <select  class="form-control" id="country" data-trigger="manual" data-toggle="popover" data-content="Please fill in" 
+                      i18n:attributes="data-content;">
+                <option i18n:translate="">Please Choice</option>
+                <option value="US" i18n:translate="">USA</option>
+                <option value="C2" i18n:translate="">CHINA</option>
+                <option value="TW" i18n:translate="">TAIWAN</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6 col-md-3">
+            <label><span i18n:translate="">State</span>:
+              <input type='text' id="state" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/state}" i18n:attributes="data-content;">
+            </label>
+          </div>
+          <div class="col-xs-6 col-md-3">
+            <label><span i18n:translate="">City</span>:
+              <input type='text' id="city" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/city}" i18n:attributes="data-content;">
+            </label>
+          </div>
+          <div class="col-xs-6 col-md-3">
+            <label><span i18n:translate="">Postal Code</span>:
+              <input type='text' id="postal_code" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/zip}" i18n:attributes="data-content;">
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <label><span i18n:translate="">Address</span>:
+              <input type='text' id="address" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/address1} ${property/address2}" i18n:attributes="data-content;">
+            </label>
+          </div>
+        </div>
       </div>
 
-      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-bottom:20px">
-       <div class="cart_totals"  i18n:translate="">
-        <h2 i18n:translate="">Cart Totals</h2>
-        <br>
-        <table>
-         <tbody>
-          <tr class="order-discount">
-           <th i18n:translate="">Discount Amount</th>
-           <td>
-            <strong>
-             <span class="amount discount-price" id="discount-price">0</span>
-            </strong>
-           </td>
-          </tr>
-          <tr class="order-total">
-           <th i18n:translate="">Total</th>
-           <td>
-            <strong>
-             <span class="amount total_number">${view/totalNumber}</span>
-            </strong>
-           </td>
-          </tr>
-         </tbody>
-        </table>
-      <div id="paypal-button-container"></div>
-       </div>
+      <div class="col-sm-4 col-xs-12" >
+        <div class="cart_totals"  i18n:translate="">
+          <div class="row">
+            <h2 i18n:translate="">Cart Totals</h2>
+          </div>
+          <div class="row">
+            <table>
+              <tbody>
+                <tr class="order-discount">
+                  <th i18n:translate="">Discount Amount</th>
+                  <td>
+                    <strong>
+                      <span class="amount discount-price" id="discount-price">0</span>
+                    </strong>
+                  </td>
+                </tr>
+                <tr class="order-total">
+                  <th i18n:translate="">Total</th>
+                  <td>
+                    <strong>
+                      <span class="amount total_number">${view/totalNumber}</span>
+                    </strong>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div id="paypal-button-container" style="float:right;"></div>
+          </div>
+        </div>
       </div>
     </tal:case>
 
     <tal:case tal:case="False">
-      <form action='download_excel' method='post'>
-        <input type='hidden' value='' name='productData' id='productData'>
-        <button id='download' class='oval-btn' i18n:translate="">Download Excel</button>
-      </form>
+      <div class="row">
+        <div class="col"> 
+          <a target="_blank" href="download_excel" style="float:right;" id='download' class='oval-btn' i18n:translate="">Download Excel</a>
+        </div>
+      </div>
     </tal:case>
   </tal:switch>
+
+  <div style="margin-bottom:20px" />
 
 </metal:content-core>
 </metal:content-core>
@@ -134,7 +174,7 @@
   <script>
     $(function(){
         $('#download').click(function(){
-            $('#productData').val($.cookie('shop_cart'))
+            window.location.href = "products";
         })   
   
 	$('.amount').change(function(){
@@ -199,7 +239,7 @@
 		setTimeout(function(){$('#recipient_name').popover('hide')}, 3000)	 
 		flag = 0
             }
-            if(!country || country == 'Please Choice' || country == '請选择'){
+            if(!country || $('#country')[0].selectedIndex == 0){
                 $('#country').popover('show')
 		setTimeout(function(){$('#country').popover('hide')}, 3000)
 		flag = 0
@@ -265,7 +305,7 @@
                         discount_price = $(this).find('.product_discount').text().trim()
                         price = $(this).find('.price').text()
 
-                        product_detail += product_name + ': ' + price + '*' + amount + ', '
+                        product_detail += product_name + ': ' + int(price)-int(discount_price) + '*' + amount + ', '
                         discount_detail += product_name + ': (' + price + ' - '+ discount_price + ') *' + amount + ', '
                     })
 

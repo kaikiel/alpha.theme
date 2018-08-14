@@ -8,6 +8,12 @@
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core"
                     tal:define="toc context/table_of_contents|nothing;">
+<style>
+  td {
+    min-width: 65pt;
+  }
+</style>
+
 
 <div class="cart-main-area mb-70">
   <div class="container">

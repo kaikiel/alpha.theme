@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:v-on="http://vuejs.org"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="alpha.theme">
+<body>
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core"
+    tal:define="toc context/table_of_contents|nothing;">
+<style>
+  td {
+    min-width: 65pt;
+  }
+</style>
+
+
+${view/checkAnonymous}
+
+<div class="cart-main-area mb-70">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="wishlist-content">
+          <form action="#">
+            <div class="wishlist-title">
+              <h2 i18n:translate="">Order History</h2>
+            </div>
+            <div class="wishlist-table table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="product-name" i18n:translate="">Order Date</th>
+                    <th class="product-name" i18n:translate="">Recipient Name</th>
+                    <th class="product-name" i18n:translate="">Address</th>
+                    <th class="product-name" i18n:translate="">Order Detail</th>
+                    <th class="product-price" i18n:translate="">Order Total</th>
+                  </tr>
+                </thead>
+                <tbody tal:repeat="item view/getMyOrder">
+                  <tr>
+                    <td class="product-name">${item/time}</td>
+                    <td class="product-name">${item/recipient_name}</td>
+                    <td class="product-name">${item/address}</td>
+                    <td class="product-name">
+                      <p tal:repeat="product python: item['product_detail'].split(',')">${product}</p>
+                    </td>
+                    <td class="product-price"><span class="amount">${item/currency} ${item/total}</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</metal:content-core>
+</metal:content-core>
+
+</body>
+</html>
+
+

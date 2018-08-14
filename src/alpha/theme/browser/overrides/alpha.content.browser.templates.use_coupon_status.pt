@@ -5,64 +5,78 @@
     xmlns:v-on="http://vuejs.org"
     lang="en"
     metal:use-macro="context/main_template/macros/master"
-    i18n:domain="gct.item">
+    i18n:domain="alpha.theme">
 <body>
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core"
                     tal:define="toc context/table_of_items|nothing;">
 <style>
-table{
-    margin-bottom: 10px;
-}
-th, td{
-    border: 1px solid #ccc;
-    text-align: center;
-    padding: 5px 10px;
-    vertical-align: middle !important;
-}
-th{
-    font-size: 20px;
-}
-td{
-    font-size: 18px;
-}
+  td {
+    min-width: 65pt;
+  }
+
+  tr.drop td {
+    background: #ecf2f7d1;
+    border-bottom: 1px solid;
+  }
 </style>
 
-<table>
-  <tr>
-    <th>優惠卷</th>
-    <th>持有人</th>
-    <th>使用人</th>
-    <th>貨幣</th>
-    <th>金額</th>
-    <th>明細</th>
-    <th>折扣金額</th>
-    <th>折扣明細</th>
-    <th>日期</th>
-  </tr>
-  
-  <tr tal:repeat="data view/data">
-    <td>${python: data[1]}</td>
-    <td>${python: data[2]}</td>
-    <td>${python: data[3]}</td>
-    <td>${python: data[5]}</td>
-    <td>${python: data[6]}</td>
-    <td>
-      <tal:repeat  repeat="item python: data[4].split(',')">
-         <span tal:condition="item">${python: item + '/'}</span>
-      </tal:repeat>
-    </td>
-    <td>${python: data[7]}</td>
+<div class="cart-main-area mb-70">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="wishlist-content">
+          <form action="#">
+            <div class="wishlist-title">
+              <h2 i18n:translate="">Order History</h2>
+            </div>
+            <div class="wishlist-table table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="product-name" i18n:translate="">Order Date</th>
+                    <th class="product-name" i18n:translate="">Member Name</th>
+                    <th class="product-name" i18n:translate="">Recipient Name</th>
+                    <th class="product-price" i18n:translate="">Order Total</th>
+                  </tr>
+                </thead>
+                <tbody tal:repeat="item view/data">
+                  <tr data-toggle="collapse" data-target=".order${repeat/item/number}">
+                    <td class="product-name">${item/time}</td>
+                    <td class="product-name">${item/recipient_name}</td>
+                    <td class="product-name">${item/user}</td>
+                    <td class="product-price"><span class="amount">${item/currency} ${item/total}</span></td>
+                  </tr>
+                  <tr class="collapse order${repeat/item/number} drop">
+                    <td class="product-name" i18n:translate="">Address</td>
+                    <td class="product-name" colspan="3" >${item/address}</td>
+                  </tr>
+                  <tr class="collapse order${repeat/item/number} drop">
+                    <td class="product-name" i18n:translate="">Coupon Code</td>
+                    <td class="product-name">${item/coupon_code}</td>
+                    <td class="product-name" i18n:translate="">Coupon Code Owner</td>
+                    <td class="product-name">${item/coupon_owner}</td>
+                  </tr>
+                  <tr class="collapse order${repeat/item/number} drop">
+                    <td class="product-name" i18n:translate="">Order Detail</td>
+                    <td class="product-name">
+                      <p tal:repeat="product python: item['product_detail'].split(',')">${product}</p>
+                    </td>
+                    <td class="product-name" i18n:translate="">Discount Detail</td>
+                    <td class="product-name">
+                      <p tal:repeat="product python: item['discount_detail'].split(',')">${product}</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <td>
-      <tal:repeat  repeat="item python: data[8].split(',')">
-        <span tal:condition="item">${python: item + '/'}</span>
-      </tal:repeat>
-    </td>
-
-    <td>${python: data[9]}</td>
-  </tr>
-</table>
 
 </metal:content-core>
 </metal:content-core>

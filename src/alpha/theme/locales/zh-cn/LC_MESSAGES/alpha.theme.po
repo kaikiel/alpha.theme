@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-08-14 02:17+0000\n"
+"POT-Creation-Date: 2018-08-14 09:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,8 +18,8 @@ msgstr ""
 msgid "${view/address}"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:107
-msgid "<h2>x</h2> <br> <table> <tbody> <tr class=\"order-discount\"> <th>x</th> <td> <strong> <span class=\"amount discount-price\" id=\"discount-price\">0</span> </strong> </td> </tr> <tr class=\"order-total\"> <th>x</th> <td> <strong> <span class=\"amount total_number\">${view/totalNumber}</span> </strong> </td> </tr> </tbody> </table> <div id=\"paypal-button-container\"></div>"
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:141
+msgid "<div class=\"row\"> <h2>x</h2> </div> <div class=\"row\"> <table> <tbody> <tr class=\"order-discount\"> <th>x</th> <td> <strong> <span class=\"amount discount-price\" id=\"discount-price\">0</span> </strong> </td> </tr> <tr class=\"order-total\"> <th>x</th> <td> <strong> <span class=\"amount total_number\">${view/totalNumber}</span> </strong> </td> </tr> </tbody> </table> </div> <div class=\"row\"> <div id=\"paypal-button-container\" style=\"float:right;\"></div> </div>"
 msgstr ""
 
 #: ../browser/overrides/alpha.content.browser.templates.personal_view.pt:16
@@ -30,7 +30,7 @@ msgstr "帐户资讯"
 msgid "Add To Cart"
 msgstr "加入购物车"
 
-#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:67
+#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:73
 msgid "Add to Cart"
 msgstr "加入购物车"
 
@@ -40,8 +40,9 @@ msgstr "加入购物车"
 msgid "Add to cart"
 msgstr "加入购物车"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:89
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:117
 #: ../browser/overrides/alpha.content.browser.templates.contact_us.pt:15
+#: ../browser/overrides/alpha.content.browser.templates.order_history.pt:37
 msgid "Address"
 msgstr "地址"
 
@@ -90,15 +91,15 @@ msgstr "品牌"
 msgid "Brands"
 msgstr "品牌"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:79
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:91
 msgid "CHINA"
 msgstr "中国"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:17
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:22
 msgid "Cart"
 msgstr "购物车"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:94
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:127
 msgid "Cart Totals"
 msgstr "总数"
 
@@ -106,7 +107,7 @@ msgstr "总数"
 msgid "Category"
 msgstr "分类"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:85
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:105
 msgid "City"
 msgstr "城市"
 
@@ -123,19 +124,28 @@ msgstr "比较表"
 msgid "Contact Us"
 msgstr "联络我们"
 
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:86
 #: ../browser/overrides/alpha.content.browser.templates.personal_view.pt:89
 msgid "Country"
 msgstr "国家"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:67
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:73
 msgid "Coupon"
 msgstr "推荐码"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:69
+#: ../browser/overrides/alpha.content.browser.templates.use_coupon_status.pt:55
+msgid "Coupon Code"
+msgstr "推荐码"
+
+#: ../browser/overrides/alpha.content.browser.templates.use_coupon_status.pt:57
+msgid "Coupon Code Owner"
+msgstr "推荐人"
+
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:75
 msgid "Coupon code"
 msgstr "推荐码"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:30
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:35
 msgid "DISCOUNT"
 msgstr "折价金额"
 
@@ -143,11 +153,15 @@ msgstr "折价金额"
 msgid "Dead on Arrive"
 msgstr "送达时坏掉"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:99
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:133
 msgid "Discount Amount"
 msgstr "折扣总价"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:124
+#: ../browser/overrides/alpha.content.browser.templates.use_coupon_status.pt:65
+msgid "Discount Detail"
+msgstr ""
+
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:161
 msgid "Download Excel"
 msgstr "汇出订单"
 
@@ -168,7 +182,7 @@ msgstr "电子信箱"
 msgid "Enquiry"
 msgstr "询问"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:68
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:74
 msgid "Enter your coupon code if you have one."
 msgstr "输入你的推薦码"
 
@@ -201,12 +215,12 @@ msgstr "寻找你最喜欢的品牌"
 msgid "First Name"
 msgstr "名"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:27
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:32
 msgid "IMAGE"
 msgstr "商品图片"
 
 #: ../browser/overrides/alpha.content.browser.templates.compare_list.pt:57
-#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:28
+#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:34
 msgid "Image"
 msgstr "商品图片"
 
@@ -235,6 +249,10 @@ msgstr "登出"
 msgid "Login"
 msgstr "登入"
 
+#: ../browser/overrides/alpha.content.browser.templates.use_coupon_status.pt:38
+msgid "Member Name"
+msgstr "会员 ID"
+
 #: ../browser/overrides/alpha.content.browser.templates.product_listing.pt:44
 #: ../browser/overrides/alpha.content.browser.templates.search_view.pt:51
 msgid "Model No(A - Z)"
@@ -258,7 +276,7 @@ msgstr "我的帐户"
 msgid "My account"
 msgstr "我的帐户"
 
-#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:19
+#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:25
 #: ../browser/overrides/alpha.content.viewlets.account_viewlet.pt:27
 msgid "My wishlist"
 msgstr "愿望清单"
@@ -300,17 +318,35 @@ msgstr "查询不到澬料"
 msgid "Not In stock"
 msgstr "没有库存"
 
+#: ../browser/overrides/alpha.content.browser.templates.order_history.pt:35
 #: ../browser/overrides/alpha.content.browser.templates.return_product.pt:102
+#: ../browser/overrides/alpha.content.browser.templates.use_coupon_status.pt:37
 msgid "Order Date"
 msgstr "订单日期"
+
+#: ../browser/overrides/alpha.content.browser.templates.order_history.pt:38
+#: ../browser/overrides/alpha.content.browser.templates.use_coupon_status.pt:61
+msgid "Order Detail"
+msgstr "订单详情"
 
 #: ../browser/overrides/alpha.content.browser.templates.return_product.pt:153
 msgid "Order Error"
 msgstr "订单错误"
 
+#: ../browser/overrides/alpha.content.browser.templates.order_history.pt:29
+#: ../browser/overrides/alpha.content.browser.templates.use_coupon_status.pt:31
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:75
+msgid "Order History"
+msgstr "历史订单"
+
 #: ../browser/overrides/alpha.content.browser.templates.return_product.pt:93
 msgid "Order ID"
 msgstr "订单编号"
+
+#: ../browser/overrides/alpha.content.browser.templates.order_history.pt:39
+#: ../browser/overrides/alpha.content.browser.templates.use_coupon_status.pt:40
+msgid "Order Total"
+msgstr "消费总额"
 
 #: ../browser/overrides/alpha.content.browser.templates.return_product.pt:47
 msgid "Order information"
@@ -324,7 +360,7 @@ msgstr "其他，请提供详细信息"
 msgid "Our engine are designed and manufactured according to the highest precision and quality requirements to meet and exceed our customers expectations."
 msgstr "我們的引擎根据最高精度和质量要求进行设计直制作，以满足并超越客户的期望"
 
-#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:64
+#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:70
 msgid "Out of Stock"
 msgstr "没有库存"
 
@@ -332,7 +368,7 @@ msgstr "没有库存"
 msgid "PRODUCT COMPARE"
 msgstr "商品比较"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:28
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:33
 msgid "PRODUCT NAME"
 msgstr "商品名称"
 
@@ -345,7 +381,7 @@ msgstr "退货"
 msgid "Phone"
 msgstr "手机"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:77
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:89
 msgid "Please Choice"
 msgstr "请选择"
 
@@ -353,7 +389,7 @@ msgstr "请选择"
 msgid "Please complete the form below to request an RMA number."
 msgstr "请完成下列表格"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:84
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:82
 msgid "Please fill in"
 msgstr "此栏位必填"
 
@@ -361,7 +397,7 @@ msgstr "此栏位必填"
 msgid "Plone Theme: alpha.theme"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:87
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:110
 msgid "Postal Code"
 msgstr "邮递区号"
 
@@ -397,7 +433,7 @@ msgid "Product Information"
 msgstr "产品信息"
 
 #: ../browser/overrides/alpha.content.browser.templates.return_product.pt:114
-#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:29
+#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:35
 msgid "Product Name"
 msgstr "商品名称"
 
@@ -405,7 +441,7 @@ msgstr "商品名称"
 msgid "Product is opened"
 msgstr "商品是否打开"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:29
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:34
 msgid "QUANTITY"
 msgstr "数量"
 
@@ -425,13 +461,15 @@ msgstr "退货原因"
 msgid "Received Wrong Item"
 msgstr "收到了错的东西"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:72
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:81
+#: ../browser/overrides/alpha.content.browser.templates.order_history.pt:36
+#: ../browser/overrides/alpha.content.browser.templates.use_coupon_status.pt:39
 msgid "Recipient Name"
 msgstr "收件人姓名"
 
 #: ../browser/overrides/alpha.content.browser.templates.compare_list.pt:110
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:33
-#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:26
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:38
+#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:32
 msgid "Remove"
 msgstr "移除"
 
@@ -485,12 +523,12 @@ msgstr "特色商品"
 msgid "Specials"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:83
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:100
 #: ../browser/overrides/alpha.content.browser.templates.personal_view.pt:95
 msgid "State"
 msgstr "州/省"
 
-#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:31
+#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:37
 msgid "Stock Status"
 msgstr "库存状态"
 
@@ -502,11 +540,11 @@ msgstr "订阅"
 msgid "Summary"
 msgstr "概要"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:80
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:92
 msgid "TAIWAN"
 msgstr "台湾"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:32
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:37
 msgid "TOTAL"
 msgstr "总数"
 
@@ -515,7 +553,7 @@ msgstr "总数"
 msgid "Telephone"
 msgstr "电话"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:107
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:141
 msgid "Total"
 msgstr "总数"
 
@@ -523,11 +561,11 @@ msgstr "总数"
 msgid "Town/City"
 msgstr "县市"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:31
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:36
 msgid "UNIT PRICE"
 msgstr "单价"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:78
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:90
 msgid "USA"
 msgstr "美国"
 
@@ -539,7 +577,7 @@ msgstr ""
 msgid "Uninstalls the Plone theme package alpha.theme."
 msgstr ""
 
-#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:30
+#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:36
 msgid "Unit Price"
 msgstr "商品價格"
 
@@ -556,7 +594,7 @@ msgstr "是"
 msgid "Your Address"
 msgstr "您的地址"
 
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:69
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:75
 msgid "Your Coupon Code is invalid"
 msgstr "您的推薦码无效"
 
@@ -568,31 +606,31 @@ msgstr "您的姓名"
 msgid "Your Personal Details"
 msgstr "个人详细资料"
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:101
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:102
 msgid "add compare exist"
 msgstr "产品已经在比较列表中"
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:101
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:102
 msgid "add compare full"
 msgstr "比较列表已满"
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:101
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:102
 msgid "add compare success"
 msgstr "添加比较成功!!"
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:101
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:102
 msgid "add shop-cart empty"
 msgstr "商店购物车是空的"
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:101
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:102
 msgid "add shop-cart exist"
 msgstr "产品已经在购物车中"
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:101
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:102
 msgid "add shop-cart success"
 msgstr "添加产品成功"
 
-#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:32
+#: ../browser/overrides/alpha.content.browser.templates.wishlist_view.pt:38
 msgid "add-to-cart"
 msgstr "加入购物车"
 
@@ -636,7 +674,7 @@ msgstr "selectfrom our diverse range of products and complete your purchase in o
 msgid "best sellers"
 msgstr "热门商品"
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:101
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:102
 msgid "buy success"
 msgstr "订单建立成功"
 
@@ -649,7 +687,7 @@ msgid "customer service"
 msgstr "顾客服务"
 
 #: ../browser/overrides/alpha.content.browser.templates.compare_list.pt:70
-#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:48
+#: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:53
 #: ../browser/overrides/alpha.content.browser.templates.product_listing.pt:110
 msgid "dollar"
 msgstr "¥"
