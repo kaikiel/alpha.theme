@@ -143,7 +143,9 @@
 
 	    unit_price = $(this).parent().parent().find('.price').text()
 	    total = $(this).parent().parent().find('.sub_total_price').text(val * unit_price)
-            recountPrice()
+            if(!${view/hasPromoCode}){
+                recountPrice()
+            }
 	    cookie_shop_cart = JSON.parse($.cookie('shop_cart'))
 	    cookie_shop_cart[uid] = val
 	    $.cookie('shop_cart', JSON.stringify(cookie_shop_cart))
