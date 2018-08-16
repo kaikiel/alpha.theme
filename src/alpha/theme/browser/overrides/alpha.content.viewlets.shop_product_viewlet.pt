@@ -1,9 +1,8 @@
 <html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="alpha.theme">
 <div class="shop-product-viewlets">
-  <div class="static-center-area">
-    <img src="/++theme++alpha.theme/img/BANNER-2.jpg" alt="banner" />
-    <div class="static-content">
+  <div class="" style="padding: 5px 0 15px 0; background-image:url('/++theme++alpha.theme/img/BANNER-2.jpg'); background-repeat: no-repeat; background-size: cover;">
+    <div class="">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
@@ -29,7 +28,7 @@
           <div class="section-title mb-30">
             <h2 i18n:translate="">Most View</h2>
           </div>
-          <tal:block tal:switch="python: len(view.getMostView()) <= 3">
+          <tal:block tal:switch="python: len(view.getMostView()) <= 3 and len(view.getMostView()) != 0">
             <tal:content tal:content="structure string: <div class='product-active-2'>" tal:case="True" />
             <tal:content tal:content="structure string: <div class='product-active-4 mb-30'>" tal:case="False" />
           </tal:block>
@@ -92,14 +91,14 @@
                              tal:condition="python: repeat.item.number == repeat.item.length and not_multipleThree_item" />
               </tal:define>
             </tal:repeat>
-            <div tal:condition="python: len(view.getMostView()) <= 3" class="product-total"></div>
+            <div tal:condition="python: len(view.getMostView()) <= 3 and len(view.getMostView()) != 0" class="product-total"></div>
           <tal:content tal:content="structure string: </div>" />
         </div>
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
           <div class="section-title mb-30">
             <h2 i18n:translate="">Featured Products</h2>
           </div>
-          <tal:block tal:switch="python: len(view.getSpecial()) <= 3">
+          <tal:block tal:switch="python: len(view.getSpecial()) <= 3 and len(view.getMostView()) != 0">
             <tal:content tal:content="structure string: <div class='product-active-2'>" tal:case="True" />
             <tal:content tal:content="structure string: <div class='product-active-4 mb-30'>" tal:case="False" />
           </tal:block>
@@ -162,14 +161,14 @@
                              tal:condition="python: repeat.item.number == repeat.item.length and not_multipleThree_item" />
               </tal:define>
             </tal:repeat>
-            <div tal:condition="python: len(view.getSpecial()) <= 3" class="product-total"></div>
+            <div tal:condition="python: len(view.getSpecial()) <= 3 and len(view.getMostView()) != 0" class="product-total"></div>
           <tal:content tal:content="structure string: </div>" />
         </div>
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
           <div class="section-title mb-30">
             <h2 i18n:translate="">News Products</h2>
           </div>
-          <tal:block tal:switch="python: len(view.getLatest()) <= 3">
+          <tal:block tal:switch="python: len(view.getLatest()) <= 3 and len(view.getMostView()) != 0">
             <tal:content tal:content="structure string: <div class='product-active-2'>" tal:case="True" />
             <tal:content tal:content="structure string: <div class='product-active-4 mb-30'>" tal:case="False" />
           </tal:block>
@@ -232,7 +231,7 @@
                              tal:condition="python: repeat.item.number == repeat.item.length and not_multipleThree_item" />
               </tal:define>
             </tal:repeat>
-            <div tal:condition="python: len(view.getLatest()) <= 3" class="product-total"></div>
+            <div tal:condition="python: len(view.getLatest()) <= 3 and len(view.getMostView()) != 0" class="product-total"></div>
           <tal:content tal:content="structure string: </div>" />
         </div>
       </div>

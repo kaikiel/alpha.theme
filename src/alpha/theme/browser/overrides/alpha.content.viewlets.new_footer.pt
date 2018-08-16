@@ -1,6 +1,18 @@
 <html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="alpha.theme">
 <footer id="footer-area">
+
+<style>
+.pre-line{
+  white-space: pre-line;
+  display: inline-block;
+  vertical-align: inherit;
+}
+.footer-address li{
+  vertical-align: top;
+}
+</style>
+
   <div class="footer-top-area pt-80 pb-50">
     <div class="container">
       <div class="row">
@@ -10,20 +22,20 @@
             <div class="footer-logo mb-30">
               <h1 style="font-size:25px; color:#fff" i18n:translate="">Alpha Hobbies Group</h1>
             </div>
-            <p i18n:translate="">It is a long established fact that reader will distract by the readable content of a page...</p>
+            <p class="pre-line" i18n:translate="">${view/description}</p>
             <div class="footer-address">
               <ul>
-                <li><i class="fa fa-map-marker"></i><span ><span i18n:translate="">address</span> :${view/address}</span></li>
-                <li><i class="fa fa-envelope"></i><span ><span i18n:translate="">Email</span> :${view/email}</span></li>
-                <li><i class="fa fa-mobile"></i><span ><span i18n:translate="">Phone</span> :${view/cellphone}</span></li>
+                <li><i class="fa fa-map-marker"></i><span i18n:translate="">address</span> :<span class="pre-line">${view/address}</span></li>
+                <li><i class="fa fa-envelope"></i><span i18n:translate="">Email</span> :<span class="pre-line" >${view/email}</span></li>
+                <li><i class="fa fa-mobile"></i><span i18n:translate="">Phone</span> :<span class="pre-line" >${view/cellphone}</span></li>
               </ul>
             </div>
             <div class="social-link">
               <ul>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-weibo"></i></a></li>
-                <li><a href="#"><i style="position: relative; left: -3px; top: 2px;" class="icon-youku"></i></a></li>
-                <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                <li><a href="${view/fb_link}"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="${view/weibo_link}"><i class="fa fa-weibo"></i></a></li>
+                <li><a href="${view/youku_link}"><i style="position: relative; left: -3px; top: 2px;" class="icon-youku"></i></a></li>
+                <li><a href="${view/youtube_link}"><i class="fa fa-youtube-play"></i></a></li>
               </ul>
             </div>
           </div>

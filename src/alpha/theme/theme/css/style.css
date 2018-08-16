@@ -1633,7 +1633,6 @@ body {
   font-size: 15px;
   line-height: 30px;
   margin-bottom: 5px;
-  text-transform: capitalize;
 }
 .footer-address ul li i{
 	color: #f0ce16;
@@ -5940,4 +5939,8 @@ span.must{
 }
 input[type="text"].validate{
   box-shadow: 0 0 5px 1px red;
+}
+
+.popover{
+  width: fit-content;
 }

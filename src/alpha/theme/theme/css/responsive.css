@@ -466,8 +466,8 @@
 }
 .static-text a {
   font-size: 10px;
-  height: 18px;
-  line-height: 15px;
+  height: 40px;
+  line-height: 36px;
   margin-top: 2px;
   padding: 0 20px;
 }
@@ -732,17 +732,17 @@
 }
 .home-5 .static-text h3 {
   font-size: 10px;
-  line-height: 10px;
+  line-height: 22px;
   margin-bottom: 0;
 }
 .home-5 .static-text h4 {
   font-size: 10px;
-  line-height: 12px;
+  line-height: 22px;
   margin-bottom: 0;
 }
 .home-5 .static-text p {
   font-size: 10px;
-  line-height: 10px;
+  line-height: 16px;
   margin: 0;
 }
 .home-6 .slider-text h1 {

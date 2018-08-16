@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-08-14 09:52+0000\n"
+"POT-Creation-Date: 2018-08-15 07:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: alpha.theme\n"
 
-#: ../browser/overrides/alpha.content.browser.templates.contact_us.pt:16
-msgid "${view/address}"
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:25
+msgid "${view/description}"
 msgstr ""
 
 #: ../browser/overrides/alpha.content.browser.templates.confirm_cart.pt:141
@@ -57,7 +57,7 @@ msgstr ""
 msgid "Address2"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:58
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:70
 msgid "Affiliates"
 msgstr ""
 
@@ -65,7 +65,7 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:11
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:23
 msgid "Alpha Hobbies Group"
 msgstr ""
 
@@ -90,7 +90,7 @@ msgid "Brand"
 msgstr ""
 
 #: ../browser/overrides/alpha.content.browser.templates.product_listing.pt:598
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:42
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:54
 msgid "Brands"
 msgstr ""
 
@@ -123,7 +123,7 @@ msgstr ""
 msgid "Compare"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:40
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:52
 msgid "Contact Us"
 msgstr ""
 
@@ -172,7 +172,7 @@ msgstr ""
 msgid "E-Mail"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:17
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:29
 msgid "Email"
 msgstr ""
 
@@ -189,7 +189,7 @@ msgstr ""
 msgid "Enter your coupon code if you have one."
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:15
+#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:14
 msgid "Every stage of productions is strictly controlled to guarantee excellence in performance."
 msgstr ""
 
@@ -205,7 +205,7 @@ msgstr ""
 msgid "Fax"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:100
+#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:99
 msgid "Featured Products"
 msgstr ""
 
@@ -229,10 +229,6 @@ msgstr ""
 
 #: ../configure.zcml:27
 msgid "Installs the Plone theme package alpha.theme."
-msgstr ""
-
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:13
-msgid "It is a long established fact that reader will distract by the readable content of a page..."
 msgstr ""
 
 #: ../browser/overrides/alpha.content.browser.templates.personal_view.pt:32
@@ -267,11 +263,11 @@ msgid "Model No(Z - A)"
 msgstr ""
 
 #: ../browser/overrides/alpha.content.viewlets.product_viewlet.pt:12
-#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:30
+#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:29
 msgid "Most View"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:69
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:81
 msgid "My Account"
 msgstr ""
 
@@ -298,7 +294,7 @@ msgstr ""
 msgid "News & Events"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:170
+#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:169
 msgid "News Products"
 msgstr ""
 
@@ -338,7 +334,7 @@ msgstr ""
 
 #: ../browser/overrides/alpha.content.browser.templates.order_history.pt:29
 #: ../browser/overrides/alpha.content.browser.templates.use_coupon_status.pt:31
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:75
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:87
 msgid "Order History"
 msgstr ""
 
@@ -359,7 +355,7 @@ msgstr ""
 msgid "Other,please supply details"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:14
+#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:13
 msgid "Our engine are designed and manufactured according to the highest precision and quality requirements to meet and exceed our customers expectations."
 msgstr ""
 
@@ -380,7 +376,7 @@ msgid "PRODUCT RETURNS"
 msgstr ""
 
 #: ../browser/overrides/alpha.content.browser.templates.contact_us.pt:19
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:18
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:30
 msgid "Phone"
 msgstr ""
 
@@ -476,11 +472,11 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:43
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:55
 msgid "Return policies"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:41
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:53
 msgid "Returns"
 msgstr ""
 
@@ -496,11 +492,11 @@ msgstr ""
 msgid "Search Criteria"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:16
+#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:15
 msgid "Seeing is believing. Experience the our engine now!"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:18
+#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:17
 msgid "Shop now"
 msgstr ""
 
@@ -509,7 +505,7 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:57
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:69
 msgid "Site Map"
 msgstr ""
 
@@ -522,7 +518,7 @@ msgstr ""
 msgid "Special"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:59
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:71
 msgid "Specials"
 msgstr ""
 
@@ -584,7 +580,7 @@ msgstr ""
 msgid "Unit Price"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:74
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:86
 msgid "Wish List"
 msgstr ""
 
@@ -609,27 +605,27 @@ msgstr ""
 msgid "Your Personal Details"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:102
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:114
 msgid "add compare exist"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:102
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:114
 msgid "add compare full"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:102
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:114
 msgid "add compare success"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:102
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:114
 msgid "add shop-cart empty"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:102
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:114
 msgid "add shop-cart exist"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:102
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:114
 msgid "add shop-cart success"
 msgstr ""
 
@@ -637,7 +633,7 @@ msgstr ""
 msgid "add-to-cart"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:16
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:28
 msgid "address"
 msgstr ""
 
@@ -677,7 +673,7 @@ msgstr ""
 msgid "best sellers"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:102
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:114
 msgid "buy success"
 msgstr ""
 
@@ -685,7 +681,7 @@ msgstr ""
 msgid "checkout"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:36
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:48
 msgid "customer service"
 msgstr ""
 
@@ -699,7 +695,7 @@ msgstr ""
 msgid "email"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:53
+#: ../browser/overrides/alpha.content.viewlets.new_footer.pt:65
 msgid "extras"
 msgstr ""
 
@@ -722,10 +718,10 @@ msgstr ""
 msgid "submit"
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:11
+#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:10
 msgid "we don't make engine."
 msgstr ""
 
-#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:12
+#: ../browser/overrides/alpha.content.viewlets.shop_product_viewlet.pt:11
 msgid "we make engine better!"
 msgstr ""

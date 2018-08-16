@@ -42,7 +42,7 @@ label{
 
         <tr tal:repeat="product view/productData" class='product_content'>
             <td class="product-thumbnail"><a href="${python: product[3]}"><img src="${python: product[3]}/@@images/cover/mini"  /></a></td>
-            <td class="product-name"><a href="${python: product[3]}">${python: product[0]}</a></td>
+            <td class="product-name" data-productno="${python: product[6].productNo}"><a href="${python: product[3]}">${python: product[0]}</a></td>
             <td class="product-quantity">
                   <input class="amount" data-uid="${python: product[5]}" type="number" value="${python: product[4]}">
             </td>
@@ -220,7 +220,8 @@ label{
 	    detail = ''
 
             $('.product_content').each(function(){
-                product_name = $(this).find('.product-name').text()
+                product_name = $(this).find('.product-name').text() + " (" + $(this).find('.product-name')["0"].dataset.productno
+ + ")"
                 amount = $(this).find('.amount').val()
                 price = $(this).find('.price').text()
                 detail += product_name + ': ' + price + '*' + amount + ', '
@@ -291,7 +292,7 @@ label{
             return actions.payment.execute().then(function(rep) {
 		total = rep["transactions"][0]["amount"]["total"]
 		currency = rep['transactions'][0]['amount']['currency']
-                debugger 
+
 		coupon_code = $('#coupon_code').val()
                 product_detail = ''
                 discount_detail = ''
@@ -300,12 +301,13 @@ label{
                 create_time = rep.create_time.replace("T", " ").replace("Z", "");
 		if(coupon_code){
                     $('.product_content').each(function(){
-                        product_name = $(this).find('.product-name').text()
+
+                        product_name = $(this).find('.product-name').text() + " (" + $(this).find('.product-name')["0"].dataset.productno + ")"
                         amount = $(this).find('.amount').val()
                         discount_price = $(this).find('.product_discount').text().trim()
                         price = $(this).find('.price').text()
 
-                        product_detail += product_name + ': ' + int(price)-int(discount_price) + '*' + amount + ', '
+                        product_detail += product_name + ': ' + (parseInt(price) - parseInt(discount_price)) + '*' + amount + ', '
                         discount_detail += product_name + ': (' + price + ' - '+ discount_price + ') *' + amount + ', '
                     })
 
@@ -316,10 +318,10 @@ label{
                     discount_detail = ''
 
                     $('.product_content').each(function(){
-                        product_name = $(this).find('.product-name').text()
+                        product_name = $(this).find('.product-name').text() + " (" + $(this).find('.product-name')["0"].dataset.productno + ")"
                         amount = $(this).find('.amount').val()
                         price = $(this).find('.price').text()
-                        product_detail += product_name + '*' + amount + '*' + price + ','
+                        product_detail += product_name + ': ' + price + '*' + amount + ', '
                          
                     })
                     discount_detail = '' 

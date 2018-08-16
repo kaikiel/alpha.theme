@@ -43,8 +43,8 @@
                 <tbody tal:repeat="item view/data">
                   <tr data-toggle="collapse" data-target=".order${repeat/item/number}">
                     <td class="product-name">${item/time}</td>
-                    <td class="product-name">${item/recipient_name}</td>
                     <td class="product-name">${item/user}</td>
+                    <td class="product-name">${item/recipient_name}</td>
                     <td class="product-price"><span class="amount">${item/currency} ${item/total}</span></td>
                   </tr>
                   <tr class="collapse order${repeat/item/number} drop">

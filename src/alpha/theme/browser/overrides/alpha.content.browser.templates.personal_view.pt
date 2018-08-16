@@ -24,13 +24,13 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="single-register">
                     <label for="fName"><span i18n:translate="">First Name</span><span class="must">*</span></label>
-                    <input type="text" name="fName" id="fName" value="${python: view.getCurrentUser().getProperty('fName')}"/>
+                    <input type="text" name="fName" id="fName" value="${python: view.getCurrentUser().getProperty('fName')}" required/>
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="single-register">
                     <label for="lName"><span i18n:translate="">Last Name</span><span class="must">*</span></label>
-                    <input type="text" name="lName" id="lName" value="${python: view.getCurrentUser().getProperty('lName')}"/>
+                    <input type="text" name="lName" id="lName" value="${python: view.getCurrentUser().getProperty('lName')}" required/>
                   </div>
                 </div>
                 <div class="col-xs-12">
@@ -42,7 +42,7 @@
                 <div class="col-sm-6 col-xs-12">
                   <div class="single-register">
                     <label for="telephone"><span i18n:translate="">Telephone</span><span class="must">*</span></label>
-                    <input type="text" name="telephone" id="telephone" value="${python: view.getCurrentUser().getProperty('telephone')}"/>
+                    <input type="text" name="telephone" id="telephone" value="${python: view.getCurrentUser().getProperty('telephone')}" required/>
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -51,7 +51,7 @@
                     <input type="text" name="fax" id="fax" value="${python: view.getCurrentUser().getProperty('fax')}"/>
                   </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" tal:condition="python: view.getCurrentUser().getProperty('promoCode')">
                   <div class="single-register">
                     <label i18n:translate="">promoCode</label>
                     <input type="text" value="${python: view.getCurrentUser().getProperty('promoCode')}" readonly/>
@@ -65,7 +65,7 @@
               </div>
               <div class="single-register">
                 <label for="address1"><span i18n:translate="">Address1</span><span class="must">*</span></label>
-                <input type="text" name="address1" id="address1" value="${python: view.getCurrentUser().getProperty('address1')}" />
+                <input type="text" name="address1" id="address1" value="${python: view.getCurrentUser().getProperty('address1')}" required />
               </div>
               <div class="single-register">
                 <label for="address2" i18n:translate="">Address2</label>
@@ -75,25 +75,25 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="single-register">
                     <label for="city"><span i18n:translate="">Town/City</span><span class="must">*</span></label>
-                    <input type="text" name="city" id="city" value="${python: view.getCurrentUser().getProperty('city')}" />
+                    <input type="text" name="city" id="city" value="${python: view.getCurrentUser().getProperty('city')}" required />
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="single-register">
                     <label for="zip"><span i18n:translate="">Postcode/zip</span><span class="must">*</span></label>
-                    <input type="text" name="zip" id="zip" value="${python: view.getCurrentUser().getProperty('zip')}" />
+                    <input type="text" name="zip" id="zip" value="${python: view.getCurrentUser().getProperty('zip')}" required />
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="single-register">
                     <label for="country"><span i18n:translate="">Country</span><span class="must">*</span></label>
-                    <input type="text" name="country" id="country" value="${python: view.getCurrentUser().getProperty('country')}"/>
+                    <input type="text" name="country" id="country" value="${python: view.getCurrentUser().getProperty('country')}" required/>
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="single-register">
                     <label for="state"><span i18n:translate="">State</span><span class="must">*</span></label>
-                    <input type="text" name="state" id="state" value="${python: view.getCurrentUser().getProperty('state')}"/>
+                    <input type="text" name="state" id="state" value="${python: view.getCurrentUser().getProperty('state')}" required/>
                   </div>
                 </div>
               </div>
