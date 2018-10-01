@@ -26,32 +26,6 @@
             </div>
             <div class="page-bar mb-30">
               <div class="shop-tab">
-                <!-- tab-menu-start -->
-                <div class="tab-menu">
-                  <ul>
-                    <li id="tab_th" class="active"><a href="#th" data-toggle="tab" onclick="setThumbOrDetail(1)"><i class="fa fa-th"></i></a></li>
-                    <li id="tab_list"><a href="#list" data-toggle="tab" onclick="setThumbOrDetail(2)"><i class="fa fa-list"></i></a></li>
-                  </ul>
-                </div>
-                <!-- tab-menu-end -->
-                <div class="toolbar-sorter">
-                  <span i18n:translate="">Category</span>
-                  <select id="category" name="p_category" id="toolber-sorter" class="sorter-options" data-category="${view/p_category}"  >
-                    <option value="" >All</option>
-                    <tal:repeat tal:repeat="category view/categoryList">
-                    <option value="${category}" >${category}</option>
-                    </tal:repeat>
-                  </select>
-                </div>
-                <div class="toolbar-sorter">
-                  <span i18n:translate="">Sort By</span>
-                  <select id="sort_by" name="sort_by" id="toolber-sorter" class="sorter-options" data-sort_by="${view/sort_by}" >
-                  <option value="sort_on:sortable_title,sort_order:ascending"  i18n:translate="">Name (A - Z)</option>
-                  <option value="sort_on:sortable_title,sort_order:descending" i18n:translate="">Name (Z - A)</option>
-                  <option value="sort_on:p_modelNo,sort_order:ascending" i18n:translate="">Model No(A - Z)</option>
-                  <option value="sort_on:p_modelNo,sort_order:descending" i18n:translate="">Model No(Z - A)</option>
-                  </select>
-                </div>
                 <div class="field-limiter">
                   <div class="label-title">
                     <span i18n:translate="">Show</span>
@@ -92,7 +66,7 @@
                                            item_price obj/price;
                                            item_sale python: view.salePrice(obj);
                                            is_has_item_sale view/hasSale;
-                                           item_availability obj/availability;
+                                           item_availability python: obj.limit_qty > 0;
                                            item_rating python: int(obj.rating or 0);">
                           <!-- single-product-start -->
                           <div class="single-product mb-30">
@@ -135,81 +109,6 @@
                   </tal:repeat>
                 </div>
               </div>
-              <div class="tab-pane fade" id="list">
-                <div class="row">
-                  <tal:repeat repeat="item batch" >
-                    <tal:block tal:define="obj item/getObject;
-                                           item_title item/Title;
-                                           item_productNo obj/productNo;
-                                           item_uid item/UID;
-                                           item_url item/getURL;
-                                           item_description obj/description;
-                                           item_disc obj/disc_amount;
-                                           item_price obj/price;
-                                           item_sale python: view.salePrice(obj);
-                                           is_has_item_sale view/hasSale;
-                                           item_availability obj/availability;
-                                           item_rating python: int(obj.rating or 0);">
-                  <!-- shop-product-start -->
-                  <div class="shop-product bb-5">
-                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-                      <!-- single-product-start -->
-                      <div class="product-wrapper-2">
-                        <div class="single-img">
-                          <a href="${item_url}">
-                            <img src="${item_url}/@@images/cover/preview" alt="product" class="first" />
-                          </a>
-                        </div>
-                      </div>
-                      <!-- single-product-end -->
-                    </div>
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
-                      <!-- single-details-start -->
-                      <div class="product-details-2">
-                        <span>${item_productNo}</span>
-                        <h3><a href="${item_url}">${item_title}</a></h3>
-                              <div class="product-rating mb-10">
-                                <tal:repeat tal:repeat="star python: range(5)">
-                                  <tal:switch tal:switch="python: (item_rating-1) >= star">
-                                    <span tal:case="True"><i class="fa fa-star checked"></i></span>
-                                    <span tal:case="False"><i class="fa fa-star"></i></span>
-                                  </tal:switch>
-                                </tal:repeat>
-                              </div>
-                              <div tal:switch="is_has_item_sale" class="product-price">
-                                <ul tal:case="True">
-                                  <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
-                                  <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
-                                </ul>
-                                <ul tal:case="False">
-                                  <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
-                                </ul>
-                              </div>
-                        <p>${item_description}</p>
-                        <div class="action-inner mt-20">
-                          <div class="product-button-3" tal:condition="item_availability">
-                            <a onclick="shop_cart.add_shop('${item_uid}', 1)"><i class="fa fa-shopping-cart"></i><span i18n:translate="">Add to cart</span></a>
-                          </div>
-                          <div class="availability" tal:condition="python: not item_availability">
-                            <span i18n:translate="">Not In stock</span>
-                          </div>
-                          <div class="add-to-links">
-                            <ul>
-                              <li><a ><i data-uid="${item_uid}" class="fa fa-book"></i></a></li>
-                              <li><a ><i data-uid="${item_uid}" class="fa fa-heart-o"></i></a></li>
-                              <li><a  data-toggle="modal" data-target="#${item_uid}"><i class="fa fa-eye"></i></a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>                    
-                      <!-- single-details-end -->
-                    </div>
-                  </div>
-                  <!-- shop-product-end -->
-                    </tal:block>
-                  </tal:repeat>
-                </div>  
-              </div>
             </div>
             <!-- tab-area-end -->
 
@@ -228,7 +127,7 @@
                                     item_price obj/price;
                                     item_sale python: view.salePrice(obj);
                                     is_has_item_sale view/hasSale;
-                                    item_availability obj/availability;
+                                    item_availability python: obj.limit_qty > 0;
                                     item_rating python: int(obj.rating or 0);">
                   
                   <!-- single-modal-start -->
@@ -348,6 +247,8 @@
         </metal:listingmacro>
 
       </div>
+
+      <!-- random product -->
       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="most-popular-product mb-30">
           <div class="section-title mb-30">
@@ -365,7 +266,7 @@
                                    item_price obj/price;
                                    item_sale python: view.salePrice(obj);
                                    is_has_item_sale view/hasSale;
-                                   item_availability obj/availability;
+                                   item_availability python: obj.limit_qty > 0;
                                    item_rating python: int(obj.rating or 0);">
             <li>
                   <!-- single-product-start -->
@@ -412,41 +313,16 @@
           </div>
         </div>
       </div>
+      <!-- random product end -->
+
     </div>
   </div>
 </div>
 
 <script>
       document.onreadystatechange = function selectChangeIndex() {
-          var re = new RegExp('[; ]'+'showThumbOrDetail'+'=([^\\s;]*)');
-          var sMatch = (' '+document.cookie).match(re);
-          if(sMatch){
-              if(sMatch[1] == 1){
-                  $("#tab_th").addClass("active")
-                  $("#tab_list").removeClass("active")
-                  $("#th").removeClass("fade")
-                  $("#th").addClass("active")
-                  $("#list").removeClass("active")
-                  $("#list").addClass("fade")
-              }else if(sMatch[1] == 2){
-                  $("#tab_th").removeClass("active")
-                  $("#tab_list").addClass("active")
-                  $("#th").addClass("fade")
-                  $("#th").removeClass("active")
-                  $("#list").addClass("active")
-                  $("#list").removeClass("fade")
-              }
-          }
           var b_size =  document.getElementById("b_size");
           b_size.value = b_size.getAttribute("data-bSize");
-          var sort_by =  document.getElementById("sort_by");
-          sort_by.value = sort_by.getAttribute("data-sort_by");
-          var category =  document.getElementById("category") || "";
-          category.value = category.getAttribute("data-category");
-      }
-
-      function setThumbOrDetail(id){
-          document.cookie = "showThumbOrDetail="+id;
       }
 </script>
 

@@ -34,7 +34,7 @@ a.meanmenu-reveal{display:none}
   font-weight: bold;
 }
 .mobile-menu-area {
-  background: #262626;
+  background: #e48ab3;;
 }
 .mean-container .mean-nav ul li li a {
   border-top: 1px solid rgba(255, 255, 255, 0.25);
@@ -54,7 +54,7 @@ a.meanmenu-reveal{display:none}
 .mean-container .mean-nav ul li li li li li a{width:50%;padding:1em 25%}
 .mean-container .mean-nav ul li a:hover {
   background: #f8f8f8 none repeat scroll 0 0;
-  color: #f0ce16;
+  color: #e24f9d;
 }
 .mean-container .mean-nav ul li a.mean-expand{
 	width:26px;

@@ -106,8 +106,8 @@
   <replace css:content=".pos_new_product.pt-50" css:theme=".pos_new_product.pt-50" />
   <replace css:content=".special_products-area" css:theme=".special_products-area" />
   <replace css:content=".pos_new_product.ptb-50" css:theme=".pos_new_product.ptb-50" />
-  <drop css:theme=".static-center-area" />
-  <replace css:content-children=".shop-product-viewlets" css:theme=".most-popular-product.pt-80.pb-50" />
+  <replace css:content=".static-center-area" css:theme=".static-center-area" />
+  <drop css:theme=".most-popular-product.pt-80.pb-50" />
   <replace css:content=".blog-area.pb-80" css:theme=".blog-area.pb-80" />
   <replace css:content=".brand-area" css:theme=".brand-area" />
   <!--nav bar and footer -->
@@ -119,8 +119,10 @@
   <after css:content=".breadcrumb-area.mb-70" css:theme="header" css:if-not-content=".portaltype-cover" />
   <!--shop-cart-->
   <replace css:content=".shop-cart" css:theme=".shop-cart"/>
+  <!--shop-cart-->
+  <replace css:content-children="#modal-register-notify" css:theme="#registerNotify"/>
   <!--logo -->
-  <replace css:content="#portal-logo" css:theme=".logo-area"/>
+  <replace css:content="#portal-logo" css:theme-children=".logo-area"/>
   <!-- account -->
   <replace css:content="#languageselector" css:theme="#languageselector"/>
   <replace css:content=".search-form" css:theme=".search-form"/>

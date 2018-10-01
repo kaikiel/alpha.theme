@@ -8,13 +8,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img/K.png">
 
     <!-- all css here -->
     <!-- bootstrap v3.3.6 css -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- animate css -->
         <link rel="stylesheet" href="css/animate.css">
+    <!-- animate.min css -->
+        <link rel="stylesheet" href="css/animate.min.css">
+    <!-- amaran.min css -->
+        <link rel="stylesheet" href="css/amaran.min.css">
     <!-- jquery-ui.min css -->
         <link rel="stylesheet" href="css/jquery-ui.min.css">
     <!-- meanmenu css -->
@@ -25,6 +29,13 @@
         <link rel="stylesheet" href="css/font-awesome.min.css">
     <!-- font-youku css -->
         <link rel="stylesheet" href="css/youku.css">
+    <!-- font-brand-icon css -->
+        <link rel="stylesheet" href="css/animation.css">
+        <link rel="stylesheet" href="css/fontello.css">
+        <link rel="stylesheet" href="css/fontello-codes.css">
+        <link rel="stylesheet" href="css/fontello-embedded.css">
+        <link rel="stylesheet" href="css/fontello-ie7.css">
+        <link rel="stylesheet" href="css/fontello-ie7-codes.css">
     <!-- material-design-iconic-font.css -->
         <link rel="stylesheet" href="css/material-design-iconic-font.css">
     <!-- chosen.min.css -->
@@ -55,12 +66,12 @@
         <div class="header-top-total">
           <div class="container-fulid">
             <div class="row">
-              <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+              <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
                 <div class="logo-area">
                   <a href="index.html"><img src="img/logo/5.png" alt="logo" /></a>
                 </div>
               </div>
-              <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+              <div class="col-lg-10 col-md-10 col-sm-8 col-xs-8" style="padding-top: 13px;">
                 <div class="main-menu hidden-sm hidden-xs">
                   <nav>
                     <ul>
@@ -2409,7 +2420,7 @@
     <!-- all js here -->
     <!-- facebook like button -->
     <div id="fb-root"></div>
-    <script async>(function(d, s, id) {
+    <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
@@ -2429,6 +2440,8 @@
         <script src="js/jquery.meanmenu.js"></script>
     <!-- jquery-ui js -->
         <script src="js/jquery-ui.min.js"></script>
+    <!-- big.min.js -->
+        <script src="js/big.min.js"></script>
     <!-- wow js -->
         <script src="js/wow.min.js"></script>
     <!-- chosen.jquery.min.js -->
@@ -2441,6 +2454,10 @@
         <script src="js/jquery.flexslider.js"></script>
     <!-- jquery.counterup.min.js -->
         <script src="js/jquery.counterup.min.js"></script>
+    <!-- jquery.animateNumber.min.js -->
+        <script src="js/jquery.animateNumber.min.js"></script>
+    <!-- jquery.amaran.min.js -->
+        <script src="js/jquery.amaran.min.js"></script>
     <!-- waypoints.min.js -->
         <script src="js/waypoints.min.js"></script>
     <!-- plugins js -->
@@ -2451,14 +2468,19 @@
 	<script src="js/vue.js"></script>
 	<script src="js/notify.min.js"></script>
 	<script src="js/shop-cart.js"></script>
+    <!-- registerNotify-start -->
+    <div id="registerNotify">
+    </div>
+    <!-- registerNotify-end -->
 	<script>
 	$(function(){
-            $('.fa-book').on("click", function(){
+            $('.fa-book').parent().on("click", function(){
                 uid = $(this).data('uid')
                 json_compare_list = $.cookie('compare_list')
                 msg_success = $("#notify-msg-translate").data("c_success")
                 msg_exist = $("#notify-msg-translate").data("c_exist")
                 msg_full = $("#notify-msg-translate").data("c_full")
+                path = $("#root-pathname").data("path")
                 if(json_compare_list){
                     compare_list = JSON.parse(json_compare_list)
                 }else{
@@ -2469,7 +2491,7 @@
                         compare_list.push(uid)
                         var date = new Date()
                         date.setTime(date.getTime() + (60 * 60 * 1000))
-                        $.cookie('compare_list', JSON.stringify(compare_list), {expires: date})
+                        $.cookie('compare_list', JSON.stringify(compare_list), {expires: date, path: '/'+path})
                         $.notify(msg_success ,  {globalPosition: 'bottom right',className:'success'})
                     }else{
                         $.notify(msg_full ,  {globalPosition: 'bottom right',className:'error'})
@@ -2479,7 +2501,7 @@
                 }
             })
 
-            $('.fa-heart-o').on("click", function(){
+            $('.fa-heart-o').parent().on("click", function(){
                 var host = location.origin + "/" + location.pathname.split('/')[1]
                 var uid = $(this).data("uid")
                 var form = new FormData(this);

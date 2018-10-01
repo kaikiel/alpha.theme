@@ -32,7 +32,7 @@ th{
     color: white;
 }
 .add_to_cart{
-    background: #fce38a;
+    background: #e472a3;
     border-radius: 5px
 }
 .remove{
@@ -55,7 +55,7 @@ th{
   </tr>
   <tr>
     <td i18n:translate="">Image</td>
-    <td class="product-thumbnail" tal:repeat="item view/data"><a tal:define="obj python:item.getObject()" href="${python: obj.absolute_url()}"><img src="${python: obj.absolute_url()}/@@images/cover"></a></td>
+    <td class="product-thumbnail" tal:repeat="item view/data"><a tal:define="obj python:item.getObject()" href="${python: obj.absolute_url()}"><img src="${python: obj.absolute_url()}/@@images/cover" style="max-width:200px"></a></td>
   </tr>
   <tr>
     <td i18n:translate="">Price</td>
@@ -80,11 +80,12 @@ th{
   <tr>
     <td i18n:translate="">Availability</td>
     <td tal:repeat="item view/data">
-      <tal:define define="obj python:item.getObject()">
-        <tal:condition condition="python: obj.availability">
+      <tal:define define="obj python:item.getObject();
+                          item_availability python: obj.limit_qty > 0;">
+        <tal:condition condition="item_availability">
 	    In Stock
         </tal:condition>
-        <tal:condition condition="not: python: obj.availability">
+        <tal:condition condition="not: item_availability">
 	    Out Of Stock
         </tal:condition>
       </tal:define>
@@ -105,7 +106,7 @@ th{
   <tr>
     <td></td>
     <td tal:repeat="item view/data" >
-	<button data-uid="${python: item.UID}"
+	<button data-uid="${python: item.UID}" tal:condition="python: item.getObject().limit_qty > 0"
 		class="add_to_cart btn" i18n:translate="">Add To Cart</button>
 	<button class="remove btn" data-uid="${python: item.UID}" i18n:translate="">Remove</button>
     </td>

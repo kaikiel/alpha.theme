@@ -587,7 +587,7 @@ $('.counter').counterUp({
                var queryStr = "?" +  "b_size=" + b_size + "&" + sortByStr;
 
                queryStr += 'price_min=' + ui.values[0] + '&price_max=' + ui.values[1] + '&brands=' + brands + '&p_category='
-                              + p_category + '&p_subject' + p_subject
+                              + p_category + '&p_subject=' + p_subject
 
                location.assign(queryStr);
 
@@ -598,7 +598,7 @@ $('.counter').counterUp({
  scrollUp
 ---------------------------- */	
 	$.scrollUp({
-        scrollText: '<i class="fa fa-angle-up"></i>',
+        scrollText: '<i class="fa fa-angle-double-up"></i>',
         easingType: 'linear',
         scrollSpeed: 900,
         animation: 'fade'

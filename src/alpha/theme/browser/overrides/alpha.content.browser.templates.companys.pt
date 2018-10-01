@@ -10,51 +10,28 @@
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core"
                     tal:define="toc context/table_of_contents|nothing;">
-<div class="map" style="height: 700px;">
-  <img style="width:1800px; position:absolute;top:0;left:0;top:0" src="${portal_url}/++theme++alpha.theme/img/map/map_bg.png">
-  <img class="map-layer map-af" style="width:1800px; display:none; position:absolute;top:0;left:0;top:0" src="${portal_url}/++theme++alpha.theme/img/map/map_Africa.png">
-  <img class="map-layer map-asia" style="width:1800px; display:none; position:absolute;top:0;left:0;top:0" src="${portal_url}/++theme++alpha.theme/img/map/map_Asia.png">
-  <img class="map-layer map-me" style="width:1800px; display:none; position:absolute;top:0;left:0;top:0" src="${portal_url}/++theme++alpha.theme/img/map/map_Middle-East.png">
-  <img class="map-layer map-na" style="width:1800px; display:none; position:absolute;top:0;left:0;top:0" src="${portal_url}/++theme++alpha.theme/img/map/map_North-America.png">
-  <img class="map-layer map-sa" style="width:1800px; display:none; position:absolute;top:0;left:0;top:0" src="${portal_url}/++theme++alpha.theme/img/map/map_South-America.png ">
-  <img class="map-layer map-sp" style="width:1800px; display:none; position:absolute;top:0;left:0;top:0" src="${portal_url}/++theme++alpha.theme/img/map/map_South-Pacific.png">
-  <img class="map-layer map-eu" style="width:1800px; display:none; position:absolute;top:0;left:0;top:0" src="${portal_url}/++theme++alpha.theme/img/map/map_Europe.png">
-  <img usemap="#map-fg" style="width:1800px; position:absolute;top:0;left:0;top:0" src="${portal_url}/++theme++alpha.theme/img/map/map_fg.png">
-  <map name="map-fg" id="map-fg">
-　    <area id="map-na" shape="circle" coords=" 180 , 140 , 100" href="javascript:void(0)">
-　    <area id="map-sa" shape="circle" coords=" 280 , 410 , 100" href="javascript:void(0)">
-　    <area id="map-eu" shape="circle" coords=" 580 , 120 , 100" href="javascript:void(0)">
-　    <area id="map-asia" shape="circle" coords=" 830 , 160 , 100" href="javascript:void(0)">
-　    <area id="map-me" shape="circle" coords=" 650 , 220 , 70" href="javascript:void(0)">
-　    <area id="map-af" shape="circle" coords=" 610 , 310 , 70" href="javascript:void(0)">
-　    <area id="map-sp" shape="circle" coords=" 1030 , 450 , 100" href="javascript:void(0)">
-  </map>
-
-</div>
-<style>
-@media (max-width: 1200px) {
-    .map {
-        display:none;
-    }
-}
-</style>
-
-
-<tal:item tal:repeat="data view/companyBrains">
-<div class="col-lg-6 col-xs-12 map-com ${python:data.getObject().mapCategory}-com" style='padding: 0 7.5px 0 7.5px; margin-bottom: 10px'>
-  <tal:define define="obj python:data.getObject()">
-    <div class="col-lg-6 col-xs-6" 
-     style="background-image:url(${python: '%s/@@images/image' %obj.absolute_url()});background-position: center;
-	background-repeat: no-repeat;height: 250px;"></div>
-    <div class="col-lg-6 col-xs-6" style='background:black; position: relative;height:250px'>
-      <p style='font-size:23px;color:white;padding: 5px 8px'>${python: obj.title}</p>
-      <div style='font-size:18px;color:white;padding: 5px' tal:content="structure python: getattr(obj.text, 'raw', '')"></div>
-      <p style='position: absolute; bottom:0;color:yellow;font-size: 18px; padding: 5px;margin:0'>${python: obj.image_caption}</p>
+<tal:cities tal:define="comDict view/getCompany;
+                      cities python: sorted(comDict.keys());">
+   <tal:city tal:repeat="city cities">
+    <div class="col-xs-12" style="border-bottom:1px solid #ccc; margin: 20px 0 15px 0; padding: 0;">
+      <h4 style="font-size:16px"><b>${python: view.getCityName(city)}</b></h4>
     </div>
+    <tal:item tal:repeat="data python: comDict[city]">
+      <div class="col-lg-6 col-xs-12 ">
+        <tal:define define="obj python:data.getObject()">
+          <div class="col-sm-6 col-xs-12" style='padding: 0; height: 220px; ' >
+            <img src="${obj/absolute_url}/@@images/image" style="height:100%; width:100%; object-fit:cover;" />
+          </div>
+          <div class="col-sm-6 col-xs-12" style='padding-left: 5px;'>
+            <p><b>${python: obj.title}</b><p>
+            <tal:content tal:content="structure python: getattr(obj.text, 'raw', '')" />
+          </div>
 
-  </tal:define>
-</div>
-</tal:item>
+        </tal:define>
+      </div>
+    </tal:item>
+  </tal:city>
+</tal:cities>
 
 </metal:content-core>
 </metal:content-core>

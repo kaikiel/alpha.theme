@@ -80,6 +80,12 @@
                       <input type="hidden" name="login_name" id="login_name" value="" />
                       <input type="hidden" name="pwd_empty" id="pwd_empty" value="0" />
 
+                      <strong i18n:domain="alpha.theme" i18n:translate="">
+                      User Login
+                      </strong>
+                      <p i18n:domain="alpha.theme" i18n:translate="">
+                      I am old user.
+                      </p>
                       <div class="field"
                            tal:define="error python:errors.get(ac_name, None);"
                            tal:attributes="class python:test(error, 'field error', 'field')">
@@ -231,6 +237,7 @@
                                      type="submit"
                                      name="submit"
                                      value="Log in"
+                                     i18n:domain="alpha.theme"
                                      i18n:attributes="value label_log_in;"
                                      />
 
@@ -247,21 +254,15 @@
               <div class="col-xs-12 col-sm-pull-6 col-sm-5" id="login-new-user"
                  tal:condition="python:join_url and use_normal"
                  style="border: 1px solid #c1c1c1;overflow: -webkit-paged-y;padding: 20px 0 20px 10px;">
-                  <strong i18n:translate="heading_new_user">
+                  <strong i18n:domain="alpha.theme" i18n:translate="">
                   New user?
                   </strong>
 
-                  <p i18n:translate="description_no_account">
-                  If you do not have an account here, head over to the
-                  <span i18n:name="registration_form">
-                      <a href="${view/context/portal_url}/register_form"
-                         tal:define="join_url python:test(came_from, join_url+test(join_url.find('?')==-1, '?', '&amp;')+ztu.make_query(came_from=came_from), join_url);"
-                         tal:attributes="target target;"
-                         i18n:translate="description_no_account_registration_linktext"
-                          >registration form</a></span>.
-                  </p>
+                  <p i18n:domain="alpha.theme" i18n:translate="description_no_account"></p>
                   <div style="margin-top: 25px">
-                    <a class="oval-btn" href="${view/context/portal_url}/register_form" i18n:translate="description_no_account_registration_linktext">registration form</a>
+                    <a class="oval-btn" href="${view/context/portal_url}/register_form" 
+                       i18n:domain="alpha.theme"
+                       i18n:translate="">continue</a>
                   </div>
               </div>
         </div>

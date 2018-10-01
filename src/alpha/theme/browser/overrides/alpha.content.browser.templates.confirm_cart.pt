@@ -38,27 +38,42 @@ label{
           <th class="product-remove" i18n:translate="">Remove</th>
         </tr>
       </thead>
-      <tbody>
-
-        <tr tal:repeat="product view/productData" class='product_content'>
-            <td class="product-thumbnail"><a href="${python: product[3]}"><img src="${python: product[3]}/@@images/cover/mini"  /></a></td>
-            <td class="product-name" data-productno="${python: product[6].productNo}"><a href="${python: product[3]}">${python: product[0]}</a></td>
-            <td class="product-quantity">
-                  <input class="amount" data-uid="${python: product[5]}" type="number" value="${python: product[4]}">
-            </td>
-            <td class='product_discount' style='display:none'>
-              ${python: product[6].disc_amount}
-            </td>
-            <td class="product-price" >
-              <span i18n:translate="dollar"></span>
-              <span class="price" data-price="${python: view.salePrice(product[6])}" >${python: view.salePrice(product[6])}</span>
-            </td>
-            <td class="product-subtotal sub_total" data-discount="${python: product[6].disc_amount}">
-              <span i18n:translate="dollar"></span>
-              <span class='sub_total_price'>${python: product[4] * view.salePrice(product[6])}</span>
-            </td>
-            <td class="product-remove"><i class="fa fa-times" data-uid="${python: product[5]}" style="cursor:pointer"></i></td>
-        </tr>
+      <tbody id="order-tb">
+        <tal:repeat tal:repeat="item view/productData">
+          <tal:define tal:define="product python: item.keys()[0];
+                                  amount  python: item.values()[0];
+                                  parent  python: product.getParentNode().id;
+                                  is_promo python: parent == 'promotions'">
+            <tr tal:attributes="class string:product_content product-${product/UID} ${python: 'promo-product' if is_promo else ''}"
+                data-uid="${product/UID}">
+              <input type="hidden" class="has-timelimit" data-uid="${product/UID}" data-limit_qty="${product/limit_qty}"
+                     data-date="${product/timeLimit}" tal:condition="is_promo">
+              <td class="product-thumbnail">
+                <a href="${product/absolute_url}"><img src="${product/absolute_url}/@@images/cover/mini"></a>
+              </td>
+              <td class="product-name" data-productno="${product/productNo}" data-url="${product/absolute_url}">
+                <a href="${product/absolute_url}">${product/title} (${product/productNo})</a>
+              </td>
+              <td class="product-quantity">
+                <input class="amount" data-uid="${product/UID}" type="number" value="${amount}" min="1">
+              </td>
+              <td class='product_discount' style='display:none'>${python: product.disc_amount or 0}</td>
+              <td class="product-price" >
+                <span i18n:translate="dollar"></span>
+                <span class="price" data-price="${python: view.salePrice(product)}" >${python: view.salePrice(product)}</span>
+              </td>
+              <td class="product-subtotal sub_total" 
+                  data-discount="${python: product.disc_amount or 0}" data-weight="${product/weight}" 
+                  data-name="${product/title}(${product/productNo})" 
+                  data-price="${python: view.salePrice(product)}" data-disc_price="${python: product.disc_amount or 0}"
+                  data-rebate="${product/rebate}" data-bonus="${product/bonus}">
+                <span i18n:translate="dollar"></span>
+                <span class='sub_total_price'>${python: amount * view.salePrice(product)}</span>
+              </td>
+              <td class="product-remove"><i class="fa fa-times" data-uid="${product/UID}" style="cursor:pointer"></i></td>
+            </tr>
+          </tal:define>
+        </tal:repeat>
       </tbody>
      </table>
     </div>
@@ -68,8 +83,16 @@ label{
   <tal:switch tal:switch="view/hasCheckOut">
     <tal:case tal:case="True" tal:define="property view/getUserProperties">
       <div class="col-sm-8 col-xs-12">
-        <div class="coupon row" tal:condition="view/hasPromoCode">
-         <div class="col-xs-8 col-sm-6 col-md-4">
+        <div class="coupon row">
+         <div class="col-xs-8 col-sm-6 col-md-4" tal:condition="view/hasBonus">
+           <h3 i18n:translate="">Bonus</h3>
+           <p><span i18n:translate="">You have</span>&nbsp;${view/getUsableBonus}&nbsp;<span i18n:translate="">Bonus points.</span></p>
+           <p i18n:translate="">Please enter the bonus points to use.</p>
+           <input id='usable-bonus' class="number" type="number" min="0" max="${view/getUsableBonus}" 
+                  onblur="recountPrice()" data-bonus_money="${view/bonusMoney}"
+                  style='margin-left: 5pt;' value="0">
+         </div>
+         <div class="col-xs-8 col-sm-6 col-md-4" tal:condition="view/hasPromoCode">
            <h3 i18n:translate="">Coupon</h3>
            <p i18n:translate="">Enter your coupon code if you have one.</p>
            <input type="text" data-toggle="popover" data-content="Your Coupon Code is invalid" placeholder="Coupon code" id='coupon_code' style='margin-left: 5pt;' onblur="checkPromoCode()" i18n:attributes="data-content;placeholder;">
@@ -78,19 +101,32 @@ label{
        
         <div class="row"> 
           <div class="col-xs-6 col-md-4">
+            <label ><span i18n:translate="">E-mail</span>:
+              <input class="form-control" type='email' id="email" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/email}"  i18n:attributes="data-content;" >
+            </label>
+          </div>
+          <div class="col-xs-6 col-sm-5 col-md-3">
+            <label><span i18n:translate="">Telephone</span>
+              <input class="form-control" type='text' id="phone" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/telephone}"  i18n:attributes="data-content;" >
+            </label>
+          </div>
+        </div>
+
+        <div class="row"> 
+          <div class="col-xs-6 col-md-4">
             <label ><span i18n:translate="">Recipient Name</span>:
               <input class="form-control" type='text' id="recipient_name" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/fName}"  i18n:attributes="data-content;" >
             </label>
           </div>
           <div class="col-xs-6 col-sm-5 col-md-3">
-            <label><span i18n:translate="">Country</span>
-              <select  class="form-control" id="country" data-trigger="manual" data-toggle="popover" data-content="Please fill in" 
+            <label tal:switch="python: view.getLanguage() != 'zh-cn'"><span i18n:translate="">Country</span>
+              <select tal:case="True" class="form-control" id="country"
+                      data-trigger="manual" data-toggle="popover" data-content="Please fill in" 
                       i18n:attributes="data-content;">
                 <option i18n:translate="">Please Choice</option>
-                <option value="US" i18n:translate="">USA</option>
-                <option value="C2" i18n:translate="">CHINA</option>
-                <option value="TW" i18n:translate="">TAIWAN</option>
+                <metal:block  metal:use-macro="context/country_select_macro/macros/country_select" />
               </select>
+              <input tal:case="False" class="form-control" type='text' id="country-china" value="中国" readonly style="background-color:white;" >
             </label>
           </div>
         </div>
@@ -114,26 +150,64 @@ label{
         </div>
         <div class="row">
           <div class="col-xs-12">
-            <label><span i18n:translate="">Address</span>:
-              <input type='text' id="address" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/address1} ${property/address2}" i18n:attributes="data-content;">
+            <label><span i18n:translate="">Address</span>1:
+              <input type='text' id="address1" value="${property/address1}" 
+                     data-trigger="manual" data-toggle="popover" data-content="Please fill in" i18n:attributes="data-content;">
+            </label>
+            <label><span i18n:translate="">Address</span>2:
+              <input type='text' id="address2" value="${property/address2}">
             </label>
           </div>
         </div>
       </div>
 
       <div class="col-sm-4 col-xs-12" >
-        <div class="cart_totals"  i18n:translate="">
+        <div class="cart_totals" >
           <div class="row">
             <h2 i18n:translate="">Cart Totals</h2>
+            <p style="color: #e25c5c;" i18n:translate="">Free shipping when you spend more than dollar<span i18n:name="free_shipping" tal:content="view/getFreeShipping"></span></p>
           </div>
           <div class="row">
             <table>
               <tbody>
+                <span style="display:none;" id="total-weight"></span>
+                <tr class="order-subtotal"  tal:condition="view/hasBonus">
+                  <th i18n:translate="">You will receive</th>
+                  <td>
+                    <strong>
+                      <span class="amount" i18n:translate="">bonuses</span><span class="amount receive-bonus" id="receive-bonus">0</span>
+                    </strong>
+                  </td>
+                </tr>
+                <tr class="order-subtotal">
+                  <th i18n:translate="">Subtotal</th>
+                  <td>
+                    <strong>
+                      <span class="amount subtotal" id="subtotal">0</span><span class="amount" i18n:translate="">dollar</span>
+                    </strong>
+                  </td>
+                </tr>
+                <tr class="order-bonus-disc" tal:condition="view/hasBonus">
+                  <th i18n:translate="">Bonus Discount</th>
+                  <td>
+                    <strong>
+                      <span class="amount bonus-disc" id="bonus-disc">0</span><span class="amount" i18n:translate="">dollar</span><span class="amount">-</span>
+                    </strong>
+                  </td>
+                </tr>
                 <tr class="order-discount">
                   <th i18n:translate="">Discount Amount</th>
                   <td>
                     <strong>
-                      <span class="amount discount-price" id="discount-price">0</span>
+                      <span class="amount discount-price" id="discount-price">0</span><span class="amount" i18n:translate="">dollar</span><span class="amount">-</span>
+                    </strong>
+                  </td>
+                </tr>
+                <tr class="order-shipping-fee" style="border-bottom: 1px solid #7777775c;">
+                  <th i18n:translate="">Shipping Fee</th>
+                  <td>
+                    <strong>
+                      <span class="amount shipping-fee" id="shipping-fee">0</span><span class="amount" i18n:translate="">dollar</span>
                     </strong>
                   </td>
                 </tr>
@@ -141,15 +215,25 @@ label{
                   <th i18n:translate="">Total</th>
                   <td>
                     <strong>
-                      <span class="amount total_number">${view/totalNumber}</span>
+                      <span class="amount total_number">${view/totalNumber}</span><span class="amount" i18n:translate="">dollar</span>
                     </strong>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div class="row">
-            <div id="paypal-button-container" style="float:right;"></div>
+          <div class="row" tal:switch="python: view.getLanguage() != 'zh-cn'">
+            <div tal:case="True" id="paypal-button-container" style="float:right;"></div>
+            <div tal:case="False" id="Alipay-button-container" style="float:right;">
+              <button class="btn" style="background-image: url('++theme++alpha.theme/img/Alipay_logo.png');
+                                         width: 155px;
+                                         height: 55px;
+                                         background-repeat:  no-repeat;
+                                         background-size: 68%;
+                                         background-position: center;
+                                         background-color: #27aaee;">
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -177,7 +261,8 @@ label{
             window.location.href = "products";
         })   
   
-	$('.amount').change(function(){
+	$('.amount').blur(function(){
+            $(this)[0].classList.remove("validate")
 	    val = parseInt($(this).val())
 	    uid = $(this).data('uid')
 
@@ -197,11 +282,24 @@ label{
 	    $(this).parent().parent().remove()
 
             recountPrice()
+            if ($(".product_content").length <= 0){
+                location.replace("products")
+            } 
 	})
     })
   </script>
 
   <script>
+    var items = [];
+    var receive_bonus = 0;
+    var total_price = 0;
+    var subtotal_price = 0;
+    var bonus_disc = 0;
+    var price_disc = 0;
+    var total_disc = 0;
+    var shipping_fee = 0;
+    var order_status = Boolean(true);
+
     paypal.Button.render({
         env: 'sandbox', // sandbox | production
         style: {
@@ -216,130 +314,138 @@ label{
             production: ''
         },
         payment: function(data, actions) {
+            //check product stock
+            order_status = Boolean(true);
+            productStatus()
+            if(!order_status){
+                recountPrice();
+                return actions({error:error});
+            }
 	    total_number = $('.amount.total_number').text()
-	    detail = ''
-
-            $('.product_content').each(function(){
-                product_name = $(this).find('.product-name').text() + " (" + $(this).find('.product-name')["0"].dataset.productno
- + ")"
-                amount = $(this).find('.amount').val()
-                price = $(this).find('.price').text()
-                detail += product_name + ': ' + price + '*' + amount + ', '
-            })
 
 	    recipient_name = $('#recipient_name').val()
             city = $('#city').val()
-            address = $('#address').val()
+            address1 = $('#address1').val()
+            address2 = $('#address2').val()
             country = $('#country').val()
             state = $('#state').val()
             postal_code = $('#postal_code').val()
-	    flag = 1
+            phone = $('#phone').val()
+            email = $('#email').val()
 
             if(!recipient_name){
                 $('#recipient_name').popover('show')
 		setTimeout(function(){$('#recipient_name').popover('hide')}, 3000)	 
-		flag = 0
             }
             if(!country || $('#country')[0].selectedIndex == 0){
                 $('#country').popover('show')
 		setTimeout(function(){$('#country').popover('hide')}, 3000)
-		flag = 0
             }
 	    if(!city){
 		$('#city').popover('show')
 		setTimeout(function(){$('#city').popover('hide')}, 3000)
-		flag = 0
 	    }
             if(!postal_code){
                 $('#postal_code').popover('show')
 		setTimeout(function(){$('#postal_code').popover('hide')}, 3000)
-		flag = 0
             }
-            if(!address){
-                $('#address').popover('show')
-		setTimeout(function(){$('#address').popover('hide')}, 3000)
-		flag = 0
+            if(!address1){
+                $('#address1').popover('show')
+		setTimeout(function(){$('#address1').popover('hide')}, 3000)
             }
             if(!state){
                 $('#state').popover('show')
 		setTimeout(function(){$('#state').popover('hide')}, 3000)
-		flag = 0
+            }
+            if(!email){
+                $('#email').popover('show')
+		setTimeout(function(){$('#email').popover('hide')}, 3000)
+            }
+            if(!phone){
+                $('#phone').popover('show')
+		setTimeout(function(){$('#phone').popover('hide')}, 3000)
+            }
+
+            shipping_address = {
+                recipient_name: recipient_name,
+                line1: address1,
+                city: city,
+                postal_code: postal_code,
+                country_code: country,
+                state: state,
+                phone: phone,
+            }
+            if(address2){
+                shipping_address = Object.assign(shipping_address, {line2: address2})
             }
 	    transactions = [
                     {
-                        amount: { total: total_number, currency: 'USD' },
-			"description": detail,
-                        "item_list": {
-                            "shipping_address": {
-                                recipient_name: recipient_name,
-                                line1: address,
-                                city: city,
-                                postal_code: postal_code,
-                                country_code: country,
-				state: state,
-                            }
+                        amount: { 
+                            total: total_price,
+                            details: {
+                              subtotal: subtotal_price,
+                              shipping: shipping_fee,
+                              shipping_discount: parseInt(Big(total_disc).times(-1)),
+                              tax: "0"
+                            }, 
+                            currency: 'TWD',
+                        },
+                        item_list: {
+                            items: items,
+                            shipping_address: shipping_address
                         }
                     },
                 ]
             return actions.payment.create({
-	       transactions: transactions
+	        transactions: transactions
             });
         },
-
 	commit: true,
         
 	onAuthorize: function(data, actions) {
             return actions.payment.execute().then(function(rep) {
-		total = rep["transactions"][0]["amount"]["total"]
-		currency = rep['transactions'][0]['amount']['currency']
 
-		coupon_code = $('#coupon_code').val()
-                product_detail = ''
-                discount_detail = ''
+                // disc product limit_qty
+                $('.product_content').each(function(){
+                    uid = $(this).data('uid');
+                    qty = parseInt($(this).find('.amount').val());
+                    data = {'uid': uid, 'qty': qty};
+                    url = location.href.replace('confirm_cart', 'delPromoQty')
+                    $.ajax({
+                        type: "post",
+                        url: url,
+                        data: data,
+                    })
+                })
+
                 payer_info = rep.payer.payer_info.shipping_address
                 payer_id = rep.transactions[0].related_resources[0].sale.id;
+		coupon_code = $('#coupon_code').val()
+		currency = rep['transactions'][0]['amount']['currency']
+		total = rep["transactions"][0]["amount"]["total"]
                 create_time = rep.create_time.replace("T", " ").replace("Z", "");
-		if(coupon_code){
-                    $('.product_content').each(function(){
-
-                        product_name = $(this).find('.product-name').text() + " (" + $(this).find('.product-name')["0"].dataset.productno + ")"
-                        amount = $(this).find('.amount').val()
-                        discount_price = $(this).find('.product_discount').text().trim()
-                        price = $(this).find('.price').text()
-
-                        product_detail += product_name + ': ' + (parseInt(price) - parseInt(discount_price)) + '*' + amount + ', '
-                        discount_detail += product_name + ': (' + price + ' - '+ discount_price + ') *' + amount + ', '
-                    })
-
-                    discount = $('.discount-price').text() 
-                    recipient_name = $('#recipient_name').val()
-		}else{
-                    product_detail = ''
-                    discount_detail = ''
-
-                    $('.product_content').each(function(){
-                        product_name = $(this).find('.product-name').text() + " (" + $(this).find('.product-name')["0"].dataset.productno + ")"
-                        amount = $(this).find('.amount').val()
-                        price = $(this).find('.price').text()
-                        product_detail += product_name + ': ' + price + '*' + amount + ', '
-                         
-                    })
-                    discount_detail = '' 
-                    discount = '' 
-                }
                 data = {
-                    'coupon_code': coupon_code,
-                    'total': total,
-                    'currency': currency,
-                    'product_detail': product_detail,
-                    'discount': discount,
-                    'discount_detail': discount_detail,
-                    'recipient_name': payer_info["recipient_name"],
-                    'address': payer_info["country_code"] + ' ' + payer_info["state"] + ' ' +
-                               payer_info["postal_code"]  + ' ' + payer_info["city"]  + ' ' + payer_info["line1"],
+                    'payment': 'paypal',
                     'billing_no': payer_id,
-                    'create_time': create_time
+                    'recipient_name': payer_info["recipient_name"],
+                    'coupon_code': coupon_code,
+                    'email': $('#email').val(),
+                    'phone': $('#phone').val(),
+                    'address': payer_info["country_code"] + ' ' + payer_info["state"] + ' ' +
+                               payer_info["postal_code"]  + ' ' + payer_info["city"]  + ' ' +
+                               payer_info["line1"]        + (payer_info["line2"] ? (' ' + payer_info["line2"] ) : ''),
+                    'currency': currency,
+                    'disc_price': price_disc,
+                    'disc_bonus': bonus_disc,
+                    'shipping': shipping_fee,
+                    'total': total,
+                    'bonus': $('#usable-bonus').val(),
+                    'amount': JSON.stringify(rep.transactions['0'].amount),
+                    'items': JSON.stringify(rep.transactions['0'].item_list.items),
+                    'rep': JSON.stringify(rep),
+                    'create_time': create_time,
                 }
+
                 url = location.href.replace('confirm_cart', 'use_coupon')
                 $.ajax({
                     type: "post",
@@ -351,7 +457,7 @@ label{
                         $.cookie('shop_cart', '')
                     }
                 })
-                url = location.href.replace('confirm_cart', 'products')
+                url = location.href.replace('confirm_cart', 'order_history')
                 setTimeout(function(){
                     location.href = url
                 }, 3000)
@@ -360,6 +466,60 @@ label{
     }, '#paypal-button-container');
   </script>
   <script>
+    function delProductFromCookie(uid){
+        cookie_shop_cart = JSON.parse($.cookie('shop_cart'))
+        delete cookie_shop_cart[uid]
+        $.cookie('shop_cart', JSON.stringify(cookie_shop_cart))
+        $('.product-'+uid).remove()
+    }
+
+    document.onreadystatechange = function(){ 
+      recountPrice();
+      document.getElementById('country').value = '${python: view.getUserProperties()["country"]}'
+    }
+
+    function validateNotify(element, message){
+        if(element) element.classList.add('validate');
+        $.amaran({
+            'content'   :{
+                'bgcolor' :'#ae2727',
+                'color'   :'#fff',
+                'font-size': '24px',
+                'message' :message,
+            },
+            'cssanimationIn'    :'shake',
+            'theme'             :'colorful',
+            'cssanimationOut'   :'zoomOutDown',
+            'position'          :'bottom right',
+        });
+
+    }
+    
+  </script>
+
+  <!-- script for count order price shipping-fee bonus rebate -->
+  <script>
+    function checkBonus(total_price){
+        bonusElement = $("#usable-bonus")[0];
+        if(bonusElement){
+            bonus = $("#usable-bonus").val();
+            if(bonusElement.checkValidity() && bonus){
+                bonusElement.classList.remove('validate');
+                bonus_money = Big($("#usable-bonus").data("bonus_money"))
+                bonus_price = Big($("#usable-bonus").val()).times(bonus_money)
+                total_price_big = Big(total_price)
+                if( total_price_big.minus(bonus_price) <= 0){
+                    max_bonus = total_price_big.div(bonus_money).toFixed(0)
+                    bonusElement.value = parseInt(max_bonus);
+                    validateNotify(bonusElement, '${view/i18nString/max_bonus} ' + max_bonus)
+                }
+            }else{
+                bonusElement.value = 0;
+                validateNotify(bonusElement, '${view/i18nString/avilable_bonus}')
+            }
+        }
+    }
+
     function checkPromoCode(){
         promoCodeElement = event.srcElement;
         promoCode = event.srcElement.value;
@@ -397,27 +557,177 @@ label{
     }
 
     function recountPrice(){
-        var total_price = 0;
-        var total_disc = 0;
+        if ($(".product_content").length <= 0){
+            location.replace("products")
+        }
+        checkTimeLimit()
+        total_price = 0;
+        subtotal_price = 0;
+        total_disc = 0;
         $('.sub_total').each(function(){
             var coupon_code = document.getElementById("coupon_code");                        
             var disc = 0;
+            var disc_big = Big(disc)
+
             if(coupon_code && coupon_code.value){
                 var disc = parseInt($(this).data("discount")) ;
+                var disc_big = Big(disc)
             }
+
             unit_price = parseInt($(this).parent().find('.price').data('price'))
-            $(this).parent().find('.price').text((unit_price - disc))
+            unit_price_big = Big(unit_price)
+            $(this).parent().find('.price').text( parseInt(unit_price_big.minus(disc_big)) )
 
             var qty = parseInt($(this).parent().find('.amount').val());
-            $(this).parent().find('.sub_total_price').text((unit_price - disc) * qty)
-            
-            total_disc += disc * qty
-            total_price += (unit_price - disc) * qty
-        
+            var qty_big = Big(qty)
+
+            $(this).parent().find('.sub_total_price').text( parseInt(unit_price_big.minus(disc_big).times(qty_big)) )
+
+            total_disc_big = Big(total_disc)
+            total_disc_big = total_disc_big.plus( disc_big.times(qty_big) ) 
+            self.total_disc = parseInt(total_disc_big)
+
+            subtotal_price_big = Big(subtotal_price)
+            subtotal_price_big = subtotal_price_big.plus(unit_price_big.times(qty_big))
+            self.subtotal_price = parseInt(subtotal_price_big)
+            $('#subtotal').text(subtotal_price)
+
+            total_price_big = Big(self.total_price)
+            total_price_big = total_price_big.plus(unit_price_big.minus(disc_big).times(qty_big))
+            self.total_price = parseInt(total_price_big) 
         })
-        $(".discount-price").text(total_disc)
+        checkBonus(total_price)
+        bonus_price = 0
+        if($("#usable-bonus").length > 0){
+            usable_bonus = Big($("#usable-bonus").val())
+            bonus_money = Big($("#usable-bonus").data("bonus_money"))
+            bonus_price_big = usable_bonus.times(bonus_money)
+
+            bonus_price = parseInt(bonus_price_big)
+            $('#bonus-disc').text(bonus_price)
+            bonus_disc = bonus_price;
+
+            total_disc_big = Big(total_disc)
+            total_disc = parseInt(total_disc_big.plus(bonus_price_big))
+
+            total_price_big = Big(total_price)
+            total_price = parseInt(total_price_big.minus(bonus_price_big))
+        }
+        price_disc = parseInt(Big(total_disc).minus(bonus_price))
+        $(".discount-price").text(price_disc)
         $('.total_number').text(total_price)
+        countShippingFee()
     }
+
+    function countShippingFee(){
+        var total_weight = 0;
+        receive_bonus = 0;
+        items = []
+        var coupon_code = document.getElementById("coupon_code");                        
+        var has_coupon  = Boolean(coupon_code && coupon_code.value);
+        $('.sub_total').each(function(){
+            var weight_big = Big($(this).data('weight'))
+            var weight = parseInt(weight_big)
+            var qty_big = Big(parseInt($(this).parent().find('.amount').val()));
+            var qty = parseInt(qty_big);
+            var name = $(this).data('name')
+            var bonus = $(this).data('bonus')
+            var rebate = $(this).data('rebate')
+            var price = parseInt($(this).data('price'))
+            var disc_price = has_coupon ? $(this).data('disc_price') : 0
+            var description = {"disc_price":disc_price,"bonus":bonus,"rebate":rebate}
+            items.push({
+                        name: name,
+                        description: JSON.stringify(description),
+                        quantity: qty,
+                        price: price,
+                        currency: 'TWD'
+                      });
+
+            total_weight_big = Big(total_weight)
+            total_weight_big = total_weight_big.plus(weight_big.times(qty_big))
+            total_weight = parseInt(total_weight_big)
+
+            receive_bonus_big = Big(self.receive_bonus)
+            receive_bonus_big = receive_bonus_big.plus( Big(bonus).times(qty_big) )
+            self.receive_bonus = parseInt(receive_bonus_big)
+        })
+
+        url = location.href.replace('confirm_cart', 'count_shipping_fee')
+        data = { 'weight': total_weight, }
+        free_shipping = parseInt("${view/getFreeShipping}")
+        if(total_price <= free_shipping){
+          $.ajax({
+              type: "post",
+              url: url,
+              data: data,
+              async: false,
+              success: function(response){
+                  var result = $.parseJSON(response)
+                  if(result.hasOwnProperty('shipping_fee')){
+                      shipping_fee = result.shipping_fee
+                      total_price = parseInt(Big(total_price).plus(shipping_fee))
+                      $('#shipping-fee').text(shipping_fee)
+                  }
+              }
+          });
+        }else{
+          shipping_fee = 0
+          $('#shipping-fee').text(shipping_fee)
+        }
+
+        $('.total_number').animate({ numberValue: (total_price) }, {
+            step: function (price) {
+                    $('.total_number').text(price.toFixed(0)); 
+            }
+        });
+        $('#total-weight').data("weight", total_weight)
+        $('#receive-bonus').text(receive_bonus)
+    }
+
+    function checkTimeLimit(){
+        $(".has-timelimit").each(function (){
+            var timelimit = new Date($(this).data('date'))
+            var uid = $(this).data('uid')
+            var qty = $(this).data('limit_qty')
+            if(timelimit < new Date()){
+                validateNotify(null, '${view/i18nString/time_passed}')
+                delProductFromCookie(uid)
+            }
+        });
+    }
+
+    function productStatus(){
+        $(".product-name").each(function(){
+            url = $(this).data("url")
+            qty_element = $(this).parent().find('.amount')
+            var qty = parseInt(qty_element.val()); 
+            var has_promo = $(this).parent().hasClass('promo-product')
+            if(url){
+                $.ajax({
+                    type: "get",
+                    url: url,
+                    async: false,
+                    headers:{
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    }
+                }).done(function(response){
+                    limit_qty = response.limit_qty
+                    if(limit_qty <= 0){
+                        order_status = Boolean(false);
+                        validateNotify(null, response.title + ' ${view/i18nString/out_of_stock}')
+                        delProductFromCookie(response.UID);
+                    }else if((limit_qty-qty) < 0){
+                        order_status = Boolean(false);
+                        validateNotify(qty_element[0], response.title + ' ${view/i18nString/only_left} '+ limit_qty)
+                        qty_element.val(limit_qty);
+                    } 
+                })
+            }
+        });
+    }
+
   </script>
 </metal:js>
 

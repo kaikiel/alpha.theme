@@ -27,10 +27,10 @@ var shop_cart = new Vue({
     created: function(){
         pathname = location.pathname.search('alpha_en')
         if(pathname != -1){
-            this.dollar = '$'
+            this.dollar = 'NT$'
         }
 	else{
-            this.dollar = '¥'
+            this.dollar = 'NT$'
         }
         cookie_shop_cart = $.cookie('shop_cart')
 	if(cookie_shop_cart){
@@ -82,7 +82,11 @@ var shop_cart = new Vue({
                             shop_cart.total_number += 1
                             result.push(amount)
                             shop_cart.shop_data[uid] = result
-                            shop_cart.total_price += result[2] * amount
+                            current_total = Big(shop_cart.total_price)
+                            item_price = Big(result[2])
+                            item_amount = Big(amount)
+                            total = current_total.add((item_price.minus(item_amount)))
+                            shop_cart.total_price = parseFloat(total)
                         }
                     }
                 })

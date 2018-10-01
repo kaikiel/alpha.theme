@@ -8,35 +8,244 @@
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core"
                     tal:define="toc context/table_of_contents|nothing;">
-        <article id="content">
-            <tal:mailhost tal:condition="view/showForm">
-            <h1 class="documentFirstHeading"
-                tal:content="view/label | nothing" />
-                <metal:block use-macro="context/@@ploneform-macros/titlelessform">
-                    <metal:bottom fill-slot="formbottom">
-                    <input tal:define="came_from request/form/came_from|nothing"
-                           tal:condition="came_from"
-                           type="hidden"
-                           name="came_from"
-                           tal:attributes="value came_from" />
-                  </metal:bottom>
-                </metal:block>
-            </tal:mailhost>
-            <tal:nomailhost tal:condition="not:view/showForm">
 
-                <h1 class="documentFirstHeading"
-                    i18n:translate=""
-                    tal:content="view/label" />
-
-                <div id="content-core">
-                  <div class="documentDescription">
-                      This site doesn't have a valid email setup, so you
-                      cannot register at this time.
+  <div class="user-login-area mb-70">
+    <div class="container">
+      <div class="row" tal:condition="view/checkAdmin">
+        <a class="oval-btn" href="@@usergroup-userprefs" i18n:translate="">Back to manage user</a>
+      </div>
+      <div class="row">
+        <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+          <form id="regForm" method="POST">
+            <div class="row">
+              <div class="login-title text-center mb-30">
+                <h2 i18n:translate="">Register</h2>
+              </div>
+              <div class="row" tal:condition="view/checkAdmin">
+                <h1 class="documentFirstHeading" i18n:translate="">User Group</h1>
+                <div class="col-xs-12 col-sm-6">
+                  <div class="single-register">
+                    <label i18n:translate="">promoCode</label>
+                    <input type="text" name="promoCode" id="promoCode" pattern="[0-9]{6,}" 
+                           oninput="this.className = '';this.setCustomValidity('');" onblur="checkPromoCode()" />
                   </div>
                 </div>
+                <div class="col-xs-12 col-sm-6">
+                  <div class="single-register" tal:condition="view/checkAdmin">
+                    <label i18n:translate="">group</label>
+                    <select class="form-control" name="group" id="group">
+                      <option value="level_D" i18n:translate="">level_D</option>
+                      <option value="level_C" i18n:translate="">level_C</option>
+                      <option value="level_B" i18n:translate="">level_B</option>
+                      <option value="level_A" i18n:translate="">level_A</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- One "tab" for each step in the form: -->
+              <div class="row">
+                <h1 class="documentFirstHeading" i18n:translate="">Account</h1>
+                <div class="col-xs-12">
+                  <div class="single-register">
+                    <label for="username"><span i18n:translate="">Username</span><span class="must">*</span></label>
+                    <input type="text" name="username" id="username"
+                           oninput="this.className = '';this.setCustomValidity('');" onblur="checkUsername()" required/>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <div class="single-register">
+                    <label for="password"><span i18n:translate="">Password</span><span class="must">*</span></label>
+                    <input type="password" name="password" id="password" pattern="[a-zA-Z0-9]{6,}" 
+                           oninput="this.className = '';this.setCustomValidity('');" onkeyup="validatePassword()" 
+                           oninvalid="this.setCustomValidity('${view/pwVaild}');" required/>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <div class="single-register">
+                    <label for="re_password"><span i18n:translate="">Confirm Password</span><span class="must">*</span></label>
+                    <input type="password" id="re_password"
+                           oninput="this.className = ''" onkeyup="validatePassword()" required/>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <h1 class="documentFirstHeading" i18n:translate="">Your Personal Details</h1>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <div class="single-register">
+                    <label for="fName"><span i18n:translate="">First Name</span><span class="must">*</span></label>
+                    <input type="text" name="fName" id="fName" oninput="this.className = ''" required/>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <div class="single-register">
+                    <label for="lName"><span i18n:translate="">Last Name</span><span class="must">*</span></label>
+                    <input type="text" name="lName" id="lName" oninput="this.className = ''" required/>
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="single-register">
+                    <label for="email"><span i18n:translate="">Email Address</span><span class="must">*</span></label>
+                    <input type="email" name="email" id="email" oninput="this.className = ''" onblur="checkEmail()" required />
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <div class="single-register">
+                    <label for="telephone"><span i18n:translate="">Telephone</span><span class="must">*</span></label>
+                    <input type="text" name="telephone" id="telephone" oninput="this.className = ''" required/>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <div class="single-register">
+                    <label for="fax" i18n:translate="">Fax</label>
+                    <input type="text" name="fax" id="fax" oninput="this.className = ''" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <h1 class="documentFirstHeading" i18n:translate="">Your Address</h1>
+                <div class="col-xs-12">
+                  <div class="single-register">
+                    <label for="company" i18n:translate="">Company</label>
+                    <input type="text" name="company" id="company" oninput="this.className = ''" />
+                    <input type="hidden" name="group" value="level_D" tal:condition="not: view/checkAdmin"> 
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="single-register">
+                    <label for="address1"><span i18n:translate="">Address1</span><span class="must">*</span></label>
+                    <input type="text" name="address1" id="address1" oninput="this.className = ''" required />
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="single-register">
+                    <label for="address2" i18n:translate="">Address2</label>
+                    <input type="text" name="address2" id="address2" oninput="this.className = ''" />
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="single-register">
+                        <label for="city"><span i18n:translate="">Town/City</span><span class="must">*</span></label>
+                        <input type="text" name="city" id="city" oninput="this.className = ''" required />
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="single-register">
+                        <label for="zip"><span i18n:translate="">Postcode/zip</span><span class="must">*</span></label>
+                        <input type="text" name="zip" id="zip" oninput="this.className = ''" required />
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <input type="hidden" name="country" value="臺灣"/>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <input type="hidden" name="state" value="臺灣"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <h1 class="documentFirstHeading" i18n:translate="">Newsletter</h1>
+                <div class="col-xs-12">
+                  <div class="single-register single-register-3">
+                    <label class="inline" id="newsletterCheck" i18n:translate="">Subscribe</label>
+                    <label for="newsletter_yes">
+                    <input type="radio" id="newsletter_yes" name="newsletter" value="true" checked="checked" > <span i18n:translate="">Yes</span>
+                    </label>
+                    <label for="newsletter_no">
+                    <input type="radio" id="newsletter_no" name="newsletter" value="false"> <span i18n:translate="">No</span>
+                    </label>
+                  </div>
+                  <div style="text-align: right;">
+                    <input type="hidden" name="widget-form-btn" value="widget-form-btn"/>
+                    <input type="submit" class="oval-btn" i18n:attributes="value" value="submit"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+  function validatePassword(){
+    var password = document.getElementById("password")
+      , confirm_password = document.getElementById("re_password");
+    if(password.value != confirm_password.value) {
+      confirm_password.setCustomValidity("${view/pwConfirm}");
+    } else {
+      confirm_password.setCustomValidity('');
+    }
+  }
+</script>
 
-            </tal:nomailhost>
-        </article>
+<script>
+  function checkUsername(){
+    var username = event.target.value;
+    var form = new FormData(this);
+    form.append("username", username);
+    $.ajax({
+        method: "POST",
+        url: location.href,
+        processData: false,
+        contentType: false,
+        mimeType: "multipart/form-data",
+        data: form,
+    }).done(function(response) {
+        if(response == "1"){
+            document.getElementById("username").setCustomValidity("");
+        }else{
+            document.getElementById("username").setCustomValidity("${view/userConfirmStr}");
+        }
+    }); 
+  }
+
+  function checkEmail(){
+    var email = event.target.value;
+    if(email){
+      var form = new FormData(this);
+      form.append("email", email);
+      $.ajax({
+          method: "POST",
+          url: location.href,
+          processData: false,
+          contentType: false,
+          mimeType: "multipart/form-data",
+          data: form,
+      }).done(function(response) {
+          if(response == "1"){
+              document.getElementById("email").setCustomValidity("");
+          }else{
+              document.getElementById("email").setCustomValidity("${view/emailStr}");
+          }
+      }); 
+    }
+  }
+
+  function checkPromoCode(){
+    var promoCode = event.target.value;
+    if(promoCode){
+      var form = new FormData(this);
+      form.append("promoCode", promoCode);
+      $.ajax({
+          method: "POST",
+          url: location.href,
+          processData: false,
+          contentType: false,
+          mimeType: "multipart/form-data",
+          data: form,
+      }).done(function(response) {
+          if(response == "1"){
+              document.getElementById("promoCode").setCustomValidity("");
+          }else{
+              document.getElementById("promoCode").setCustomValidity("${view/promoCodeStr}");
+          }
+      }); 
+    }
+  }
+</script>
 
 </metal:content-core>
 </metal:content-core>

@@ -26,10 +26,11 @@
               </div>
               <h1 style="font-size:30px;">${view/context/title}</h1>
               <div class="entry-meta">
-                <span ><span i18n:translate="">Posted by</span> ${view/context/Creator}</span>
-                <span class="day">${python: view.getNewsDay(view.context)}</span>
-                <span class="month">${python: view.getNewsMonth(view.context)}</span>
-                <span class="year">${python: view.getNewsYear(view.context)}</span>
+                <span class="fa fa-clock-o">
+                  ${python: view.context.effective().strftime('%Y年%m月%d日 %H:%m ')}/ 
+                  <span i18n:translate="">Posted by</span> 
+                  ${view/context/Creator}
+                </span>
               </div>
             </div>
           </div>

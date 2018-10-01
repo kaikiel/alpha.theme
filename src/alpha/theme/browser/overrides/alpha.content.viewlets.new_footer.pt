@@ -3,7 +3,7 @@
 <footer id="footer-area">
 
 <style>
-.pre-line{
+.footer-top-area .pre-line{
   white-space: pre-line;
   display: inline-block;
   vertical-align: inherit;
@@ -12,7 +12,6 @@
   vertical-align: top;
 }
 </style>
-
   <div class="footer-top-area pt-80 pb-50">
     <div class="container">
       <div class="row">
@@ -20,9 +19,9 @@
           <!-- single-footer-start -->
           <div class="single-footer">
             <div class="footer-logo mb-30">
-              <h1 style="font-size:25px; color:#fff" i18n:translate="">Alpha Hobbies Group</h1>
+              <a href="${view/context/portal_url}" ><img src="${view/getSiteLogo}"></a>
             </div>
-            <p class="pre-line" i18n:translate="">${view/description}</p>
+            <p class="pre-line">${view/description}</p>
             <div class="footer-address">
               <ul>
                 <li><i class="fa fa-map-marker"></i><span i18n:translate="">address</span> :<span class="pre-line">${view/address}</span></li>
@@ -32,10 +31,8 @@
             </div>
             <div class="social-link">
               <ul>
-                <li><a href="${view/fb_link}"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="${view/weibo_link}"><i class="fa fa-weibo"></i></a></li>
-                <li><a href="${view/youku_link}"><i style="position: relative; left: -3px; top: 2px;" class="icon-youku"></i></a></li>
-                <li><a href="${view/youtube_link}"><i class="fa fa-youtube-play"></i></a></li>
+                <li tal:condition="view/fb_link"><a href="${view/fb_link}"><i class="fa fa-facebook"></i></a></li>
+                <li tal:condition="view/youtube_link"><a href="${view/youtube_link}"><i class="fa fa-youtube-play"></i></a></li>
               </ul>
             </div>
           </div>
@@ -45,14 +42,13 @@
           <!-- single-footer-start -->
           <div class="single-footer">
             <div class="footer-title">
-              <h4 i18n:translate="">customer service</h4>
+              <h4 >品牌故事</h4>
             </div>
             <div class="footer-menu">
               <ul>
-                <li><a href="${view/context/portal_url}/@@contact_us" i18n:translate="">Contact Us</a></li>
-                <li><a href="${view/context/portal_url}/return_product" i18n:translate="">Returns</a></li>
-                <li><a href="${view/context/portal_url}/brands" i18n:translate="">Brands</a></li>
-                <li><a href="${view/context/portal_url}/return-policies" i18n:translate="">Return policies</a></li>
+                <li><a href="${view/context/portal_url}/company-info" >緣起</a></li>
+                <li><a href="${view/context/portal_url}/company-info" >理念</a></li>
+                <li><a href="${view/context/portal_url}/company-info" >未來展望</a></li>
               </ul>
             </div>
           </div>
@@ -62,13 +58,14 @@
           <!-- single-footer-start -->
           <div class="single-footer">
             <div class="footer-title">
-              <h4 i18n:translate="">extras</h4>
+              <h4 >商品介紹</h4>
             </div>
             <div class="footer-menu">
               <ul>
-                <li><a href="${view/context/portal_url}/site_map" i18n:translate="">Site Map</a></li>
-                <li><a href="#" i18n:translate="">Affiliates</a></li>
-                <li><a href="#" i18n:translate="">Specials</a></li>
+                
+                <li tal:repeat="category view/getProductCategory">
+                  <a href="${view/context/portal_url}/products?p_category=${category}" >${category}系列</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -78,13 +75,14 @@
           <!-- single-footer-start -->
           <div class="single-footer">
             <div class="footer-title">
-              <h4 i18n:translate="">My Account</h4>
+              <h4 i18n:translate="">User Area</h4>
             </div>
             <div class="footer-menu">
               <ul>
-                <li><a href="${view/context/portal_url}/personal_details" i18n:translate="">My Account</a></li>
-                <li><a href="${view/context/portal_url}/wishlist" i18n:translate="">Wish List</a></li>
+                <li><a href="${view/context/portal_url}/register_form" i18n:translate="">Join us</a></li>
                 <li><a href="${view/context/portal_url}/order_history" i18n:translate="">Order History</a></li>
+                <li><a href="${view/context/portal_url}/shopping-notes" i18n:translate="">Shopping Notes</a></li>
+                <li><a href="${view/context/portal_url}/privacy-policies" i18n:translate="">Privacy Policies</a></li>
               </ul>
             </div>
           </div>
@@ -100,12 +98,12 @@
           <div class="copy-right">
             <?python import datetime ?>
             <p>Copyright © ${python: datetime.datetime.now().year}
-                         <a href="${view/context/portal_url}">ALPHA PLUS MODEL CO., LTD</a>. All Rights Reserved</p>
+                         <a href="${view/context/portal_url}">Kireistar CO., LTD</a>. All Rights Reserved</p>
           </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="payment-area">
-            <a ><img src="++theme++alpha.theme/img/1.png" alt="payment" /></a>
+            <a ><img src="++theme++alpha.theme/img/1.png" alt="payment" style="max-height: 30px;" /></a>
           </div>
         </div>
       </div>
@@ -116,6 +114,8 @@
        data-s_success="add shop-cart success" data-s_exist="add shop-cart exist" data-s_empty="add shop-cart empty"
        data-buy_success="buy success"
        i18n:attributes="data-c_success;data-c_exist;data-c_full;data-s_success;data-s_exist;data-s_empty;data-buy_success"></div>
+  <div id="root-pathname" style="display: none;" data-path="${view/getRootPathname}" />
+
 
 </footer>
 </html>

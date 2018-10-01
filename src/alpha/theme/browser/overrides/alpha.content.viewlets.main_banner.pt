@@ -6,7 +6,7 @@
   <tal:define define="obj item/getObject;
                       item_uid item/UID;
                       item_url item/getURL;">
-    <img src="${item_url}/@@images/image" alt="slider-img" title="#banner${repeat/item/index}" />
+    <img src="${item_url}/@@images/image/big" alt="slider-img" title="#banner${repeat/item/index}" />
   </tal:define>
   </tal:repeat>
   </div>
@@ -23,7 +23,7 @@
           <div class="slider-text" >
             <div class="wow bounceInDown" data-wow-delay=".5s">
               <tal:block tal:content="structure item_text" />
-              <a tal:condition="item_link" href="${item_link}"><i class="fa fa-shopping-cart"></i>buy now</a>
+              <div style="margin-top:15px;"><a tal:condition="item_link" href="${item_link}"><i class="fa fa-shopping-cart"></i>了解更多</a></div>
             </div>
           </div>
         </div>
@@ -46,7 +46,8 @@
                           is_has_item_sale view/hasSale;
                           item_brand item/brand;
                           item_productCode item/productCode;
-                          item_availability item/availability;
+                          item_qty item/limit_qty;
+                          item_availability python: item_qty > 0;
                           item_rating python: int(item.rating or 0);">
         
         <!-- single-modal-start -->
@@ -110,13 +111,13 @@
                     <div class="product_reference">
                       <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Brand</span>:<span>${item_brand}</span></p>
                     </div>
-                    <div class="product_reference">
+                    <div class="product_reference" tal:condition="item_productCode">
                       <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Product Code</span>:<span>${item_productCode}</span></p>
                     </div>
                     <div class="product_reference">
                       <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Availability</span>:
                         <tal:block tal:switch="item_availability">
-                          <span tal:case="True"  tal:content="string: In stock"/>
+                          <span tal:case="True"  tal:content="item_qty"/>
                           <span tal:case="False" tal:content="string: Out of stock" style="color:red;"/>
                         </tal:block>
                       </p>

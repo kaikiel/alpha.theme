@@ -14,8 +14,8 @@
                             item_disc obj/disc_amount;
                             item_price obj/price;
                             item_sale python: view.salePrice(obj);
-                            is_has_item_sale False;
-                            item_availability obj/availability;
+                            is_has_item_sale True;
+                            item_availability python: obj.limit_qty > 0;
                             item_rating python: int(obj.rating or 0);">
           <div class="col-lg-12">
             <div class="single-special-product">
@@ -75,7 +75,7 @@
                                   item_price obj/price;
                                   item_sale python: view.salePrice(obj);
                                   is_has_item_sale False;
-                                  item_availability obj/availability;
+                                  item_availability python: obj.limit_qty > 0;
                                   item_rating python: int(obj.rating or 0);">
             <div class="col-lg-12">
               <div class="single-special-product">

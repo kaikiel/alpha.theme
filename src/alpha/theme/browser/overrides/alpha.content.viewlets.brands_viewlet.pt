@@ -6,7 +6,7 @@
       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="single-banner text-center">
           <div class="banner-img phone mb-20">
-            <a href="#"><img src="++theme++alpha.theme/img/brand-viewlets-1.jpg" alt="banner" style="max-width:80px" /></a>
+            <i class="demo-icon icon-quality"></i>
           </div>
           <div class="banner-text">
             <h4 i18n:translate="">banner_h4_1</h4>
@@ -17,7 +17,7 @@
       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="single-banner text-center">
           <div class="banner-img card mb-20">
-            <a href="#"><img src="++theme++alpha.theme/img/brand-viewlets-2.jpg" alt="banner" style="max-width:80px" /></a>
+            <i class="demo-icon icon-cooperation"></i>
           </div>
           <div class="banner-text">
             <h4 i18n:translate="">banner_h4_2</h4>
@@ -28,7 +28,7 @@
       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="single-banner text-center">
           <div class="banner-img mb-20 plane">
-            <a href="#"><img src="++theme++alpha.theme/img/brand-viewlets-3.jpg" alt="banner" style="max-width:80px" /></a>
+            <i class="demo-icon icon-service"></i>
           </div>
           <div class="banner-text">
             <h4 i18n:translate="">banner_h4_3</h4>
@@ -39,7 +39,7 @@
       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="single-banner text-center">
           <div class="banner-img mb-20 light">
-            <a href="#"><img src="++theme++alpha.theme/img/brand-viewlets-4.jpg" alt="banner" style="max-width:80px" /></a>
+            <i class="demo-icon icon-shopping"></i>
           </div>
           <div class="banner-text">
             <h4 i18n:translate="">banner_h4_4</h4>

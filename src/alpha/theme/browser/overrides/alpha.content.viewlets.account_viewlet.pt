@@ -1,33 +1,58 @@
 <html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="alpha.theme">
-<div class="header-left-menu" id="languageselector">
-  <ul>
-    <li>
-      <tal:block tal:switch="python: view.context.restrictedTraverse('@@plone_portal_state').language()">
-      <tal:case tal:case="string:zh-cn">
-        <a><img src="++theme++alpha.theme/img/flag/china.jpg" alt="flag" />簡體中文<i class="fa fa-angle-down"></i></a>
-      </tal:case>
-      <tal:case tal:case="string:en-us">
-        <a><img src="++theme++alpha.theme/img/flag/america.jpg" alt="flag" />English<i class="fa fa-angle-down"></i></a>
-      </tal:case>
-      </tal:block>
-      <div class="submenu-top">
-	<ul>
-	  <li><a href="/alpha_en"><img src="++theme++alpha.theme/img/flag/america.jpg" alt="flag" />English</a></li>
-	  <li><a href="/alpha_cn"><img src="++theme++alpha.theme/img/flag/china.jpg" alt="flag" />簡體中文</a></li>
-	</ul>
+<div id="modal-register-notify">
+  <div class="modal fade" id="registerNotify" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-12">
+              <p i18n:translate="">You are not currently logged in</p>
+              <p i18n:translate="">If you want a discounted price</p>
+              <p i18n:translate="">Please login or register for an account</p>
+              
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
+  <script>
+    $(".fa-shopping-cart").parent().click(function(){
+      if( "${view/isAnonymous}" === "True"){
+        isShowed = $.cookie('first_anonymous_modal')
+        if(!isShowed){
+          path = $("#root-pathname").data("path")
+          var date = new Date()
+          date.setTime(date.getTime() + (60 * 60 * 1000))
+          $.cookie('first_anonymous_modal', 'isShowed', {path: '/'+path})
+          $("#registerNotify").modal();
+        }
+      }
+    });
+  </script>
+</div>
+<div class="header-left-menu" id="languageselector">
 </div>
 
 <div class="submenu-top">
-  <ul tal:switch="view/isAnonymous">
+  <ul>
     <li><a href="${view/context/portal_url}/personal_details" i18n:translate="">My account</a></li>
-    <li><a href="${view/context/portal_url}/wishlist" i18n:translate="">My wishlist</a></li>
+    <li tal:condition="not:view/isAnonymous"><a href="${view/context/portal_url}/order_history" i18n:translate="">Order History</a></li>
+    <li tal:condition="not:view/isAnonymous"><a href="${view/context/portal_url}/wishlist" i18n:translate="">My wishlist</a></li>
+    <li tal:condition="not:view/isAnonymous"><a href="${view/context/portal_url}/bonus_history" i18n:translate="">Bonus</a></li>
     <li><a href="${view/context/portal_url}/confirm_cart" i18n:translate="">checkout</a></li>
-    <li tal:case=True><a href="${view/context/portal_url}/login" i18n:translate="">Login</a></li>
-    <li tal:case=False><a href="${view/context/portal_url}/log_out" i18n:translate="">Log out</a></li>
+    <li tal:condition="view/isAnonymous"><a href="${view/context/portal_url}/login" i18n:translate="">Login</a></li>
+    <li tal:condition="not:view/isAnonymous"><a href="${view/context/portal_url}/log_out" i18n:translate="">Log out</a></li>
   </ul>
 </div>
 

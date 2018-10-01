@@ -35,10 +35,11 @@
                   item_url item/getURL;
                   item_id item/getId;
                   item_title item/Title;
-                  item_description item/Description;
+                  item_description obj/description;
                   item_type item/PortalType;
                   item_modified item/ModificationDate;
                   item_created item/CreationDate;
+                  item_date item/effective;
                   item_wf_state item/review_state;
                   item_wf_state_class python:'state-' + view.normalizeString(item_wf_state);
                   item_creator item/Creator;
@@ -62,7 +63,7 @@
                        <h1><a href="${item_link}">${item_title}</a></h1>
                        <div class="entry-meta">
                          <span class="fa fa-clock-o">
-                           ${item_created_month} ${item_created_day}, ${item_created_year}/ <span i18n:translate="">Posted by</span> ${item_creator}
+                           ${python: item_date.strftime('%Y年%m月%d日 %H:%m ')}/ <span i18n:translate="">Posted by</span> ${item_creator}
                          </span>
                        </div>
                        <p>${item_description}</p>

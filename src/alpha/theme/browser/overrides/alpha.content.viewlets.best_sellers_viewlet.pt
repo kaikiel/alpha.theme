@@ -2,114 +2,79 @@
       i18n:domain="alpha.theme">
 <div class="pos_new_product ptb-50">
   <div class="container">
+    <!--tab title-->
     <div class="row">
       <div class="col-lg-12">
-        <div class="section-title mb-40 text-center">
-          <h2 i18n:translate="">best sellers</h2>
+        <div class="section-title mb-30 text-center">
+          <h2 ><b class="h-line-title" i18n:translate="">best seller</b></h2>  
         </div>
       </div>
-    </div>  
-    <div class="product-active">
-      <!-- single-product-start -->
-      <tal:repeat repeat="item view/getBestSellers">
-        <tal:define define="obj item/getObject;
-                            item_title item/Title;
-                            item_productNo obj/productNo;
-                            item_uid item/UID;
-                            item_url item/getURL;
-                            item_disc obj/disc_amount;
-                            item_price obj/price;
-                            item_sale python: view.salePrice(obj);
-                            is_has_item_sale view/hasSale;
-                            item_availability obj/availability;
-                            item_rating python: int(obj.rating or 0);
-                            not_odd_item python: repeat.item.length%2 != 0;">
-          <tal:content tal:content="structure string: <div class='product-total-2'>" tal:condition="repeat/item/even" />
-            <!-- single-product-start -->
-            <div tal:condition="repeat/item/even" class="single-product mb-30">
-              <div class="single-img">
-                <a href="${item_url}">
-                  <img src="${item_url}/@@images/cover/preview" alt="product" class="first" />
-                </a>
-              </div>
-              <div class="product-content">
-                <span>${item_productNo}</span>
-                <h3><a href="${item_url}">${item_title}</a></h3>
-                <div class="product-rating mb-10">
-                  <tal:repeat tal:repeat="star python: range(5)">
-                    <tal:switch tal:switch="python: (item_rating-1) >= star">
-                      <span tal:case="True"><i class="fa fa-star checked"></i></span>
-                      <span tal:case="False"><i class="fa fa-star"></i></span>
-                    </tal:switch>
-                  </tal:repeat>
-                </div>
-                <div tal:switch="is_has_item_sale" class="product-price">
-                  <ul tal:case="True">
-                    <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
-                    <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
-                  </ul>
-                  <ul tal:case="False">
-                    <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
-                  </ul>
-                </div>
-                <div class="add-to-links mt-15">
-                  <ul>
-                    <li tal:condition="python: item_availability==True"><a onclick="shop_cart.add_shop('${item_uid}', 1)"><i class="fa fa-shopping-cart"></i></a></li>
-                    <li tal:condition="python: item_availability==False"><a class="out_of_stock"><i class="fa fa-shopping-cart"></i></a></li>
-                    <li><a ><i class="fa fa-book" data-uid="${item_uid}"></i></a></li>
-                    <li><a ><i data-uid="${item_uid}" class="fa fa-heart-o"></i></a></li>
-                    <li><a  data-toggle="modal" data-target="#${item_uid}"><i class="fa fa-eye"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- single-product-end -->
-            <!-- single-product-start -->
-            <div tal:condition="repeat/item/odd" class="single-product">
-              <div class="product-img">
-                <a href="${item_url}">
-                  <img src="${item_url}/@@images/cover/preview" alt="product" class="first" />
-                </a>
-              </div>
-              <div class="product-content">
-                <span>${item_productNo}</span>
-                <h3><a href="${item_url}">${item_title}</a></h3>
-                <div class="product-rating mb-10">
-                  <tal:repeat tal:repeat="star python: range(5)">
-                    <tal:switch tal:switch="python: (item_rating-1) >= star">
-                      <span tal:case="True"><i class="fa fa-star checked"></i></span>
-                      <span tal:case="False"><i class="fa fa-star"></i></span>
-                    </tal:switch>
-                  </tal:repeat>
-                </div>
-                <div tal:switch="is_has_item_sale" class="product-price">
-                  <ul tal:case="True">
-                    <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
-                    <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
-                  </ul>
-                  <ul tal:case="False">
-                    <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
-                  </ul>
-                </div>
-                <div class="add-to-links mt-15">
-                  <ul>
-                    <li tal:condition="python: item_availability==True"><a onclick="shop_cart.add_shop('${item_uid}', 1)"><i class="fa fa-shopping-cart"></i></a></li>
-                    <li tal:condition="python: item_availability==False"><a class="out_of_stock"><i class="fa fa-shopping-cart"></i></a></li>
-                    <li><a ><i class="fa fa-book" data-uid="${item_uid}"></i></a></li>
-                    <li><a ><i data-uid="${item_uid}" class="fa fa-heart-o"></i></a></li>
-                    <li><a  data-toggle="modal" data-target="#${item_uid}"><i class="fa fa-eye"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- single-product-end -->
-          <tal:content tal:content="structure string: </div>" tal:condition="repeat/item/odd" />
-          <tal:content tal:content="structure string: </div>" 
-                       tal:condition="python: repeat.item.number == repeat.item.length and not_odd_item" />
-        </tal:define>
-      </tal:repeat>
-      <!-- single-product-end -->
     </div>
+    <!-- tab-area-start -->
+    <div class="tab-content">
+      <div class="tab-pane active" id="Bestseller">
+        <div class="row">   
+          <div class="product-active">
+            <!-- single-product-start -->
+            <tal:repeat repeat="item view/getBestSellers">
+              <tal:define define="obj item/getObject;
+                                  item_title item/Title;
+                                  item_productNo obj/productNo;
+                                  item_uid item/UID;
+                                  item_url item/getURL;
+                                  item_disc obj/disc_amount;
+                                  item_price obj/price;
+                                  item_sale python: view.salePrice(obj);
+                                  is_has_item_sale view/hasSale;
+                                  item_availability python: obj.limit_qty > 0;
+                                  item_rating python: int(obj.rating or 0);">
+                <div class="single-product">
+                  <div class="product-img">
+                    <a href="${item_url}" >
+                      <img src="${item_url}/@@images/cover/preview" alt="product" class="first" />
+                    </a>
+                  </div>
+                  <div class="product-content">
+                    <span>${item_productNo}</span>
+                    <h3><a href="${item_url}">${item_title}</a></h3>
+                    <div class="product-rating mb-10">
+                      <tal:repeat tal:repeat="item python: range(5)">
+                        <tal:switch tal:switch="python: (item_rating-1) >= item">
+                          <span tal:case="True"><i class="fa fa-star checked"></i></span>
+                          <span tal:case="False"><i class="fa fa-star"></i></span>
+                        </tal:switch>
+                      </tal:repeat>
+                    </div>
+                    <div tal:switch="is_has_item_sale" class="product-price">
+                      <ul tal:case="True">
+                        <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
+                        <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                      </ul>
+                      <ul tal:case="False">
+                        <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
+                      </ul>
+                    </div>
+                    <div class="add-to-links mt-15">
+                      <ul>
+                        <li tal:condition="python: item_availability==True"><a onclick="shop_cart.add_shop('${item_uid}', 1)"><i class="fa fa-shopping-cart"></i></a></li>
+                        <li tal:condition="python: item_availability==False"><a class="out_of_stock"><i class="fa fa-shopping-cart"></i></a></li>
+                        <li><a ><i class="fa fa-book" data-uid="${item_uid}"></i></a></li>
+                        <li><a ><i data-uid="${item_uid}" class="fa fa-heart-o"></i></a></li>
+                        <li><a  data-toggle="modal" data-target="#${item_uid}"><i class="fa fa-eye"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </tal:define>
+            </tal:repeat>
+            <!-- single-product-end -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- tab-area-end -->
   </div>
+
+
 </div>
 </html>

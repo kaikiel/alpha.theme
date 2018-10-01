@@ -1,7 +1,7 @@
 <html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="plone">
     <div class="breadcrumb-area mb-70" tal:define="breadcrumbs view/breadcrumbs"
-	 style="background-color:black">
+	 style="background-color:#f2d8e1">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
@@ -11,35 +11,6 @@
                   <a tal:case="True">${view/view/viewTitle}</a>
                   <a tal:case="False">${view/context/Title}</a>
                 </h3>
-                
-                <ul aria-labelledby="breadcrumbs-you-are-here">
-                  <li id="breadcrumbs-home">
-                    <a i18n:translate="tabs_home"
-                       tal:attributes="href view/navigation_root_url">Home</a>
-                  </li>
-                <li tal:repeat="crumb breadcrumbs"
-                    tal:attributes="id string:breadcrumbs-${repeat/crumb/number};">
-                 <tal:item tal:define="is_last repeat/crumb/end;
-                                url crumb/absolute_url;
-                                title crumb/Title">
-                  <a href="#"
-                     tal:omit-tag="not: url"
-                     tal:condition="python:not is_last"
-                     tal:attributes="href url"
-                     >
-                        <i class="fa fa-angle-right" style="padding: 0 8px"></i>${title}
-                  </a>
-                  <tal:is_last condition="is_last">
-		    <i class="fa fa-angle-right" style="padding: 0 8px;color: white"></i>
-		    <span style="color:#f08a5d;font-size:16px">${title}</span>
-		  </tal:is_last>
-                 </tal:item>
-                </li>
-                  <li tal:condition="python: hasattr(view.view, 'viewTitle')" id="breadcrumbs-${view/view/viewTitle}">
-		    <i class="fa fa-angle-right" style="padding: 0 8px;color: white"></i>
-		    <span style="color:#f08a5d;font-size:16px">${view/view/viewTitle}</span>
-                  </li>
-              </ul>
               </div>
             </div>
           </div>

@@ -14,10 +14,51 @@
   td {
     min-width: 65pt;
   }
+
+  tr.drop td, tr.drop th {
+    background: #ecf2f7d1;
+    border-bottom: 1px solid;
+  }
 </style>
 
 
 ${view/checkAnonymous}
+  <metal:listingmacro>
+    <tal:results define="batch view/batch;">
+      <tal:listing>
+
+        <form method="POST">
+          <div class="row">
+            <div class="col-xs-12 col-sm-4">
+              <div class="form-group">
+                <label for="order-id-input" class="col-2 col-form-label" i18n:translate="">Order ID</label>
+                <div class="col-10">
+                  <input class="form-control" type="text" name="order_id" id="order-id">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+              <div class="form-group">
+                <label for="start-date-input" class="col-2 col-form-label">Start Date</label>
+                <div class="col-10">
+                  <input class="form-control" type="date" name="start_date" id="start-date-input">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+              <div class="form-group">
+                <label for="end-date-input" class="col-2 col-form-label">End Date</label>
+                <div class="col-10">
+                  <input class="form-control" type="date" name="end_date" id="end-date-input">
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12">
+              <input class="oval-btn" type="submit" value="Search" style="float:right;" i18n:attributes="value;">
+            </div>
+          </div>
+        </form>
+
 
 <div class="cart-main-area mb-70">
   <div class="container">
@@ -26,29 +67,68 @@ ${view/checkAnonymous}
         <div class="wishlist-content">
           <form action="#">
             <div class="wishlist-title">
-              <h2 i18n:translate="">Order History</h2>
+              <div class="row" style="margin-top: 20px;">
+                <div class="col-xs-10">
+                  <h2 i18n:translate="">Order History</h2>
+                </div>
+                <div class="col-xs-2">
+                  <form method="GET">
+                    <div class="form-group">
+                      <label for="end-date-input" class="col-2 col-form-label" i18n:translate="">Show</label>
+                      <div class="col-10">
+                        <input class="form-control" name="b_size" type="number" 
+                               value="${view/b_size}" min="0" onblur="this.value > 0 ? this.form.submit() : ''">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
             <div class="wishlist-table table-responsive">
               <table>
                 <thead>
                   <tr>
+                    <th class="product-name" i18n:translate="">Order ID</th>
                     <th class="product-name" i18n:translate="">Order Date</th>
                     <th class="product-name" i18n:translate="">Recipient Name</th>
-                    <th class="product-name" i18n:translate="">Address</th>
-                    <th class="product-name" i18n:translate="">Order Detail</th>
                     <th class="product-price" i18n:translate="">Order Total</th>
                   </tr>
                 </thead>
-                <tbody tal:repeat="item view/getMyOrder">
-                  <tr>
-                    <td class="product-name">${item/time}</td>
-                    <td class="product-name">${item/recipient_name}</td>
-                    <td class="product-name">${item/address}</td>
-                    <td class="product-name">
-                      <p tal:repeat="product python: item['product_detail'].split(',')">${product}</p>
-                    </td>
-                    <td class="product-price"><span class="amount">${item/currency} ${item/total}</span></td>
+                <tbody>
+                <tal:repeat tal:repeat="order batch">
+                  <tal:order tal:define="order_detail order/order">
+                  <tr data-toggle="collapse" data-target=".order${repeat/order/number}">
+                    <td class="product-name">${order/order_id}</td>
+                    <td class="product-name">${python: order_detail['time'].strftime('%Y-%m-%d')}</td>
+                    <td class="product-name">${order_detail/recipient_name}</td>
+                    <td class="product-price"><span class="amount">${order_detail/currency} ${order_detail/total} </span></td>
                   </tr>
+                  <tr class="collapse order${repeat/order/number} drop">
+                    <th class="product-name" i18n:translate="">Email</th>
+                    <td class="product-name">${order_detail/email}</td>
+                    <th class="product-name" i18n:translate="">Phone</th>
+                    <td class="product-name">${order_detail/phone}</td>
+                  </tr>
+                  <tr class="collapse order${repeat/order/number} drop">
+                    <th class="product-name" i18n:translate="">Address</th>
+                    <td class="product-name" colspan="3">${order_detail/address}</td>
+                  </tr>
+                  <tr class="collapse order${repeat/order/number} drop">
+                    <th class="product-name" i18n:translate="">Product Name</th>
+                    <th class="product-name" i18n:translate="">Qty</th>
+                    <th class="product-price" i18n:translate="">Price</th>
+                    <th class="product-price" i18n:translate="">Disc Price</th>
+                  </tr>
+                  <tal:items tal:repeat="item order/order_items">
+                    <tr class="collapse order${repeat/order/number} drop status${item/bonus_status}">
+                      <td class="product-name">${item/product_name}</td>
+                      <td class="product-name">${item/qty}</td>
+                      <td class="product-name">${item/currency} ${item/price}</td>
+                      <td class="product-name">${item/currency} ${item/disc_price}</td>
+                    </tr>
+                  </tal:items>
+                  </tal:order>
+                </tal:repeat>
                 </tbody>
               </table>
             </div>
@@ -58,6 +138,26 @@ ${view/checkAnonymous}
     </div>
   </div>
 </div>
+        <!-- pagination-area-start -->
+        <div class="pagination-area">
+          <div class="pagination-number">
+            <div metal:use-macro="context/batch_macros/macros/navigation" />
+          </div>
+        </div>
+        <!-- pagination-area-end -->
+
+      </tal:listing>
+
+      <metal:empty>
+        <p class="discreet"
+            tal:condition="not: python: view.batch()"
+            i18n:translate="">
+          No results were found.
+        </p>
+      </metal:empty>
+
+    </tal:results>
+  </metal:listingmacro>
 
 </metal:content-core>
 </metal:content-core>

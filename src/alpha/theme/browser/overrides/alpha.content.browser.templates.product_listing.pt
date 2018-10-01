@@ -16,7 +16,7 @@
     cursor: pointer;
   }
   a h3:hover{
-    color: #f0ce16;
+    color: #e378a3;
   }
 </style>
 
@@ -29,14 +29,14 @@
           <div class="page-bar mb-30">
             <div class="shop-tab">
               <!-- tab-menu-start -->
-              <div class="tab-menu">
+              <div class="tab-menu" style="display:none;">
                 <ul>
                   <li id="tab_th" class="active"><a href="#th" data-toggle="tab" onclick="setThumbOrDetail(1)"><i class="fa fa-th"></i></a></li>
                   <li id="tab_list"><a href="#list" data-toggle="tab" onclick="setThumbOrDetail(2)"><i class="fa fa-list"></i></a></li>
                 </ul>
               </div>
               <!-- tab-menu-end -->
-              <div class="toolbar-sorter">
+              <div class="toolbar-sorter" style="display:none;">
                 <span i18n:translate="">Sort By</span>
                 <select id="sort_by" name="sort_by" id="toolber-sorter" class="sorter-options" data-sort_by="${view/sort_by}"  onchange="getCategorySort()" >
                   <option value="sort_on:sortable_title,sort_order:ascending"  i18n:translate="">Name (A - Z)</option>
@@ -70,7 +70,7 @@
         <metal:listingmacro define-macro="listing">
           <tal:results define="batch view/batch;
                                promoList view/results_promo;">
-            <tal:listing condition="batch">
+            <tal:listing condition="python: view.batch() or len(promoList)!=0">
             <!-- tab-area-start -->
             <div class="tab-content" >
               <div class="tab-pane active"  id="th">
@@ -85,7 +85,7 @@
                                            item_price obj/price;
                                            item_sale python: view.salePrice(obj);
                                            is_has_item_sale False;
-                                           item_availability obj/availability;
+                                           item_availability python: obj.limit_qty > 0;
                                            item_rating python: int(obj.rating or 0);">
                           <!-- single-product-start -->
                           <div class="single-product mb-30">
@@ -105,18 +105,31 @@
                                   </tal:switch>
                                 </tal:repeat>
                               </div>
-                              <div tal:switch="is_has_item_sale" class="product-price">
-                                <ul tal:case="True">
-                                  <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
-                                  <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
-                                </ul>
-                                <ul tal:case="False">
-                                  <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
-                                </ul>
-                              </div>
+                              <tal:switch tal:switch="python: obj.getParentNode().id == 'promotions'">
+                                <tal:case tal:case="False"> 
+                                  <div tal:switch="is_has_item_sale" class="product-price">
+                                    <ul tal:case="True">
+                                      <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
+                                      <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                                    </ul>
+                                    <ul tal:case="False">
+                                      <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
+                                    </ul>
+                                  </div>
+                                </tal:case>
+                                <tal:case tal:case="True">
+                                  <div class="product-price">
+                                    <ul>
+                                      <li class="new-price sale"><span i18n:translate="">dollar</span><span>${item_sale}</span></li>
+                                      <li class="old-price"><span i18n:translate="">dollar</span><span>${item_price}</span></li>
+                                    </ul>
+                                  </div>
+                                </tal:case> 
+                              </tal:switch>
                               <div class="add-to-links mt-15">
                                 <ul>
-                                  <li><a onclick="shop_cart.add_shop('${item_uid}', 1)"><i class="fa fa-shopping-cart"></i></a></li>
+                                  <li tal:condition="python: item_availability==True"><a onclick="shop_cart.add_shop('${item_uid}', 1)"><i class="fa fa-shopping-cart"></i></a></li>
+                                  <li tal:condition="python: item_availability==False"><a class="out_of_stock"><i class="fa fa-shopping-cart"></i></a></li>
                                   <li><a ><i data-uid="${item_uid}" class="fa fa-book"></i></a></li>
                                   <li><a ><i data-uid="${item_uid}" class="fa fa-heart-o"></i></a></li>
                                   <li><a  data-toggle="modal" data-target="#${item_uid}"><i class="fa fa-eye"></i></a></li>
@@ -136,7 +149,7 @@
                                            item_price obj/price;
                                            item_sale python: view.salePrice(obj);
                                            is_has_item_sale view/hasSale;
-                                           item_availability obj/availability;
+                                           item_availability python: obj.limit_qty > 0;
                                            item_rating python: int(obj.rating or 0);">
                           <!-- single-product-start -->
                           <div class="single-product mb-30">
@@ -167,7 +180,8 @@
                               </div>
                               <div class="add-to-links mt-15">
                                 <ul>
-                                  <li><a onclick="shop_cart.add_shop('${item_uid}', 1)"><i class="fa fa-shopping-cart"></i></a></li>
+                                  <li tal:condition="python: item_availability==True"><a onclick="shop_cart.add_shop('${item_uid}', 1)"><i class="fa fa-shopping-cart"></i></a></li>
+                                  <li tal:condition="python: item_availability==False"><a class="out_of_stock"><i class="fa fa-shopping-cart"></i></a></li>
                                   <li><a ><i data-uid="${item_uid}" class="fa fa-book"></i></a></li>
                                   <li><a ><i data-uid="${item_uid}" class="fa fa-heart-o"></i></a></li>
                                   <li><a  data-toggle="modal" data-target="#${item_uid}"><i class="fa fa-eye"></i></a></li>
@@ -192,7 +206,7 @@
                                            item_price obj/price;
                                            item_sale python: view.salePrice(obj);
                                            is_has_item_sale view/hasSale;
-                                           item_availability obj/availability;
+                                           item_availability python: obj.limit_qty > 0;
                                            item_rating python: int(obj.rating or 0);">
                   <!-- shop-product-start -->
                   <div class="shop-product bb-5">
@@ -263,7 +277,7 @@
                                            item_price obj/price;
                                            item_sale python: view.salePrice(obj);
                                            is_has_item_sale view/hasSale;
-                                           item_availability obj/availability;
+                                           item_availability python: obj.limit_qty > 0;
                                            item_rating python: int(obj.rating or 0);">
                   <!-- shop-product-start -->
                   <div class="shop-product bb-5">
@@ -343,7 +357,7 @@
                                     item_price obj/price;
                                     item_sale python: view.salePrice(obj);
                                     is_has_item_sale view/hasSale;
-                                    item_availability obj/availability;
+                                    item_availability python: obj.limit_qty > 0;
                                     item_rating python: int(obj.rating or 0);">
                   
                   <!-- single-modal-start -->
@@ -407,7 +421,7 @@
                               <div class="product_reference">
                                 <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Brand</span>:<span>${item_brand}</span></p>
                               </div>
-                              <div class="product_reference">
+                              <div class="product_reference" tal:condition="item_productCode">
                                 <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Product Code</span>:<span>${item_productCode}</span></p>
                               </div>
                               <div class="product_reference">
@@ -451,7 +465,7 @@
                                     item_price obj/price;
                                     item_sale python: view.salePrice(obj);
                                     is_has_item_sale view/hasSale;
-                                    item_availability obj/availability;
+                                    item_availability python: obj.limit_qty > 0;
                                     item_rating python: int(obj.rating or 0);">
                   
                   <!-- single-modal-start -->
@@ -561,7 +575,7 @@
 
             <metal:empty metal:define-slot="no_items_in_listing">
               <p class="discreet"
-                  tal:condition="not: view/batch"
+                  tal:condition="not: python: view.batch() or len(promoList)!=0"
                   i18n:translate="">
                 No results were found.
               </p>
@@ -577,7 +591,7 @@
           <!-- single-shop-left-start -->
           <div class="single-shop-left mb-30">
             <div class="shop-left-title">
-              <h3>Price</h3>
+              <h3 i18n:translate="">Price</h3>
             </div>
             <div id="slider-range"></div>
             <input type="text" name="text" id="amount" />
@@ -586,7 +600,7 @@
           <!-- single-shop-left-start -->
           <div class="single-shop-left mb-30">
             <div class="shop-left-title">
-              <a onclick="getCategorySort('brands:','p_category:','p_subject:')">
+              <a onclick="location.replace('?')">
                 <h3> <span id="all" i18n:translate="">All</span></h3>
               </a>
             </div>
@@ -699,7 +713,7 @@
                       temp+=p_category.charCodeAt(i);
                   }
                   p_category = temp;
-                  $("#a"+p_category).css('color', '#f0ce16');
+                  $("#a"+p_category).css('color', '#e378a3');
               }
               if(p_subject){
                   temp=""
@@ -707,7 +721,7 @@
                       temp+=p_subject.charCodeAt(i);
                   }
                   p_subject = temp;
-                  $("#a"+p_category+p_subject).css('color', '#f0ce16');
+                  $("#a"+p_category+p_subject).css('color', '#e378a3');
               }
               if(brands){
                   temp=""
@@ -715,10 +729,10 @@
                       temp+=brands.charCodeAt(i);
                   }
                   brands = temp;
-                  $("#b"+brands).css('color', '#f0ce16');
+                  $("#b"+brands).css('color', '#e378a3');
               }
           }else{
-              $("#all").css('color', '#f0ce16');
+              $("#all").css('color', '#e378a3');
           }
       }
 
@@ -757,7 +771,7 @@
               // query string add brand
               if(arguments[0].split(':')[1]){
                   var brandStr = arguments[0].split(':')[0] + "=" + encodeURIComponent(arguments[0].split(':')[1]) + "&";
-                  brandStr += 'p_category' + "=" + encodeURIComponent(p_category) + "&" + 'p_subject' + '=' + encodeURIComponent(p_subject);
+                  brandStr += 'p_category' + "=" + encodeURIComponent(p_category) + "&" + 'p_subject' + "=" + encodeURIComponent(p_subject) + "&";
                   queryStr += brandStr;
               }
           }else{
@@ -770,7 +784,7 @@
               queryStr += 'price_min' + "=" + price_min + "&"
           }
           if (price_max){
-              queryStr += 'price_max' + "=" + price_min + "&"
+              queryStr += 'price_max' + "=" + price_max + "&"
           }
           location.assign(queryStr);
       }
