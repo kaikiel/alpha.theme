@@ -118,23 +118,12 @@ label{
               <input class="form-control" type='text' id="recipient_name" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/fName}"  i18n:attributes="data-content;" >
             </label>
           </div>
-          <div class="col-xs-6 col-sm-5 col-md-3">
-            <label tal:switch="python: view.getLanguage() != 'zh-cn'"><span i18n:translate="">Country</span>
-              <select tal:case="True" class="form-control" id="country"
-                      data-trigger="manual" data-toggle="popover" data-content="Please fill in" 
-                      i18n:attributes="data-content;">
-                <option i18n:translate="">Please Choice</option>
-                <metal:block  metal:use-macro="context/country_select_macro/macros/country_select" />
-              </select>
-              <input tal:case="False" class="form-control" type='text' id="country-china" value="中国" readonly style="background-color:white;" >
-            </label>
-          </div>
         </div>
 
         <div class="row">
           <div class="col-xs-6 col-md-3">
-            <label><span i18n:translate="">State</span>:
-              <input type='text' id="state" data-trigger="manual" data-toggle="popover" data-content="Please fill in" value="${property/state}" i18n:attributes="data-content;">
+            <label><span i18n:translate="">Country</span>:
+              <input class="form-control" type='text' id="country" value="${property/country}" readonly style="background-color:white;" >
             </label>
           </div>
           <div class="col-xs-6 col-md-3">

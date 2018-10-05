@@ -137,6 +137,8 @@
 
     <!--shop_cart-->
     <drop css:content="#shop-cart" />
+
+    <drop css:content="#modal-register-notify" />
     
     <drop css:content=".breadcrumb-area.mb-70" />
     <drop css:content=".brand-active.bt-2.ptb-50" />

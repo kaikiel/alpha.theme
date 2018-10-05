@@ -103,12 +103,12 @@
   <!-- index viewlet -->
   <replace css:content=".slider-area" css:theme=".slider-area" />
   <replace css:content=".banner-area.pt-50.pb-20" css:theme=".banner-area.pt-50.pb-20" />
-  <replace css:content=".pos_new_product.pt-50" css:theme=".pos_new_product.pt-50" />
+  <replace css:content=".pos_new_product.latest_product" css:theme=".pos_new_product.pt-50" />
   <replace css:content=".special_products-area" css:theme=".special_products-area" />
-  <replace css:content=".pos_new_product.ptb-50" css:theme=".pos_new_product.ptb-50" />
+  <replace css:content=".pos_new_product.best_product" css:theme=".pos_new_product.ptb-50" />
   <replace css:content=".static-center-area" css:theme=".static-center-area" />
   <drop css:theme=".most-popular-product.pt-80.pb-50" />
-  <replace css:content=".blog-area.pb-80" css:theme=".blog-area.pb-80" />
+  <replace css:content=".blog-area.news_area" css:theme=".blog-area.pb-80" />
   <replace css:content=".brand-area" css:theme=".brand-area" />
   <!--nav bar and footer -->
   <replace css:content=".plone-collapse.plone-navbar-collapse" css:theme-children=".main-menu.hidden-sm.hidden-xs" />  

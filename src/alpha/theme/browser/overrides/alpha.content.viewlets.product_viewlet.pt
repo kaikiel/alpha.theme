@@ -1,7 +1,7 @@
 <html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="alpha.theme">
-<div class="pos_new_product pt-50">
-  <div class="container">
+<div class="pos_new_product latest_product">
+  <div class="container pt-50" tal:condition="view/getLatest">
     <!--tab title-->
     <div class="row">
       <div class="col-lg-12">

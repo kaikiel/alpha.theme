@@ -52,7 +52,7 @@
         
         <!-- single-modal-start -->
         <div class="modal fade" id="${item_uid}" tabindex="-1" role="dialog">
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog  modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -60,79 +60,85 @@
                 </button>
               </div>
               <div class="modal-body">
-                <div class="modal-img">
-                  <div tal:condition="python: len(view.getObjectImg(item)) == 0" class="single-img">
-                    <img src="${item_url}/@@images/cover/preview" alt="mobile" class="primary" />
+                <div class="row">
+                  <div class="col-sm-5">
+                    <div class="modal-img" style="margin:auto">
+                      <div tal:condition="python: len(view.getObjectImg(item)) == 0" class="single-img">
+                        <img src="${item_url}/@@images/cover/preview" alt="mobile" class="primary" />
+                      </div>
+                      <div tal:condition="python: len(view.getObjectImg(item)) != 0" class="flexslider">
+                          <ul class="slides">
+                            <tal:repeat tal:repeat="img python: view.getObjectImg(item)">
+                              <li data-thumb="${img}" >
+                                <img src="${img}" alt="woman"
+                                     class="${python:'flex-active' if repeat['img'].start else ''}">
+                              </li>
+                            </tal:repeat>
+                          </ul>
+                      </div>
+                    </div>
                   </div>
-                  <div tal:condition="python: len(view.getObjectImg(item)) != 0" class="flexslider">
-                      <ul class="slides">
-                        <tal:repeat tal:repeat="img python: view.getObjectImg(item)">
-                          <li data-thumb="${img}" >
-                            <img src="${img}" alt="woman"
-                                 class="${python:'flex-active' if repeat['img'].start else ''}">
-                          </li>
+                  <div class="col-sm-7"> 
+                    <div class="model-text">
+                      <span>${item_productNo}</span>
+                      <h2><a href="${item_url}">${item_title}</a> </h2>
+                      <div class="product-rating mb-10">
+                        <tal:repeat tal:repeat="star python: range(5)">
+                          <tal:switch tal:switch="python: (item_rating-1) >= star">
+                            <span tal:case="True"><i class="fa fa-star checked"></i></span>
+                            <span tal:case="False"><i class="fa fa-star"></i></span>
+                          </tal:switch>
                         </tal:repeat>
-                      </ul>
-                  </div>
-                </div>
-                <div class="model-text">
-                  <span>${item_productNo}</span>
-                  <h2><a href="${item_url}">${item_title}</a> </h2>
-                  <div class="product-rating mb-10">
-                    <tal:repeat tal:repeat="star python: range(5)">
-                      <tal:switch tal:switch="python: (item_rating-1) >= star">
-                        <span tal:case="True"><i class="fa fa-star checked"></i></span>
-                        <span tal:case="False"><i class="fa fa-star"></i></span>
-                      </tal:switch>
-                    </tal:repeat>
-                  </div>
-                  <div tal:switch="is_has_item_sale" class="product-price">
-                    <ul tal:case="True">
-                      <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
-                      <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
-                    </ul>
-                    <ul tal:case="False">
-                      <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
-                    </ul>
-                  </div>
-                  <div class="box-cart-bottom">
-                    <div class="add_to_cart" tal:condition="python: item_availability == True">
-                      <input min="1" class="qty" type="number" value="1" id="qty${item_uid}">
-                      <a onclick="shop_cart.add_shop('${item_uid}', document.getElementById('qty${item_uid}').value)" i18n:translate="">Add to cart</a>
+                      </div>
+                      <div tal:switch="is_has_item_sale" class="product-price">
+                        <ul tal:case="True">
+                          <li class="new-price sale"><span i18n:translate="">dollar</span>${item_sale}</li>
+                          <li class="old-price"><span i18n:translate="">dollar</span>${item_price}</li>
+                        </ul>
+                        <ul tal:case="False">
+                          <li class="new-price"><span i18n:translate="">dollar</span>${item_sale}</li>
+                        </ul>
+                      </div>
+                      <div class="box-cart-bottom">
+                        <div class="add_to_cart" tal:condition="python: item_availability == True">
+                          <input min="1" class="qty" type="number" value="1" id="qty${item_uid}">
+                          <a onclick="shop_cart.add_shop('${item_uid}', document.getElementById('qty${item_uid}').value)" i18n:translate="">Add to cart</a>
+                        </div>
+                        <div class="add-to-links-2" style="margin-top: 0;">
+                          <ul>
+                            <li><a ><i data-uid="${item_uid}" class="fa fa-heart-o"></i></a></li>
+                            <li><a ><i data-uid="${item_uid}" class="fa fa-book"></i></a></li>
+                          </ul>
+                        </div>
+                      </div>                  
+                      <div class="product-meta">
+                        <div class="product_reference">
+                          <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Brand</span>:<span>${item_brand}</span></p>
+                        </div>
+                        <div class="product_reference" tal:condition="item_productCode">
+                          <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Product Code</span>:<span>${item_productCode}</span></p>
+                        </div>
+                        <div class="product_reference">
+                          <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Availability</span>:
+                            <tal:block tal:switch="item_availability">
+                              <span tal:case="True"  tal:content="item_qty"/>
+                              <span tal:case="False" tal:content="string: Out of stock" style="color:red;"/>
+                            </tal:block>
+                          </p>
+                        </div>
+                      </div>
+                      <!-- social-icon-start -->
+                      <!--
+                      <div class="social-icon mt-20" id="social-button" data-title="alpha - ${item_title}" data-url="${item_url}">
+                        <metal:block  metal:use-macro="context/social_button_macro/macros/social_btn_fb" />
+                        <metal:block  metal:use-macro="context/social_button_macro/macros/social_btn_tweet_formodal" />
+                      </div>
+                      -->
+                      <!-- social-icon-end -->
+                      <div class="short-description mt-20">
+                        <p>${item_description}</p>
+                      </div>
                     </div>
-                    <div class="add-to-links-2" style="margin-top: 0;">
-                      <ul>
-                        <li><a ><i data-uid="${item_uid}" class="fa fa-heart-o"></i></a></li>
-                        <li><a ><i data-uid="${item_uid}" class="fa fa-book"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>                  
-                  <div class="product-meta">
-                    <div class="product_reference">
-                      <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Brand</span>:<span>${item_brand}</span></p>
-                    </div>
-                    <div class="product_reference" tal:condition="item_productCode">
-                      <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Product Code</span>:<span>${item_productCode}</span></p>
-                    </div>
-                    <div class="product_reference">
-                      <p class="fa fa-angle-double-right"><span style="color:black;" i18n:translate="">Availability</span>:
-                        <tal:block tal:switch="item_availability">
-                          <span tal:case="True"  tal:content="item_qty"/>
-                          <span tal:case="False" tal:content="string: Out of stock" style="color:red;"/>
-                        </tal:block>
-                      </p>
-                    </div>
-                  </div>
-                  <!-- social-icon-start -->
-                  <!--
-                  <div class="social-icon mt-20" id="social-button" data-title="alpha - ${item_title}" data-url="${item_url}">
-                    <metal:block  metal:use-macro="context/social_button_macro/macros/social_btn_fb" />
-                    <metal:block  metal:use-macro="context/social_button_macro/macros/social_btn_tweet_formodal" />
-                  </div>
-                  -->
-                  <!-- social-icon-end -->
-                  <div class="short-description mt-20">
-                    <p>${item_description}</p>
                   </div>
                 </div>
               </div>

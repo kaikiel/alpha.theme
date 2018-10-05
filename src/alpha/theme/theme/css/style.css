@@ -2686,7 +2686,6 @@ a#scrollUp {
 .home-5 .special_products-area{
 	background:#f1f1f1 ;
 	overflow:hidden;
-	padding: 35px 0;
 }
 .home-5 .single-special-product .special-product-img{
 	float: left;
@@ -3582,7 +3581,6 @@ a#scrollUp {
   border-radius: 0;
 }
 .modal .modal-dialog {
-  width: 870px;
 }
 .modal-header {
   border: medium none;
@@ -3608,13 +3606,9 @@ a#scrollUp {
   background: #f70000;
 }
 .modal-img{
-	float:left;
-	width:40%;
 }
 .model-text {
-  float: right;
   padding-left: 15px;
-  width: 60%;
   margin-bottom:20px;
 }
 .model-text h2 a {

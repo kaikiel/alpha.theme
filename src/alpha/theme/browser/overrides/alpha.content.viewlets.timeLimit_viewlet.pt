@@ -1,7 +1,7 @@
 <html xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="alpha.theme">
 <div class="special_products-area">
-  <div class="container">
+  <div class="container" style="padding:35px 0;" tal:condition="view/getTimeLimit">
     <div class="row">
       <div class="product-active-7">
         <tal:repeat tal:repeat="item view/getTimeLimit">
